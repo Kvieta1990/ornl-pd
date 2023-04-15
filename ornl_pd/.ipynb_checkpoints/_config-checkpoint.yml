@@ -1,0 +1,16 @@
+# In _config.yml
+title: Powder Diffraction at ORNL
+author: Yuanpeng Zhang
+email: zhangy3@ornl.gov
+logo: ornl_logo.png
+
+# Bibliography settings
+bibtex_bibfiles:
+  - references.bib
+
+execute:
+  execute_notebooks: force
+
+sphinx:
+  config:
+    bibtex_reference_style: author_year

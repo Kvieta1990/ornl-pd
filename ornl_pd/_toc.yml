@@ -1,0 +1,16 @@
+# In _toc.yml
+format: jb-book
+root: intro
+chapters:
+- file: general_aspects/intro
+  sections:
+  - file: general_aspects/PD_Calibration
+- file: bragg_diffraction/intro
+  sections:
+  - file: bragg_diffraction/data_reduction
+  - file: bragg_diffraction/data_analysis
+- file: total_scattering/intro
+  sections:
+  - file: total_scattering/data_reduction
+  - file: total_scattering/data_analysis
+- file: bib.md
