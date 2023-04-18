@@ -1,6 +1,6 @@
 # In _toc.yml
 format: jb-book
-root: intro
+root: index
 chapters:
 - file: general_aspects/intro
   sections:
