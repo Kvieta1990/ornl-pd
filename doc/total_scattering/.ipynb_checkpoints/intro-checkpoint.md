@@ -1,2 +1,4 @@
 Total Scattering
 ===
+
+There are several diffractometers at Spallation Neutron Source (SNS) that can perform the total scattering data collection, including [NOMAD](https://neutrons.ornl.gov/nomad), [POWGEN](https://neutrons.ornl.gov/powgen), [SNAP](https://sns.gov/snap), etc. Compared to Bragg diffraction, the data reduction for total scattering needs more careful treatments with regards to multiple aspects, such as background subtraction, normalization, necessary corrections (absortion, multiple scattering, inelastic, etc.), and proper scaling. This sections mainly focuses on the total scattering data reduction with the `mantidtotalscattering` (MTS) framework developed and maintained at SNS, ORNL, including the theoretical background, workflow of the program, and demonstration of how-to. Meanwhile, useful analysis tools for analyzing the total scattering data will also be covered briefly.
