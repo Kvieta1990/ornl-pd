@@ -11,22 +11,22 @@ First, some notations in the flowchart are explained as below,
 
 > In the `Data loader` routine, there is a step of generating the output group pattern (see the blue colored `Generate output group pattern` step in the `Data loader` scope). Initially, when generating the grouping scheme according to the similarity of the absorption spectra, such sub-grouping of detectors were performed individually for each of the final output groups. For the moment, we are staying with the physical banks as the final output grouping scheme and thus the sub-grouping was performed accordingly for each of the physical banks. Such a way of sub-grouping makes it easier to re-group those sub-groups into the final output groups since there is no cross-over among the final output groups in terms of sub-grouping. Then within `Data loader`, at the stage of grouping detectors after a series of operations (absorption correction ,etc.), we then re-group those sub-groups according to which final output group they belong to. This requires us using the spectra ID and using the `GroupingPattern` parameter in the `GroupDetectors` algorithm. The `Generate output group pattern` is for such a purpose.
 
-## The main MTS flow
+### The main MTS flow
 
 ![MTS main flow](../imgs/mts_main.svg)
 
-## Sample & container absorption processing
+### Sample & container absorption processing
 
 ![Sam & Con abs flow](../imgs/s_c_abs_processing.svg)
 
-## Vanadium absorption processing
+### Vanadium absorption processing
 
 ![Van abs flow](../imgs/van_abs_processing.svg)
 
-## Create absorption workspace routine
+### Create absorption workspace routine
 
 ![Create abs wksp flow](../imgs/create_abs_wksp.svg)
 
-## Data loader
+### Data loader
 
 ![Data loader flow](../imgs/data_loader.svg)
