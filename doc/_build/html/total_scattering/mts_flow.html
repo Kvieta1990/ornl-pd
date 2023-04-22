@@ -297,7 +297,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -313,6 +315,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-mts-flow">The main MTS flow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-container-absorption-processing">Sample &amp; container absorption processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vanadium-absorption-processing">Vanadium absorption processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-absorption-workspace-routine">Create absorption workspace routine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loader">Data loader</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -335,8 +349,26 @@ document.write(`
 <blockquote>
 <div><p>In the <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">loader</span></code> routine, there is a step of generating the output group pattern (see the blue colored <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">output</span> <span class="pre">group</span> <span class="pre">pattern</span></code> step in the <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">loader</span></code> scope). Initially, when generating the grouping scheme according to the similarity of the absorption spectra, such sub-grouping of detectors were performed individually for each of the final output groups. For the moment, we are staying with the physical banks as the final output grouping scheme and thus the sub-grouping was performed accordingly for each of the physical banks. Such a way of sub-grouping makes it easier to re-group those sub-groups into the final output groups since there is no cross-over among the final output groups in terms of sub-grouping. Then within <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">loader</span></code>, at the stage of grouping detectors after a series of operations (absorption correction ,etc.), we then re-group those sub-groups according to which final output group they belong to. This requires us using the spectra ID and using the <code class="docutils literal notranslate"><span class="pre">GroupingPattern</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">GroupDetectors</span></code> algorithm. The <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">output</span> <span class="pre">group</span> <span class="pre">pattern</span></code> is for such a purpose.</p>
 </div></blockquote>
-<p>The main MTS flow is as below,</p>
+<section id="the-main-mts-flow">
+<h2>The main MTS flow<a class="headerlink" href="#the-main-mts-flow" title="Permalink to this headline">#</a></h2>
 <p><img alt="MTS main flow" src="../_images/mts_main.svg" /></p>
+</section>
+<section id="sample-container-absorption-processing">
+<h2>Sample &amp; container absorption processing<a class="headerlink" href="#sample-container-absorption-processing" title="Permalink to this headline">#</a></h2>
+<p><img alt="Sam &amp; Con abs flow" src="../_images/s_c_abs_processing.svg" /></p>
+</section>
+<section id="vanadium-absorption-processing">
+<h2>Vanadium absorption processing<a class="headerlink" href="#vanadium-absorption-processing" title="Permalink to this headline">#</a></h2>
+<p><img alt="Van abs flow" src="../_images/van_abs_processing.svg" /></p>
+</section>
+<section id="create-absorption-workspace-routine">
+<h2>Create absorption workspace routine<a class="headerlink" href="#create-absorption-workspace-routine" title="Permalink to this headline">#</a></h2>
+<p><img alt="Create abs wksp flow" src="../_images/create_abs_wksp.svg" /></p>
+</section>
+<section id="data-loader">
+<h2>Data loader<a class="headerlink" href="#data-loader" title="Permalink to this headline">#</a></h2>
+<p><img alt="Data loader flow" src="../_images/data_loader.svg" /></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -397,6 +429,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-mts-flow">The main MTS flow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-container-absorption-processing">Sample &amp; container absorption processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vanadium-absorption-processing">Vanadium absorption processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-absorption-workspace-routine">Create absorption workspace routine</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loader">Data loader</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
