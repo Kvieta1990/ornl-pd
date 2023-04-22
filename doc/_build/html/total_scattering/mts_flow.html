@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>mantidtotalscattering workflow &#8212; Powder Diffraction at ORNL</title>
+    <title>Mantidtotalscattering workflow &#8212; Powder Diffraction at ORNL</title>
   
   
   
@@ -168,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Total Scattering</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">mantidtotalscattering workflow</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Mantidtotalscattering workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_reduction_howto.html">Data Reduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_analysis.html">Data Analysis</a></li>
 </ul>
@@ -310,7 +310,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>mantidtotalscattering workflow</h1>
+    <h1>Mantidtotalscattering workflow</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -337,8 +337,8 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mantidtotalscattering-workflow">
-<h1>mantidtotalscattering workflow<a class="headerlink" href="#mantidtotalscattering-workflow" title="Permalink to this headline">#</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">mantidtotalscattering</span></code> (MTS) is a modern engine for reducing neutron total scattering data based on Mantid framework. It is a high-level framework which utilizes various low-level Mantid algorithms, going through all the necessary steps to bring the raw neutron time-of-flight scattering data to user-end analyzable data. By going through the whole workflow and applying a series of necessary corrections, it is expected that the end product is the neutron total scattering data sitting on an absolute scale. Here, a high-level flow of MTS will be presented with necessary (and <code class="docutils literal notranslate"><span class="pre">only</span></code> necessary) explanations. A corresponding flow of the codebase can be found <a class="reference external" href="https://github.com/neutrons/mantid_total_scattering/issues/142">here</a> at the MTS GitHub repo. It is impossible to present all the nitty-gritties of the codebase, but we believe the presentation of the flow here should give one a fairly good starting point by understanding how the codebase of MTS is organized.</p>
+<h1>Mantidtotalscattering workflow<a class="headerlink" href="#mantidtotalscattering-workflow" title="Permalink to this headline">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Mantidtotalscattering</span></code> (MTS) is a modern engine for reducing neutron total scattering data based on Mantid framework. It is a high-level framework which utilizes various low-level Mantid algorithms, going through all the necessary steps to bring the raw neutron time-of-flight scattering data to user-end analyzable data. By going through the whole workflow and applying a series of necessary corrections, it is expected that the end product is the neutron total scattering data sitting on an absolute scale. Here, a high-level flow of MTS will be presented with necessary (and <code class="docutils literal notranslate"><span class="pre">only</span></code> necessary) explanations. A corresponding flow of the codebase can be found <a class="reference external" href="https://github.com/neutrons/mantid_total_scattering/issues/142">here</a> at the MTS GitHub repo. It is impossible to present all the nitty-gritties of the codebase, but we believe the presentation of the flow here should give one a fairly good starting point by understanding how the codebase of MTS is organized.</p>
 <p>First, some notations in the flowchart are explained as below,</p>
 <blockquote>
 <div><p>The top node colored with red in each graph refers to the overall scope of the corresponding graph. All the other red-colored nodes included in each graph are callers to other scopes.</p>
