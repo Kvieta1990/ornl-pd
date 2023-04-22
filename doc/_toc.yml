@@ -11,6 +11,7 @@ chapters:
   - file: bragg_diffraction/data_analysis
 - file: total_scattering/intro
   sections:
-  - file: total_scattering/data_reduction
+  - file: total_scattering/mts_flow
+  - file: total_scattering/data_reduction_howto
   - file: total_scattering/data_analysis
 - file: bib.md

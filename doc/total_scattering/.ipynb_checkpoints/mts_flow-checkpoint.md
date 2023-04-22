@@ -1,3 +1,6 @@
+mantidtotalscattering workflow
+===
+
 `mantidtotalscattering` (MTS) is a modern engine for reducing neutron total scattering data based on Mantid framework. It is a high-level framework which utilizes various low-level Mantid algorithms, going through all the necessary steps to bring the raw neutron time-of-flight scattering data to user-end analyzable data. By going through the whole workflow and applying a series of necessary corrections, it is expected that the end product is the neutron total scattering data sitting on an absolute scale. Here, a high-level flow of MTS will be presented with necessary (and `only` necessary) explanations. A corresponding flow of the codebase can be found [here](https://github.com/neutrons/mantid_total_scattering/issues/142) at the MTS GitHub repo. It is impossible to present all the nitty-gritties of the codebase, but we believe the presentation of the flow here should give one a fairly good starting point by understanding how the codebase of MTS is organized.
 
 First, some notations in the flowchart are explained as below,

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Powder Diffraction at ORNL</title>
+    <title>mantidtotalscattering workflow &#8212; Powder Diffraction at ORNL</title>
   
   
   
@@ -65,6 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'total_scattering/mts_flow';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Reduction" href="data_reduction_howto.html" />
+    <link rel="prev" title="Total Scattering" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -155,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../general_aspects/intro.html">General Topics</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../general_aspects/PD_Calibration.html">Calibration of Instruments</a></li>
 </ul>
@@ -165,7 +167,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../bragg_diffraction/data_analysis.html">Data Analysis</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="intro.html">Total Scattering</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Total Scattering</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">mantidtotalscattering workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_reduction_howto.html">Data Reduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_analysis.html">Data Analysis</a></li>
 </ul>
 </li>
@@ -293,9 +297,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -306,19 +308,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>mantidtotalscattering workflow</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -328,7 +322,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p><code class="docutils literal notranslate"><span class="pre">mantidtotalscattering</span></code> (MTS) is a modern engine for reducing neutron total scattering data based on Mantid framework. It is a high-level framework which utilizes various low-level Mantid algorithms, going through all the necessary steps to bring the raw neutron time-of-flight scattering data to user-end analyzable data. By going through the whole workflow and applying a series of necessary corrections, it is expected that the end product is the neutron total scattering data sitting on an absolute scale. Here, a high-level flow of MTS will be presented with necessary (and <code class="docutils literal notranslate"><span class="pre">only</span></code> necessary) explanations. A corresponding flow of the codebase can be found <a class="reference external" href="https://github.com/neutrons/mantid_total_scattering/issues/142">here</a> at the MTS GitHub repo. It is impossible to present all the nitty-gritties of the codebase, but we believe the presentation of the flow here should give one a fairly good starting point by understanding how the codebase of MTS is organized.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="mantidtotalscattering-workflow">
+<h1>mantidtotalscattering workflow<a class="headerlink" href="#mantidtotalscattering-workflow" title="Permalink to this headline">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">mantidtotalscattering</span></code> (MTS) is a modern engine for reducing neutron total scattering data based on Mantid framework. It is a high-level framework which utilizes various low-level Mantid algorithms, going through all the necessary steps to bring the raw neutron time-of-flight scattering data to user-end analyzable data. By going through the whole workflow and applying a series of necessary corrections, it is expected that the end product is the neutron total scattering data sitting on an absolute scale. Here, a high-level flow of MTS will be presented with necessary (and <code class="docutils literal notranslate"><span class="pre">only</span></code> necessary) explanations. A corresponding flow of the codebase can be found <a class="reference external" href="https://github.com/neutrons/mantid_total_scattering/issues/142">here</a> at the MTS GitHub repo. It is impossible to present all the nitty-gritties of the codebase, but we believe the presentation of the flow here should give one a fairly good starting point by understanding how the codebase of MTS is organized.</p>
 <p>First, some notations in the flowchart are explained as below,</p>
 <blockquote>
 <div><p>The top node colored with red in each graph refers to the overall scope of the corresponding graph. All the other red-colored nodes included in each graph are callers to other scopes.</p>
@@ -341,6 +337,7 @@ document.write(`
 </div></blockquote>
 <p>The main MTS flow is as below,</p>
 <p><img alt="MTS main flow" src="../_images/mts_main.svg" /></p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -373,6 +370,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Total Scattering</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="data_reduction_howto.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Reduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -382,20 +397,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
