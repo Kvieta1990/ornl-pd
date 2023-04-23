@@ -19,9 +19,10 @@ repository:
   branch: main
 
 launch_buttons:
-  notebook_interface: "jupyterlab"
+  notebook_interface: "classic" # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url: "https://mybinder.org"
   colab_url: "https://colab.research.google.com"
+  thebe: true
 
 # Bibliography settings
 bibtex_bibfiles:
