@@ -4,15 +4,23 @@ author: Yuanpeng Zhang
 email: zhangy3@ornl.gov
 logo: ornl_logo.png
 
+html:
+  # announcement: ""
+  home_page_in_navbar: false
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: https://powder.ornl.gov/
+
 # Information about where the book exists on the web
 repository:
-  url                       : https://github.com/Kvieta1990/ornl-pd  # Online location of your book
-  path_to_book              : doc/  # Optional path to your book, relative to the repository root
-  branch                    : main  # Which branch of the repository should be used when creating links (optional)
+  url : https://github.com/Kvieta1990/ornl-pd
+  path_to_book: doc
+  branch: main
 
 launch_buttons:
-  notebook_interface: "jupyterlab"  # or "classic"
-  binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
+  notebook_interface: "jupyterlab"
+  binderhub_url: "https://mybinder.org"
   colab_url: "https://colab.research.google.com"
 
 # Bibliography settings
