@@ -2,6 +2,7 @@
 format: jb-book
 root: index
 chapters:
+- file: about_this_book
 - file: general_aspects/intro
   sections:
   - file: general_aspects/PD_Calibration
