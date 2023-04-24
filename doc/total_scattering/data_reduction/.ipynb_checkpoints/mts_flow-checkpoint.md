@@ -1,4 +1,4 @@
-Mantidtotalscattering workflow
+MTS workflow
 ===
 
 `Mantidtotalscattering` (MTS) is a modern engine for reducing neutron total scattering data based on Mantid framework. It is a high-level framework which utilizes various low-level Mantid algorithms, going through all the necessary steps to bring the raw neutron time-of-flight scattering data to user-end analyzable data. By going through the whole workflow and applying a series of necessary corrections, it is expected that the end product is the neutron total scattering data sitting on an absolute scale. Here, a high-level flow of MTS will be presented with necessary (and `only` necessary) explanations. A corresponding flow of the codebase can be found [here](https://github.com/neutrons/mantid_total_scattering/issues/142) at the MTS GitHub repo. It is impossible to present all the nitty-gritties of the codebase, but we believe the presentation of the flow here should give one a fairly good starting point by understanding how the codebase of MTS is organized.
@@ -13,20 +13,20 @@ First, some notations in the flowchart are explained as below,
 
 ## The main MTS flow
 
-![MTS main flow](../imgs/mts_main.svg)
+![MTS main flow](../../imgs/mts_main.svg)
 
 ## Sample & container absorption processing
 
-![Sam & Con abs flow](../imgs/s_c_abs_processing.svg)
+![Sam & Con abs flow](../../imgs/s_c_abs_processing.svg)
 
 ## Vanadium absorption processing
 
-![Van abs flow](../imgs/van_abs_processing.svg)
+![Van abs flow](../../imgs/van_abs_processing.svg)
 
 ## Create absorption workspace routine
 
-![Create abs wksp flow](../imgs/create_abs_wksp.svg)
+![Create abs wksp flow](../../imgs/create_abs_wksp.svg)
 
 ## Data loader
 
-![Data loader flow](../imgs/data_loader.svg)
+![Data loader flow](../../imgs/data_loader.svg)

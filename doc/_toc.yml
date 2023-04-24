@@ -1,18 +1,26 @@
 # In _toc.yml
 format: jb-book
 root: index
-chapters:
-- file: about_this_book
-- file: general_aspects/intro
-  sections:
+parts:
+- caption: General Topics
+  chapters:
+  - file: about_this_book
   - file: general_aspects/PD_Calibration
-- file: bragg_diffraction/intro
-  sections:
+- caption: Bragg Diffraction
+  chapters:
   - file: bragg_diffraction/data_reduction
   - file: bragg_diffraction/data_analysis
-- file: total_scattering/intro
-  sections:
-  - file: total_scattering/mts_flow
-  - file: total_scattering/data_reduction_howto
+- caption: Total Scattering
+  chapters:
+  - file: total_scattering/intro
+  - file: total_scattering/data_reduction/toc
+    sections:
+    - file: total_scattering/data_reduction/princple_implementation
+      sections:
+      - file: total_scattering/data_reduction/mts_flow
+      - file: total_scattering/data_reduction/mts_abs_ms
+    - file: total_scattering/data_reduction/dr_howto
   - file: total_scattering/data_analysis
-- file: bib.md
+- caption: References
+  chapters:
+  - file: bib.md
