@@ -170,11 +170,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Total Scattering</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="data_reduction/toc.html">Total Scattering Data Reduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_reduction/mts_flow.html">MTS workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_reduction/mts_abs_ms.html">Absorption and Multiple Scattering Correction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_reduction/dr_howto.html">Data Reduction How-to</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="data_reduction/toc.html">Total Scattering Data Reduction</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_reduction/mts_flow.html">MTS workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_reduction/mts_abs_ms.html">Absorption and Multiple Scattering Correction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_reduction/dr_howto.html">Data Reduction How-to</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="data_analysis.html">Data Analysis</a></li>
@@ -397,6 +399,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
 <p>There are several diffractometers at Spallation Neutron Source (SNS) that can perform the total scattering data collection, including <a class="reference external" href="https://neutrons.ornl.gov/nomad">NOMAD</a>, <a class="reference external" href="https://neutrons.ornl.gov/powgen">POWGEN</a>, <a class="reference external" href="https://sns.gov/snap">SNAP</a>, etc. Compared to Bragg diffraction, the data reduction for total scattering needs more careful treatments with regards to multiple aspects, such as background subtraction, normalization, necessary corrections (absortion, multiple scattering, inelastic, etc.), and proper scaling. This sections mainly focuses on the total scattering data reduction with the <code class="docutils literal notranslate"><span class="pre">mantidtotalscattering</span></code> (MTS) framework developed and maintained at SNS, ORNL, including the theoretical background, workflow of the program, and demonstration of how-to. Meanwhile, useful analysis tools for analyzing the total scattering data will also be covered briefly.</p>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
