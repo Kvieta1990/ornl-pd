@@ -2,9 +2,11 @@
 format: jb-book
 root: index
 parts:
-- caption: General Topics
+- caption: About
   chapters:
   - file: about_this_book
+- caption: General Topics
+  chapters:
   - file: general_aspects/PD_Calibration
 - caption: Bragg Diffraction
   chapters:
