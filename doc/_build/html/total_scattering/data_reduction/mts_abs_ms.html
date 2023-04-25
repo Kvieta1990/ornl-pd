@@ -484,11 +484,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-aspects">General aspects</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-multiple-scattering-correction-implementation">Notes on Multiple Scattering Correction Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-aspects">General aspects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-scattering-correction-implementation">Multiple Scattering Correction Implementation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
 </ul>
@@ -506,11 +503,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="absorption-and-multiple-scattering-correction">
 <h1>Absorption and Multiple Scattering Correction<a class="headerlink" href="#absorption-and-multiple-scattering-correction" title="Permalink to this headline">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <section id="general-aspects">
-<h3>General aspects<a class="headerlink" href="#general-aspects" title="Permalink to this headline">#</a></h3>
-<p>When neutrons travel into the sample, there are multiple types of events that can happen, and two typical ones are scattering and absorption. Specifically concerning the scattering event, there are also two types – single scattering and multiple scattering. Fundamentally, it is only the single scattering event that we are concerned about for extracting structural information, in a general sense. Therefore, in practice, we need to correct for both the absorption and multiple scattering effects. With this regard, the Mantid concept page as in Ref. <span id="id1">[<a class="reference internal" href="../../bib.html#id6" title="Mantid dev team. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">dev team, n.d.</a>]</span> presents a nice summary about the undelying principles and the practical implementation in Mantid framework. On top of that, the derivation of the Paalman-Pings scheme for the absorption correction is detailed below. First, the complete expression of the full Paalman-Pings formulation is as follows,</p>
+<h2>General aspects<a class="headerlink" href="#general-aspects" title="Permalink to this headline">#</a></h2>
+<p>When neutrons travel into the sample, there are multiple types of events that can happen, and two typical ones are scattering and absorption. Specifically concerning the scattering event, there are also two types – single scattering and multiple scattering. Fundamentally, it is only the single scattering event that we are concerned about for extracting structural information, in a general sense. Therefore, in practice, we need to correct for both the absorption and multiple scattering effects. With this regard, the Mantid concept page as in Ref. <span id="id1">[<a class="reference internal" href="../../bib.html#id6" title="Mantid. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">Mantid, n.d.</a>]</span> presents a nice summary about the undelying principles and the practical implementation in Mantid framework. On top of that, the derivation of the Paalman-Pings scheme for the absorption correction is detailed below. First, the complete expression of the full Paalman-Pings formulation is as follows,</p>
 <div class="math notranslate nohighlight">
 \[\begin{align}I_{S+C}^{E} = I_{S}A_{S,SC} + I_{C}A_{C,SC} + I_{SC}A_{SC,SC}\tag{1}\end{align}\]</div>
 <p>where,</p>
@@ -540,10 +535,9 @@ document.write(`
 \[I_{S+C}^E = I_SA_{S,SC} + \frac{A_{C,SC}}{A_{C,C}}I_C^E \Rightarrow I_S = \frac{1}{A_{S,SC}}I_{S+C}^E - \frac{A_{C,SC}}{A_{S,SC}}\frac{1}{A_{C,C}}I_C^E\]</div>
 <p>Following such a scheme, the absorption coefficients (i.e., those <span class="math notranslate nohighlight">\(A\)</span>’s) can be evaluated in a numerical integration approach and applied to the experimentally measured intensities to correct for the absorption effect as detailed above.</p>
 </section>
-</section>
-<section id="notes-on-multiple-scattering-correction-implementation">
-<h2>Notes on Multiple Scattering Correction Implementation<a class="headerlink" href="#notes-on-multiple-scattering-correction-implementation" title="Permalink to this headline">#</a></h2>
-<p>Evaluation of those different absorption coefficients in a numerical manner is nicely presented in the Ref. <span id="id2">[<a class="reference internal" href="../../bib.html#id6" title="Mantid dev team. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">dev team, n.d.</a>]</span>. Meanwhile, a comprehensive table listing out all the implemented algorithms for performing absorption and multiple scattering correction, together with justification for the undelying algorithms can be found there as well. Specifically concerning the multiple scattering correction, a detailed derivation of the formulation based on multiple assumptions (elastic &amp; isotropic scattering, constant ratio be in between adjacent order of multiple scattering intensities) can also be found. Most details won’t be reproduced in current documentation, and one is strongly encouraged to go over the Ref. <span id="id3">[<a class="reference internal" href="../../bib.html#id6" title="Mantid dev team. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">dev team, n.d.</a>]</span> for better understanding of the topic. Instead, current booklet will focus on those technical implementation relevant aspects, with reference to Ref. <span id="id4">[<a class="reference internal" href="../../bib.html#id6" title="Mantid dev team. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">dev team, n.d.</a>]</span>.</p>
+<section id="multiple-scattering-correction-implementation">
+<h2>Multiple Scattering Correction Implementation<a class="headerlink" href="#multiple-scattering-correction-implementation" title="Permalink to this headline">#</a></h2>
+<p>Evaluation of those different absorption coefficients in a numerical manner is nicely presented in the Ref. <span id="id2">[<a class="reference internal" href="../../bib.html#id6" title="Mantid. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">Mantid, n.d.</a>]</span>. Meanwhile, a comprehensive table listing out all the implemented algorithms for performing absorption and multiple scattering correction, together with justification for the undelying algorithms can be found there as well. Specifically concerning the multiple scattering correction, a detailed derivation of the formulation based on multiple assumptions (elastic &amp; isotropic scattering, constant ratio be in between adjacent order of multiple scattering intensities) can also be found. Most details won’t be reproduced in current documentation, and one is strongly encouraged to go over the Ref. <span id="id3">[<a class="reference internal" href="../../bib.html#id6" title="Mantid. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">Mantid, n.d.</a>]</span> for better understanding of the topic. Instead, current booklet will focus on those technical implementation relevant aspects, with reference to Ref. <span id="id4">[<a class="reference internal" href="../../bib.html#id6" title="Mantid. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">Mantid, n.d.</a>]</span>.</p>
 <section id="formulation">
 <h3>Formulation<a class="headerlink" href="#formulation" title="Permalink to this headline">#</a></h3>
 <p>The final formulation of the multiple scattering will be reproduced here,</p>
@@ -723,11 +717,8 @@ and
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-aspects">General aspects</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-multiple-scattering-correction-implementation">Notes on Multiple Scattering Correction Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-aspects">General aspects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-scattering-correction-implementation">Multiple Scattering Correction Implementation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
 </ul>
