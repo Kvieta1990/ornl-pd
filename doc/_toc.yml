@@ -22,6 +22,5 @@ parts:
       - file: total_scattering/data_reduction/mts_abs_ms
     - file: total_scattering/data_reduction/dr_howto
   - file: total_scattering/data_analysis
-- caption: References
-  chapters:
+- chapters:
   - file: bib.md
