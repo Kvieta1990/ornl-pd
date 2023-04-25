@@ -490,6 +490,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-boost">Performance Boost</a></li>
 </ul>
             </nav>
         </div>
@@ -648,6 +649,13 @@ and
 <p>where, again, <span class="math notranslate nohighlight">\(K_e\)</span> is an arbitrary factor that users can introduce to account for any effects beyond current correction scenario.</p>
 </section>
 </section>
+<section id="performance-boost">
+<h2>Performance Boost<a class="headerlink" href="#performance-boost" title="Permalink to this headline">#</a></h2>
+<p>Usually for total scattering data reduction, to bring the data onto an absolute scale could potentially need several cycles of reduction, trying, e.g., different packing fraction values (or equivalent tweaking factors). Suppose one is to change the packing fraction to tweak the high-<span class="math notranslate nohighlight">\(Q\)</span> level of the normalized total scattering pattern (<span class="math notranslate nohighlight">\(S(Q)\)</span>, which is supposed to go to 1 as approaching high <span class="math notranslate nohighlight">\(Q\)</span>), the re-processing of the data is as simple as applying a scale factor. However, in the case of absorption and/or multiple scattering correction is necessary, changing the packing fraction is non-trivial since the path integration nature of the absorption coefficients as presented above would infer a <span class="math notranslate nohighlight">\(Q\)</span>-dependent variation of the absorption correction with the changing of the packing fraction. As such, one would have to re-calculate the absorption correction every time the packing fraction or any information about the sample is changed. Therefore, if staying with the pixel-by-pixel level of absorption calculation across the whole instrument, the large number of detectors (e.g., on NOMAD diffractometer at Spallation Neutron Source, SNS, there are ~100,000 detectors in total) would make the absorption calculation rather computationally heavy. This will make the cycling reduction to correct for the scale of the total scattering data unrealistic in practice.</p>
+<p>With this regard, we have developed a unsupervised machine learning based approach for grouping detectors according to the similarity in the calculated absorption spectra. After that, we can then stay with such a grouping manner and will only calculate the absorption spectra once for a certain group of detectors, which saves the computational time, significantly.</p>
+<p><img alt="abs spectra grouping" src="../../_images/abs_grouping.png" /></p>
+<p>As shown in the graph above, using the KMEANS clustering algorithm, we successfully identified 1,000 groups for NOMAD detectors and two of them were picked up to demonstrate the idea. It can be clearly observed that in between different groups, the absorption spectra as the function of wavelength is distinctive, whereas for spectra within a certain group, the distinction in the absorption spectra can be ignored. This justifies our designed algorithm to only select one representative detector for the absorption calculation for each of the groups identified through the clustering algorithm. Through a test performed using a typical data set (in which ~50 Gb data is involved), with proper caching of the intermediately processed files, the overall reduction time could be reduced to ~2 minutes, in contrast to ~20 minutes with the old routine based on a pixel-by-pixel level of absorption calculation.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -723,6 +731,7 @@ and
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-boost">Performance Boost</a></li>
 </ul>
   </nav></div>
 
