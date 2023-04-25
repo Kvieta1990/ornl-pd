@@ -488,7 +488,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-aspects">General aspects</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-multiple-scattering-correction-implementation">Notes on Multiple Scattering Correction Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-multiple-scattering-correction-implementation">Notes on Multiple Scattering Correction Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -506,7 +510,7 @@ document.write(`
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <section id="general-aspects">
 <h3>General aspects<a class="headerlink" href="#general-aspects" title="Permalink to this headline">#</a></h3>
-<p>When neutrons travel into the sample, there are multiple types of events that can happen, and two typical ones are scattering and absorption. Specifically concerning the scattering event, there are also two types – single scattering and multiple scattering. Fundamentally, it is only the single scattering event that we are concerned about for extracting structural information, in a general sense. Therefore, in practice, we need to correct for both the absorption and multiple scattering effects. With this regard, the Mantid concept page as in Ref. presents a nice summary about the undelying principles and the practical implementation in Mantid framework. On top of that, the derivation of the Paalman-Pings scheme for the absorption correction is detailed below. First, the complete expression of the full Paalman-Pings formulation is as follows,</p>
+<p>When neutrons travel into the sample, there are multiple types of events that can happen, and two typical ones are scattering and absorption. Specifically concerning the scattering event, there are also two types – single scattering and multiple scattering. Fundamentally, it is only the single scattering event that we are concerned about for extracting structural information, in a general sense. Therefore, in practice, we need to correct for both the absorption and multiple scattering effects. With this regard, the Mantid concept page as in Ref. <span id="id1">[<a class="reference internal" href="../../bib.html#id6" title="Mantid dev team. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">dev team, n.d.</a>]</span> presents a nice summary about the undelying principles and the practical implementation in Mantid framework. On top of that, the derivation of the Paalman-Pings scheme for the absorption correction is detailed below. First, the complete expression of the full Paalman-Pings formulation is as follows,</p>
 <div class="math notranslate nohighlight">
 \[\begin{align}I_{S+C}^{E} = I_{S}A_{S,SC} + I_{C}A_{C,SC} + I_{SC}A_{SC,SC}\tag{1}\end{align}\]</div>
 <p>where,</p>
@@ -539,9 +543,116 @@ document.write(`
 </section>
 <section id="notes-on-multiple-scattering-correction-implementation">
 <h2>Notes on Multiple Scattering Correction Implementation<a class="headerlink" href="#notes-on-multiple-scattering-correction-implementation" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Put down the contents in the overleaf doc located at <a class="reference external" href="https://latex.ornl.gov/project/6144f47987c0cd00b83846d9">https://latex.ornl.gov/project/6144f47987c0cd00b83846d9</a></p></li>
-</ul>
+<p>Evaluation of those different absorption coefficients in a numerical manner is nicely presented in the Ref. <span id="id2">[<a class="reference internal" href="../../bib.html#id6" title="Mantid dev team. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">dev team, n.d.</a>]</span>. Meanwhile, a comprehensive table listing out all the implemented algorithms for performing absorption and multiple scattering correction, together with justification for the undelying algorithms can be found there as well. Specifically concerning the multiple scattering correction, a detailed derivation of the formulation based on multiple assumptions (elastic &amp; isotropic scattering, constant ratio be in between adjacent order of multiple scattering intensities) can also be found. Most details won’t be reproduced in current documentation, and one is strongly encouraged to go over the Ref. <span id="id3">[<a class="reference internal" href="../../bib.html#id6" title="Mantid dev team. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">dev team, n.d.</a>]</span> for better understanding of the topic. Instead, current booklet will focus on those technical implementation relevant aspects, with reference to Ref. <span id="id4">[<a class="reference internal" href="../../bib.html#id6" title="Mantid dev team. Absorption and multiple scattering corrections. URL: https://docs.mantidproject.org/nightly/concepts/AbsorptionAndMultipleScattering.html.">dev team, n.d.</a>]</span>.</p>
+<section id="formulation">
+<h3>Formulation<a class="headerlink" href="#formulation" title="Permalink to this headline">#</a></h3>
+<p>The final formulation of the multiple scattering will be reproduced here,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}I_{total} &amp; = I_1 + I_m \\ &amp; = I_1\frac{\Delta}{1 - \Delta} \\ &amp; \Rightarrow \\ I_1 &amp; = I_{total}(1 - \Delta)\tag{4}\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(I_1\)</span> refers to the scattering intensity with the multiple scattering effect corrected, and <span class="math notranslate nohighlight">\(I_{total}\)</span> represents the overall measured scattering intensity. <span class="math notranslate nohighlight">\(\Delta\)</span> in the formulation can be expressed as,</p>
+<div class="math notranslate nohighlight">
+\[\Delta = \frac{\rho V A_2}{4\pi A_1}\tag{5}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho\)</span> refers to the number density of the material in question, <span class="math notranslate nohighlight">\(V\)</span> for the volume of the sample. <span class="math notranslate nohighlight">\(A_1\)</span> and <span class="math notranslate nohighlight">\(A_2\)</span> could be evaluated numerically following the formulation below,</p>
+<div class="math notranslate nohighlight">
+\[A_1 = \frac{1}{V}\int\rho\,\sigma\,exp[-\mu^\text{s} (l_\text{S1}^\text{s} + l_\text{1D}^\text{s}) -\mu^\text{c} (l_\text{S1}^\text{c} + l_\text{1D}^\text{c})]dV\tag{6}\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(\rho\)</span> is the effective number density of the scattering element,
+<span class="math notranslate nohighlight">\(\sigma\)</span> is the total scattering cross section of the scattering element,
+<span class="math notranslate nohighlight">\(\mu^\text{s}\)</span> is the absorption coefficient of the sample,
+<span class="math notranslate nohighlight">\(\mu^\text{c}\)</span> is the absorption coefficient of the container,
+<span class="math notranslate nohighlight">\(l_\text{S1}^\text{s}\)</span> is the distance between source and the scattering element within the sample,
+<span class="math notranslate nohighlight">\(l_\text{S1}^\text{c}\)</span> is the distance between source and the scattering element within the container,
+<span class="math notranslate nohighlight">\(l_\text{1D}^\text{s}\)</span> is the distance between the scattering element and the detector within the sample,
+and
+<span class="math notranslate nohighlight">\(l_\text{1D}^\text{s}\)</span> is the distance between the scattering element and the detector within the container.</p>
+<div class="math notranslate nohighlight">
+\[A_2 = \frac{1}{V^2}
+   \int \rho_1 \sigma_1
+            \int \rho_2 \sigma_2
+                 \dfrac{ \exp\left[
+                          -\mu^\text{s}( l_\text{S1}^\text{s}
+                                       + l_\text{12}^\text{s}
+                                       + l_\text{2D}^\text{s}) 
+                          -\mu^\text{c}( l_\text{S1}^\text{c}
+                                       + l_\text{12}^\text{c}
+                                       + l_\text{2D}^\text{c})
+                         \right]
+                      }{l_\text{12}^2}
+            dV_2
+        dV_1\tag{7}\]</div>
+<p>where
+<span class="math notranslate nohighlight">\(\rho_1\)</span> is the effective number density of the first scattering element,
+<span class="math notranslate nohighlight">\(\sigma_1\)</span> is the total scattering cross section of the first scattering element,
+<span class="math notranslate nohighlight">\(\rho_2\)</span> is the effective number density of the second scattering element,
+<span class="math notranslate nohighlight">\(\sigma_2\)</span> is the total scattering cross section of the second scattering element,
+<span class="math notranslate nohighlight">\(l_\text{S1}^\text{s}\)</span> is the neutron traveling distance between source and the first scattering element within sample,
+<span class="math notranslate nohighlight">\(l_\text{12}^\text{s}\)</span> is the neutron traveling distance between the first and second scattering element within sample,
+<span class="math notranslate nohighlight">\(l_\text{2D}^\text{s}\)</span> is the neutron traveling distance between the second scattering element and detector within sample,
+<span class="math notranslate nohighlight">\(l_\text{S1}^\text{c}\)</span> is the neutron traveling distance between source and the first scattering element within container,
+<span class="math notranslate nohighlight">\(l_\text{12}^\text{c}\)</span> is the neutron traveling distance between the first and second scattering element within container,
+<span class="math notranslate nohighlight">\(l_\text{2D}^\text{c}\)</span> is the neutron traveling distance between the second scattering element and detector within container,
+and
+<span class="math notranslate nohighlight">\(l_\text{12} = l_\text{12}^\text{s} + l_\text{12}^\text{c}\)</span>.</p>
+</section>
+<section id="practical-implementation">
+<h3>Practical Implementation<a class="headerlink" href="#practical-implementation" title="Permalink to this headline">#</a></h3>
+<p>The Eqn. (47) in Ref. by P. Peterson, et al. presented a clean and compact formulation for the overall scope of the total scattering data processing. With reference to that and ignoring all the apparatus relevant terms, the normalized (over total number of atoms in sample) sample differential cross section can be given as,</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+    \frac{d\sigma^s}{d\Omega} = \frac{1}{A_{s,sc}N_s}\big[\frac{1}{\Phi}(1 - \Delta_{sc})(I_s^E - I_e^E) - \frac{A_{c,sc}}{A_{c,c}}\frac{1}{\Phi}(1 - \Delta_c)(I_c^E - I_e^E)\big]
+\end{equation}\tag{8}\]</div>
+<p>where the subtraction of multiple scattering contribution from the overall intensity for <code class="docutils literal notranslate"><span class="pre">sample+container</span></code> and <code class="docutils literal notranslate"><span class="pre">container</span> <span class="pre">only</span></code> is embedded in the coefficients <span class="math notranslate nohighlight">\(1 - \Delta_{sc}\)</span> and <span class="math notranslate nohighlight">\(1 - \Delta_c\)</span>, respectively. Here, the formulation for both <span class="math notranslate nohighlight">\(\Delta_{sc}\)</span> and <span class="math notranslate nohighlight">\(\Delta_c\)</span> is presented above and in practice, they can be evaluated using the Mantid multiple scattering calculation algorithm, for <code class="docutils literal notranslate"><span class="pre">sample+container</span></code> and <code class="docutils literal notranslate"><span class="pre">container</span> <span class="pre">only</span></code>, respectively.</p>
+<p>To make it convenient in terms of implementation, one can rearrange Eqn. (8), to give,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    \frac{d\sigma^s}{d\Omega} &amp; = \frac{1}{N_s\Phi}\Bigg[\frac{1}{A_{s,sc}}(1 - \Delta_{sc})I_s^E\\
+    &amp; \hspace{1.8cm} - \frac{1}{A_{s,sc}}\frac{A_{c,sc}}{A_{c,c}}(1 - \Delta_{c})I_c^E\\
+    &amp; \hspace{1.8cm} - \frac{1}{A_{s,sc}}\bigg[(1 - \Delta_{sc}) - \frac{A_{c,sc}}{A_{c,c}}(1 - \Delta_c)\bigg]I_e^E\Bigg]
+\end{align}\tag{9}\end{split}\]</div>
+<p>Notice that when the multiple scattering terms become zero, this becomes the <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ApplyPaalmanPingsCorrection-v1.html">Paalman-Pings equation</a> with <span class="math notranslate nohighlight">\(K_C=1\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\frac{d\sigma^s}{d\Omega}  = \frac{1}{A_{S,SC}N_S\Phi} \left[
+\left(I_S^E - I_e^E\right) - \frac{A_{C,SC}}{A_{C,C}} \left( I_C^E - I_e^E\right)
+\right]
+\end{equation}\tag{10}\]</div>
+<p>Then, the three terms within square bracket in Eqn. (9) can be processed and applied when loading in the data in the data reduction workflow, by passing in the following parameters,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    &amp; \frac{1}{A_S^{eff}} = \frac{1}{A_{s,sc}}(1 - \Delta_{sc})\\
+    &amp; \frac{1}{A_C^{eff}} = \frac{1}{A_{s,sc}}\frac{A_{c,sc}}{A_{c,c}}(1 - \Delta_{c})\\
+    &amp; \frac{1}{A_e^{eff}} = \frac{1}{A_{s,sc}}\bigg[(1 - \Delta_{sc}) - \frac{A_{c,sc}}{A_{c,c}}(1 - \Delta_c)\bigg]
+\end{align}\tag{11}\end{split}\]</div>
+<p>Then Eqn. (9) can be written as</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\frac{d\sigma^s}{d\Omega} = \frac{1}{N_S \Phi} \left[
+\frac{I_S^E}{A_S^{eff}} - \frac{I_C^E}{A_C^{eff}} - \frac{I_e^E}{A_e^{eff}}
+\right]
+\end{equation}\tag{12}\]</div>
+<p>If introducing some arbitrary scaling factor for either container or empty instrument, Eqn. (12) will turn into,</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\frac{d\sigma^s}{d\Omega} = \frac{1}{N_S \Phi} \left[
+\frac{I_S^E}{A_S^{eff}} - \frac{K_C I_C^E}{A_C^{eff}} - \frac{K_e I_e^E}{A_e^{eff}}
+\right]
+\end{equation}\tag{13}\]</div>
+<p>where <span class="math notranslate nohighlight">\(K_C\)</span> and <span class="math notranslate nohighlight">\(K_e\)</span> are the two arbitrary scale factors that we can introduce into the reduction workflow to account for any effects beyond current correction scenario.</p>
+<p>For sample only correction, those effective factors becomes,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    &amp; \frac{1}{A_S^{eff}} = \frac{1}{A_{s,s}}(1 - \Delta_{s})\\
+    &amp; \frac{1}{A_e^{eff}} = \frac{1}{A_{s,s}}(1 - \Delta_{s})
+\end{align}\tag{14}\end{split}\]</div>
+<p>Eqn. (13) then becomes,</p>
+<div class="math notranslate nohighlight">
+\[\begin{equation}
+\frac{d\sigma^s}{d\Omega} = \frac{1}{N_S \Phi} \left[
+\frac{I_S^E}{A_S^{eff}} - \frac{K_e I_e^E}{A_e^{eff}}
+\right]
+\end{equation}\tag{15}\]</div>
+<p>where, again, <span class="math notranslate nohighlight">\(K_e\)</span> is an arbitrary factor that users can introduce to account for any effects beyond current correction scenario.</p>
+</section>
 </section>
 </section>
 
@@ -616,7 +727,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-aspects">General aspects</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-multiple-scattering-correction-implementation">Notes on Multiple Scattering Correction Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-multiple-scattering-correction-implementation">Notes on Multiple Scattering Correction Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulation">Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
