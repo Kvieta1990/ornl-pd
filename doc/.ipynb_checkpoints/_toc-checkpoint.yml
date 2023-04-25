@@ -2,8 +2,7 @@
 format: jb-book
 root: index
 parts:
-- caption: About
-  chapters:
+- chapters:
   - file: about_this_book
 - caption: General Topics
   chapters:
