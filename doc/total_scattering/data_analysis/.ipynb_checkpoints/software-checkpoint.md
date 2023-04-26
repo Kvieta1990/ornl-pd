@@ -1,2 +1,2 @@
-Total Scattering Data Analysis Software
+Software
 ===
