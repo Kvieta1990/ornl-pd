@@ -13,17 +13,16 @@ parts:
 - caption: Bragg Diffraction
   chapters:
   - file: bragg_diffraction/intro
+  - file: bragg_diffraction/data_reduction/toc
     sections:
-    - file: bragg_diffraction/data_reduction/toc
-      sections:
-      - file: bragg_diffraction/data_reduction/hb2a
-      - file: bragg_diffraction/data_reduction/hb2c
-      - file: bragg_diffraction/data_reduction/nomad
-      - file: bragg_diffraction/data_reduction/powgen
-    - file: bragg_diffraction/data_analysis/toc
-      sections:
-      - file: bragg_diffraction/data_analysis/software
-      - file: bragg_diffraction/data_analysis/tutorials
+    - file: bragg_diffraction/data_reduction/hb2a
+    - file: bragg_diffraction/data_reduction/hb2c
+    - file: bragg_diffraction/data_reduction/nomad
+    - file: bragg_diffraction/data_reduction/powgen
+  - file: bragg_diffraction/data_analysis/toc
+    sections:
+    - file: bragg_diffraction/data_analysis/software
+    - file: bragg_diffraction/data_analysis/tutorials
 - caption: Total Scattering
   chapters:
   - file: total_scattering/intro
