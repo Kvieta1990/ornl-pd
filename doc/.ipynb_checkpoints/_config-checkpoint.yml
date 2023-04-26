@@ -1,6 +1,6 @@
 # In _config.yml
 title: Powder Diffraction at ORNL
-author: Yuanpeng Zhang
+author: Yuanpeng Zhang & the Powder Diffraction Group at ORNL
 email: zhangy3@ornl.gov
 logo: ornl_logo.png
 
@@ -11,6 +11,7 @@ html:
   use_repository_button: true
   use_issues_button: true
   baseurl: https://powder.ornl.gov/
+  google_analytics_id: G-TFL7TZY8LR
 
 # Information about where the book exists on the web
 repository:
