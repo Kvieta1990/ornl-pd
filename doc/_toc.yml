@@ -41,12 +41,10 @@ parts:
     - file: total_scattering/data_analysis/ts_analysis_tutorials
 - caption: Auto Reduction
   chapters:
-  - file: auto_reduce/toc
-    sections:
-    - file: auto_reduce/hb2a_auto
-    - file: auto_reduce/hb2c_auto
-    - file: auto_reduce/nomad_auto
-    - file: auto_reduce/powgen_auto
+  - file: auto_reduce/hb2a_auto
+  - file: auto_reduce/hb2c_auto
+  - file: auto_reduce/nomad_auto
+  - file: auto_reduce/powgen_auto
 - caption: More
   chapters:
   - file: bib.md
