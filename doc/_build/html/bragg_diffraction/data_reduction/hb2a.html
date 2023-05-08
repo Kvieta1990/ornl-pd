@@ -527,9 +527,42 @@ document.write(`
 <h1>POWDER | HB-2A | HFIR<a class="headerlink" href="#powder-hb-2a-hfir" title="Permalink to this headline">#</a></h1>
 <section id="step-by-step-instruction">
 <h2>Step-by-step Instruction<a class="headerlink" href="#step-by-step-instruction" title="Permalink to this headline">#</a></h2>
+<p>For HB-2A, the Bragg diffraction data reduction has been fully automized, and general users only need to follow certain routines to locate the reduced data and fetch them as needed. There are two ways to access the reduced data, via <a class="reference external" href="https://oncat.ornl.gov/#/">ONCat</a> or the <a class="reference external" href="https://analysis.sns.gov/">analysis cluster</a>. Detailed instructions about how-to for each approach of accessing the data can be found <a href="../../pdfs/Data_Reduction_Manual_Mantid_SC_v2.pdf" target="_blank">here</a>.</p>
+<p>For both approaches, the data could be found under the specific IPTS directory. On analysis cluster, the data route would be something like <code class="docutils literal notranslate"><span class="pre">/HFIR/HB2A/IPTS-xxxxx</span></code> and via ONCat, the data would be downloaded as a zip package. Once unzipped, a folder with the name of <code class="docutils literal notranslate"><span class="pre">IPTS-xxxxx</span></code> would be obtained, and all the data, including the raw and reduced data, could be found under the <code class="docutils literal notranslate"><span class="pre">IPTS-xxxx</span></code> directory. Located in a certain <code class="docutils literal notranslate"><span class="pre">IPTS-xxxxx</span></code> directory, the raw data can be found in the sub-directory with the name of <code class="docutils literal notranslate"><span class="pre">expxxx</span></code> (<code class="docutils literal notranslate"><span class="pre">xxx</span></code> represents the experiment ID) and in most cases, general users do not need to worry about the raw data. The reduced data could be found under the <code class="docutils literal notranslate"><span class="pre">shared/autoreduce</span></code> sub-folder. Under this sub-folder, there are several types of output that may be of interest. Here follows is the table summarizing the typical output within the <code class="docutils literal notranslate"><span class="pre">shared/autoreduce</span></code> sub-folder,</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File/Folder Name</p></th>
+<th class="head"><p>Contents</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>reduction_log</p></td>
+<td><p>The reduction log for every single dataset</p></td>
+</tr>
+<tr class="row-odd"><td><p>HB2A_exp0xxx_scan0001_autoreduced.dat</p></td>
+<td><p>The reduced data for a singl run, <code class="docutils literal notranslate"><span class="pre">without</span></code> normalization, in XYE format</p></td>
+</tr>
+<tr class="row-even"><td><p>HB2A_exp0xxx_scan0001_autoreduced.gss</p></td>
+<td><p>The reduced data for a singl run, , <code class="docutils literal notranslate"><span class="pre">without</span></code> normalization, in GSS format</p></td>
+</tr>
+<tr class="row-odd"><td><p>HB2A_exp0xxx_scan0001_autoreduced_norm_time.dat</p></td>
+<td><p>The reduced data for a singl run, <code class="docutils literal notranslate"><span class="pre">normalized</span> <span class="pre">over</span> <span class="pre">collection</span> <span class="pre">time</span></code>, in XYE format</p></td>
+</tr>
+<tr class="row-even"><td><p>HB2A_exp0xxx_scan0001_autoreduced_norm_time.dat</p></td>
+<td><p>The reduced data for a singl run, <code class="docutils literal notranslate"><span class="pre">normalized</span> <span class="pre">over</span> <span class="pre">collection</span> <span class="pre">time</span></code>, in GSS format</p></td>
+</tr>
+<tr class="row-odd"><td><p>HB2A_exp0xxx_scan0014-0016_autoreduced_norm_time.dat</p></td>
+<td><p>The reduced data for a series of similar runs. During the autoreduction procedure, all similar runs (i.e., under same measurement condition, e.g., temperature) will be automatically combined.</p></td>
+</tr>
+<tr class="row-even"><td><p>IPTS-31084_summary.csv</p></td>
+<td><p>Sumamry about current IPTS</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="more-materials">
 <h2>More Materials<a class="headerlink" href="#more-materials" title="Permalink to this headline">#</a></h2>
+<p>Refer to the user guide available at the HB-2A instrument website, <a class="reference external" href="https://neutrons.ornl.gov/powder/users">https://neutrons.ornl.gov/powder/users</a>.</p>
 </section>
 </section>
 
