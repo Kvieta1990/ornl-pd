@@ -23,6 +23,14 @@ Another typical approach for fitting the total scattering data is based on the s
 
 ## Unit-cell baesd
 
-| Software | Introduction | Link | Tutorial |
-|----------|--------------|------|----------|
-| Diffpy-CMI | DiffPy-CMI is a flexible library of Python modules for robust modeling of structures in crystals, nano-, and amorphous materials. The package provides a fitting framework for combining multiple experimental inputs. Diffpy-CMI is available on Linux and Macintosh machines. | <a href="https://www.diffpy.org/products/diffpycmi/index.html" target="_blank">https://www.diffpy.org/products/diffpycmi/index.html</a> | - <a href="https://www.youtube.com/watch?v=lNs8voPBjhY" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY \n - <a href="https://www.diffpy.org/products/diffpycmi/index.html" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY</a> |
+### Diffpy-CMI
+
+DiffPy-CMI is a flexible library of Python modules for robust modeling of structures in crystals, nano-, and amorphous materials. The package provides a fitting framework for combining multiple experimental inputs. Diffpy-CMI is available on Linux and Macintosh machines.
+
+Link to software: <a href="https://www.diffpy.org/products/diffpycmi/index.html" target="_blank">https://www.diffpy.org/products/diffpycmi/index.html</a>
+
+<u>Tutorial</u>
+
+- <a href="https://www.youtube.com/watch?v=lNs8voPBjhY" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY
+
+- <a href="https://www.diffpy.org/products/diffpycmi/index.html" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY</a>

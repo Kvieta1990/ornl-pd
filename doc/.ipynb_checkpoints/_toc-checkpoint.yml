@@ -38,7 +38,6 @@ parts:
   - file: total_scattering/data_analysis/toc
     sections:
     - file: total_scattering/data_analysis/software
-    - file: total_scattering/data_analysis/ts_analysis_tutorials
 - caption: Auto Reduction
   chapters:
   - file: auto_reduce/hb2a_auto
