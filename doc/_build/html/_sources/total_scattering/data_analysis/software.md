@@ -21,7 +21,7 @@ Another typical approach for fitting the total scattering data is based on the s
 
 > Due the the large parameter space in the supercell approach, overfitting may become an issue. Typically, one may need to comprehensively inspect the outcome from the supercell data fitting. Or, a commonly used method is to repeat the same set of fitting multiple times to accumulate statistics. Some advanced methods concerning the overfitting issue are yet to be developed, e.g., given entropy consideration.
 
-## Unit-cell baesd
+## Unit-cell based
 
 ### Diffpy-CMI
 
@@ -31,9 +31,9 @@ Link to software: <a href="https://www.diffpy.org/products/diffpycmi/index.html"
 
 <u>Tutorial</u>
 
-- <a href="https://www.youtube.com/watch?v=lNs8voPBjhY" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY</a>
+- <a href="https://www.youtube.com/watch?v=lNs8voPBjhY" target="_blank">Fitting-Data-in-DiffPy-CMI</a>
 
-- <a href="https://www.diffpy.org/products/diffpycmi/index.html" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY</a>
+- <a href="https://www.diffpy.org/products/diffpycmi/index.html" target="_blank">ADD2019 DiffPy-CMI workshop materials</a>
 
 ### DISCUS
 
@@ -41,3 +41,114 @@ DISCUS package consists of four sections, including those for generating structu
 
 Link to software: <a href="https://tproffen.github.io/DiffuseCode/" target="_blank">https://tproffen.github.io/DiffuseCode/</a>
 
+<u>Tutorial</u>
+
+- <a href="https://www.dropbox.com/s/uj26ihjljnmvll1/TSA_2023_DISCUS.zip?dl=0" target="_blank">DISCUS tutorials from 2023 US total scattering school</a>
+
+### PDFgui
+
+PDFgui is a convenient and easy to use graphical front end for the PDFfit2 refinement program. It is capable of full-profile fitting of the atomic pair distribution function (PDF) derived from x-ray or neutron diffraction data and comes with built in graphical and structure visualization capabilities.
+
+Link to software: <a href="https://www.diffpy.org/products/pdfgui.html" target="_blank">https://www.diffpy.org/products/pdfgui.html</a>
+
+<u>Tutorial</u>
+
+- <a href="https://www.youtube.com/watch?v=7xQdDnmsywI" target="_blank">Fitting Si NIST Standard Data from Nomad in PDFgui</a>
+
+- <a href="https://www.dropbox.com/sh/c1ojfaerb6yadwp/AAD1Q2pmuRw-dg5MFEf3FTYXa?dl=0" target="_blank">PDFgui tutorials from 2023 US total scattering school</a>
+
+### Topas
+
+Topas is a commercial package for analyzing Bragg diffraction data and meanwhile it has the capability of refining the total scattering data in both real and reciprocal space.
+
+Link to software: <a href="http://www.topas-academic.net/" target="_blank">http://www.topas-academic.net/</a>
+
+<u>Tutorial</u>
+
+- <a href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/" target="_blank">PDF Fitting of SnO2 and SnO2/MoO3 mixture</a>
+
+## Supercell based
+
+### Dissolve
+
+A simulation tool for the interrogation of neutron scattering data, typically total neutron scattering data. It builds on the techniques established in the Empirical Potential Structure Refinement (EPSR) method by Soper.
+
+Link to software: <a href="https://github.com/disorderedmaterials/dissolve" target="_blank">https://github.com/disorderedmaterials/dissolve</a>
+
+<u>Tutorial</u>
+
+- <a href="https://docs.projectdissolve.com/examples/" target="_blank">Dissolve examples</a>
+
+### Empirical Potential Structure Refinement (EPSR)
+
+EPSR is a computational technique addressing the problem of calculating a three-dimensional structure which exploits the information contained in diffraction data. It is based around an atomistic Monte Carlo simulation of a system, correcting the employed pair interaction potentials by comparison with the diffraction data sets.
+
+Link to software: <a href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx" target="_blank">https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx</a>
+
+<u>Tutorial</u>
+
+- <a href="https://www.isis.stfc.ac.uk/OtherFiles/Disordered%20Materials/EPSRgui-TutorialResources.zip" target="_blank">Tutorial resources for EPSRgui</a>
+
+### fullRMC
+
+fullRMC is an RMC engine for refining the local structure model with the supercell approach written in Python (the underlying calculation engine is in Cython).
+
+Link to software: <a href="https://bachiraoun.github.io/fullrmc/index.html" target="_blank">https://bachiraoun.github.io/fullrmc/index.html</a>
+
+<u>Tutorial</u>
+
+- <a href="https://bachiraoun.github.io/fullrmc/examples.html">fullRMC examples</a>
+
+### RMCProfile
+
+RMCProfile was built from the original RMCA code of McGreevy & Pusztai to determine the local structure of crystalline materials while still being capable of analyzing disordered systems. The current version of RMCProfile results from a collaboration between scientists at ISIS facility (UK), Spallation Neutron Source (SNS at Oak Ridge National Laboratory, US), University of Cambridge (UK), University of Oxford (UK), Queen Mary University of London (QMUL, UK) and National Institute of Standards and Technology (NIST, US). It is now possible to fit many data types simultaneously (Neutron & X-ray total scattering & the Bragg profile, EXAFS, single crystal diffuse scattering) and use a range of constraints to produce atomic models that are consistent with all the available data. In this way we are progressing the effort to develop a ‘complex modeling’ approach to elucidate structural details of materials that are the key to their exploitable functional properties.
+
+Link to software: <a href="https://rmcprofile.ornl.gov/" target="_blank">https://rmcprofile.ornl.gov/</a>
+
+<u>Tutorial</u>
+
+- <a href="https://rmcprofile.ornl.gov/tutorials/" target="_blank">RMCProfile tutorials included in the released package</a>
+
+## For magnetic structure modeling
+
+Since neutrons carry spins, it can be scattered by magnetic moments in magnetic materials. Analogous to the nucleus total scattering pattern, we also have the magnetic total scattering pattern and in practice it will come together with the nucleus total scattering signal. For the data analysis, similar to its nucleus counterpart, one can either follow the unit-cell or supercell based approach. Besides, one can also choose to analyze the magnetic total scattering data in either reciprocal space, without Fourier transform, or real space, with Fourier transform to obtain the so-called magnetic pair distribution function (mPDF). One is recommended to read about Ref. {cite}`yuanpeng_prb` for a summary diagram about the available approaches for magnetic total scattering data analysis. Here, we will put down some useful tools for the magnetic total scattering data analysis.
+
+### diffpy.mpdf
+
+The diffpy.mpdf package provides a convenient method for computing the magnetic PDF (mPDF) from magnetic structures and performing fits to neutron total scattering data.
+
+Link to software: <a href="https://www.diffpy.org/products/mPDF.html" target="_blank">https://www.diffpy.org/products/mPDF.html</a>
+
+<u>Tutorial</u>
+
+- <a href="https://pythonhosted.org/diffpy.mpdf/introTutorial.html" target="_blank">An introductory tutorial to diffpy.mpdf</a>
+
+### RMCProfile
+
+Details about the RMCProfile package has already been covered above. Apart from the capability of modeling the nucleus total scattering data, the RMCProfile package can also model the magnetic total scattering data, through a combined refinement for both the nucleus and magnetic total scattering in the same scope.
+
+Link to software: <a href="https://rmcprofile.ornl.gov/" target="_blank">https://rmcprofile.ornl.gov/</a>
+
+<u>Tutorial</u>
+
+- <a href="https://rmcprofile.ornl.gov/wp-content/uploads/2023/02/rmc-profile-manual.pdf" target="_blank">Refer to the section-2.11 in the RMCProfile manual for detailed instructions</a>
+
+### Spinvert
+
+Spinvert is a program for refinement of for refinement of atomistic models to powder magnetic diffuse scattering data for frustrated magnets, spin glasses, and other magnetically disordered materials.
+
+Link to software: <a href="https://www.icloud.com/iclouddrive/0ECSZy25kk__w7cYyI3fRgCyA#spinvert_18Mar19" target="_blank">https://www.icloud.com/iclouddrive/0ECSZy25kk__w7cYyI3fRgCyA#spinvert_18Mar19</a>
+
+<u>Tutorial</u>
+
+- <a href="https://www.icloud.com/iclouddrive/08bUkkJ02xusidGbQKBH7jEww#magnetic_diffuse_tutorial_Hercules2023" target="_blank">Magnetic diffuse scattering modeling tutorial at 2023 US total scattering school</a>
+
+### Spinteract
+
+Spinteract is a program for refinement of magnetic interaction parameters to magnetic diffuse scattering data collected on powder and single-crystal samples.
+
+Link to software: <a href="https://www.icloud.com/iclouddrive/062oJH3I_cTl6LlUiYbWXCIBA#spinteract_171022" target="_blank">https://www.icloud.com/iclouddrive/0ECSZy25kk__w7cYyI3fRgCyA#spinvert_18Mar19</a>
+
+<u>Tutorial</u>
+
+- <a href="https://www.icloud.com/iclouddrive/08bUkkJ02xusidGbQKBH7jEww#magnetic_diffuse_tutorial_Hercules2023" target="_blank">Magnetic diffuse scattering modeling tutorial at 2023 US total scattering school</a>
