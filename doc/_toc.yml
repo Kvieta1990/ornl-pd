@@ -46,4 +46,6 @@ parts:
   - file: auto_reduce/powgen_auto
 - caption: More
   chapters:
+  - file: addie
+  - file: powder_forum
   - file: bib.md
