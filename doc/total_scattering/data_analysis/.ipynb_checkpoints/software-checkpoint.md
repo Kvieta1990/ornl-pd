@@ -31,6 +31,13 @@ Link to software: <a href="https://www.diffpy.org/products/diffpycmi/index.html"
 
 <u>Tutorial</u>
 
-- <a href="https://www.youtube.com/watch?v=lNs8voPBjhY" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY
+- <a href="https://www.youtube.com/watch?v=lNs8voPBjhY" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY</a>
 
 - <a href="https://www.diffpy.org/products/diffpycmi/index.html" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY</a>
+
+### DISCUS
+
+DISCUS package consists of four sections, including those for generating structure model, calculation and fitting of scattering pattern, Monte Carlo simulation and data plotting.
+
+Link to software: <a href="https://tproffen.github.io/DiffuseCode/" target="_blank">https://tproffen.github.io/DiffuseCode/</a>
+
