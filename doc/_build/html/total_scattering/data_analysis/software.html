@@ -402,7 +402,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -418,6 +420,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-cell-baesd">Unit-cell baesd</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -429,6 +439,44 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="software">
 <h1>Software<a class="headerlink" href="#software" title="Permalink to this headline">#</a></h1>
+<p>A full list of software that can perform the local structure modeling for total scattering data will be presented in this page. Also, links to relevant tutorials are provided. There are two main categories of software for total scattering data analysis – those based on unit-cell approach and those based on supercell approach. The former one is similar to the Rietveld fitting for Bragg diffraction data, where one has a unit cell defined for describing the underlying crystal structure and in practice one has a few structural parameters such as lattice constant, atomic motif positions, atomic displacement parameters, etc. to fit against the experimental total scattering data. For such an approach, one is assuming that the local structural correlation is represented by the unit cell, i.e., periodic bounday condition is assumed beyond the unit cell length scale. One can view such a unit cell as an average representative of the overall local scale structure aspect. However, such an average is different from the average unit cell as seen by the Bragg diffraction. The difference between the average as seen these two techniques is illustrated in the picture as follows,</p>
+<p align='center'>
+<img src="../../imgs/local_ave_diff.png"
+   style="border:none;"
+   alt="lad"
+   title="lad" />
+<br />
+</p>
+<p>Suppose we have two atoms with atom-1 fixed in the middle and atom-2 moving around atom-1 along a circular trace (the red dashed circle in the image), the local probe (e.g., with total scattering) sees the instantaneous distance between the two atoms and thus the average distance as seen by the local probe is the average of the instantaneous distances, which is, in this case, just the radius of the circle. However, from the average structure perspective, as seen by the Bragg diffraction, the average of the distance between atom-1 and atom-2 corresponds to the distance between the average position of the two atoms. In this demo case, average position of atom-1 is the center of the circle and the average position of atom-2 is represented by the orange dot in the image. Therefore, the average distance as seen by the Bragg diffraction is that represented by the pink arrow in the image.</p>
+<p>Another typical approach for fitting the total scattering data is based on the supercell approach, using the reverse Monte Carlo method. In such an approach, one starts from a unit cell and expand it to a supercell. Afterwards, on then remove the symmetry constraint so the structure model then becomes a bix box (i.e., supercell). Then one adjust the model to match the data until a good agreement is achieved, and thus the supercell approach is considered as a data driven approach.</p>
+<blockquote>
+<div><p>On top of the driving force from the experiment data, one could also add in more constraint based on physical or chemical consideration of the underlying system, such as distacne window, bond valence sum, etc.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Different software has its own way of deciding a ‘good’ agreement, but the fundamental idea is universal where one needs to define a threshold to be used as the criterion of convergence, i.e., good agreement with experimental data.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Due the the large parameter space in the supercell approach, overfitting may become an issue. Typically, one may need to comprehensively inspect the outcome from the supercell data fitting. Or, a commonly used method is to repeat the same set of fitting multiple times to accumulate statistics. Some advanced methods concerning the overfitting issue are yet to be developed, e.g., given entropy consideration.</p>
+</div></blockquote>
+<section id="unit-cell-baesd">
+<h2>Unit-cell baesd<a class="headerlink" href="#unit-cell-baesd" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Software</p></th>
+<th class="head"><p>Introduction</p></th>
+<th class="head"><p>Link</p></th>
+<th class="head"><p>Tutorial</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Diffpy-CMI</p></td>
+<td><p>DiffPy-CMI is a flexible library of Python modules for robust modeling of structures in crystals, nano-, and amorphous materials. The package provides a fitting framework for combining multiple experimental inputs. Diffpy-CMI is available on Linux and Macintosh machines.</p></td>
+<td><p><a href="https://www.diffpy.org/products/diffpycmi/index.html" target="_blank">https://www.diffpy.org/products/diffpycmi/index.html</a></p></td>
+<td><p>- <a href="https://www.youtube.com/watch?v=lNs8voPBjhY" target="_blank"><a class="reference external" href="https://www.youtube.com/watch?v=lNs8voPBjhY">https://www.youtube.com/watch?v=lNs8voPBjhY</a> \n - <a href="https://www.diffpy.org/products/diffpycmi/index.html" target="_blank">https://www.youtube.com/watch?v=lNs8voPBjhY</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -489,6 +537,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-cell-baesd">Unit-cell baesd</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
