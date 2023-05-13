@@ -64,6 +64,8 @@ and calculation of absorption in a group manner is assumed.
 
 ## POWGEN | BL-11A | SNS
 
+All data files involved here for testing the data reduction running time on NOMAD are listed here,
+
 ---
 
 IPTS-2767
