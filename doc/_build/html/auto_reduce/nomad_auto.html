@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>NOMAD | BL-1B &#8212; Powder Diffraction at ORNL</title>
+    <title>NOMAD | BL-1B | SNS &#8212; Powder Diffraction at ORNL</title>
   
   
   
@@ -75,8 +75,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://powder.ornl.gov/auto_reduce/nomad_auto.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="POWGEN | BL-11A" href="powgen_auto.html" />
-    <link rel="prev" title="WAND² | HB-2C" href="hb2c_auto.html" />
+    <link rel="next" title="POWGEN | BL-11A | SNS" href="powgen_auto.html" />
+    <link rel="prev" title="WAND² | HB-2C | HFIR" href="hb2c_auto.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -208,15 +208,16 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Auto Reduction</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="hb2a_auto.html">POWDER | HB-2A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hb2c_auto.html">WAND² | HB-2C</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">NOMAD | BL-1B</a></li>
-<li class="toctree-l1"><a class="reference internal" href="powgen_auto.html">POWGEN | BL-11A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hb2a_auto.html">POWDER | HB-2A | HFIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hb2c_auto.html">WAND² | HB-2C | HFIR</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">NOMAD | BL-1B | SNS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="powgen_auto.html">POWGEN | BL-11A | SNS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../addie.html">ADDIE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../powder_forum.html">Discussion Forum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../run_time.html">Data reduction running time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bib.html">References</a></li>
 </ul>
 
@@ -503,7 +504,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>NOMAD | BL-1B</h1>
+    <h1>NOMAD | BL-1B | SNS</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -528,8 +529,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="nomad-bl-1b">
-<h1>NOMAD | BL-1B<a class="headerlink" href="#nomad-bl-1b" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="nomad-bl-1b-sns">
+<h1>NOMAD | BL-1B | SNS<a class="headerlink" href="#nomad-bl-1b-sns" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>The autoreduction at NOMAD is following the same reduction routine as used for the manual reduction. On one side, this is beneficial in terms of keeping consistence in between different reduction scenario and therefore beneficial for codes maintainance and further development. More impportantly, as enabled by the consistent implementation, it is more straightforward to enable caching at the autoreduction stage (as the data are being collected) and re-using of the cache at the manual reduction stage. This is especially important for the total scattering data reduction, with respect to the practical need to bring the data onto the so-called <code class="docutils literal notranslate"><span class="pre">absolute</span> <span class="pre">scale</span></code>. For such a purpose, it is often necessary to re-do the data reduction with adjusted scale according to the asymptotic behavior of the total scattering pattern in <span class="math notranslate nohighlight">\(Q\)</span>-space. As such, the re-using of cache whcih was accumulated at the autoreduction stage will be significantly reducing the computation time, especially in the case of absorption correction being necessary. See <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html#performance-boost">here</a> for relevant discussion about the performance boost in the case of absorption correction.</p>
@@ -607,7 +608,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">WAND² | HB-2C</p>
+        <p class="prev-next-title">WAND² | HB-2C | HFIR</p>
       </div>
     </a>
     <a class="right-next"
@@ -615,7 +616,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">POWGEN | BL-11A</p>
+        <p class="prev-next-title">POWGEN | BL-11A | SNS</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -48,4 +48,5 @@ parts:
   chapters:
   - file: addie
   - file: powder_forum
+  - file: run_time
   - file: bib.md
