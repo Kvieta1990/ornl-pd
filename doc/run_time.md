@@ -88,5 +88,9 @@ Absorption correction: method=`SampleAndContainer` for sample and method=`Sample
 
 Running time: ~1.0 minutes
 
+Absorption correction: method=`None` for sample (i.e., no absorption correction) and method=`SampleOnly` for vanadium
+
+Running time: ~50 seconds
+
 > N.B. The reduction time here refers to the manual reduction where proper caching (via pre-calculation
 for obtaining the absorption workspace) and calculation of absorption in a group manner is assumed.
