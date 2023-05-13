@@ -22,6 +22,7 @@ Here follows is a typical file used for testing the HB-2C data reduction running
 ```
 
 File size: ~25 MB
+
 Running time: ~35 seconds
 
 ## NOMAD | BL-1B | SNS
@@ -32,19 +33,30 @@ All data files involved here for testing the data reduction running time on NOMA
 
 IPTS-28173
 
+<br />
+
 Sample runs: 172544-172549
+
 Empty container runs: 172397-172400
+
 Empty instrument run: 172402
+
 Vanadium run: 172401
+
+<br />
 
 Total size involved: ~50 Gb
 
 ---
 
 Absorption correction: method=`SampleAndContainer` for sample and method=`SampleOnly` for vanadium
+
 Running time: ~1.9 minutes
 
+<br />
+
 Absorption correction: method=`None` for sample (i.e., no absorption) and method=`SampleOnly` for vanadium
+
 Running time: ~0.8 minutes
 
 > N.B. The reduction time here refers to the manual reduction where proper caching (via autoreduction)
@@ -56,16 +68,24 @@ and calculation of absorption in a group manner is assumed.
 
 IPTS-2767
 
+<br />
+
 Sample runs: 53601
+
 Empty container runs: 51877
+
 Empty instrument run: 52869
+
 Vanadium run: 52863
+
+<br />
 
 Total size involved: ~4 Gb
 
 ---
 
 Absorption correction: method=`SampleAndContainer` for sample and method=`SampleOnly` for vanadium
+
 Running time: ~1.0 minutes
 
 > N.B. The reduction time here refers to the manual reduction where proper caching (via pre-calculation
