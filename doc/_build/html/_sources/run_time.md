@@ -5,9 +5,9 @@ Typical datasets were selected for each powder diffraction instrment to perform 
 
 ---
 
-To vote for your satisfaction for the overall running time, please go to <a href="www.menti.com" target="_blank">www.menti.com</a> and use the code `39496735`.
+To vote for your satisfaction for the overall running time, please go to <a href="https://www.menti.com" target="_blank">www.menti.com</a> and use the code `39496735`.
 
-If you are not satisfied with the current running time (given the typical test data being used here, as listed for each instrument in its section), please leave your comments and expected running time for your interested instrument at <a href="www.menti.com" target="_blank">www.menti.com</a>, using the code for each instrument, as listed below, respectively,
+If you are not satisfied with the current running time (given the typical test data being used here, as listed for each instrument in its section), please leave your comments and expected running time for your interested instrument at <a href="https://www.menti.com" target="_blank">www.menti.com</a>, using the code for each instrument, as listed below, respectively,
 
 | Instrument | Code |
 |------------|------|
