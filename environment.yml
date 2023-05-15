@@ -1,0 +1,10 @@
+name: pdBook
+channels:
+- conda-forge
+- neutrons
+- anaconda
+- mantid
+dependencies:
+- python==3.10
+- numpy
+- matplotlib
