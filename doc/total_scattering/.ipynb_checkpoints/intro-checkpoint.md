@@ -21,6 +21,10 @@ There are several diffractometers at Spallation Neutron Source (SNS) that can pe
 
 - Keen D. A., "[A comparison of various commonly used correlation functions for describing total scattering](https://dx.doi.org/10.1107/S0021889800019993)", Journal of Applied Crystallography, 34, 2, 172–177 (2001).
 
+- Olds D., Saunders C. N., Peters M., Proffen T., Neuefeind J. N., Page K., "[Precise implications of real-space PDF modeling from effects intrinsic to modern time of flight neutron diffractometers](https://scripts.iucr.org/cgi-bin/paper?S2053273318003224)", Acta Crystallographica Section A, 74, 293-307 (2018).
+
+- Olds D., Wang H. W., Page K., "[DShaper: An approach for handling missing low-Q data in pair distribution function analysis of nanostructured systems](https://doi.org/10.1107/S1600576715016581)", Journal of Applied Crystallography, 48, 1651–1659 (2015).
+
 - Peterson P. F., Olds D., McDonnell M. T., Page K., "[Illustrated formalisms for total scattering data: a guide for new practitioners](http://dx.doi.org/10.1107/s1600576720015630)", Journal of Applied Crystallography, 54, 1, 317–332 (2021).
 
 - Playford H. Y., Owen L. R., Levin I., Tucker M. G., "[New insights into complex materials using Reverse Monte Carlo modeling](http://dx.doi.org/10.1146/annurev-matsci-071312-121712)", Annual Review of Materials Research, 44, 429-449 (2014).
@@ -28,6 +32,8 @@ There are several diffractometers at Spallation Neutron Source (SNS) that can pe
 - Petkov V., "[Nanostructure by high-energy X-ray diffraction](https://doi.org/10.1016/S1369-7021(08)70236-0)", Materials Today, 11, 11, 28–38 (2008).
 
 - Proffen T., "[Analysis of disordered materials using total scattering and the atomic pair distribution function](https://dx.doi.org/10.2138/rmg.2006.63.11)", Reviews in Mineralogy and Geochemistry, 63, 255–274 (2006).
+
+- Proffen T., Billinge S. J. L., Egami T., Louca D., "[Structural analysis of complex materials using the atomic pair distribution function - A practical guide](https://doi.org/10.1524/zkri.218.2.132.20664)", Zeitschrift fur Kristallographie, 218, 2, 132–143 (2003).
 
 - Y. Zhang, et al. "[New capabilities for enhancement of RMCProfile: instrumental profiles with arbitrary peak shapes for structural refinements using the reverse Monte Carlo method](https://doi.org/10.1107/S1600576720013254)", J. Appl. Cryst. (2020). 53, 1509-1518.
 
