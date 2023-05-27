@@ -516,11 +516,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-flowchart">Implementation Flowchart</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to">How-to</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare">Prepare</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-submission">Manual submission</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-auto-reduction">Prepare auto-reduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-submission">Manual submission</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location-of-files">Location of Files</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-data">Reduced Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-files">Intermediate Files</a></li>
@@ -574,11 +571,8 @@ document.write(`
 <div><p>N.B. In the diagram, the <a style="color:red;">red</a> node is either representing a module, the starting point, or the ending point of the flow. The <a style="color:green;">green</a> node is for input parameters of a certain routine. The <a style="color:blue;">blue</a> node with the same label text is representing the same parameter that is needed at different spots.</p>
 </div></blockquote>
 <img src="../imgs/NOM_AutoRed.svg" alt="drawing" width="1000"/></section>
-<section id="how-to">
-<h2>How-to<a class="headerlink" href="#how-to" title="Permalink to this headline">#</a></h2>
-<p>This part will cover the step-by-step instructions for how to configure the auto-reduction, re-submit the job (if needed), and collect the reduced data.</p>
-<section id="prepare">
-<h3>Prepare<a class="headerlink" href="#prepare" title="Permalink to this headline">#</a></h3>
+<section id="prepare-auto-reduction">
+<h2>Prepare auto-reduction<a class="headerlink" href="#prepare-auto-reduction" title="Permalink to this headline">#</a></h2>
 <p>There are several steps to go through on the user side (in practice, it is usually the instrument scientist who is local contacting the experiment) to configure the auto-reduction before the experiment starts. This will be covered here and it will be presented in the order of need-to-do frequency, i.e., the top one is always needed, the next one is less frequent, and so on.</p>
 <ol class="arabic">
 <li><p>Prepare the sample information.</p>
@@ -755,7 +749,7 @@ document.write(`
 <p>Once the preparation work is done properly, the autoreduction will be running smoothly in the background as the data are being collected and populated to analysis hard drive. The location of the reduced data will be introduced later.</p>
 </section>
 <section id="manual-submission">
-<h3>Manual submission<a class="headerlink" href="#manual-submission" title="Permalink to this headline">#</a></h3>
+<h2>Manual submission<a class="headerlink" href="#manual-submission" title="Permalink to this headline">#</a></h2>
 <p>In most cases, if the preparation work as detailed above has been done properly, the auto-reduction will be executed automatically, without us even realizing the existence of the reduction routine. However, in some cases, there may be the need to re-submit the autoreduction job, for example, when the initial inputs were found to be not suitable. This part then covers how to re-submit the auto-reduction job using the monitor web interface.</p>
 <ol class="arabic">
 <li><p>Go to NOMAD monitor, <a href="https://monitor.sns.gov/report/nom/" target="_blank">https://monitor.sns.gov/report/nom/</a>.</p></li>
@@ -774,7 +768,6 @@ document.write(`
 <p>where one can fill in necessary information and selection <code class="docutils literal notranslate"><span class="pre">REDUCTION.REQUEST</span></code> option from the dropdown menu to submit batch runs of autoreduction jobs.### Manual submission</p>
 </li>
 </ol>
-</section>
 </section>
 <section id="location-of-files">
 <h2>Location of Files<a class="headerlink" href="#location-of-files" title="Permalink to this headline">#</a></h2>
@@ -872,11 +865,8 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-flowchart">Implementation Flowchart</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to">How-to</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare">Prepare</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-submission">Manual submission</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-auto-reduction">Prepare auto-reduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-submission">Manual submission</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location-of-files">Location of Files</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-data">Reduced Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-files">Intermediate Files</a></li>
