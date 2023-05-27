@@ -564,7 +564,12 @@ document.write(`
 <p>Putting Eqn. (2) and (3) together, one could obtain,</p>
 <div class="math notranslate nohighlight">
 \[I_{S+C}^E = I_SA_{S,SC} + \frac{A_{C,SC}}{A_{C,C}}I_C^E \Rightarrow I_S = \frac{1}{A_{S,SC}}I_{S+C}^E - \frac{A_{C,SC}}{A_{S,SC}}\frac{1}{A_{C,C}}I_C^E\]</div>
-<p>Following such a scheme, the absorption coefficients (i.e., those <span class="math notranslate nohighlight">\(A\)</span>’s) can be evaluated in a numerical integration approach and applied to the experimentally measured intensities to correct for the absorption effect as detailed above.</p>
+<p>Following such a scheme, the absorption coefficients (i.e., those <span class="math notranslate nohighlight">\(A\)</span>’s) can be evaluated in a numerical integration approach and applied to the experimentally measured intensities to correct for the absorption effect as detailed above. There are two other simpler variations of the full Paalman-Pings approach – the <code class="docutils literal notranslate"><span class="pre">SampleOnly</span></code> approach and the <code class="docutils literal notranslate"><span class="pre">SampleAndContainer</span></code> approach, of which the formulation is presented in the following equations, respectively,</p>
+<div class="math notranslate nohighlight">
+\[I_S^E = I_SA_{S,S}\]</div>
+<div class="math notranslate nohighlight">
+\[I_{S+C}^E = I_SA_{S,S} + I_CA_{C,C}\]</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">SampleOnly</span></code> approach, the contribution from the container is ignored in terms of absorption effect, whereas the <code class="docutils literal notranslate"><span class="pre">SampleAndContainer</span></code> approach is assuming the scattering-absorption event happens indenpedently in between the sample and container.</p>
 </section>
 <section id="multiple-scattering-correction">
 <h2>Multiple Scattering Correction<a class="headerlink" href="#multiple-scattering-correction" title="Permalink to this headline">#</a></h2>

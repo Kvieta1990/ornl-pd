@@ -516,7 +516,16 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-flow">Implementation Flow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to">How-to</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to">How-to</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare">Prepare</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-submission">Manual submission</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location-of-files">Location of Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-data">Reduced Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-files">Intermediate Files</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coder-notes">Coder Notes</a></li>
 </ul>
             </nav>
@@ -548,15 +557,206 @@ document.write(`
 <blockquote>
 <div><p>N.B. The absorption calculation (no matter which approach is used, such as numerical integration or Monte Carlo ray tracing) is computationally heavy. The major reason is that the absorption strength is dependent on the flying path and therefore each single detector physically located at different location will give different absorption spectra as the function of wavelength. In principle, all detectors should be treated explicitly which will accumulate the processing time and in practice, the large amount of detectors (for example, on NOMAD, there are more than 100, 000 detectors) will make the computation heavy for the absorption correction. Therefore, if staying with the pixel-by-pixel level of correction for the absorption effect, the iterative manner of reducing the total scattering data, as detailed above,  will make the auto-reduction running time unrealistically long. Concerning this, we implement a routine for performing the absorption calcualtion in a group manner – see <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html#performance-boost">here</a> for relevant discussion about the performance boost in the case of absorption correction.</p>
 </div></blockquote>
+<p>In summary, the NOMAD auto-reduction routine can,</p>
+<ol class="arabic simple">
+<li><p>process individual runs and sum all similar runs automatically.</p></li>
+<li><p>cache all processed runs properly for later manual reduction to load for saving processing time.</p></li>
+<li><p>iterate until the packing fraction tweak factor is converged, trying to bring the data as close to an absolute scale as possible.</p></li>
+<li><p>reduce the data in both single-bank and multi-banks mode – the former one will be automatically Fourier transformed to obtain the pair distribution function.</p></li>
+<li><p>detect calibration and all the characterization runs (such as vanadium, empty container and empty instrument runs) so that the data reduction step will be skipped. Specifically for the calibration run, if the corresponding calibration file was not ever generated, the calibration routine will be called automatically to prepare the calibration file from the calibration run.</p></li>
+<li><p>be easily configurable, by concentrating all tweaking parameters in dedicated files in either json or CSV format – details about how to configure the inputs for the auto-reduction will be covered below.</p></li>
+</ol>
 </section>
 <section id="implementation-flow">
 <h2>Implementation Flow<a class="headerlink" href="#implementation-flow" title="Permalink to this headline">#</a></h2>
-<p>Here, the flowchart of the NOMAD auto-reduction is presented. As mentioned above, the auto-reduction routine is just a wrapper around the <code class="docutils literal notranslate"><span class="pre">TotalScatteringReductionTotalScatteringReduction</span></code> module, the details of which can be found in the <a href="../total_scattering/data_reduction/mts_flow.html" target="_blank">MTS workflow</a> section.</p>
+<p>Here, the flowchart of the NOMAD auto-reduction is presented. As mentioned above, the auto-reduction routine is just a wrapper around the <code class="docutils literal notranslate"><span class="pre">TotalScatteringReduction</span></code> module, the details of which can be found in the <a href="../total_scattering/data_reduction/mts_flow.html" target="_blank">MTS workflow</a> section.</p>
+<blockquote>
+<div><p>N.B. In the diagram, the <a style="color:red;">red</a> node is either representing a module, the starting point, or the ending point of the flow. The <a style="color:green;">green</a> node is for input parameters of a certain routine. The <a style="color:blue;">blue</a> node with the same label text is representing the same parameter that is needed at different spots.</p>
+</div></blockquote>
 <img src="../imgs/NOM_AutoRed.svg" alt="drawing" width="1000"/></section>
 <section id="how-to">
 <h2>How-to<a class="headerlink" href="#how-to" title="Permalink to this headline">#</a></h2>
-<ol class="arabic" start="0">
-<li><p>Normally, during the experiment, when data has been collected and saved to the analysis cluster, the corresponding autoreduction will be kicked off automatically and the produced data will be saved to, <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce</span></code>. In case one needs to redo the autoreduction (say, when some pre-configuration was wrong or problematic, etc.), one could follow the steps below to re-do the autoreduction.</p></li>
+<section id="prepare">
+<h3>Prepare<a class="headerlink" href="#prepare" title="Permalink to this headline">#</a></h3>
+<p>There are several steps to go through on the user side (in practice, it is usually the instrument scientist who is local contacting the experiment) to configure the auto-reduction before the experiment starts. This will be covered here and it will be presented in the order of need-to-do frequency, i.e., the top one is always needed, the next one is less frequent, and so on.</p>
+<ol class="arabic">
+<li><p>Prepare the sample information.</p>
+<p>After users check in their samples, the information about the samples will be available in the ORNL <a href="https://snsapp1.sns.ornl.gov/xprod/f?p=110:1" target="_blank">ITEMS</a> database, and each sample is with a unique sample ID. The same set of sample ID will be used for the experiment. This means before the experiment starts, one can fethc the sample information from the database and populate them into a file that can be found by the auto-reduction routine. Meanwhile, since the absorption correction only depends on the sample information and the instrument geometry, the absorption coefficient as the function of wavelength can be pre-calculated once the sample information is collected. Again, the calculated absorption coefficient can be cached into files that can be found by the auto-reduction routine.</p>
+<p>With this regard, a utility called <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> was developed to perform the series of actions in a semi-auto manne, as detailed below,</p>
+<p>1.1. Connect to the <a href="https://analysis.sns.gov" target="_blank">analysis cluster</a> using either browser or Thinlinc.</p>
+<p>1.2. Launch a terminal, by going to <code class="docutils literal notranslate"><span class="pre">Applications</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">Terminal</span></code>, as shown here,</p>
+ <img src="../imgs/analysis_term.png" alt="drawing" width="600"/>
+<p>1.3. Execute <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span> <span class="pre">12345</span></code> where <code class="docutils literal notranslate"><span class="pre">12345</span></code> is a representative IPTS number.</p>
+<blockquote>
+<div><p>N.B. Execute <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> followed by nothing will show the usage of the utility. Execute <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span> <span class="pre">-h</span></code> will show the detailed documentation of the utility.</p>
+</div></blockquote>
+<p>1.4. Here, we take the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> (which contains the instrument calibration and characterization runs) as an example. After we execute <code class="docutils literal notranslate"><span class="pre">abs_pree_calc</span> <span class="pre">28922</span></code> from the terminal, the sample information will be fetched from the ITEMS database and the information will be saved into a CSV file (located at an IPTS specific location, analogous to <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/mts_abs_ms/IPTS-28922</span></code> for current example), after which the spreadsheet application (<code class="docutils literal notranslate"><span class="pre">LibreOffice</span></code> on analysis) will be launched to open the saved sample information CSV file. This is the spot where one can correct the sample information – usually when general users check in their samples, the information may not be entered properly so some manual efforts are needed here for correcting those information. The necessary information is as listed here,</p>
+<ul class="simple">
+<li><p>Chemical Formula – the follow formats are accepted, <code class="docutils literal notranslate"><span class="pre">Sr</span> <span class="pre">Ti</span> <span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">Sr1</span> <span class="pre">Ti</span> <span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">(Sr)1.0</span> <span class="pre">Ti</span> <span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">Sr</span> <span class="pre">(Ti)</span> <span class="pre">(O16)3</span></code>, where the bracket is useful to specify the isotope.</p></li>
+<li><p>Mass Density – we <em>suggest</em> to use the actually measured mass density. However, one can also use the theoretical mass density here, since anyhow the effective density will change according to the packing fraction tweaking factor.</p></li>
+<li><p>Packing Fraction – one can start with an not-too-far-off arbitrary value, e.g., 0.8, since the auto-reduction engine will iteratively adjust its value on-the-fly.</p></li>
+<li><p>Shape – usually it is <code class="docutils literal notranslate"><span class="pre">Cylinder</span></code> for commonly used sample container (e.g., the PAC CAN or silica capillary used on NOMAD). However, in some cases, other types of container may be used and more available shape can be found in the Mantid documentation about <a href="https://docs.mantidproject.org/v6.6.0/algorithms/SetSample-v1.html#geometry-and-containergeometry" target="_blank">Geometry and ContainerGeometry</a>.</p></li>
+<li><p>Radius – this specifies the inner radius of the container being used and for non-cylindrical and non-spherical containers, this is not relevant. Once can refer to following table for radius values for commonly used containers,</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Container</p></th>
+<th class="head"><p>Inner Radius (cm)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>QuartzTube03</p></td>
+<td><p>0.14</p></td>
+</tr>
+<tr class="row-odd"><td><p>PAC03</p></td>
+<td><p>0.135</p></td>
+</tr>
+<tr class="row-even"><td><p>PAC06</p></td>
+<td><p>0.295</p></td>
+</tr>
+<tr class="row-odd"><td><p>PAC08</p></td>
+<td><p>0.385</p></td>
+</tr>
+<tr class="row-even"><td><p>PAC10</p></td>
+<td><p>0.46</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>N.B. Up-to-date information about containers geometry can be found in the Mantid source code <a href="https://github.com/mantidproject/mantid/blob/6471eeb913db9771364078f5f681d55668cc6190/instrument/sampleenvironments/SNS/InAir.xml" target="_blank">here</a>.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Height – sample height in container</p></li>
+<li><p>Abs Method – specify the method to be used for performing the absorption pre-calculation. Here, short names of the absorption correction method will be used in the CSV file for saving the user input effort. Here follows is presented a table containing the correspondence between the short name and the method,</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Short Name</p></th>
+<th class="head"><p>Absorption Correction Method</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>No absorption correction</p></td>
+</tr>
+<tr class="row-odd"><td><p>SO</p></td>
+<td><p>SampleOnly</p></td>
+</tr>
+<tr class="row-even"><td><p>SC</p></td>
+<td><p>SampleAndContainer</p></td>
+</tr>
+<tr class="row-odd"><td><p>FPP</p></td>
+<td><p>FullPaalmanPings</p></td>
+</tr>
+</tbody>
+</table>
+<p>Details about theoretical background for each type of absorption correction method can be found <a href="../total_scattering/data_reduction/mts_abs_ms.html" target="_blank">here</a>.</p>
+<ul class="simple">
+<li><p>MS Method – specify the method to be used for multiple scattering correction. The absorption and multiple scattering calculation is implemented in the same code base and more details can be found <a href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html#multiple-scattering-correction" target="_blank">here</a>. Below is presented a table containing the correspondence between the short name and the method,</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Short Name</p></th>
+<th class="head"><p>Multiple Scattering Correction Method</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>None</p></td>
+<td><p>No multiple scattering correction</p></td>
+</tr>
+<tr class="row-odd"><td><p>SO</p></td>
+<td><p>SampleOnly</p></td>
+</tr>
+<tr class="row-even"><td><p>SC</p></td>
+<td><p>SampleAndContainer</p></td>
+</tr>
+</tbody>
+</table>
+<p>Once the table is configured properly, one can proceed to close the spreadsheet application so the utility will continue to the next action, which is mainly about the absorption and multiple scattering calculation, if specified to be performed. There are several aspects worth to mention,</p>
+<ul class="simple">
+<li><p>Once the spreadsheet application is closed, the utility will be checking the validity of those necessary entries as detailed above in the CSV file and if invalid entries are spotted, the CSV file will be automatically opened again for users to correct those information or fill in those missing ones. The invalid entries will be printed to the terminal console so that users can get an idea about what is going wrong.</p></li>
+<li><p>If an existing sample information file is found, the utility will check the entries in the existing file and compare with the ITEMS database to populate those additional samples as compared to last time running of the utility.</p></li>
+<li><p>The pre-calculated absorption coefficient will be saved to IPTS specific directory with unique names corresponding to all parameters that determine the absorption coefficient. Taking the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> example as used above, the cached absorption calculation can be found at <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/mts_abs_ms/IPTS-28922</span></code> on analysis. When the utility is running, it will check the IPTS specific directory to see whether the specified absorption calculation already exists. It will only proceed to the absorption calculation if not preceeding absorption calculation was found. Users, including the instrument team, will <code class="docutils literal notranslate"><span class="pre">rarely</span></code> need to check the cached absorption calculations.</p></li>
+<li><p>The multiple scattering calculation, if specified to be performed, will be conducted altogether with the absorption calculation and they will be saved altogether as the <code class="docutils literal notranslate"><span class="pre">effective</span></code> absorption coefficient. Therefore, in terms of implementation and data flow internally in the calculation routine, adding in the multiple scattering correction is making no difference as compared to the case of absorption correction only. Details about such an implementation can be found <a href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html#multiple-scattering-correction" target="_blank">here</a>.</p></li>
+</ul>
+<p>The steps so far are summarized in the recorded GIF as below,</p>
+ <img src="../imgs/abs_pre_calc.gif" alt="drawing" width="800"/>
+</li>
+<li><p>Prepare the characterization file.</p>
+<p>For reducing the measured data for users’ samples, a series of characterization runs need to be collected, including the calibration run, the vanadium run, the empty container run and the empty instrument run. Infomation about those characterization runs associated with the measurement for users’ samples should be pre-configured, usually by the instrument team. The characterization file is for such a purpose and on NOMAD, it can be found at. <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/auto_exp.csv</span></code>. The file format is follows,</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Run Start</p></th>
+<th class="head"><p>Run End</p></th>
+<th class="head"><p>Sample Env</p></th>
+<th class="head"><p>Calib</p></th>
+<th class="head"><p>Van</p></th>
+<th class="head"><p>MT Can</p></th>
+<th class="head"><p>MT</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>181275</p></td>
+<td><p>181278</p></td>
+<td><p>Shifter</p></td>
+<td><p>183057</p></td>
+<td><p>179270</p></td>
+<td><p>181279-181282</p></td>
+<td><p>179271</p></td>
+</tr>
+<tr class="row-odd"><td><p>172400</p></td>
+<td><p>-</p></td>
+<td><p>Shifter</p></td>
+<td><p>172394</p></td>
+<td><p>172401</p></td>
+<td><p>172397-172400</p></td>
+<td><p>172402</p></td>
+</tr>
+</tbody>
+</table>
+<p>where each row is specifying a range of runs for which the characterization runs apply. If the <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">End</span></code> is <code class="docutils literal notranslate"><span class="pre">-</span></code> or empty, its value will be taken from the <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Start</span></code> entry in the row just above. For those entries of the characterization runs, a single run or a series of runs are both acceptable. When specifying a series of runs, one can use the format like <code class="docutils literal notranslate"><span class="pre">181279-181282</span></code>, or <code class="docutils literal notranslate"><span class="pre">181279,</span> <span class="pre">181281-181282</span></code>, or <code class="docutils literal notranslate"><span class="pre">181279,</span> <span class="pre">181282</span></code>.</p>
+</li>
+<li><p>Configure the parameters <code class="docutils literal notranslate"><span class="pre">ONLY</span> <span class="pre">WHEN</span> <span class="pre">NEEDED</span></code>.</p>
+<p>There are multiple parameters for controlling the behavior of the auto-reduction and they can be configured in a JSON file located at <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/auto_config.json</span></code> on NOMAD. <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">most</span> <span class="pre">cases,</span> <span class="pre">most</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">parameters</span> <span class="pre">DO</span> <span class="pre">NOT</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">touched</span></code>. However, there are several parameters that may need to be tweaked, as detailed here,</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Param Name</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TMIN</p></td>
+<td><p>Minimum time-of-flight (in <span class="math notranslate nohighlight">\(\mu s\)</span>) to truncate the data in TOF-space</p></td>
+</tr>
+<tr class="row-odd"><td><p>TMAX</p></td>
+<td><p>Maximum time-of-flight (in <span class="math notranslate nohighlight">\(\mu s\)</span>) to truncate the data in TOF-space</p></td>
+</tr>
+<tr class="row-even"><td><p>QMin</p></td>
+<td><p>Lower limit of the <span class="math notranslate nohighlight">\(Q\)</span>-range used for the Fourier transform</p></td>
+</tr>
+<tr class="row-odd"><td><p>QMax</p></td>
+<td><p>Upper limit of the <span class="math notranslate nohighlight">\(Q\)</span>-range used for the Fourier transform</p></td>
+</tr>
+<tr class="row-even"><td><p>RMax</p></td>
+<td><p>The upper limit of the generated pair distribution function</p></td>
+</tr>
+<tr class="row-odd"><td><p>RStep</p></td>
+<td><p>The step of the generated pair distribution function</p></td>
+</tr>
+</tbody>
+</table>
+<p>There is a parameter <code class="docutils literal notranslate"><span class="pre">OverrideUserConfig</span></code> which controls whether the parameters listed in the table above from the central configuration file (i.e., <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/auto_config.json</span></code>) will override those from the user configuration. Starting from scratch, when the auto-reduction is running, it will copy over those parameters in the table to user configuration file in JSON format located at an IPTS specific location – taking the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> example, the user configuration file will be saved at <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/IPTS-28922/shared/autoreduce/auto_params.json</span></code>. The next time when running the auto-reduction, if <code class="docutils literal notranslate"><span class="pre">OverrideUserConfig</span></code> is specified to be <code class="docutils literal notranslate"><span class="pre">False</span></code>, the existing user configuration file will be loaded and those loaded parameters will be used. Otherwise, the parameters from the central configuration file will be used and the user configuration file will be overwritten. Before the overwriting, the user configuration file will be backed up to the same directory as the existing file to keep the history. The backup file will be named as something like <code class="docutils literal notranslate"><span class="pre">auto_params_backup_05262023_2.json</span></code>, where <code class="docutils literal notranslate"><span class="pre">05262023</span></code> is the time stamp and <code class="docutils literal notranslate"><span class="pre">2</span></code> is a representative integer which is determined as the smallest number that guarantees a non-existing backup file. Here, the hash value for the backup file contents will be checked to guarantee that only unique parameters set will be backed up.</p>
+<blockquote>
+<div><p>N.B. The verison of the <code class="docutils literal notranslate"><span class="pre">Mantid</span></code> framework and the underlying <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> engine will also be populated into the user configuration file.</p>
+</div></blockquote>
+</li>
+</ol>
+<p>Once the preparation work is done properly, the autoreduction will be running smoothly in the background as the data are being collected and populated to analysis hard drive. The location of the reduced data will be introduced later.</p>
+</section>
+<section id="manual-submission">
+<h3>Manual submission<a class="headerlink" href="#manual-submission" title="Permalink to this headline">#</a></h3>
+<p>In most cases, if the preparation work as detailed above has been done properly, the auto-reduction will be executed automatically, without us even realizing the existence of the reduction routine. However, in some cases, there may be the need to re-submit the autoreduction job, for example, when the initial inputs were found to be not suitable. This part then covers how to re-submit the auto-reduction job using the monitor web interface.</p>
+<ol class="arabic">
 <li><p>Go to NOMAD monitor, <a href="https://monitor.sns.gov/report/nom/" target="_blank">https://monitor.sns.gov/report/nom/</a>.</p></li>
 <li><p>There you will a list of IPTS’s – select the one you are interested in and have access to.</p>
  <img src="../imgs/nom_auto_1.png" alt="drawing" width="800"/>
@@ -574,12 +774,28 @@ document.write(`
 </li>
 </ol>
 </section>
+</section>
+<section id="location-of-files">
+<h2>Location of Files<a class="headerlink" href="#location-of-files" title="Permalink to this headline">#</a></h2>
+<section id="reduced-data">
+<h3>Reduced Data<a class="headerlink" href="#reduced-data" title="Permalink to this headline">#</a></h3>
+<p>The reduced data from the auto-reduction routine will be saved to the IPTS specific <code class="docutils literal notranslate"><span class="pre">autoreduce</span></code> directory. Taking the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> example, the full path to the reduced data will be <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/IPTS-28922/shared/autoreduce</span></code>. There are multiple sub-directories in <code class="docutils literal notranslate"><span class="pre">autoreduce</span></code>, with the following structure,</p>
+<img src="../imgs/red_data_structure.png" alt="drawing" width="400"/>
+<p>The <code class="docutils literal notranslate"><span class="pre">single_bank</span></code> and <code class="docutils literal notranslate"><span class="pre">multi_banks</span></code> directories are hosting the reduced data for each individual run, following the single-bank and the multi-banks mode, respectively. The <code class="docutils literal notranslate"><span class="pre">single_bank_summed</span></code> and <code class="docutils literal notranslate"><span class="pre">multi_banks_summed</span></code> directories are hosting the summed data for all similar runs, again, following the single-bank and the multi-banks mode, respectively. All those sub-directories should be self-explaining from their names. The <code class="docutils literal notranslate"><span class="pre">Input</span></code> sub-directory is worth mentioning – the input used for running either the individual or summed reduction is saved in the <code class="docutils literal notranslate"><span class="pre">Input</span></code> sub-directory for later tracking purpose.</p>
+</section>
+<section id="intermediate-files">
+<h3>Intermediate Files<a class="headerlink" href="#intermediate-files" title="Permalink to this headline">#</a></h3>
+<p>This section may not be (and should not be) of interest to general users since it is more about the intermediate files that are saved when auto-reduction is running. In case of need, one could use those intermediate files for inspecting the issue when the auto-reduction encounters errors or unexpected behaviors.</p>
+<p>First, both the absorption pre-calculation and the auto-reduction routine will access the absortion calculation cache files. For the commonly shared files among experiments, typically concerning the vanadium absorption correction, they can be found at <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/mts_abs_ms</span></code>. For the IPTS specific absorption cache files, they can be found at, e.g., <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/mts_abs_ms/IPTS-28922</span></code>, again, taking the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> as an example. Within the IPTS specific directory, the sample information file can also be found, in both JSON format (<code class="docutils literal notranslate"><span class="pre">28922_sample_info.json</span></code>, non-human-readable, and should only be used by the absorption calculation utility) and the CSV format (<code class="docutils literal notranslate"><span class="pre">abs_calc_sample_info.csv</span></code>, human-readable and configurable).</p>
+<p>During the individual reduction runs, the align and focused data will be cached to the IPTS specific directory, e.g., <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/IPTS-28922/shared/autoreduce/cache</span></code>. These files will be loaded in for both the summed run and also the potentially needed manual reduction later.</p>
+</section>
+</section>
 <section id="coder-notes">
 <h2>Coder Notes<a class="headerlink" href="#coder-notes" title="Permalink to this headline">#</a></h2>
 <ol class="arabic">
-<li><p>The autoreduction for various techniques at SNS and HFIR diffractometers have been re-vamped so that a consistent scheme is applied across techniques in terms of implementation. The design is to use the suitable conda environment for performing the reduction job, where the conda environment being used can be easily configured within the autoreduction script (as simple as specifying, e.g.,  <code class="docutils literal notranslate"><span class="pre">CONDA_ENV</span> <span class="pre">=</span> <span class="pre">'mantid-dev'</span></code>).</p></li>
+<li><p>The autoreduction for various diffraction techniques at SNS and HFIR diffractometers have been re-vamped so that a consistent scheme of deveployment is applied across techniques. The design is to use the suitable conda environment for performing the reduction job, where the conda environment being used can be easily configured within the autoreduction script (as simple as specifying, e.g.,  <code class="docutils literal notranslate"><span class="pre">CONDA_ENV</span> <span class="pre">=</span> <span class="pre">'mantidtotalscattering-dev'</span></code>).</p></li>
 <li><p>To test the autoreduction routine locally, one could grab the autoreduction script, make changes, and test it with the command,</p>
-<p>2.1. <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">/opt/anaconda/etc/profile.d/conda.sh</span> <span class="pre">&amp;&amp;</span> <span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantidtotalscattering</span></code></p>
+<p>2.1. <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">/opt/anaconda/etc/profile.d/conda.sh</span> <span class="pre">&amp;&amp;</span> <span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">mantidtotalscattering-dev</span></code></p>
 <p>2.2. <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">/path/to/reduce_NOM.py</span> <span class="pre">/path/to/input/nexus</span> <span class="pre">/path/to/output/that/is/out/of/the/way</span></code></p>
 </li>
 </ol>
@@ -655,7 +871,16 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-flow">Implementation Flow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to">How-to</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to">How-to</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare">Prepare</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-submission">Manual submission</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#location-of-files">Location of Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-data">Reduced Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intermediate-files">Intermediate Files</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coder-notes">Coder Notes</a></li>
 </ul>
   </nav></div>
