@@ -69,6 +69,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'total_scattering/data_reduction/dr_howto';</script>
     <link rel="canonical" href="https://powder.ornl.gov/total_scattering/data_reduction/dr_howto.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -514,7 +516,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction">Step-by-step Instruction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-videos">Demo Videos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-materials">More Materials</a></li>
 </ul>
             </nav>
         </div>
@@ -530,12 +531,70 @@ document.write(`
 <h1>Data Reduction How-to<a class="headerlink" href="#data-reduction-how-to" title="Permalink to this headline">#</a></h1>
 <section id="step-by-step-instruction">
 <h2>Step-by-step Instruction<a class="headerlink" href="#step-by-step-instruction" title="Permalink to this headline">#</a></h2>
+<p>The <a href="https://github.com/neutrons/addie" target="_blank">ADDIE</a> software deployed on analysis will be used for the manual reduction for the total scattering data measured on SNS total scattering instruments (e.g., NOMAD and POWGEN). Multiple versions of ADDIE are available on analysis cluster, across the developing pipeline, from the nightly development version, the release candidate, to the production version. Normally, for general users, the production verison should be used, while the release candidate version is for the instrument team to test out the new implementation and the nightly development version is for developers. In ADDIE, there are two types of interface available – one for the <code class="docutils literal notranslate"><span class="pre">autoNOM</span></code> approach of reducing the data and the other for the <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> framework. With the new implementation of <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> (as of writing, 05/27/2023), we strongly recommend users to use the new <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> framework for reducing their data. The instructions prsented in this book for data reduction will <code class="docutils literal notranslate"><span class="pre">ONLY</span></code> focus on the <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> interface.</p>
+<ol class="arabic">
+<li><p>To launch ADDIE, one should connect to the analysis cluster (<a href="https://analysis.sns.gov" target="_blank">https://analysis.sns.gov</a>) hosted at ORNL using their UCAMS account which should be created along with the user experiment by the IT support team. For the connection, one could use either a browser or <a href="https://www.cendio.com/thinlinc/download" target="_blank">ThinLinc</a>. Once logged in, launch a terminal from the applications inventory,</p>
+ <img src="../../imgs/analysis_term.png" alt="drawing" width="600"/>
+<p>Then type in <code class="docutils literal notranslate"><span class="pre">addie</span></code> command to start the software. The default interface is <code class="docutils literal notranslate"><span class="pre">autoNOM</span></code> and to switch to the <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> interface, one should go to <code class="docutils literal notranslate"><span class="pre">File</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">...</span></code> from the menu to bring up the settings window, as shown below,</p>
+ <img src="../../imgs/addie_mts_switch.png" alt="drawing" width="800"/>
+<p>where one can click on the <code class="docutils literal notranslate"><span class="pre">Mantid</span></code> radio button as shown in the image, to see the interface as shown below,</p>
+ <img src="../../imgs/addie_mts_main.png" alt="drawing" width="800"/>
+</li>
+<li><p>From the main interface, right click anywhere in the large white space in the middle of the main window to bring up the context menu, where one has multiple options to populate and manipulate the table. To first populate the table, one has multiple options – select a working directory, select an IPTS, load in previously saved JSON configuration file, or directly fetch information from the ONCAT database by logging in with UCAMS. The <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">an</span> <span class="pre">IPTS</span></code> method is <em>recommended</em> whenever applicable since the manual input effort is the least, and we will start with it. In the right-click context menu, click on <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">to</span> <span class="pre">IPTS</span></code> and a window will pop-up to accept user input of the IPTS number (only integer number is acceptable as the input). Here, we will use the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> as an example (so we need to input <code class="docutils literal notranslate"><span class="pre">28922</span></code> in the pop-up window) – it is an IPTS for hosting all those instrument characterization runs and we have ever run a manual auto-reduction for a typical silicon measurement for the demo purpose.</p>
+<blockquote>
+<div><p>N.B. For the <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">an</span> <span class="pre">IPTS</span></code> method to work, it is required an auto-reduction has ever been run before (this is normally the case for a typical measurement) which will create an IPTS specific JSON file that needs to be loaded in when we select an IPTS.</p>
+</div></blockquote>
+ <img src="../../imgs/addie_c_ipts.png" alt="drawing" width="800"/>
+<p>Once a valid IPTS is accpeted, ADDIE will search the relevant directory corresponding to the selected IPTS for the JSON file saved previously at the auto-reduction stage. If it can be found, ADDIE will load it in. If not, ADDIE will search for an alternative JSON file called <code class="docutils literal notranslate"><span class="pre">exp.json</span></code> which will be saved once a manual reduction is launched successfully. If valid JSON file can be identified and loaded in by ADDIE, the input table will be populated with the loaded JSON file, as shown below,</p>
+ <img src="../../imgs/addie_main_table.png" alt="drawing" width="800"/>
+<p>Following the same searching mechanism as for the approach of <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">an</span> <span class="pre">IPTS</span></code>, ADDIE also provides the way of populating the table by selecting a working directory. To do this, in the right-click context menu, one needs to select the <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">To</span> <span class="pre">Working</span> <span class="pre">Dir.</span></code> option,</p>
+ <img src="../../imgs/addie_c_wd.png" alt="drawing" width="800"/>
+<p>followed by browsing into the intended working directory with the pop-up file explorer window. The same searching as detailed above (for the <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">an</span> <span class="pre">IPTS</span></code> approach) will be applied, within the selected working directory. In fact, the <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">an</span> <span class="pre">IPTS</span></code> appoach is just a convenient shortcut to the <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">a</span> <span class="pre">working</span> <span class="pre">directory</span></code> approach since the working directory will be automatically set for a given IPTS, e.g., to <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/IPTS-28922/shared/autoMTS</span></code>.</p>
+<blockquote>
+<div><p>N.B. The instrument could be selected in the settings (<code class="docutils literal notranslate"><span class="pre">File</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">...</span></code>) from the instrument dropdown list – currently <code class="docutils literal notranslate"><span class="pre">NOMAD</span></code> and <code class="docutils literal notranslate"><span class="pre">POWGEN</span></code> instruments are supported. The selection of instrument will determine the automatically set working directory when the <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">an</span> <span class="pre">IPTS</span></code> approach is used.</p>
+</div></blockquote>
+<p>A third way of populating the table is to load in a previously saved JSON file and such a JSON file could be saved to and loaded from anywhere. Once the table is populated through whichever way, one can export the table as a JSON file and later on, the saved JSON file could be loaded in through this third approach. To export the populated table, one could refer to the following image,</p>
+ <img src="../../imgs/addie_export_table.png" alt="drawing" width="800"/>
+<p>and to load in the saved JSON file, one refers to,</p>
+ <img src="../../imgs/addie_load_table.png" alt="drawing" width="800"/>
+<p>Here, there are two options <code class="docutils literal notranslate"><span class="pre">Replace</span> <span class="pre">...</span></code> or <code class="docutils literal notranslate"><span class="pre">Append</span> <span class="pre">...</span></code> – the former option is for replacing the already populated table with the loaded JSON file, and the latter one is to append the loaded JSON to the already populated table.</p>
+<p>The last option is to directly load in all the information from the ONCAT database. To do this, select <code class="docutils literal notranslate"><span class="pre">Table</span></code> <span class="math notranslate nohighlight">\(rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">Import</span> <span class="pre">from</span> <span class="pre">Database</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> either <code class="docutils literal notranslate"><span class="pre">Aeplace</span> <span class="pre">...</span></code> or <code class="docutils literal notranslate"><span class="pre">Append</span> <span class="pre">...</span></code>, from thee right-click context menu. Once selected, the authentication window will pop up and we need to put in our UCAMS credentials to log in. Then one could either input (or select) an IPTS (see the red arrows in the image below),</p>
+ <img src="../../imgs/addie_db_ipts.png" alt="drawing" width="800"/>
+<p>or input the run numbers,</p>
+ <img src="../../imgs/addie_db_run.png" alt="drawing" width="800"/>
+<p>followed by clicking on the <code class="docutils literal notranslate"><span class="pre">Import</span> <span class="pre">All</span> <span class="pre">Runs</span></code> button,</p>
+ <img src="../../imgs/addie_db_import.png" alt="drawing" width="800"/>
+<p>and the next pop-up window is for users to specify how they want to merge the individual runs, using the raw title or the raw title with the dynamic temperature removed. Usually, we should stay with the option of <code class="docutils literal notranslate"><span class="pre">raw</span> <span class="pre">title</span> <span class="pre">with</span> <span class="pre">dynamic</span> <span class="pre">temperature</span> <span class="pre">removed</span></code>. All the available options have their corresponding demo in the preview window so users can get an idea about what is expected to happen when making a certain selection,</p>
+ <img src="../../imgs/addie_merge_selection.png" alt="drawing" width="800"/>
+<p>Using any of the options as detailed above, the input table could be populated. Users can manipulate the table by changing the relevant entries, add or remove rows, etc. and the details won’t be covered here.</p>
+</li>
+<li><p>Next, we need to specify the calibration file used for the reduction. Following either the <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">an</span> <span class="pre">IPTS</span></code> or <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">a</span> <span class="pre">working</span> <span class="pre">directory</span></code> approach, the calibration file should have been populated automatically. In case we need to manually select a calibration file, we can click on the <code class="docutils literal notranslate"><span class="pre">Browse</span> <span class="pre">...</span></code> button to select an H5 file saved from previously running calibration routine.</p>
+ <img src="../../imgs/addie_calib_select.png" alt="drawing" width="800"/>
+<blockquote>
+<div><p>N.B. Normally, the calibration file will be prepared automatically after running a calibrant (e.g., diamond) measurement. For the instrument team, in case it is needed to prepare the calibration file manually, click on the <code class="docutils literal notranslate"><span class="pre">Make</span> <span class="pre">...</span></code> button to bring up the calibration preparation window. From there, information about the calibrant measurement could be entered and a calibration job could be launched to prepare the calibration file. Those entries should be self-explaining.</p>
+</div></blockquote>
+ <img src="../../imgs/addie_calib_make.png" alt="drawing" width="800"/>
+</li>
+<li><p>For advanced users, clicking on the <code class="docutils literal notranslate"><span class="pre">Reduction</span> <span class="pre">Configuration</span> <span class="pre">...</span></code> button (see the red arrow in the image below) to bring up the advanced reduction configuration window. Here, parameters for align &amp; focus detectors, Fourier transform, and among other controls could be configured. One could refer to the two regions indicated by the red arrows for a typical setup (they are normally the only parameters that need to be configured),</p>
+ <img src="../../imgs/addie_red_config.png" alt="drawing" width="800"/>
+<p>The <code class="docutils literal notranslate"><span class="pre">PDF</span></code> section configures the Fourier transform and the <code class="docutils literal notranslate"><span class="pre">Global</span> <span class="pre">Align</span> <span class="pre">and</span> <span class="pre">Focus</span> <span class="pre">Arguments</span></code> is for parameters concerning the align and focus. Refer to the Mantid documentation page about <a href="https://docs.mantidproject.org/nightly/algorithms/AlignAndFocusPowder-v1.html" target="_blank">AlignAndFocusPowder</a> for details about all those available parameters.</p>
+</li>
+<li><p>One final configuraiton is the output directory. By default, it will be set to the <code class="docutils literal notranslate"><span class="pre">output</span></code> directory (if not existing, ADDIE will create it) under the directory where ADDIE is launched. Depending on the method used for populating the table, the output directory will be set to different locations. If using the <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">the</span> <span class="pre">working</span> <span class="pre">directory</span></code> method, the output directory will be set to the <code class="docutils literal notranslate"><span class="pre">output_DATE_INDEX</span></code> directory under the working directory – <code class="docutils literal notranslate"><span class="pre">DATE</span></code> is the time stamp and <code class="docutils literal notranslate"><span class="pre">INDEX</span></code> is a minimum number that guarantees a non-existing output directory under the working directory. ADDIE will configure the output directory automatically in the background in this case. With the <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">an</span> <span class="pre">IPTS</span></code> approach, the output directory will be set in the same way and the only difference is the working directory is set automatically in this case, as detailed above in step-2. When using the <code class="docutils literal notranslate"><span class="pre">Import</span> <span class="pre">from</span> <span class="pre">Database</span></code> approach, the output directory will stay as default.</p></li>
+<li><p>Once all the configurations have been processed properly, it is time to run the data reduction by selecting <code class="docutils literal notranslate"><span class="pre">PDF</span></code> from the dropdown list (see the red arrow in the image below) followed by clicking on the <code class="docutils literal notranslate"><span class="pre">Run</span></code> button.</p>
+ <img src="../../imgs/addie_run.png" alt="drawing" width="800"/>
+</li>
+<li><p>The reduced data could be found under the output directory, with the structure as below,</p></li>
+</ol>
+<p>| .
+| - exp.json
+| - GSAS
+| - Logs
+| - SofQ
+| - Topas</p>
+<p>where the <code class="docutils literal notranslate"><span class="pre">exp.json</span></code> file was saved automatically when running the table. All the other directories should be self-explaining by their names, containing reduced data in different format. The <code class="docutils literal notranslate"><span class="pre">SofQ</span></code> directory is worth mentioning – it contains the reudced bank-by-bank normalized <span class="math notranslate nohighlight">\(S(Q)\)</span> data (which should asymptotically approach 1 in the high-<span class="math notranslate nohighlight">\(Q\)</span> region) in the NeXus format. The actualy data will then need to be extracted and merged in the following step.</p>
 </section>
 <section id="demo-videos">
 <h2>Demo Videos<a class="headerlink" href="#demo-videos" title="Permalink to this headline">#</a></h2>
-</section>
-<section id="more-materials">
-<h2>More Materials<a class="headerlink" href="#more-materials" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
@@ -608,7 +667,6 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction">Step-by-step Instruction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-videos">Demo Videos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-materials">More Materials</a></li>
 </ul>
   </nav></div>
 
