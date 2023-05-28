@@ -69,6 +69,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'total_scattering/data_reduction/ts_pp';</script>
     <link rel="canonical" href="https://powder.ornl.gov/total_scattering/data_reduction/ts_pp.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -489,7 +491,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -505,6 +509,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-checking">Data Format Checking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebin">Rebin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">Scaling</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -516,6 +530,110 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="post-processing">
 <h1>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this headline">#</a></h1>
+<p>Usually with the auto-reduced data (see for <a href="../../auto_reduce/nomad_auto.html" target="_blank">here</a> more) or the manually reduced data (see <a href="./dr_howto.html" target="_blank">here</a> for more), one can already perform the total scattering data analysis, using, e.g., the unit-cell baesd approach. Tools available for such analysis can be found <a href="../data_analysis/software.html" target="_blank">here</a>. The symmetry constraint on the structural model for such unit-cell based approaches guarantees a limited parameter space, as compared to the degree of freedom of the data. In such a situation, one can safely treat the scale as one of the refinable parameters. However, this is not that much the case for the supercell based approach for total scattering data analysis, such as the reverse Monte Carlo (RMC) modeling. With the supercell approach, symmetry constraint will be completely removed after expanding the crystallographic unit cell to a supercell. The model has large number of degrees of freedom and will be driven completely by the data. Although some constraint could be added based on geometrical, physical, or chemical considerations, still the degree of freedom is too large as compared to the total number of data points involved in the modeling, and therefore it is unavoidable one may have the concerns about overfitting. Treating the RMC modeling in a statistical manner, by constructing an ensemble of RMC modeling trials, is a commonly used approach. On the data side, it requires one to treat the data more rigorously, especially concerning the data scaling – it is always the best practice to try to make sure the data is on an absolute scale, which means the scale of the data and the model is directly comparable without the need for an extra scale factor. This section will cover the post-reduction treatment of the total scattering data and here <em><strong>we will be assuming the using of RMCProfile package for the total scattering data modeling</strong></em>. For details about how to get RMCProfile to work, refer to the link <a href="https://rmcprofile.ornl.gov/download/" target="_blank">here</a> and <a href="https://rmcprofile.ornl.gov/how-to-launch-rmcprofile-program/" target="_blank">here</a>.</p>
+<section id="data-format-checking">
+<h2>Data Format Checking<a class="headerlink" href="#data-format-checking" title="Permalink to this headline">#</a></h2>
+<ol class="arabic">
+<li><p>Reciprocal space</p>
+<p>In RMCProfile, we follow the convention of defining symbols for various functions as presented in section-2 of Ref. <span id="id1">[<a class="reference internal" href="../../bib.html#id8" title="D. Keen. A comparison of various commonly used correlation functions for describing total scattering. J. Appl. Cryst, 34:172-177, 2001.">Keen, 2001</a>]</span>. It is always strongly recommended that before feeding the data into RMCProfile, we should check the format of the data to see whether it is consistent with what we specify in the input for RMCProfile. For example, in our RMCProfile control file we specify our data format to be “F(Q)”, that means we are referring our data to be the same format as defined by Eqn. (14) in Ref. [1]. It is noteworthy that in the community, people use the same symbol “F(Q)” to represent another format of the reciprocal space data, which is something like <span class="math notranslate nohighlight">\(Q[S(Q)-1]\)</span>, where S(Q) is the normalized total scattering structure factor as quoted in Eqn. (19-21) in Ref. <span id="id2">[<a class="reference internal" href="../../bib.html#id8" title="D. Keen. A comparison of various commonly used correlation functions for describing total scattering. J. Appl. Cryst, 34:172-177, 2001.">Keen, 2001</a>]</span>. To tell which version of the data that the symbol “F(Q)” is representing, we can plot the data and inspect the low-Q region – if it is following our RMCProfile definition, the low-Q level should be somewhat sitting on a flat level (though, in practice it may not be purely flat due to low-Q noise). If it is following the <span class="math notranslate nohighlight">\(Q[S(Q)-1]\)</span> definition, the low-Q level should then be sitting on an obvious slope due to the multiplicative <span class="math notranslate nohighlight">\(Q\)</span> term in the definition.</p>
+</li>
+<li><p>Real space</p>
+<p>Similarly in real space, we also need to pay attention to the representation of the same symbol used in the community for different definitions. Again, in RMCProfile, we follow the definition as given in section-2 in Ref. <span id="id3">[<a class="reference internal" href="../../bib.html#id8" title="D. Keen. A comparison of various commonly used correlation functions for describing total scattering. J. Appl. Cryst, 34:172-177, 2001.">Keen, 2001</a>]</span>. For example, when we say our data is in “G(r)” format, we mean Eqn. (10) in Ref. <span id="id4">[<a class="reference internal" href="../../bib.html#id8" title="D. Keen. A comparison of various commonly used correlation functions for describing total scattering. J. Appl. Cryst, 34:172-177, 2001.">Keen, 2001</a>]</span>. The asymptotic behavior at low-<span class="math notranslate nohighlight">\(r\)</span> and high-<span class="math notranslate nohighlight">\(r\)</span> region is accordingly presented in Eqn. (15) in Ref. <span id="id5">[<a class="reference internal" href="../../bib.html#id8" title="D. Keen. A comparison of various commonly used correlation functions for describing total scattering. J. Appl. Cryst, 34:172-177, 2001.">Keen, 2001</a>]</span>. Sometimes, with the same symbol “G(r)”, one may mean the definition as in Eqn. (43) in Ref. <span id="id6">[<a class="reference internal" href="../../bib.html#id8" title="D. Keen. A comparison of various commonly used correlation functions for describing total scattering. J. Appl. Cryst, 34:172-177, 2001.">Keen, 2001</a>]</span>, e.g., in <code class="docutils literal notranslate"><span class="pre">pdffit</span></code> community. The way to tell which version we mean by “G(r)” is similar as above – we plot the data and inspect the low-<span class="math notranslate nohighlight">\(r\)</span> region. If we see our data is sitting on an obvious slope, that means we have the definition as in the <code class="docutils literal notranslate"><span class="pre">pdffit</span></code> community. Otherwise, if the level in the low-<span class="math notranslate nohighlight">\(r\)</span> region is somewhat flat, we are following the RMCProfile definition. After all, we need to do the necessary homework to check the data before throwing it into RMCProfile. The fitting engine will take what we tell it as granted and do whatever it can do to fit the data. So, if we tell it something wrong, it can never do it right.</p>
+</li>
+</ol>
+</section>
+<section id="rebin">
+<h2>Rebin<a class="headerlink" href="#rebin" title="Permalink to this headline">#</a></h2>
+<p>Following the definition of discrete Fourier transform (see <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform" target="_blank">Wikipedia</a>, for example), we require the data to be transformed to be sitting on an equally-spaced grid. If our original data is not in such format, we could use the tool <code class="docutils literal notranslate"><span class="pre">rebin</span></code> that is bundled in the RMCProfile package to rebin the data to be equally-space. Usage of this tool is straightforward – just input the starting and ending points together with the interval following the order as prompted on terminal, it should do the job properly.</p>
+</section>
+<section id="scaling">
+<h2>Scaling<a class="headerlink" href="#scaling" title="Permalink to this headline">#</a></h2>
+<p>To rescale the total scattering data (with the aim of bringing the data to an absolute scale), we can use the <code class="docutils literal notranslate"><span class="pre">stog_new</span></code> tool bundled in RMCProfile package. Here we have a template input for this tool.</p>
+<blockquote>
+<div><p>N.B. Comments here are for instruction purpose only – in pratice when running <code class="docutils literal notranslate"><span class="pre">stog_new</span></code>, comments are not allowed.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>                            <span class="c1"># Number of files</span>
+<span class="n">input_binned_data</span><span class="o">.</span><span class="n">dat</span>        <span class="c1"># Input file name</span>
+<span class="mf">0.4</span> <span class="mf">30.0</span>                     <span class="c1"># Qmin Qmax</span>
+<span class="mi">0</span> <span class="mi">1</span>                          <span class="c1"># yoffset yscale, so that output_y = data/yscale + yoffset</span>
+<span class="mi">0</span>                            <span class="c1"># Qoffset, normally we can leave it as 0</span>
+<span class="n">scale</span><span class="o">.</span><span class="n">sq</span>                     <span class="c1"># scaled S(Q)</span>
+<span class="n">scale</span><span class="o">.</span><span class="n">gr</span>                     <span class="c1"># scaled G(r)</span>
+<span class="mi">50</span>                           <span class="c1"># rmax</span>
+<span class="mi">5000</span>                         <span class="c1"># Number of points in r-space</span>
+<span class="n">N</span>                            <span class="c1"># windows function? (which makes the peaks more smooth, less noise, less ripples)</span>
+<span class="mf">0.0764</span>                       <span class="c1"># number density (angstrom^-3)</span>
+<span class="mi">0</span>                            <span class="c1"># yoffset, normally we can keep it as 0</span>
+<span class="n">N</span>                            <span class="c1"># Try again, normally keep it as &#39;N&#39;</span>
+<span class="n">Y</span>                            <span class="c1"># Fourier Filter?</span>
+<span class="mf">1.0</span>                          <span class="c1"># rcutoff for Fourier filter, meaning data in real-space below the</span>
+                             <span class="c1"># cutoff will be filtered out. The corresponding components will also be</span>
+                             <span class="c1"># removed in Q-space</span>
+<span class="n">scale_ft</span><span class="o">.</span><span class="n">sq</span>                  <span class="c1"># Fourier filtered S(Q)</span>
+<span class="n">scale_ft</span><span class="o">.</span><span class="n">gr</span>                  <span class="c1"># Fourier filtered G(r)</span>
+<span class="mf">0.08</span>                         <span class="c1"># Faber-Ziman coefficient, for X-ray, if the data has been normalized, we can</span>
+                             <span class="c1"># put 1 here</span>
+<span class="n">scale_ft_rmc</span><span class="o">.</span><span class="n">fq</span>              <span class="c1"># F(Q) used by RMC</span>
+<span class="n">scale_ft_rmc</span><span class="o">.</span><span class="n">gr</span>              <span class="c1"># G(r) used by RMC</span>
+<span class="n">scale_ft_rmc</span><span class="o">.</span><span class="n">dr</span>              <span class="c1"># D(r) used by RMC</span>
+<span class="mi">5</span> <span class="mf">1.0</span> <span class="mf">3.0</span>                    <span class="c1"># cutoff, rmin of 1st peak, rmax of 1st peak. The purpose is to remove ripples</span>
+                             <span class="c1"># in the low-r region and those between the first and second peak.</span>
+</pre></div>
+</div>
+<p>Using the template provided above, we can fill in information specific to our data and sample, remove all blank lines and comments, and then run the program from the RMCProfile terminal window like,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>stog_new<span class="w"> </span>&lt;<span class="w"> </span>get_stog_input.txt
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">get_stog_input.txt</span></code> is our saved stog iput file.</p>
+<p>Things to keep in mind are,</p>
+<ol class="arabic">
+<li><p>In line-4 of the input file, we specify the offset and scale for our data which would then rescale our data according to the formula presented in the comments. The end product we are pursuing here is the normalized total scattering structure factor, which, simply put, should go to <span class="math notranslate nohighlight">\(1\)</span> in the high-<span class="math notranslate nohighlight">\(Q\)</span> region.</p></li>
+<li><p>However, here may come the question that we have two parameters to control the level at high-<span class="math notranslate nohighlight">\(Q\)</span>. In practice, we can have infinite number of combinations of offset and scale to achieve the same high-<span class="math notranslate nohighlight">\(Q\)</span> level. How do we move forward with this? First option is to refer to the low-<span class="math notranslate nohighlight">\(r\)</span> behavior in the data output from the Fourier filter step – <code class="docutils literal notranslate"><span class="pre">scale_ft.gr</span></code> in the example presented above. If the data is scaled properly, we are expecting the Level-1 and Level-2 (see picture down below) to be on the same level.</p>
+ <img src="../../imgs/stog_scale.png" alt="drawing" width="800"/>
+</li>
+<li><p>Quite often, even going through the step above still won’t bring our data to an absolute scale, in which case the only way left is probably to go through the painful trail-and-error process. That means we may want to play around with different scales of the data and see its effect on the fitting. In most cases, if the data scaling is not proper, not refining scale in RMCProfile has little chance to fit the data well.</p></li>
+<li><p>Alternative option one is to fit scale and offset in RMCProfile, especially for X-ray data.</p></li>
+<li><p>Alternative option two is to fit the scale in, e.g., PDFgui first and use the scale obtained there to rescale our data.</p></li>
+</ol>
+<p>Apart from the <code class="docutils literal notranslate"><span class="pre">stog_new</span></code> tool in the RMCProfile package, one can also use the <code class="docutils literal notranslate"><span class="pre">pystog</span></code> python module (which was developed following the same underlying principle as <code class="docutils literal notranslate"><span class="pre">stog_new</span></code>) for post-processing the total scattering data. The post-processing tab in ADDIE is using <code class="docutils literal notranslate"><span class="pre">pystog</span></code> as the backend engine for the data scaling and Fourier transform (see <a href="./dr_howto.html" target="_blank">here</a> for more information). One can refer to the link <a href="https://github.com/neutrons/pystog#installation" target="_blank">here</a> for the instruction about installing and using <code class="docutils literal notranslate"><span class="pre">pystog</span></code>. The package was developed in a modular manner so we could build our own Python wrapper script to call those available <code class="docutils literal notranslate"><span class="pre">pystog</span></code> modules. Also, a command-line interface (CLI) <code class="docutils literal notranslate"><span class="pre">pystog_cli</span></code> was developed to take in an input JSON file and the running logic is pretty much similar to the <code class="docutils literal notranslate"><span class="pre">stog_new</span></code> program, as detailed above. A typical input JSON file for <code class="docutils literal notranslate"><span class="pre">pystog_cli</span></code> is presented here,</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;Files&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;Filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DATA_FILE_NAME.sq&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ReciprocalFunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S(Q)&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Qmin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Qmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;Y&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;RealSpaceFunction&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;g(r)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;NumberDensity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.049948</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Rmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;Rpoints&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;FourierFilter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Cutoff&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;&lt;b_coh&gt;^2&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.17215</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;LorchFlag&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;RippleParams&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">    </span><span class="mf">0.0</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;Outputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;StemName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OUTPUT_STEM_NAME&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Most of the parameters involved in the JSON file are in one-to-one mapping relation with those parameters for the <code class="docutils literal notranslate"><span class="pre">stog_new</span></code> program. There is only one extra parameter in the JSON file – the <code class="docutils literal notranslate"><span class="pre">RealSpaceFunction</span></code> parameter which contols the format of the real space function to be used for the intermediate processing (i.e., the Fourier filter). Usually the default option <code class="docutils literal notranslate"><span class="pre">g(r)</span></code> should be working but if needed, one can change it to, e.g., <code class="docutils literal notranslate"><span class="pre">G(r).</span></code></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -576,6 +694,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-checking">Data Format Checking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebin">Rebin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">Scaling</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
