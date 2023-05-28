@@ -1,0 +1,105 @@
+{
+  "000": {
+    "Facility": "SNS",
+    "Instrument": "NOM",
+    "Title": "NOM_Si_640d",
+    "Sample": {
+      "Runs": "181278",
+      "Background": {
+        "Runs": "181279-181282",
+        "Background": {
+          "Runs": "179271"
+        }
+      },
+      "Material": "Si",
+      "Density": {
+        "MassDensity": "2.33",
+        "UseMassDensity": true,
+        "UseNumberDensity": false,
+        "UseMass": false
+      },
+      "PackingFraction": 0.227,
+      "Geometry": {
+        "Shape": "Cylinder",
+        "Radius": 0.295,
+        "Height": 1.8
+      },
+      "AbsorptionCorrection": {
+        "Type": "SampleOnly"
+      },
+      "AbsMSParameters": {
+        "ElementSize": 1.0
+      }
+    },
+    "Normalization": {
+      "Runs": "179270",
+      "Background": {
+        "Runs": "179271"
+      },
+      "Material": "V",
+      "Density": {
+        "MassDensity": "6.11",
+        "UseMassDensity": true,
+        "UseNumberDensity": false,
+        "UseMass": false
+      },
+      "PackingFraction": 1.0,
+      "Geometry": {
+        "Shape": "Cylinder",
+        "Radius": 0.2925,
+        "Height": 1.8
+      },
+      "AbsorptionCorrection": {
+        "Type": "SampleOnly"
+      },
+      "AbsMSParameters": {
+        "ElementSize": 1.0
+      }
+    },
+    "Calibration": {
+      "Filename": "/SNS/NOM/shared/CALIBRATION/autoreduce/NOMAD_183057_2022-08-02_shifter.h5"
+    },
+    "OutputDir": "/SNS/NOM/IPTS-28922/shared/autoMTS/output_05272023",
+    "Merging": {
+      "QBinning": [
+        "0.01",
+        "0.005",
+        "40.0"
+      ],
+      "Grouping": {
+        "Initial": "",
+        "Output": ""
+      }
+    },
+    "AlignAndFocusArgs": {
+      "TMin": "300",
+      "TMax": "20000"
+    },
+    "SelfScatteringLevelCorrection": {
+      "Bank1": [
+        15.0,
+        25.0
+      ],
+      "Bank2": [
+        20.0,
+        25.0
+      ],
+      "Bank3": [
+        20.0,
+        30.0
+      ],
+      "Bank4": [
+        30.0,
+        40.0
+      ],
+      "Bank5": [
+        30.0,
+        40.0
+      ],
+      "Bank6": [
+        10.0,
+        15.0
+      ]
+    }
+  }
+}

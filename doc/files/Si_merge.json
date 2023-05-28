@@ -1,0 +1,39 @@
+{
+  "1": {
+    "Qmin": "0.5",
+    "Qmax": "1.75",
+    "Yoffset": "-0.23",
+    "Yscale": "1.0"
+  },
+  "2": {
+    "Qmin": "0.0",
+    "Qmax": "0.0",
+    "Yoffset": "0.0",
+    "Yscale": "1.0"
+  },
+  "3": {
+    "Qmin": "1.75",
+    "Qmax": "3.16",
+    "Yoffset": "0.0",
+    "Yscale": "1.0"
+  },
+  "4": {
+    "Qmin": "3.16",
+    "Qmax": "4.82",
+    "Yoffset": "0.0",
+    "Yscale": "1.0"
+  },
+  "5": {
+    "Qmin": "4.82",
+    "Qmax": "40.0",
+    "Yoffset": "0.0",
+    "Yscale": "1.0"
+  },
+  "6": {
+    "Qmin": "0.0",
+    "Qmax": "0.0",
+    "Yoffset": "0.0",
+    "Yscale": "1.0"
+  },
+  "RemoveBkg": false
+}
