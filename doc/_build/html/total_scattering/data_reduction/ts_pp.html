@@ -646,11 +646,10 @@ document.write(`
 </div></blockquote>
 <section id="step-by-step-instructions-using-rmcprofile">
 <h3>Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">RMCProfile</span></code><a class="headerlink" href="#step-by-step-instructions-using-rmcprofile" title="Permalink to this headline">#</a></h3>
-<ol class="arabic simple" start="0">
+<ol class="arabic" start="0">
 <li><p>In this demo, I will be using the RMCProfile package and the two programs coming with the package – <code class="docutils literal notranslate"><span class="pre">rebin</span></code> and <code class="docutils literal notranslate"><span class="pre">stog_new</span></code> for post-processing the demo data for the Si standard sample.</p></li>
 <li><p>First, download the demo data (see the link just above) to your local area.</p></li>
-<li><p>Unzip the downloaded package to somewhere, e.g., in my case, under <code class="docutils literal notranslate"><span class="pre">/Users/y8z/Temp_Home</span></code> so that we can see the following files and sub-directories under it,</p></li>
-</ol>
+<li><p>Unzip the downloaded package to somewhere, e.g., in my case, under <code class="docutils literal notranslate"><span class="pre">/Users/y8z/Temp_Home</span></code> so that we can see the following files and sub-directories under it,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span><span class="o">.</span><span class="n">json</span>
 <span class="n">GSAS</span>
 <span class="n">Logs</span>
@@ -660,15 +659,14 @@ document.write(`
 <span class="n">Topas</span>
 </pre></div>
 </div>
-<ol class="arabic" start="3">
+</li>
 <li><p>Download the RMCProfile package if you haven’t already got it, following the link, <a href="https://rmcprofile.ornl.gov/download/" target="_blank">https://rmcprofile.ornl.gov/download</a></p></li>
 <li><p>Launch the RMCProfile terminal – the actual way of launching will depend on your operating system. Detailed instructions for each platform can be found here, <a href="https://rmcprofile.ornl.gov/how-to-launch-rmcprofile-program" target="_blank">https://rmcprofile.ornl.gov/how-to-launch-rmcprofile-program</a></p>
 <blockquote>
 <div><p>N.B. In the demo video below, I am using the Windows version of the RMCProfile package.</p>
 </div></blockquote>
 </li>
-<li><p>Change to the working directory from the RMCProfile terminal (e.g., <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/Users/y8z/Temp_Home/SofQ_merged</span></code> in my case), where you are going to see the following files (run <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-al</span></code> on Linux/Unix, or <code class="docutils literal notranslate"><span class="pre">dir</span></code> on Windows),</p></li>
-</ol>
+<li><p>Change to the working directory from the RMCProfile terminal (e.g., <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/Users/y8z/Temp_Home/SofQ_merged</span></code> in my case), where you are going to see the following files (run <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-al</span></code> on Linux/Unix, or <code class="docutils literal notranslate"><span class="pre">dir</span></code> on Windows),</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_stog_data</span><span class="o">.</span><span class="n">txt</span>
 <span class="n">NOM_Si_640d_bank1</span><span class="o">.</span><span class="n">dat</span>
 <span class="n">NOM_Si_640d_bank2</span><span class="o">.</span><span class="n">dat</span>
@@ -680,10 +678,9 @@ document.write(`
 <span class="n">Si_merge</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="6">
+</li>
 <li><p>Rebin the data by running <code class="docutils literal notranslate"><span class="pre">rebin</span></code> from the RMCProfile terminal and feeding in the input file name when asked – in this case, <code class="docutils literal notranslate"><span class="pre">NOM_Si_640d_merged.sq</span></code>. Then enter <code class="docutils literal notranslate"><span class="pre">0.5</span> <span class="pre">0.01</span> <span class="pre">40.0</span></code> when asked for next-step parameters, followed by inputting the output file name <code class="docutils literal notranslate"><span class="pre">NOM_Si_640d_merged_rebin.sq</span></code> when asked.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">stog_new</span> <span class="pre">&lt;</span> <span class="pre">get_stog_data.txt</span></code> from the RMCProfile terminal to process the rebinned data, and after running it, the directory should contain the following files,</p></li>
-</ol>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">stog_new</span> <span class="pre">&lt;</span> <span class="pre">get_stog_data.txt</span></code> from the RMCProfile terminal to process the rebinned data, and after running it, the directory should contain the following files,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ft</span><span class="o">.</span><span class="n">dat</span>
 <span class="n">get_stog_data</span><span class="o">.</span><span class="n">txt</span>
 <span class="n">NOM_Si_640d_bank1</span><span class="o">.</span><span class="n">dat</span>
@@ -703,6 +700,8 @@ document.write(`
 <span class="n">Si_640d_scaled_ft_rmc</span><span class="o">.</span><span class="n">sq</span>
 </pre></div>
 </div>
+</li>
+</ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled.sq</span></code> and <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled.gr</span></code> file is the scaled normalized <span class="math notranslate nohighlight">\(S(Q)\)</span> data and its Fourier transform, respectively. The <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft.sq</span></code> and <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft.gr</span></code> is the same dataset but with Fourier filter applied. The <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft_rmc.sq</span></code>, <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft_rmc.gr</span></code> and <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft_rmc.dr</span></code> are files in RMCProfile <code class="docutils literal notranslate"><span class="pre">F(Q)</span></code>, <code class="docutils literal notranslate"><span class="pre">G(r)</span></code> and <code class="docutils literal notranslate"><span class="pre">D(r)</span></code> format, respectively.</p>
 </section>
 <section id="step-by-step-instructions-using-addie">
