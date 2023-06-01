@@ -517,7 +517,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-checking">Data Format Checking</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebin">Rebin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">Scaling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-data">Demo Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-data">Demo Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-rmcprofile">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">RMCProfile</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-addie">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -637,7 +641,103 @@ document.write(`
 </section>
 <section id="demo-data">
 <h2>Demo Data<a class="headerlink" href="#demo-data" title="Permalink to this headline">#</a></h2>
-<p>A demo dataset for Si standard sample is included here – one can download the dataset by clicking  <a href="../../files/si_demo_data.zip" target="_blank" download>this link</a>.</p>
+<blockquote>
+<div><p>A demo dataset for Si standard sample is included here – one can download the dataset by clicking  <a href="../../files/si_demo_data.zip" target="_blank" download>this link</a>.</p>
+</div></blockquote>
+<section id="step-by-step-instructions-using-rmcprofile">
+<h3>Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">RMCProfile</span></code><a class="headerlink" href="#step-by-step-instructions-using-rmcprofile" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple" start="0">
+<li><p>In this demo, I will be using the RMCProfile package and the two programs coming with the package – <code class="docutils literal notranslate"><span class="pre">rebin</span></code> and <code class="docutils literal notranslate"><span class="pre">stog_new</span></code> for post-processing the demo data for the Si standard sample.</p></li>
+<li><p>First, download the demo data (see the link just above) to your local area.</p></li>
+<li><p>Unzip the downloaded package to somewhere, e.g., in my case, under <code class="docutils literal notranslate"><span class="pre">/Users/y8z/Temp_Home</span></code> so that we can see the following files and sub-directories under it,</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span><span class="o">.</span><span class="n">json</span>
+<span class="n">GSAS</span>
+<span class="n">Logs</span>
+<span class="n">SofQ</span>
+<span class="n">SofQ_merged</span>
+<span class="n">StoG</span>
+<span class="n">Topas</span>
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p>Download the RMCProfile package if you haven’t already got it, following the link, <a href="https://rmcprofile.ornl.gov/download/" target="_blank">https://rmcprofile.ornl.gov/download</a></p></li>
+<li><p>Launch the RMCProfile terminal – the actual way of launching will depend on your operating system. Detailed instructions for each platform can be found here, <a href="https://rmcprofile.ornl.gov/how-to-launch-rmcprofile-program" target="_blank">https://rmcprofile.ornl.gov/how-to-launch-rmcprofile-program</a></p>
+<blockquote>
+<div><p>N.B. In the demo video below, I am using the Windows version of the RMCProfile package.</p>
+</div></blockquote>
+</li>
+<li><p>Change to the working directory from the RMCProfile terminal (e.g., <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/Users/y8z/Temp_Home/SofQ_merged</span></code> in my case), where you are going to see the following files (run <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-al</span></code> on Linux/Unix, or <code class="docutils literal notranslate"><span class="pre">dir</span></code> on Windows),</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_stog_data</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">NOM_Si_640d_bank1</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank2</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank3</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank4</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank5</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank6</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_merged</span><span class="o">.</span><span class="n">sq</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Rebin the data by running <code class="docutils literal notranslate"><span class="pre">rebin</span></code> from the RMCProfile terminal and feeding in the input file name when asked – in this case, <code class="docutils literal notranslate"><span class="pre">NOM_Si_640d_merged.sq</span></code>. Then enter <code class="docutils literal notranslate"><span class="pre">0.5</span> <span class="pre">0.01</span> <span class="pre">40.0</span></code> when asked for next-step parameters, followed by inputting the output file name <code class="docutils literal notranslate"><span class="pre">NOM_Si_640d_merged_rebin.sq</span></code> when asked.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">stog_new</span> <span class="pre">&lt;</span> <span class="pre">get_stog_data.txt</span></code> from the RMCProfile terminal to process the rebinned data, and after running it, the directory should contain the following files,</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ft</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">get_stog_data</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">NOM_Si_640d_bank1</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank2</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank3</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank4</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank5</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_bank6</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">NOM_Si_640d_merged</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">NOM_Si_640d_merged_rebin</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">Si_640d_scaled</span><span class="o">.</span><span class="n">gr</span>
+<span class="n">Si_640d_scaled</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">Si_640d_scaled_ft</span><span class="o">.</span><span class="n">gr</span>
+<span class="n">Si_640d_scaled_ft</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">Si_640d_scaled_ft_rmc</span><span class="o">.</span><span class="n">dr</span>
+<span class="n">Si_640d_scaled_ft_rmc</span><span class="o">.</span><span class="n">gr</span>
+<span class="n">Si_640d_scaled_ft_rmc</span><span class="o">.</span><span class="n">sq</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled.sq</span></code> and <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled.gr</span></code> file is the scaled normalized <span class="math notranslate nohighlight">\(S(Q)\)</span> data and its Fourier transform, respectively. The <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft.sq</span></code> and <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft.gr</span></code> is the same dataset but with Fourier filter applied. The <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft_rmc.sq</span></code>, <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft_rmc.gr</span></code> and <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft_rmc.dr</span></code> are files in RMCProfile <code class="docutils literal notranslate"><span class="pre">F(Q)</span></code>, <code class="docutils literal notranslate"><span class="pre">G(r)</span></code> and <code class="docutils literal notranslate"><span class="pre">D(r)</span></code> format, respectively.</p>
+</section>
+<section id="step-by-step-instructions-using-addie">
+<h3>Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code><a class="headerlink" href="#step-by-step-instructions-using-addie" title="Permalink to this headline">#</a></h3>
+<ol class="arabic">
+<li><p>As above, grab the demo data for Si standard sample and unzip to somewhere in your local area, e.g., <code class="docutils literal notranslate"><span class="pre">/SNS/users/y8z/Temp/</span></code> in my demo case. Here we will be using the <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code> software deployed on the analysis cluster. So, you should log in analysis using your UCAMS credential, using either a web browser or ThinLinc (the domain name is <a href="https://analysis.sns.gov" target="_blank">https://analysis.sns.gov</a>). Then launch a terminal and type in <code class="docutils literal notranslate"><span class="pre">addie</span> <span class="pre">--dev</span></code> to start <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code>.</p>
+ <img src="../../imgs/analysis_term.png" alt="drawing" width="600"/>
+<blockquote>
+<div><p>N.B. Since we need to log in analysis and use <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code> from there, we need to download the demo data from within analysis. Sometimes, launching the browser from within the analysis can take a long time, in which case one can use the following command from the terminal,</p>
+</div></blockquote>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">--no-check-certificate</span> <span class="pre">https://powder.ornl.gov/files/si_demo_data.zip</span></code></p>
+</div></blockquote>
+</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code>, change the output directory to where the downloaded data is unzipped to, e.g., <code class="docutils literal notranslate"><span class="pre">/SNS/users/y8z/Temp/</span></code>.</p>
+ <img src="../../imgs/addie_output_dir_demo.gif" alt="drawing" width="600"/>
+</li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Post</span> <span class="pre">Processing</span></code> tab in the <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code> interface,</p>
+ <img src="../../imgs/addie_pp_1.png" alt="drawing" width="600"/>
+</li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Load</span></code> button and browse to the <code class="docutils literal notranslate"><span class="pre">NOM_Si_640d.nxs</span></code> file under the <code class="docutils literal notranslate"><span class="pre">SofQ</span></code> directory of the downloaded package,</p>
+ <img src="../../imgs/addie_load_demo.gif" alt="drawing" width="600"/>
+</li>
+<li><p>Once the data is loaded in, click on the <code class="docutils literal notranslate"><span class="pre">Extract</span></code> button to extract the workspace, and the extracted data will be populated in the <code class="docutils literal notranslate"><span class="pre">Raw</span> <span class="pre">Data</span></code> tree under <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">List</span></code>, where one can right click to plot the data,</p>
+ <img src="../../imgs/addie_extract_demo.gif" alt="drawing" width="600"/>
+</li>
+<li><p>Then load in the merge configuration file, followed by clicking on the <code class="docutils literal notranslate"><span class="pre">Merge</span></code> button to merge the bank-by-bank data,</p>
+ <img src="../../imgs/addie_merge_demo.gif" alt="drawing" width="600"/>
+<blockquote>
+<div><p>N.B. The merge configuration file is a JSON file containing the range to be used for each bank, together with the offset and scale parameters for each bank. One can open the JSON file with any preferred text editor to inspect and change the contents.</p>
+</div></blockquote>
+</li>
+<li><p>Finally, load in the <code class="docutils literal notranslate"><span class="pre">pystog</span></code> configuration file, followed by clicking on the <code class="docutils literal notranslate"><span class="pre">StoG</span></code> button to perform the <code class="docutils literal notranslate"><span class="pre">pytstog</span></code> processing,</p>
+ <img src="../../imgs/addie_pystog_demo.gif" alt="drawing" width="600"/></li>
+</ol>
+</section>
 </section>
 </section>
 
@@ -711,7 +811,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format-checking">Data Format Checking</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rebin">Rebin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">Scaling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-data">Demo Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-data">Demo Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-rmcprofile">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">RMCProfile</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-addie">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
