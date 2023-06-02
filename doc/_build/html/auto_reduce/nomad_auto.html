@@ -587,13 +587,12 @@ document.write(`
 <div><p>N.B. Execute <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> followed by nothing will show the usage of the utility. Execute <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span> <span class="pre">-h</span></code> will show the detailed documentation of the utility.</p>
 </div></blockquote>
 <p>1.4. Here, we take the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> (which contains the instrument calibration and characterization runs) as an example. After we execute <code class="docutils literal notranslate"><span class="pre">abs_pree_calc</span> <span class="pre">28922</span></code> from the terminal, the sample information will be fetched from the ITEMS database and the information will be saved into a CSV file (located at an IPTS specific location, analogous to <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/mts_abs_ms/IPTS-28922</span></code> for current example), after which the spreadsheet application (<code class="docutils literal notranslate"><span class="pre">LibreOffice</span></code> on analysis) will be launched to open the saved sample information CSV file. This is the spot where one can correct the sample information – usually when general users check in their samples, the information may not be entered properly so some manual efforts are needed here for correcting those information. The necessary information is as listed here,</p>
-<ul class="simple">
+<ul>
 <li><p>Chemical Formula – the follow formats are accepted, <code class="docutils literal notranslate"><span class="pre">Sr</span> <span class="pre">Ti</span> <span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">Sr1</span> <span class="pre">Ti</span> <span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">(Sr)1.0</span> <span class="pre">Ti</span> <span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">Sr</span> <span class="pre">(Ti)</span> <span class="pre">(O16)3</span></code>, where the bracket is useful to specify the isotope.</p></li>
 <li><p>Mass Density – we <em>suggest</em> to use the actually measured mass density. However, one can also use the theoretical mass density here, since anyhow the effective density will change according to the packing fraction tweaking factor.</p></li>
 <li><p>Packing Fraction – one can start with an not-too-far-off arbitrary value, e.g., 0.8, since the auto-reduction engine will iteratively adjust its value on-the-fly.</p></li>
 <li><p>Shape – usually it is <code class="docutils literal notranslate"><span class="pre">Cylinder</span></code> for commonly used sample container (e.g., the PAC CAN or silica capillary used on NOMAD). However, in some cases, other types of container may be used and more available shape can be found in the Mantid documentation about <a href="https://docs.mantidproject.org/v6.6.0/algorithms/SetSample-v1.html#geometry-and-containergeometry" target="_blank">Geometry and ContainerGeometry</a>.</p></li>
-<li><p>Radius – this specifies the inner radius of the container being used and for non-cylindrical and non-spherical containers, this is not relevant. Once can refer to following table for radius values for commonly used containers,</p></li>
-</ul>
+<li><p>Radius – this specifies the inner radius of the container being used and for non-cylindrical and non-spherical containers, this is not relevant. Once can refer to following table for radius values for commonly used containers,</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Container</p></th>
@@ -618,13 +617,14 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</li>
+</ul>
 <blockquote>
 <div><p>N.B. Up-to-date information about containers geometry can be found in the Mantid source code <a href="https://github.com/mantidproject/mantid/blob/6471eeb913db9771364078f5f681d55668cc6190/instrument/sampleenvironments/SNS/InAir.xml" target="_blank">here</a>.</p>
 </div></blockquote>
-<ul class="simple">
+<ul>
 <li><p>Height – sample height in container</p></li>
-<li><p>Abs Method – specify the method to be used for performing the absorption pre-calculation. Here, short names of the absorption correction method will be used in the CSV file for saving the user input effort. Here follows is presented a table containing the correspondence between the short name and the method,</p></li>
-</ul>
+<li><p>Abs Method – specify the method to be used for performing the absorption pre-calculation. Here, short names of the absorption correction method will be used in the CSV file for saving the user input effort. Here follows is presented a table containing the correspondence between the short name and the method,</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Short Name</p></th>
@@ -646,10 +646,11 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<p>Details about theoretical background for each type of absorption correction method can be found <a href="../total_scattering/data_reduction/mts_abs_ms.html" target="_blank">here</a>.</p>
-<ul class="simple">
-<li><p>MS Method – specify the method to be used for multiple scattering correction. The absorption and multiple scattering calculation is implemented in the same code base and more details can be found <a href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html#multiple-scattering-correction" target="_blank">here</a>. Below is presented a table containing the correspondence between the short name and the method,</p></li>
+</li>
 </ul>
+<p>Details about theoretical background for each type of absorption correction method can be found <a href="../total_scattering/data_reduction/mts_abs_ms.html" target="_blank">here</a>.</p>
+<ul>
+<li><p>MS Method – specify the method to be used for multiple scattering correction. The absorption and multiple scattering calculation is implemented in the same code base and more details can be found <a href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html#multiple-scattering-correction" target="_blank">here</a>. Below is presented a table containing the correspondence between the short name and the method,</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Short Name</p></th>
@@ -668,6 +669,8 @@ document.write(`
 </tr>
 </tbody>
 </table>
+</li>
+</ul>
 <p>Once the table is configured properly, one can proceed to close the spreadsheet application so the utility will continue to the next action, which is mainly about the absorption and multiple scattering calculation, if specified to be performed. There are several aspects worth to mention,</p>
 <ul class="simple">
 <li><p>Once the spreadsheet application is closed, the utility will be checking the validity of those necessary entries as detailed above in the CSV file and if invalid entries are spotted, the CSV file will be automatically opened again for users to correct those information or fill in those missing ones. The invalid entries will be printed to the terminal console so that users can get an idea about what is going wrong.</p></li>
