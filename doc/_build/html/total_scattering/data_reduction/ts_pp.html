@@ -520,6 +520,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstration">Demonstration</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-rmcprofile">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">RMCProfile</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-video-using-rmcprofile">Demo video using <code class="docutils literal notranslate"><span class="pre">RMCProfile</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-noisy-data">Dealing with noisy data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-pystog">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">pystog</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-addie">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code></a></li>
 </ul>
 </li>
@@ -727,6 +729,154 @@ document.write(`
         </div></div>
 </div>
 </section>
+<section id="dealing-with-noisy-data">
+<h3>Dealing with noisy data<a class="headerlink" href="#dealing-with-noisy-data" title="Permalink to this headline">#</a></h3>
+<p>In practice, it is unavoidable that we would have noise in our data and sometimes the noise level might be on a significant level. Fourier transforming such noisy dataset needs some special care. On one hand, we might want to reduce the maximum <span class="math notranslate nohighlight">\(Q\)</span> to diminish the contribution of noise from the high-<span class="math notranslate nohighlight">\(Q\)</span> region. On the other hand, since the finite <span class="math notranslate nohighlight">\(Q\)</span> range would have broadening effect in real-space due to the truncation in <span class="math notranslate nohighlight">\(Q\)</span>-space. The smaller maximum <span class="math notranslate nohighlight">\(Q\)</span> being used, the more significant the broadening effect would be. Both of the two aspects could help smoothing out the data in real-space. However, the other side of the coin is that such a broadening effect could potentially smooth out the real features at the same time. As such, it may be necessary to try different maximum <span class="math notranslate nohighlight">\(Q\)</span> values to obtain different datasets and see the effect upon the data analysis result. In the demo below, we will be present a practical way to deal with the noisy data, <em>but it should be kept in mind that there is really not a golden rule for deciding the most suitable maximum <span class="math notranslate nohighlight">\(Q\)</span> value to be used, and in practice, back-and-forth efforts might be needed</em>.</p>
+<ol class="arabic">
+<li><p>Download the demo data, by clicking on the link <a href="../../files/NOM_Si_640d_merged_noisy.sq" target="_blank" download>here</a>.</p></li>
+<li><p>Copy over the <code class="docutils literal notranslate"><span class="pre">get_stog_data.txt</span></code> file from the step-5 in the section just above to the same location where the downloaded data is sitting and change to that directory from RMCProfile terminal. For example, on my Windows machine, I downloaded the data to <code class="docutils literal notranslate"><span class="pre">d:\Downloads\</span></code>, in which case I would execute,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">d</span><span class="p">:</span>\<span class="n">Downloads</span>\
+<span class="n">d</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>from my RMCProfile terminal window.</p>
+</li>
+<li><p>The downloaded data should have already been binned properly so the first step of rebinning in the previous instruction could be skipped. Open the <code class="docutils literal notranslate"><span class="pre">get_stog_data.txt</span></code> file in a text editor and change the file name in the second line of the file to <code class="docutils literal notranslate"><span class="pre">NOM_Si_640d_merged_noisy.sq</span></code> in accordance with the data file just downloaded. Also, change the <code class="docutils literal notranslate"><span class="pre">Qmax</span></code> value in the third line of the file to <code class="docutils literal notranslate"><span class="pre">35.0</span></code> and meanwhile change all the output file names to be specific to the <code class="docutils literal notranslate"><span class="pre">Qmax</span></code> value being used. The changed file should be looking like this,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="n">NOM_Si_640d_merged_noisy</span><span class="o">.</span><span class="n">sq</span>
+<span class="mf">0.5</span> <span class="mf">35.0</span>
+<span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="mi">0</span>
+<span class="n">Si_640d_scaled_qmax35p0</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">Si_640d_scaled_qmax35p0</span><span class="o">.</span><span class="n">gr</span>
+<span class="mi">50</span>
+<span class="mi">5000</span>
+<span class="n">N</span>
+<span class="mf">0.049948</span>
+<span class="mi">0</span>
+<span class="n">N</span>
+<span class="n">y</span>
+<span class="mf">1.5</span>
+<span class="n">Si_640d_scaled_ft_qmax35p0</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">Si_640d_scaled_ft_qmax35p0</span><span class="o">.</span><span class="n">gr</span>
+<span class="mf">0.17215</span>
+<span class="n">Si_640d_scaled_ft_rmc_qmax35p0</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">Si_640d_scaled_ft_rmc_qmax35p0</span><span class="o">.</span><span class="n">gr</span>
+<span class="n">Si_640d_scaled_ft_rmc_qmax35p0</span><span class="o">.</span><span class="n">dr</span>
+<span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>and save the changed file to <code class="docutils literal notranslate"><span class="pre">get_stog_data_qmax35p0.txt</span></code></p>
+</li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">Qmax</span></code> to several other different values (e.g., 32.5, 30.0 and 25.0), by repeating the step-3. Then execute all the saved stog input file to obtain a series of processed datasets, and then compare the outcome. For example, plot <code class="docutils literal notranslate"><span class="pre">Si_640d_scaled_ft_rmc_qmax35p0.gr</span></code> together with all the other similar files corresponding to other <code class="docutils literal notranslate"><span class="pre">Qmax</span></code> values outcome to see the effect of changing <code class="docutils literal notranslate"><span class="pre">Qmax</span></code>. Usually, the features that change significantly with the changing of <code class="docutils literal notranslate"><span class="pre">Qmax</span></code> are with higher chance being Fourier ripples. Also, we may need to pay attention to those features that do not change that much until reducing the <code class="docutils literal notranslate"><span class="pre">Qmax</span></code> to a certain value, and that can give us some hint about the lower limit of the <code class="docutils literal notranslate"><span class="pre">Qmax</span></code> value.</p></li>
+<li><p>In some rare cases (not in this demo one), changing <code class="docutils literal notranslate"><span class="pre">Qmax</span></code> alone may not eliminate the noise in data. Then one might need to smooth out the real-space pattern by introducing a Lorch modification function in <span class="math notranslate nohighlight">\(Q\)</span>-space, as originally proposed by Lorch – see the reference <a href="https://iopscience.iop.org/article/10.1088/0022-3719/2/2/305" target="_blank">here</a>. To do this, use the following <code class="docutils literal notranslate"><span class="pre">stog</span></code> input file,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="n">NOM_Si_640d_merged_noisy</span><span class="o">.</span><span class="n">sq</span>
+<span class="mf">0.5</span> <span class="mf">35.0</span>
+<span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="mi">0</span>
+<span class="n">Si_640d_scaled_qmax35p0</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">Si_640d_scaled_qmax35p0</span><span class="o">.</span><span class="n">gr</span>
+<span class="mi">50</span>
+<span class="mi">5000</span>
+<span class="n">Y</span>
+<span class="mf">0.049948</span>
+<span class="mi">0</span>
+<span class="n">N</span>
+<span class="n">y</span>
+<span class="mf">1.5</span>
+<span class="n">Si_640d_scaled_ft_qmax35p0</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">Si_640d_scaled_ft_qmax35p0</span><span class="o">.</span><span class="n">gr</span>
+<span class="n">Si_640d_scaled_ft_qmax35p0_lorched</span><span class="o">.</span><span class="n">gr</span>
+<span class="mf">0.17215</span>
+<span class="n">Si_640d_scaled_ft_rmc_qmax35p0_lorched</span><span class="o">.</span><span class="n">sq</span>
+<span class="n">Si_640d_scaled_ft_rmc_qmax35p0_lorched</span><span class="o">.</span><span class="n">gr</span>
+<span class="n">Si_640d_scaled_ft_rmc_qmax35p0_lorched</span><span class="o">.</span><span class="n">dr</span>
+<span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>where the major change is happening in line-10 (from <code class="docutils literal notranslate"><span class="pre">N</span></code> to <code class="docutils literal notranslate"><span class="pre">Y</span></code>, indicating a Lorch function is to be applied.).</p>
+</li>
+</ol>
+</section>
+<section id="step-by-step-instructions-using-pystog">
+<h3>Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">pystog</span></code><a class="headerlink" href="#step-by-step-instructions-using-pystog" title="Permalink to this headline">#</a></h3>
+<p>Here, we will be performing similar task as in previous demonstration, i.e., rebin &amp; rescale data, and Fourier transform. The tool being used here is <code class="docutils literal notranslate"><span class="pre">pystog</span></code> (see the <a href="https://github.com/neutrons/pystog" target="_blank">github repo</a> for the resource codes and documentation). Beyond the tasks we have been walking through in previous steps, we will be using the power of the <code class="docutils literal notranslate"><span class="pre">pystog</span></code> engine to perform tasks like converting in between different data formats needed by different software.</p>
+<p>Here, we will be using Google Colab notebook which is a dedicated environment for this demo. It covers the installation of necessary software package and actual codes for performing the data processing tasks. So, for this demo, you can visit the link <a href="https://colab.research.google.com/drive/1M-uogoj1Oka1-SlKGfzcO0YvJMMm4SkT?usp=sharing" target="_blank">here</a> and log in with your Google account to be able to run the notebook.</p>
+<p>Beyond this demo, <code class="docutils literal notranslate"><span class="pre">pystog</span></code> can be installed on your local machine. For the installation, we strongly recommend installing <code class="docutils literal notranslate"><span class="pre">conda</span></code>, for which one can refer to <a href="https://docs.anaconda.com/free/anaconda/install/index.html" target="_blank">this link</a>. Once <code class="docutils literal notranslate"><span class="pre">conda</span></code> is installed,</p>
+<ol class="arabic">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment named, e.g., <code class="docutils literal notranslate"><span class="pre">pystog</span></code>, by running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">pystog</span> <span class="pre">python=3.7</span></code></p></li>
+<li><p>Then activate the environment, <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">pystog</span></code></p></li>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">pystog</span></code> either <code class="docutils literal notranslate"><span class="pre">pip</span></code> by running <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pystog</span></code>, or via <code class="docutils literal notranslate"><span class="pre">conda</span></code> by running <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">neutrons</span> <span class="pre">pystog</span></code></p></li>
+<li><p>From the terminal, change to the demo data directory. Following the example as presented above, in my case, the command is <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">d:\Temp_Local\SofQ_merged</span></code>, followed by running <code class="docutils literal notranslate"><span class="pre">d:</span></code> to make sure we are in the <code class="docutils literal notranslate"><span class="pre">d:</span></code> drive.</p></li>
+<li><p>Put the following contents into a Python script file and name it as, e.g., <code class="docutils literal notranslate"><span class="pre">proc_pystog.py</span></code>,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Load in data</span>
+<span class="n">q</span><span class="p">,</span> <span class="n">sq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;./NOM_Si_640d_merged.sq&quot;</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Rebin data</span>
+<span class="kn">from</span> <span class="nn">pystog</span> <span class="kn">import</span> <span class="n">Pre_Proc</span>
+<span class="n">rebin</span> <span class="o">=</span> <span class="n">Pre_Proc</span><span class="o">.</span><span class="n">rebin</span>
+<span class="n">q_rebin</span><span class="p">,</span> <span class="n">sq_rebin</span> <span class="o">=</span> <span class="n">rebin</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">sq</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;NOM_Si_640d_merged_rebin_pystog.sq&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">q_val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">q_rebin</span><span class="p">):</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:10.3F}{1:15.6F}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_val</span><span class="p">,</span> <span class="n">sq_rebin</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+<span class="c1"># plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">sq</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;original data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_rebin</span><span class="p">,</span> <span class="n">sq_rebin</span><span class="p">,</span> <span class="s1">&#39;v-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rebinned data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">1.9</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Convert the normalized S(Q) to F(Q)</span>
+<span class="kn">from</span> <span class="nn">pystog</span> <span class="kn">import</span> <span class="n">Converter</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">Converter</span><span class="p">()</span>
+<span class="n">fq</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">S_to_F</span><span class="p">(</span><span class="n">q_rebin</span><span class="p">,</span> <span class="n">sq_rebin</span><span class="p">)</span>
+
+<span class="c1"># plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_rebin</span><span class="p">,</span> <span class="n">fq</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Convert the normalized S(Q) to FK(Q)</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;&lt;b_coh&gt;^2&#39;</span><span class="p">:</span> <span class="mf">0.17215</span><span class="p">}</span>
+<span class="n">fkq</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">S_to_FK</span><span class="p">(</span><span class="n">q_rebin</span><span class="p">,</span> <span class="n">sq_rebin</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="c1"># plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_rebin</span><span class="p">,</span> <span class="n">fkq</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Transform into real-space G(r)</span>
+<span class="kn">from</span> <span class="nn">pystog</span> <span class="kn">import</span> <span class="n">Transformer</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="p">()</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">50.</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="n">r</span><span class="p">,</span> <span class="n">gr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">S_to_G</span><span class="p">(</span><span class="n">q_rebin</span><span class="p">,</span> <span class="n">sq_rebin</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">gr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Convert G(r) to GK(r)</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;rho&#39;</span><span class="p">:</span> <span class="mf">0.049948</span><span class="p">,</span> <span class="s1">&#39;&lt;b_coh&gt;^2&#39;</span><span class="p">:</span> <span class="mf">0.17215</span><span class="p">}</span>
+<span class="n">gkr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">G_to_GK</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">gr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="c1"># plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">gkr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Next, we will be performing the comprehensive <code class="docutils literal notranslate"><span class="pre">stog</span></code> processing as we have seen in previous demo, but this time using the <code class="docutils literal notranslate"><span class="pre">pystog</span></code> engine. First, create a directory under the current working directory, with the name, e.g., <code class="docutils literal notranslate"><span class="pre">pystog_proc</span></code> and change to that directory from command line, by running <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">pystog_proc</span></code>. Then, download the JSON input file, by clicking on the link &lt;/a href=”../../files/si_pystog_demo.json” target=”_blank”&gt;here</a> and move it to the created <code class="docutils literal notranslate"><span class="pre">pystog_proc</span></code> directory. Then from the command line, execute,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pystog_cli</span> <span class="o">--</span><span class="n">json</span> <span class="n">si_pystog_demo</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>to run the <code class="docutils literal notranslate"><span class="pre">pystog</span></code> processing, and all files generated will be put in the current working directory, which is <code class="docutils literal notranslate"><span class="pre">pystog_proc</span></code>.</p>
+</li>
+</ol>
+</section>
 <section id="step-by-step-instructions-using-addie">
 <h3>Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code><a class="headerlink" href="#step-by-step-instructions-using-addie" title="Permalink to this headline">#</a></h3>
 <ol class="arabic">
@@ -837,6 +987,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demonstration">Demonstration</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-rmcprofile">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">RMCProfile</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-video-using-rmcprofile">Demo video using <code class="docutils literal notranslate"><span class="pre">RMCProfile</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-noisy-data">Dealing with noisy data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-pystog">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">pystog</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instructions-using-addie">Step-by-step instructions using <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code></a></li>
 </ul>
 </li>
