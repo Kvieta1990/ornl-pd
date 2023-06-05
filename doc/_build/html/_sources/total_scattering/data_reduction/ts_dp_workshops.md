@@ -6,7 +6,7 @@
 
 **Organizers:** Yuanpeng Zhang, Matthew Tucker, and Thomas Proffen
 
-> SHUG = SNS-HFIR User Group | Neutron Science at ORNL
+> SHUG = SNS-HFIR User Group
 
 ---
 
