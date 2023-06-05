@@ -16,6 +16,10 @@
 
 - Opening remarks Jupyter notebook: <a href="../../files/ts_dp_workshop_06052023.zip" target="_blank" download>Click Me</a>
 
+    > The paper by D. Keen summarizing the different forms of total scattering functions, <a href="https://doi.org/10.1107/S0021889800019993" target="_blank">Click Me</a>
+    
+    > The paper by P. Peterson, et al. summarizing total scattering formulations, <a href="https://doi.org/10.1107/S1600576720015630" target="_blank">Clicke Me</a>
+
 - Presentation slides: <a href="https://www.dropbox.com/sh/akje97zg7llqwu9/AACUaXghQshy64snSRhgJRYua?dl=0" target="_blank">Click Me</a>
 
 - Introduction & Demonstration to the total scattering data auto-reduction: <a href="../../auto_reduce/nomad_auto.html" target="_blank">Click Me</a>
