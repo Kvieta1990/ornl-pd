@@ -2,10 +2,8 @@
 
 ## Satellite workshop with SHUG meeting 2023
 
----
-
-Date: June 5th, 2023
-Organizers: Yuanpeng Zhang, Matthew Tucker, and Thomas Proffen
+**Date:** June 5th, 2023
+**Organizers:** Yuanpeng Zhang, Matthew Tucker, and Thomas Proffen
 
 ---
 
