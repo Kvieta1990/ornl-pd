@@ -35,6 +35,7 @@ parts:
     - file: total_scattering/data_reduction/dr_howto
     - file: total_scattering/data_reduction/ts_powgen
     - file: total_scattering/data_reduction/ts_pp
+    - file: total_scattering/data_reduction/ts_dp_workshops
   - file: total_scattering/data_analysis/toc
     sections:
     - file: total_scattering/data_analysis/software
