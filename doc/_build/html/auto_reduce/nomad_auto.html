@@ -587,38 +587,60 @@ document.write(`
 <blockquote>
 <div><p>N.B. Execute <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> followed by nothing will show the usage of the utility. Execute <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span> <span class="pre">-h</span></code> will show the detailed documentation of the utility.</p>
 </div></blockquote>
-<p>1.4. Here, we take the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> (which contains the instrument calibration and characterization runs) as an example. After we execute <code class="docutils literal notranslate"><span class="pre">abs_pree_calc</span> <span class="pre">28922</span></code> from the terminal, the sample information will be fetched from the ITEMS database and the information will be saved into a CSV file (located at an IPTS specific location, analogous to <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/mts_abs_ms/IPTS-28922</span></code> for current example), after which the spreadsheet application (<code class="docutils literal notranslate"><span class="pre">LibreOffice</span></code> on analysis) will be launched to open the saved sample information CSV file. This is the spot where one can correct the sample information – usually when general users check in their samples, the information may not be entered properly so some manual efforts are needed here for correcting those information. The necessary information is as listed here,</p>
+<p>1.4. Here, we take the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> (which contains the instrument calibration and characterization runs) as an example. After we execute <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span> <span class="pre">28922</span></code> from the terminal, the sample information will be fetched from the ITEMS database and the information will be saved into a CSV file (located at an IPTS specific location, analogous to <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/mts_abs_ms/IPTS-28922</span></code> for current example), after which the spreadsheet application (<code class="docutils literal notranslate"><span class="pre">LibreOffice</span></code> on analysis) will be launched to open the saved sample information CSV file. This is the spot where one can correct the sample information – usually when general users check in their samples, the information may not be entered properly so some manual efforts are needed here for correcting those information. The necessary information is as listed here,</p>
 <ul>
 <li><p>Chemical Formula – the follow formats are accepted, <code class="docutils literal notranslate"><span class="pre">Sr</span> <span class="pre">Ti</span> <span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">Sr1</span> <span class="pre">Ti</span> <span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">(Sr)1.0</span> <span class="pre">Ti</span> <span class="pre">O3</span></code>, <code class="docutils literal notranslate"><span class="pre">Sr</span> <span class="pre">(Ti)</span> <span class="pre">(O16)3</span></code>, where the bracket is useful to specify the isotope.</p></li>
 <li><p>Mass Density – we <em>suggest</em> to use the actually measured mass density. However, one can also use the theoretical mass density here, since anyhow the effective density will change according to the packing fraction tweaking factor.</p></li>
 <li><p>Packing Fraction – one can start with an not-too-far-off arbitrary value, e.g., 0.8, since the auto-reduction engine will iteratively adjust its value on-the-fly.</p></li>
-<li><p>Shape – usually it is <code class="docutils literal notranslate"><span class="pre">Cylinder</span></code> for commonly used sample container (e.g., the PAC CAN or silica capillary used on NOMAD). However, in some cases, other types of container may be used and more available shape can be found in the Mantid documentation about <a href="https://docs.mantidproject.org/v6.6.0/algorithms/SetSample-v1.html#geometry-and-containergeometry" target="_blank">Geometry and ContainerGeometry</a>.</p></li>
-<li><p>Radius – this specifies the inner radius of the container being used and for non-cylindrical and non-spherical containers, this is not relevant. Once can refer to following table for radius values for commonly used containers,</p>
+<li><p>Container Type – The type of the container being used for holding the sample. On NOMAD, usually, the 3 mm capillary and 6 mm PAC can are commonly used, and we can input <code class="docutils literal notranslate"><span class="pre">C</span></code> or <code class="docutils literal notranslate"><span class="pre">P</span></code> as a short name for each. Sometimes, if users have ever put in the information for containers to be used when checking in their samples, the container type information will be fetched from the ITEMS database at current stage. In that case, one may only need to check the automatically fetched container type is valid. The acceptable container type is,</p>
+<ul class="simple">
+<li><p>Quartz03</p></li>
+<li><p>QuartzTube03</p></li>
+<li><p>PAC03</p></li>
+<li><p>PAC06</p></li>
+<li><p>PAC08</p></li>
+<li><p>PAC10</p></li>
+<li><p>P</p></li>
+<li><p>C</p></li>
+<li><p>O</p></li>
+</ul>
+<p>We have mentioned that <code class="docutils literal notranslate"><span class="pre">P</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> are used as the shortname to represent the <code class="docutils literal notranslate"><span class="pre">Quartz03</span></code> and <code class="docutils literal notranslate"><span class="pre">PAC06</span></code> container, respectively. As for <code class="docutils literal notranslate"><span class="pre">O</span></code> type, we use this shortname to represent any other type of containers.</p>
+<blockquote>
+<div><p>If any standard container type is specified (i.e., all the acceptable values listed above except <code class="docutils literal notranslate"><span class="pre">O</span></code>), the following two entries <code class="docutils literal notranslate"><span class="pre">Shape</span></code> and <code class="docutils literal notranslate"><span class="pre">Radius</span></code> DO NOT need to be provided – the shape and radius for each standard type of container can be found in the table below. Otherwise, the shape and radius information for the container being used should be provided as instructed below.</p>
+</div></blockquote>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Container</p></th>
 <th class="head"><p>Inner Radius (cm)</p></th>
+<th class="head"><p>Shape</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>QuartzTube03</p></td>
 <td><p>0.14</p></td>
+<td><p>Cylinder</p></td>
 </tr>
 <tr class="row-odd"><td><p>PAC03</p></td>
 <td><p>0.135</p></td>
+<td><p>Cylinder</p></td>
 </tr>
 <tr class="row-even"><td><p>PAC06</p></td>
 <td><p>0.295</p></td>
+<td><p>Cylinder</p></td>
 </tr>
 <tr class="row-odd"><td><p>PAC08</p></td>
 <td><p>0.385</p></td>
+<td><p>Cylinder</p></td>
 </tr>
 <tr class="row-even"><td><p>PAC10</p></td>
 <td><p>0.46</p></td>
+<td><p>Cylinder</p></td>
 </tr>
 </tbody>
 </table>
 </li>
+<li><p>Shape – usually it is <code class="docutils literal notranslate"><span class="pre">Cylinder</span></code> for commonly used sample container (e.g., the PAC CAN or silica capillary used on NOMAD). However, in some cases, other types of container may be used and more available shape can be found in the Mantid documentation about <a href="https://docs.mantidproject.org/v6.6.0/algorithms/SetSample-v1.html#geometry-and-containergeometry" target="_blank">Geometry and ContainerGeometry</a>.</p></li>
+<li><p>Radius – this specifies the inner radius of the container being used (for non-cylindrical and non-spherical containers, this is not relevant).</p></li>
 </ul>
 <blockquote>
 <div><p>N.B. Up-to-date information about containers geometry can be found in the Mantid source code <a href="https://github.com/mantidproject/mantid/blob/6471eeb913db9771364078f5f681d55668cc6190/instrument/sampleenvironments/SNS/InAir.xml" target="_blank">here</a>.</p>
@@ -691,7 +713,9 @@ document.write(`
 <th class="head"><p>Sample Env</p></th>
 <th class="head"><p>Calib</p></th>
 <th class="head"><p>Van</p></th>
-<th class="head"><p>MT Can</p></th>
+<th class="head"><p>PAC</p></th>
+<th class="head"><p>CAP</p></th>
+<th class="head"><p>Other Can</p></th>
 <th class="head"><p>MT</p></th>
 </tr>
 </thead>
@@ -702,6 +726,8 @@ document.write(`
 <td><p>183057</p></td>
 <td><p>179270</p></td>
 <td><p>181279-181282</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
 <td><p>179271</p></td>
 </tr>
 <tr class="row-odd"><td><p>172400</p></td>
@@ -710,6 +736,8 @@ document.write(`
 <td><p>172394</p></td>
 <td><p>172401</p></td>
 <td><p>172397-172400</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
 <td><p>172402</p></td>
 </tr>
 </tbody>
