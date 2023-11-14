@@ -515,6 +515,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction">Step-by-step Instruction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-materials">More Materials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-reduction-principle">Data Reduction Principle</a></li>
 </ul>
             </nav>
         </div>
@@ -540,6 +541,20 @@ document.write(`
 <section id="more-materials">
 <h2>More Materials<a class="headerlink" href="#more-materials" title="Permalink to this headline">#</a></h2>
 <p>Refer to the user guide available at the HB-2A instrument website, <a class="reference external" href="https://neutrons.ornl.gov/wand/users">https://neutrons.ornl.gov/wand/users</a>.</p>
+</section>
+<section id="data-reduction-principle">
+<h2>Data Reduction Principle<a class="headerlink" href="#data-reduction-principle" title="Permalink to this headline">#</a></h2>
+<p>A high level flowchart summarizing the overall powder diffration data reduction workflow for WAND² is presented as below,</p>
+<img src="../../imgs/WAND2_PD_Red.png" alt="drawing" width="800"/>
+<p>Mantid framework is used here for the reduction and one can refer to the Mantid documentation for the information of all the relevant algorithms <a class="reference external" href="https://docs.mantidproject.org/v6.7.0/algorithms/WANDPowderReduction-v1.html">here</a>.</p>
+<p>Several key aspects that are worth noting,</p>
+<ol class="arabic simple">
+<li><p>For the <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">mask</span></code> step (see one of the blue nodes above), all the relevant masks were merged, including the manually provided mask (if existing), the already existing mask in the workspace, and the mask to be generated according to the mask angle range (if existing).</p></li>
+<li><p>For the <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">duplicates</span></code> step (see one of the blue nodes above), adjacent detectors with identical scattering angle value will be merged together.</p></li>
+<li><p>One should notice that there are several spots in the flowchart where the <code class="docutils literal notranslate"><span class="pre">Filtered</span> <span class="pre">input</span></code> statement is appearing. When the processed workspaces were obtained via event filtering, we need some special care to make sure the consistency in the reduced data so that they are directly comparable. Basically, we want to make sure the masks being used for all the filtered workspaces is identical.</p></li>
+<li><p>Given the current implementation of the reduction routine, we do require that the masks for data, calibration (vanadium measurement for normalization purpose), and the background should be identical. This requires one to perform cross masking all the relevant workspaces before feeding them into the data reduction routine.</p></li>
+<li><p>At the final summing stage (if specified to), if the <code class="docutils literal notranslate"><span class="pre">MultiplyBySpectra</span></code> parameter (see the documentation <a class="reference external" href="https://docs.mantidproject.org/v6.7.0/algorithms/WANDPowderReduction-v1.html">here</a> for details) is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, the average will be calculated for all the spectra involved.</p></li>
+</ol>
 </section>
 </section>
 
@@ -612,6 +627,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction">Step-by-step Instruction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-materials">More Materials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-reduction-principle">Data Reduction Principle</a></li>
 </ul>
   </nav></div>
 
