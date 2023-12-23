@@ -13,6 +13,7 @@ html:
   use_issues_button: true
   baseurl: https://powder.ornl.gov/
   google_analytics_id: G-TFL7TZY8LR
+  head: '<script async src="https://umm.iris-home.net/script.js" data-website-id="1ec8f93f-95ed-478f-9f23-a038fe03adf3"></script>'
 
 # Information about where the book exists on the web
 repository:
