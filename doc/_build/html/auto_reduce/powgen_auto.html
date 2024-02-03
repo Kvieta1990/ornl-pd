@@ -519,6 +519,48 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="powgen-bl-11a-sns">
 <h1>POWGEN | BL-11A | SNS<a class="headerlink" href="#powgen-bl-11a-sns" title="Permalink to this headline">#</a></h1>
+<p>The autoreduction pipeline on POWGEN instrument is working robustly to automatically produce the Bragg diffraction data and the total scattering data once the raw measurement data is becoming available on the hard drive. To guarantee a successful running of the autoreduction pipeline, some necessary configurations need to be in place, including those calibration and characterization runs and a series of control parameters for the data reduction routines. Concerning the principles of the data reduction, one could refer to the page <a href="https://powder.ornl.gov/total_scattering/data_reduction/toc.html" target="_blank">here</a> in current book for more information. The calibration and characterization information is stored in the POWGEN shared location on the analysis cluster,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">SNS</span><span class="o">/</span><span class="n">PG3</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="n">CALIBRATION</span>
+</pre></div>
+</div>
+<p>and each cycle has a series of calibration and characterization files corresponding to different sample environments or instrument setups. The configuration file for controlling the autoreduction routine is stored in json format and is stored in POWGEN shared location at,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">SNS</span><span class="o">/</span><span class="n">PG3</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="n">autoreduce</span>
+</pre></div>
+</div>
+<p>The central configuration file <code class="docutils literal notranslate"><span class="pre">auto_config.json</span></code> located there contains high level controls over the autoreduction routine and also it contains the pointer to sample environment or setup specific configuration files. Those specific configuration files are stored here,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">SNS</span><span class="o">/</span><span class="n">PG3</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="n">autoreduce</span><span class="o">/</span><span class="n">auto_config_files</span>
+</pre></div>
+</div>
+<p>Based on the information provided in the central configuration file <code class="docutils literal notranslate"><span class="pre">auto_config.json</span></code>, the autoreduction routine knows how to find those specific configuration files which contains the parameters to be used by the backend data reduction engine.</p>
+<p>Usually, all the files mentioned above need to be populated or modified by first logging into the analysis cluster, followed by editing those relevant files one-by-one using plain text editor. First, this is a tedious process. Second, it is very easy to make mistakes, which could then kill the whole autoreduction pipeline without anyone having a quick idea about what is happening. To make the whole process more transparent, easy to configure and error-proofing, we implemented a web-based interface in the <a href="https://addie.ornl.gov" target="_blank">ADDIE web platform</a>. The web interface intends to replace the tedious way of configuring the POWGEN autoreduction pipeline. Several key things to mention,</p>
+<ol class="arabic simple">
+<li><p>To get access to the web interface concerning the POWGEN autoreduction configuration, one needs to hold a valid UCAMS/XCAMS account. Further, for the specific interfaces that will write files to the central POWGEN shared locations, only POWGEN team members can have the access.</p></li>
+<li><p>The configuration web interface is only for the configuration purpose but not is <code class="docutils literal notranslate"><span class="pre">NOT</span></code> intended to interfere with the running of the autoreduction routine. To do the interference with the autoreduction running, one needs to go to the monitor web service <a href="https://monitor.sns.gov/dasmon/pg3/" target="_blank">here</a>.</p></li>
+</ol>
+<p>The autoreduction configuration is implemented in such a way that a specific IPTS has its dedicated version of the configuration. In practice, if the IPTS specific version of the configuration cannot be found, the central configuration (those located in the POWGEN shared location as mentioned above) will be copied over to the IPTS specific location. Otherwise, the IPTS specific version will win over and general users are expected to make changes in IPTS specific locations for configuring the autoreduction for their experiments.</p>
+<blockquote>
+<div><p>Currently, the web interface for general users for configuring the autoreduction is under development and will be online soon.</p>
+</div></blockquote>
+<p>A demonstration video has been recorded to go through the how-tos of using the web interface for characterization and autoreduction configuration, as can be found below,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;yNTG0qD4HMs&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">720</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="720"
+            height="500"
+            src="https://www.youtube.com/embed/yNTG0qD4HMs"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
