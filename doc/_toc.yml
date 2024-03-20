@@ -50,4 +50,5 @@ parts:
   - file: addie
   - file: powder_forum
   - file: run_time
+  - file: work_items
   - file: bib.md

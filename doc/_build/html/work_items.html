@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Discussion Forum &#8212; Powder Diffraction at ORNL</title>
+    <title>Powder Diffraction Work Items &#8212; Powder Diffraction at ORNL</title>
   
   
   
@@ -70,13 +70,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'powder_forum';</script>
-    <link rel="canonical" href="https://powder.ornl.gov/powder_forum.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'work_items';</script>
+    <link rel="canonical" href="https://powder.ornl.gov/work_items.html" />
     <link rel="shortcut icon" href="_static/powder_fav.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Data reduction running time" href="run_time.html" />
-    <link rel="prev" title="ADDIE" href="addie.html" />
+    <link rel="next" title="References" href="bib.html" />
+    <link rel="prev" title="Data reduction running time" href="run_time.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -217,9 +217,9 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="addie.html">ADDIE</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Discussion Forum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="powder_forum.html">Discussion Forum</a></li>
 <li class="toctree-l1"><a class="reference internal" href="run_time.html">Data reduction running time</a></li>
-<li class="toctree-l1"><a class="reference internal" href="work_items.html">Powder Diffraction Work Items</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Powder Diffraction Work Items</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bib.html">References</a></li>
 </ul>
 
@@ -292,7 +292,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/Kvieta1990/ornl-pd/edit/main/doc/powder_forum.md" target="_blank"
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/edit/main/doc/work_items.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -309,7 +309,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/Kvieta1990/ornl-pd/issues/new?title=Issue%20on%20page%20%2Fpowder_forum.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/issues/new?title=Issue%20on%20page%20%2Fwork_items.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -339,7 +339,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/powder_forum.md" target="_blank"
+      <li><a href="_sources/work_items.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -408,7 +408,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -419,11 +421,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Discussion Forum</h1>
+    <h1>Powder Diffraction Work Items</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-reduction">Data Reduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-analysis">Data Analysis</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -433,9 +444,22 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="discussion-forum">
-<h1>Discussion Forum<a class="headerlink" href="#discussion-forum" title="Permalink to this headline">#</a></h1>
-<p>This is an ORNL hosted forum for discussions on powder diffraction topics, ranging from instrument specific topics, experiment planning, to data reduction and data analysis. Click <a href="https://powder.ornl.gov/forum" target="_blank">here</a> to redirect to the forum.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="powder-diffraction-work-items">
+<h1>Powder Diffraction Work Items<a class="headerlink" href="#powder-diffraction-work-items" title="Permalink to this headline">#</a></h1>
+<p>Here we present a collection of ongoing efforts at ORNL on software and tools development to support the neutron scattering data collection, processing, analysis and beyond. Through this page, we intend to show the community with the status of our software development concerning powder diffraction at ORNL. This will benefit general users to track our software development progress with regard to supporting their data processing and analysis. More importantly, such information will better lead general users to those point of contacts in terms of software and tools support.</p>
+<section id="data-reduction">
+<h2>Data Reduction<a class="headerlink" href="#data-reduction" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="data-analysis">
+<h2>Data Analysis<a class="headerlink" href="#data-analysis" title="Permalink to this headline">#</a></h2>
+<ul>
+<li><p>RMCProfile</p>
+<blockquote>
+<div><p>This is a commonly used software for total scattering data analysis. We have part of the development team at ORNL for supporting the software. We will provide continous support to the development of RMCProfile at ORNL. Please refer to our official website for more information, <a class="reference external" href="https://rmcprofile.ornl.gov/">https://rmcprofile.ornl.gov/</a>. Lead developers at ORNL are <a class="reference external" href="https://www.ornl.gov/staff-profile/matthew-g-tucker">Matt Tucker</a> and <a class="reference external" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Yuanpeng Zhang</a></p>
+</div></blockquote>
+</li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -470,20 +494,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="addie.html"
+       href="run_time.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ADDIE</p>
+        <p class="prev-next-title">Data reduction running time</p>
       </div>
     </a>
     <a class="right-next"
-       href="run_time.html"
+       href="bib.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data reduction running time</p>
+        <p class="prev-next-title">References</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -496,6 +520,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-reduction">Data Reduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-analysis">Data Analysis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
