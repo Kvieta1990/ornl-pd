@@ -1,7 +1,7 @@
 WORKSPACE=/tmp
 condaHome=/tmp/conda311
 
-gitCodeRepo=https://github.com/AdvancedPhotonSource/GSAS-II.git
+gitCodeRepo=https://github.com/Kvieta1990/GSAS-II.git
 
 pyver=3.11
 numpyver=1.26
