@@ -1,6 +1,6 @@
 # Data Processing Workshops
 
-## Satellite workshop with ACNS meeting 2024 at Knoxville
+## Satellite workshop with [ACNS meeting 2024 at Knoxville](https://ceramics.org/event/american-conference-on-neutron-scattering-acns-2024/)
 
 **Date:** June 22nd, 2024
 
