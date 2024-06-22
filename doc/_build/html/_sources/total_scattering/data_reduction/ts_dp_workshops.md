@@ -30,6 +30,8 @@
 
 - Introduction & Demonstration to the total scattering data post-processing: <a href="./ts_pp.html" target="_blank">Click Me</a>
 
+- RMCProfile package (for the workshop, please download the version of 6.7.9): <a href="https://rmcprofile.ornl.gov/download/" target="_blank">Click Me</a>
+
 - Post-workshop poll: <a href="https://forms.gle/JAtHS5MQJZt376sr5" target="_blank">Click Me</a>
 
 ## Satellite workshop with SHUG meeting 2023
