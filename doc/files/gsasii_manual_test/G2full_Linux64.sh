@@ -1,5 +1,9 @@
-WORKSPACE=/tmp
-condaHome=/tmp/conda311
+WORKSPACE=/tmp/$USER
+condaHome=/tmp/$USER/conda311
+
+if [ ! -d "$WORKSPACE" ]; then
+    mkdir $WORKSPACE
+fi
 
 gitCodeRepo=https://github.com/Kvieta1990/GSAS-II.git
 
