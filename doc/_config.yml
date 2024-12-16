@@ -13,6 +13,7 @@ html:
   use_issues_button: true
   baseurl: https://powder.ornl.gov/
   google_analytics_id: G-TFL7TZY8LR
+  announcement: "Follow our updates and announcements on <a href='https://x.com/ORNLPDSuite' target='_blank'>X (@ORNLPDSuite)</a>."
 
 # Information about where the book exists on the web
 repository:
