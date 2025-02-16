@@ -50,6 +50,9 @@ parts:
   - file: addie
   - file: powder_forum
   - file: run_time
-  - file: work_items
+  - file: work_items/toc
+    sections:
+    - file: work_items/roadmap
+    - file: work_items/software_and_projects
   - file: bib.md
   - file: follow.md
