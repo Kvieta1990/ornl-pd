@@ -6,7 +6,7 @@ Keep track of the powder diffraction software development at ORNL, covering the 
 ```{admonition} Powder Diffraction Plan Board
 :class: hint
 
-The roadmap Kanban board for powder diffraction software development at ORNL is hosted on GitHub at [here](https://github.com/users/Kvieta1990/projects/6) for workload management.
+The roadmap Kanban board for powder diffraction software development at ORNL is hosted on GitHub [here](https://github.com/users/Kvieta1990/projects/6) for workload management.
 
 To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpeng Zhang</a>.
 ```
