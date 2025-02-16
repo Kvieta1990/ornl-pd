@@ -1,4 +1,4 @@
-PD Community Software and Projects
+Community Software and Projects
 ===
 
 A list of powder diffraction software developed and maintained at ORNL to serve the community need.  Projects that are currently being actively worked on are also listed.

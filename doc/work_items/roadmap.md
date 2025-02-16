@@ -1,4 +1,4 @@
-PD Software Roadmap
+Roadmap
 ===
 
 Keep track of the powder diffraction software development at ORNL, covering the key features implementation & plans, project-level activities, documentation & major updates, and among others, for data reduction and analysis software.
