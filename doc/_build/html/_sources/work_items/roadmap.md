@@ -42,6 +42,9 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````
 
 ``````{admonition} Planned Items
+
+- Give the NOMAD autoreduction configuration some default values to make sure autoreduction can still run to produce data for quick checking purpose even without the accurate information about sample and container.
+
 - Data visualization on ADDIE web platform.
 
 - Visualization of incommensurate magnetic structure on ADDIE web platform.
@@ -57,6 +60,8 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 
 ``````{admonition} Backlog -- Items on the radar but not planned yet 
 :class: note
+
+- Use different Q range for Fourier transform into different range of PDF.
 
 - Workshop for Mantid training among the instrument team.
 
