@@ -32,6 +32,10 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} New Features
 :class: tip
 
+- On POWGEN, we now have the mechanism to automatically restart the livereduction service in case of failure. If the failure still persists after several trials, notification will be sent out to Slack.
+
+- On NOMAD, now even no `abs_pre_calc` was ever performed to collect sample information, we can still move ahead with the autoreduction by filling in some dummy sample information. The reduction won't be rigorous but it will give users the chance to quickly check the data.
+
 - On top of the k-vector search capability, now given a k-vector, GSAS-II can communicate with isodistort for subgroups generation.
 
 - Experimental planning tool available in ADDIE web platform for HB-2A and HB-2C at HFIR. URL: [https://addie.ornl.gov/hfirestimate](https://addie.ornl.gov/hfirestimate).
