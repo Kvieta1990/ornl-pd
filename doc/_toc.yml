@@ -47,6 +47,7 @@ parts:
   - file: auto_reduce/powgen_auto
 - caption: More
   chapters:
+  - file: uptime
   - file: addie
   - file: powder_forum
   - file: run_time
