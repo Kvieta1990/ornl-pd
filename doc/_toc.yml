@@ -10,6 +10,9 @@ parts:
     sections:
     - file: general_aspects/calibration/pd_calib_principles
     - file: general_aspects/calibration/instrument_files
+  - file: general_aspects/data_acquire/toc
+    sections:
+    - file: general_aspects/data_acquire/monitor
 - caption: Bragg Diffraction
   chapters:
   - file: bragg_diffraction/intro
