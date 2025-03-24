@@ -15,7 +15,7 @@ parts:
     - file: general_aspects/data_acquire/monitor
   - file: general_aspects/catalogue/toc
     sections:
-    - file: general_aspects/catalogue/catalogue
+    - file: general_aspects/catalogue/oncat
 - caption: Bragg Diffraction
   chapters:
   - file: bragg_diffraction/intro

@@ -1,4 +1,4 @@
-Data Catalog
+ONCAT Catalog
 ===
 
 Catalog for the neutron data collected at ORNL is available in the ONCAT database which can be accessed through the web interface at [https://oncat.ornl.gov](https://oncat.ornl.gov). Here, we will put down some useful features of the catalog system.
