@@ -32,6 +32,12 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} New Features
 :class: tip
 
+- Some useful routines made available to general users on the analysis cluster for total scattering data post-processing. This includes,
+
+    - `pystog_cli`: the command-line interface for performing Fourier transform, data scaling, etc. for total scattering data. Refer to the GitHub repo [here](https://github.com/neutrons/pystog) for detailed information.
+
+    - `mts_data`: the command-line interface for extracting data from the NeXus file produced by `mantidtotalscattering`.
+
 - On POWGEN, we now have the mechanism to automatically restart the livereduction service in case of failure. If the failure still persists after several trials, notification will be sent out to Slack.
 
 - On NOMAD, now even no `abs_pre_calc` was ever performed to collect sample information, we can still move ahead with the autoreduction by filling in some dummy sample information. The reduction won't be rigorous but it will give users the chance to quickly check the data.
