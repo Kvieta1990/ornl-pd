@@ -6,6 +6,7 @@ parts:
   - file: about_this_book
 - caption: General Topics
   chapters:
+  - file: general_aspects/nsources
   - file: general_aspects/calibration/toc
     sections:
     - file: general_aspects/calibration/pd_calib_principles
