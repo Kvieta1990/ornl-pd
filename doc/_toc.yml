@@ -62,5 +62,8 @@ parts:
     sections:
     - file: work_items/roadmap
     - file: work_items/software_and_projects
+  - file: collections/toc
+    sections:
+    - file: collections/mts_for_developers
   - file: bib.md
   - file: follow.md
