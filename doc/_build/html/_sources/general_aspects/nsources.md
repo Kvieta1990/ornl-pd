@@ -7,6 +7,8 @@ This page collects information about neutron sources that were either running hi
 
 <img src="../imgs/neutron_sources.png" alt="drawing" width="1200"/>
 
+> The image here was reproduced from multiple resources -- see {cite}`Andersen_2016` and {cite}`PRICE19861`.
+
 ## Particle Driven
 
 > <span style="color:red">Resources in early days with small scale of production</span>
