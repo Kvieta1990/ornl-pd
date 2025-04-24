@@ -20,35 +20,21 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 
     > Use spherical harmonics to correct for the texture effect. This involves the correction over both the azimuthal and the polar angle. The polar angle bit is tricky as resolution effect is entangled with the potential texture effect.
 
+- Proper normalization of HB-2A data by applying proper corrections to the vanadium measurement.
+``````
+
+``````{admonition} New Features & Bug Fixes
+:class: tip
+
+- SNS and HFIR instruments monitor mobile apps are available. See the link [here](https://powder.ornl.gov/collections/mobile_apps.html), thanks to the nice work by [Dr. Jie Xing (ORNL)](https://www.ornl.gov/staff-profile/jie-xing).
+
+- For the tools relevant to powder Bragg diffraction or PDF simulation, sometimes the underlying engine (`GSAS-II` for powder Bragg diffraction and `diffpy-CMI` for PDF) would fail to process the uploaded CIF files, due to the flexible nature of the CIF file formatting. We now incorporate `VESTA` as the backend engine to take the uploaded CIF file and export a `VESTA` version of the CIF file, followed by whatever process that users request. With this, we can deal with however formatted CIFs that are compatible with `VESTA`.
+
 - Data streaming and caching from live reduction to auto reduction for performance boosting.
 
     > Process data on live streaming, caching to save processing time at the autoreduction stage when data is ready.
 
 - Consistent way of producing total scattering data on NOMAD and POWGEN, using the [`mantidtotalscattering`](https://github.com/neutrons/mantid_total_scattering) framework.
-
-- Proper normalization of HB-2A data by applying proper corrections to the vanadium measurement.
-``````
-
-``````{admonition} New Features
-:class: tip
-
-- Some useful routines made available to general users on the analysis cluster for total scattering data post-processing. This includes,
-
-    - `pystog_cli`: the command-line interface for performing Fourier transform, data scaling, etc. for total scattering data. Refer to the GitHub repo [here](https://github.com/neutrons/pystog) for detailed information.
-
-    - `mts_data`: the command-line interface for extracting data from the NeXus file produced by `mantidtotalscattering`.
-
-- On POWGEN, we now have the mechanism to automatically restart the livereduction service in case of failure. If the failure still persists after several trials, notification will be sent out to Slack.
-
-- On NOMAD, now even no `abs_pre_calc` was ever performed to collect sample information, we can still move ahead with the autoreduction by filling in some dummy sample information. The reduction won't be rigorous but it will give users the chance to quickly check the data.
-
-- On top of the k-vector search capability, now given a k-vector, GSAS-II can communicate with isodistort for subgroups generation.
-
-- Experimental planning tool available in ADDIE web platform for HB-2A and HB-2C at HFIR. URL: [https://addie.ornl.gov/hfirestimate](https://addie.ornl.gov/hfirestimate).
-
-- Uniform atomic move introduced for RMCProfile package to avoid bias from the cell shape. Proceed to the [RMCProfile website](https://rmcprofile.ornl.gov/download) to download the up-to-date package.
-
-- Local web interface for RMCProfile monitor and data & configuration visualization. Proceed to the [RMCProfile website](https://rmcprofile.ornl.gov/download) to download the up-to-date package.
 ``````
 
 ``````{admonition} Planned Items
@@ -101,6 +87,26 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````
 
 # Archive
+
+## Mar-2025
+
+- Some useful routines made available to general users on the analysis cluster for total scattering data post-processing. This includes,
+
+    - `pystog_cli`: the command-line interface for performing Fourier transform, data scaling, etc. for total scattering data. Refer to the GitHub repo [here](https://github.com/neutrons/pystog) for detailed information.
+
+    - `mts_data`: the command-line interface for extracting data from the NeXus file produced by `mantidtotalscattering`.
+
+- On POWGEN, we now have the mechanism to automatically restart the livereduction service in case of failure. If the failure still persists after several trials, notification will be sent out to Slack.
+
+- On NOMAD, now even no `abs_pre_calc` was ever performed to collect sample information, we can still move ahead with the autoreduction by filling in some dummy sample information. The reduction won't be rigorous but it will give users the chance to quickly check the data.
+
+- On top of the k-vector search capability, now given a k-vector, GSAS-II can communicate with isodistort for subgroups generation.
+
+- Experimental planning tool available in ADDIE web platform for HB-2A and HB-2C at HFIR. URL: [https://addie.ornl.gov/hfirestimate](https://addie.ornl.gov/hfirestimate).
+
+- Uniform atomic move introduced for RMCProfile package to avoid bias from the cell shape. Proceed to the [RMCProfile website](https://rmcprofile.ornl.gov/download) to download the up-to-date package.
+
+- Local web interface for RMCProfile monitor and data & configuration visualization. Proceed to the [RMCProfile website](https://rmcprofile.ornl.gov/download) to download the up-to-date package.
 
 ## Feb-2025
 

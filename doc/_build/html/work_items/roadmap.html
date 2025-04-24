@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -264,6 +264,7 @@
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../collections/toc.html">Powder Diffraction Collections</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../collections/mts_for_developers.html">MTS Collections for Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collections/mobile_apps.html">Mobile Apps for SNS &amp; HFIR</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bib.html">References</a></li>
@@ -482,6 +483,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roadmap</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#archive">Archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mar-2025">Mar-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feb-2025">Feb-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jan-2025">Jan-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dec-2024">Dec-2024</a></li>
@@ -528,30 +530,20 @@ document.write(`
 <div><p>Use spherical harmonics to correct for the texture effect. This involves the correction over both the azimuthal and the polar angle. The polar angle bit is tricky as resolution effect is entangled with the potential texture effect.</p>
 </div></blockquote>
 </li>
+<li><p>Proper normalization of HB-2A data by applying proper corrections to the vanadium measurement.</p></li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">New Features &amp; Bug Fixes</p>
+<ul>
+<li><p>SNS and HFIR instruments monitor mobile apps are available. See the link <a class="reference external" href="https://powder.ornl.gov/collections/mobile_apps.html">here</a>, thanks to the nice work by <a class="reference external" href="https://www.ornl.gov/staff-profile/jie-xing">Dr. Jie Xing (ORNL)</a>.</p></li>
+<li><p>For the tools relevant to powder Bragg diffraction or PDF simulation, sometimes the underlying engine (<code class="docutils literal notranslate"><span class="pre">GSAS-II</span></code> for powder Bragg diffraction and <code class="docutils literal notranslate"><span class="pre">diffpy-CMI</span></code> for PDF) would fail to process the uploaded CIF files, due to the flexible nature of the CIF file formatting. We now incorporate <code class="docutils literal notranslate"><span class="pre">VESTA</span></code> as the backend engine to take the uploaded CIF file and export a <code class="docutils literal notranslate"><span class="pre">VESTA</span></code> version of the CIF file, followed by whatever process that users request. With this, we can deal with however formatted CIFs that are compatible with <code class="docutils literal notranslate"><span class="pre">VESTA</span></code>.</p></li>
 <li><p>Data streaming and caching from live reduction to auto reduction for performance boosting.</p>
 <blockquote>
 <div><p>Process data on live streaming, caching to save processing time at the autoreduction stage when data is ready.</p>
 </div></blockquote>
 </li>
 <li><p>Consistent way of producing total scattering data on NOMAD and POWGEN, using the <a class="reference external" href="https://github.com/neutrons/mantid_total_scattering"><code class="docutils literal notranslate"><span class="pre">mantidtotalscattering</span></code></a> framework.</p></li>
-<li><p>Proper normalization of HB-2A data by applying proper corrections to the vanadium measurement.</p></li>
-</ul>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">New Features</p>
-<ul class="simple">
-<li><p>Some useful routines made available to general users on the analysis cluster for total scattering data post-processing. This includes,</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">pystog_cli</span></code>: the command-line interface for performing Fourier transform, data scaling, etc. for total scattering data. Refer to the GitHub repo <a class="reference external" href="https://github.com/neutrons/pystog">here</a> for detailed information.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mts_data</span></code>: the command-line interface for extracting data from the NeXus file produced by <code class="docutils literal notranslate"><span class="pre">mantidtotalscattering</span></code>.</p></li>
-</ul>
-</li>
-<li><p>On POWGEN, we now have the mechanism to automatically restart the livereduction service in case of failure. If the failure still persists after several trials, notification will be sent out to Slack.</p></li>
-<li><p>On NOMAD, now even no <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> was ever performed to collect sample information, we can still move ahead with the autoreduction by filling in some dummy sample information. The reduction won’t be rigorous but it will give users the chance to quickly check the data.</p></li>
-<li><p>On top of the k-vector search capability, now given a k-vector, GSAS-II can communicate with isodistort for subgroups generation.</p></li>
-<li><p>Experimental planning tool available in ADDIE web platform for HB-2A and HB-2C at HFIR. URL: <a class="reference external" href="https://addie.ornl.gov/hfirestimate">https://addie.ornl.gov/hfirestimate</a>.</p></li>
-<li><p>Uniform atomic move introduced for RMCProfile package to avoid bias from the cell shape. Proceed to the <a class="reference external" href="https://rmcprofile.ornl.gov/download">RMCProfile website</a> to download the up-to-date package.</p></li>
-<li><p>Local web interface for RMCProfile monitor and data &amp; configuration visualization. Proceed to the <a class="reference external" href="https://rmcprofile.ornl.gov/download">RMCProfile website</a> to download the up-to-date package.</p></li>
 </ul>
 </div>
 <div class="admonition-planned-items admonition">
@@ -597,6 +589,23 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="archive">
 <h1>Archive<a class="headerlink" href="#archive" title="Link to this heading">#</a></h1>
+<section id="mar-2025">
+<h2>Mar-2025<a class="headerlink" href="#mar-2025" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Some useful routines made available to general users on the analysis cluster for total scattering data post-processing. This includes,</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">pystog_cli</span></code>: the command-line interface for performing Fourier transform, data scaling, etc. for total scattering data. Refer to the GitHub repo <a class="reference external" href="https://github.com/neutrons/pystog">here</a> for detailed information.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mts_data</span></code>: the command-line interface for extracting data from the NeXus file produced by <code class="docutils literal notranslate"><span class="pre">mantidtotalscattering</span></code>.</p></li>
+</ul>
+</li>
+<li><p>On POWGEN, we now have the mechanism to automatically restart the livereduction service in case of failure. If the failure still persists after several trials, notification will be sent out to Slack.</p></li>
+<li><p>On NOMAD, now even no <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> was ever performed to collect sample information, we can still move ahead with the autoreduction by filling in some dummy sample information. The reduction won’t be rigorous but it will give users the chance to quickly check the data.</p></li>
+<li><p>On top of the k-vector search capability, now given a k-vector, GSAS-II can communicate with isodistort for subgroups generation.</p></li>
+<li><p>Experimental planning tool available in ADDIE web platform for HB-2A and HB-2C at HFIR. URL: <a class="reference external" href="https://addie.ornl.gov/hfirestimate">https://addie.ornl.gov/hfirestimate</a>.</p></li>
+<li><p>Uniform atomic move introduced for RMCProfile package to avoid bias from the cell shape. Proceed to the <a class="reference external" href="https://rmcprofile.ornl.gov/download">RMCProfile website</a> to download the up-to-date package.</p></li>
+<li><p>Local web interface for RMCProfile monitor and data &amp; configuration visualization. Proceed to the <a class="reference external" href="https://rmcprofile.ornl.gov/download">RMCProfile website</a> to download the up-to-date package.</p></li>
+</ul>
+</section>
 <section id="feb-2025">
 <h2>Feb-2025<a class="headerlink" href="#feb-2025" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -788,6 +797,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roadmap</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#archive">Archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mar-2025">Mar-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feb-2025">Feb-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jan-2025">Jan-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dec-2024">Dec-2024</a></li>
