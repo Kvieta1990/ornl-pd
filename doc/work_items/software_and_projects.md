@@ -6,6 +6,19 @@ A list of powder diffraction software developed and maintained at ORNL to serve 
 - RMCProfile
 
     > This is a commonly used software for total scattering data analysis. We have part of the development team at ORNL for supporting the software. We will provide continous support to the development of RMCProfile at ORNL. Please refer to our official website for more information, [https://rmcprofile.ornl.gov/](https://rmcprofile.ornl.gov/). Lead developers at ORNL are [Matt Tucker](https://www.ornl.gov/staff-profile/matthew-g-tucker) and [Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang)
+
+    Here is an overall summary about the availability of the program on various platforms,
+
+    | Platform\Version | 6.7.9    | 6.8.0 | 7.0 |
+    |------------------|----------|-------|-----|
+    | Windows CPU           | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Windows GPU           | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | MacOS Intel           | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | MacOS ARM             | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Linux CPU             | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Linux Legacy OS       | <a style="color:green">&#x2714;</a>  | <a style="color:red">&#10007;</a>   | <a style="color:green">&#x2714;</a> |
+    | Linux GPU             | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Linux ARM             | <a style="color:green">&#x2714;</a>  | <a style="color:red">&#10007;</a>   | <a style="color:green">&#x2714;</a> |
     
 - Spinteract
 
