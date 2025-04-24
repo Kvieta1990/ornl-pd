@@ -12,7 +12,7 @@ A list of powder diffraction software developed and maintained at ORNL to serve 
     | Platform\Version | 6.7.9    | 6.8.0 | 7.0 |
     |------------------|----------|-------|-----|
     | Windows CPU           | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
-    | Windows GPU           | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Windows GPU           | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
     | MacOS Intel           | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
     | MacOS ARM             | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
     | Linux CPU             | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
