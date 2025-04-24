@@ -46,6 +46,20 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 - Control over live reduction from monitor web interface.
 
 - Convenient workflow for autoreduction configuration for NOMAD.
+
+- RMCProfile version 6 upgrade
+
+    - Test out the ADP constraint
+    - Document the LAMMPS implementation and make tutorials for it
+    - Check the X-ray resolution implementation, for both RMCProfile and Topas4RMC
+    - Update the RMCProfile local dev env setup notes
+    - Final testing before releasing, running through all the exercises
+
+- RMCProfile version 7 developing
+
+    - Add in the Topas Bragg profile support
+    - Add in the resolution matrix support
+    - Make sure all tutorials are working and representative
 ``````
 
 ``````{admonition} Backlog -- Items on the radar but not planned yet 
