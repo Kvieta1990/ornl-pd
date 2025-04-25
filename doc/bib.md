@@ -2,5 +2,5 @@ References
 ===
 
 ```{bibliography}
-:style: unsrt
+:style: plain
 ```
