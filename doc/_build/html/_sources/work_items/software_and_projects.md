@@ -19,7 +19,40 @@ A list of powder diffraction software developed and maintained at ORNL to serve 
     | Linux Legacy OS       | <a style="color:green">&#x2714;</a>  | <a style="color:red">&#10007;</a>   | <a style="color:green">&#x2714;</a> |
     | Linux GPU             | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
     | Linux ARM             | <a style="color:green">&#x2714;</a>  | <a style="color:red">&#10007;</a>   | <a style="color:green">&#x2714;</a> |
-    
+
+    Here is an overall summary about the availability of features in different versions,
+
+    | Feature\Version  | 6.7.9    | 6.8.0 | 7.0 |
+    |------------------|----------|-------|-----|
+    | Neutron Data in Real Space            | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Neutron Data in Reciprocal Space      | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | X-ray Data in Real Space              | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | X-ray Data in Reciprocal Space        | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Electron Data in Real Space           | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Electron Data in Reciprocal Space     | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Bragg Profile with GSAS (I & II)      | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Bragg Profile with Topas              | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Single Crystal Diffuse Scattering     | <a style="color:red">&#10007;</a>    | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Magnetic Systems Support              | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | EXAFS                                 | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | BVS Constraints                       | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Polyhedral Constraints                | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | ADP Constraints                       | <a style="color:red">&#10007;</a>    | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Tail Constraints                      | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Curvature Constraints                 | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Potential Constraint                  | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | LAMMPS Interface                      | <a style="color:red">&#10007;</a>    | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Nano Systems Modeling                 | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Single Phase                          | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Multiple Phase                        | <a style="color:red">&#10007;</a>    | <a style="color:red">&#10007;</a>   | <a style="color:green">&#x2714;</a> |
+    | Atoms Swapping                        | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Molecular Move                        | <a style="color:red">&#10007;</a>    | <a style="color:red">&#10007;</a>   | <a style="color:green">&#x2714;</a> |
+    | Weight Optimization                   | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | GPU Acceleration                      | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Resolution Correction (with QDamp)    | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:green">&#x2714;</a> |
+    | Resolution Correction Beyond Gaussian | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+    | Auxillary Programs Support            | <a style="color:green">&#x2714;</a>  | <a style="color:green">&#x2714;</a> | <a style="color:red">&#10007;</a>   |
+
 - Spinteract
 
     > Spinteract is a program for refinement of magnetic interaction parameters to magnetic diffuse scattering data collected on powder and single-crystal samples. The lead developer for this program is [Joe Paddison](https://www.ornl.gov/staff-profile/joseph-paddison). Please refer to [this website](https://joepaddison.com/software/) for more information.
