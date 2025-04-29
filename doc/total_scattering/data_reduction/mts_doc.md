@@ -103,6 +103,8 @@ First, one can take the following example JSON input file as a bare minimal temp
 
 ## Sample Section
 
+> Mandatory
+
 - `Runs`
 
     > Either this key or the `Filenames` key should be present.
@@ -235,9 +237,52 @@ First, one can take the following example JSON input file as a bare minimal temp
 
 ## Container Section
 
-...to be completed soon...
+> Optional
+
+The container section is for putting down some informaation about the container being used for holding the sample. The section is not included in the example above, since usually instruments use regular container that are already defined in the Mantid code base -- see the `Environment` key in the `General Aspects` section below. In case non-standard container is used, one needs to specify the container information explicitly, including the geometry, material, and potentially the gauge volume. The container section has the main key of `Container`, parallel to `Sample`, `Normalization`, etc.
+
+- `Geometry`
+
+    > Mandatory
+
+    > Form: A dictionary
+
+    > Example:
+
+        ```json
+        "Geometry": {
+            "Shape": "HollowCylinderHolder",
+            "Height": 4.0,
+            "InnerRadius": 1.5,
+            "InnerOuterRadius": 2.0,
+            "OuterInnerRadius": 3.0,
+            "OuterRadius": 4.0,
+            "Center": [0.0, 0.0, 0.0]
+        }
+        ```
+
+    The defined container geometry here will go into the Mantid `SetSample` algorithm call. Refer to the documentation page [here](https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html) for options of the container geometry definition in the JSON format. The example given above refers to a hollow contaienr where the sample will fill in the interlayer space between the container inner and outer wall. The length unit is given in `cm` here.
+
+- `Material`
+
+    > Mandatory
+
+    > Form: A dictionary
+
+    > Example:
+
+        ```json
+        "Material": {
+            "ChemicalFormula": "(Li7)2-C-H4-N-Cl6",
+            "NumberDensity": 0.1
+        }
+        ```
+
+    The material definition here will go into the Mantid `SetSample` algorithm call. Refer to the documentation page [here](https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html). The `ChemicalFormula` value should follow the same format as the `Material` key for `Sample` and both of them are following the Mantid format (see the documentation [here](https://docs.mantidproject.org/nightly/concepts/Materials.html)). For the density specification, it can be given with either `NumberDensity` ($Å^{-3}$) or `MassDensity` ($g/cm^3$).
 
 ## Normalization Section
+
+> Mandatory
 
 This refers to the `Normalization` key which takes care of the normalization measurement. By normalization, we mean the normalization over the detector efficiency and solid angle cover of detectors, with vanadium as a nearly perfect incoherent scatterer, i.e., vanadium scatters neutrons in a nearly uniform manner. Since the incoherent scattering length of vanadium is tabulated, given certain neutron flux, we know the expected number of neutrons to arrive at detectors. Therefore, with the measured neutron countings measured for vanadium, one can normalize out the detector efficiency and solid angle coverage. See the lecture notes by Dr. Yuanpeng Zhang [here](../../files/ndp_notes.pdf) and the article {cite}`Peterson:gj5253` for more details.
 
