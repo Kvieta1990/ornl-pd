@@ -371,7 +371,9 @@ This refers to the `Normalization` key which takes care of the normalization mea
 
     > Form: A logical value, default as `false`
 
-    Flag for specifying whether the reduction is for autoreduction purpose. Once the flag is set to `true`, the autoreduction mode will be activated and the data processing and output will group all detectors together.
+    Flag for specifying whether the reduction is for autoreduction purpose. Once the flag is set to `true`, the autoreduction mode will be activated and the data processing and output will group all detectors together. The benefit of such a manner of detectors grouping is obvious -- a single pattern of the reduced total scattering data could be obtained and we could then perform the Fourier transform automatically to obtain the pair distribution function (PDF). The downside is that patterns for detectors with different scattering angle and thus different resolution would be merged together to yield a peak shape that could be a bit complicated to interpret. Regarding this, the Rietveld program often has complicated peak profile function that could potentially describe the peak shape well enough. Concerning the impact upon the PDF data, as long as we are not fitting the data up to that high $r$ (e.g., well above 30 angstrom), the `Qdamp` and `Qbroad` parameters based on the Gaussian assumption of the peak shape would still work safely.
+
+    When the `AutoRed` flag is `false` (the default value), the data would be reduced to multiple groups (which are usually called `banks`). Rietveld program could then take the multiple-banks data and refine the model against multiple banks of data simultaneously. To obtain PDF, one needs a routine to merge the data from multiple banks into a single pattern. This will be covered in the `Output and Post-Processing` section.
 
 ## Output and Post-Processing
 
