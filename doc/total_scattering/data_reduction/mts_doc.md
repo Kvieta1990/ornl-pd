@@ -168,9 +168,48 @@ First, one can take the following example JSON input file as a bare minimal temp
 
     This is a tweaking parameter for defining the effective density of the sample. As mentioned above, one can specify the full mass density with the `MassDensity` key, and the effective density could be obtained for the sample using the packing fraction defined here. Again, this will not only impact the normalization of the total scattering data, but also will impact the absorption evaluation. Regarding its impact upon the absorption evaluation, due to the non-linearity of the absorption, the impact of the packing fraction is `NOT` simply a scale factor. This has significant impact upon the algorithm design regarding the caching of both the processed data and the absorption spectra calculated across the instrument. See [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html#performance-boost) for more details.
 
+- `Geometry`
+
+    > Mandatory
+
+    > Form: A dictionary defining the sample geometry. Radius and height are given in `cm`.
+
+    > Example: `"Geometry": { "Shape": "Cylinder", "Radius": 0.295, "Height": 1.8 }`
+
+    We are expecting a dictionary here as the value for the sample `Geometry` key. As for the example above, the dictionary should specify the shape of the sample with the `Shape` key. Two options are acceptable here, namely `Cylinder` (the sample fills the in the center of the container) and `HollowCylinder` (the sample fills in the interlayer of the container wall). Depending on the defined shape of the sample, the required keys in the dictionary are different. The example above is for the case of `Cylinder` shape. As for the `HollowCylinder` shape, here below is presented an example,
+
+    ```json
+    "Geometry": {
+        "Shape": "HollowCylinder",
+        "InnerRadius": 0.295,
+        "OuterRadius": 0.305,
+        "Height": 1.8
+    }
+    ```
+
+- `AbsorptionCorrection`
+
+    > Mandatory
+
+    > Form: A string
+
+    Specification of the method to be used for the absorption correction. Following the `Paalman-Pings` framework, there are three different types of corrections, with different level of assumption. Details can be found [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html) and references therein.
+
+    Acceptable values are `SampleOnly`, `SampleAndContainer` and `FullPaalmanPings`, which has increasing level of accuracy but as the sacrifice, the computation time is increasing.
+
+- `AbsMSParameters`
+
+    > Optional
+
+    > Form: A float number, in `mm`
+
+    Specification of the side length of cuboids for absorption correction. MTS implements the numerical approach for evaluating the absorption of neutrons along the pathway inside the sample and container. Detailed mathematics can be found [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html) and the Mantid documentation page [here](https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html). The evaluation of the absorption is fundamentally about evaluating the integral like Eqn. (11) [here](https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html). For the integral evaluation, the idea is to divide the whole sample (container) into small cuboids, and for each cuboid, the integration over the cuboid volume could be evaluated numerically. As such, the size of the cuboid determines the level of accuracy, and accordingly, the computation burden, of the absorption calculation. By default, the size of `1 mm` will be used and this is the `recommended` value to use, and therefore in most cases, users barely need to touch this parameter - one can leave this parameter out from the JSON input safely.
+
 ## Container Section
 
 ## Normalization Section
+
+This refers to the `Normalization` key which takes care of the normalization measurement. By normalization, we mean the normalization over the detector efficiency and solid angle cover of detectors, with vanadium as a nearly perfect incoherent scatterer, i.e., vanadium scatters neutrons in a nearly uniform manner. Since the incoherent scattering length of vanadium is tabulated, given certain neutron flux, we know the expected number of neutrons to arrive at detectors. Therefore, with the measured neutron countings measured for vanadium, one can normalize out the detector efficiency and solid angle coverage. See the lecture notes by Dr. Yuanpeng Zhang [here](../files/Yuanpeng_Neutron_Data_Proc_Lecture_04032025.pdf) and the article {cite}`Peterson:gj5253` for more details.
 
 ## General Aspects
 

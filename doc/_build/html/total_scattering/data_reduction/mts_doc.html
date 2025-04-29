@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
@@ -601,16 +601,160 @@ document.write(`
 </div>
 <section id="sample-section">
 <h2>Sample Section<a class="headerlink" href="#sample-section" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Runs</span></code></p>
+<blockquote>
+<div><p>Either this key or the <code class="docutils literal notranslate"><span class="pre">Filenames</span></code> key should be present.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A string for specifying a series of run numbers.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Example: <code class="docutils literal notranslate"><span class="pre">111</span></code>, <code class="docutils literal notranslate"><span class="pre">111,</span> <span class="pre">222,</span> <span class="pre">333</span></code>, or <code class="docutils literal notranslate"><span class="pre">1111,</span> <span class="pre">2222-2228</span></code></p>
+</div></blockquote>
+<p>Give all the run numbers for the sample measurement to be processed. All the runs included here will be summed together, so it is necessary to make sure that all run numbers specified here correspond to the same measurement, i.e., repeated measurement for the same sample under the same condition. On instruments with high neutron flux, like <code class="docutils literal notranslate"><span class="pre">NOMAD</span></code>, a suggestion route for the data collection is to collect data by chunks. For example, if in total we require 8 C (of the proton charge accumulation) in total, one could collected 4 chunks of data, with 2 C for each chunk. In this case, we may want to put all the run number for the 4 chunks here to process them altogether. Here, one could use the combination of <code class="docutils literal notranslate"><span class="pre">,</span></code> and <code class="docutils literal notranslate"><span class="pre">-</span></code> to specify a series of run numbers in a neat form. For example, one could write <code class="docutils literal notranslate"><span class="pre">11,</span> <span class="pre">22-33</span></code> to include the run number <code class="docutils literal notranslate"><span class="pre">11</span></code> and all the run numbers ranging from <code class="docutils literal notranslate"><span class="pre">22</span></code> to <code class="docutils literal notranslate"><span class="pre">33</span></code> (inclusive on both ends).</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Filenames</span></code></p>
+<blockquote>
+<div><p>Either this key or the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> key should be present.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A list of path strings. Paths can be given in their relative form (to the location where MTS will be running) or absolute form.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Example: <code class="docutils literal notranslate"><span class="pre">Filenames:</span> <span class="pre">[&quot;/path/to/NOM_182034.nxs&quot;,</span> <span class="pre">&quot;/path/to/NOM_182035.nxs&quot;]</span></code>.</p>
+</div></blockquote>
+<p>If the <code class="docutils literal notranslate"><span class="pre">Runs</span></code> key is present, MTS will be using the facility and instrument information together with the specified run numbers to figure out where to find the data files. One can also use the <code class="docutils literal notranslate"><span class="pre">Filenames</span></code> key to provide the data files explicitly.</p>
+<blockquote>
+<div><p>One thing to keep in mind is that the data file name should be following the form like <code class="docutils literal notranslate"><span class="pre">NOM_182034.nxs</span></code>, as MTS will be using the stem name of the file to figure out the run number.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Background</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A dictionary specifying the background runs.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Example: <code class="docutils literal notranslate"><span class="pre">&quot;Background&quot;:</span> <span class="pre">{</span> <span class="pre">&quot;Runs&quot;:</span> <span class="pre">&quot;11&quot;,</span> <span class="pre">&quot;Background&quot;:</span> <span class="pre">&quot;22&quot;}</span></code></p>
+</div></blockquote>
+<p>This is to specify the background runs needed for the data processing (specifically, the background subtraction). By ‘background’, we mean the empty container as usually, samples will be held in containers for the measurement. The <code class="docutils literal notranslate"><span class="pre">Runs</span></code> key and alternatively the <code class="docutils literal notranslate"><span class="pre">Filenames</span></code> key behaves in a consistent way as those for the sample as detailed above. The <code class="docutils literal notranslate"><span class="pre">Background</span></code> key inside the dictionary is to specify the ‘background of the background’, which usually refers to the empty instrument, of which the signal is supposed to be subtracted from the empty container measurement. Again, the data files could be specified either with run numbers or a list of explicit file names, following the same format as presented above for the sample, i.e., something like,</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Background&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Runs&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Background&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/path/to/NOM_179271.nxs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/path/to/NOM_179272.nxs&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Material</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A string of the sample composition, following the Mantid standard. See <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Materials.html">here</a> for the standard.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Example: <code class="docutils literal notranslate"><span class="pre">H2</span> <span class="pre">O</span></code>, <code class="docutils literal notranslate"><span class="pre">(H2)2</span> <span class="pre">O</span></code></p>
+</div></blockquote>
+<p>The chemical formula of the sample, which will be used for both the normalization and absorption correction purpose.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MassDensity</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A float number, in <code class="docutils literal notranslate"><span class="pre">g/cm</span></code></p>
+</div></blockquote>
+<p>This refers to the theoretical mass density of the sample assuming full packing. Together with the packing fraction to be defined, this will pins down the actuall mass density of the sample. The information is critical for the normalization and absorption correction purpose.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PackingFraction</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A float number</p>
+</div></blockquote>
+<p>This is a tweaking parameter for defining the effective density of the sample. As mentioned above, one can specify the full mass density with the <code class="docutils literal notranslate"><span class="pre">MassDensity</span></code> key, and the effective density could be obtained for the sample using the packing fraction defined here. Again, this will not only impact the normalization of the total scattering data, but also will impact the absorption evaluation. Regarding its impact upon the absorption evaluation, due to the non-linearity of the absorption, the impact of the packing fraction is <code class="docutils literal notranslate"><span class="pre">NOT</span></code> simply a scale factor. This has significant impact upon the algorithm design regarding the caching of both the processed data and the absorption spectra calculated across the instrument. See <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html#performance-boost">here</a> for more details.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A dictionary defining the sample geometry. Radius and height are given in <code class="docutils literal notranslate"><span class="pre">cm</span></code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Example: <code class="docutils literal notranslate"><span class="pre">&quot;Geometry&quot;:</span> <span class="pre">{</span> <span class="pre">&quot;Shape&quot;:</span> <span class="pre">&quot;Cylinder&quot;,</span> <span class="pre">&quot;Radius&quot;:</span> <span class="pre">0.295,</span> <span class="pre">&quot;Height&quot;:</span> <span class="pre">1.8</span> <span class="pre">}</span></code></p>
+</div></blockquote>
+<p>We are expecting a dictionary here as the value for the sample <code class="docutils literal notranslate"><span class="pre">Geometry</span></code> key. As for the example above, the dictionary should specify the shape of the sample with the <code class="docutils literal notranslate"><span class="pre">Shape</span></code> key. Two options are acceptable here, namely <code class="docutils literal notranslate"><span class="pre">Cylinder</span></code> (the sample fills the in the center of the container) and <code class="docutils literal notranslate"><span class="pre">HollowCylinder</span></code> (the sample fills in the interlayer of the container wall). Depending on the defined shape of the sample, the required keys in the dictionary are different. The example above is for the case of <code class="docutils literal notranslate"><span class="pre">Cylinder</span></code> shape. As for the <code class="docutils literal notranslate"><span class="pre">HollowCylinder</span></code> shape, here below is presented an example,</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Geometry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HollowCylinder&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;InnerRadius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.295</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;OuterRadius&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.305</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AbsorptionCorrection</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A string</p>
+</div></blockquote>
+<p>Specification of the method to be used for the absorption correction. Following the <code class="docutils literal notranslate"><span class="pre">Paalman-Pings</span></code> framework, there are three different types of corrections, with different level of assumption. Details can be found <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html">here</a> and references therein.</p>
+<p>Acceptable values are <code class="docutils literal notranslate"><span class="pre">SampleOnly</span></code>, <code class="docutils literal notranslate"><span class="pre">SampleAndContainer</span></code> and <code class="docutils literal notranslate"><span class="pre">FullPaalmanPings</span></code>, which has increasing level of accuracy but as the sacrifice, the computation time is increasing.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AbsMSParameters</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A float number, in <code class="docutils literal notranslate"><span class="pre">mm</span></code></p>
+</div></blockquote>
+<p>Specification of the side length of cuboids for absorption correction. MTS implements the numerical approach for evaluating the absorption of neutrons along the pathway inside the sample and container. Detailed mathematics can be found <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html">here</a> and the Mantid documentation page <a class="reference external" href="https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html">here</a>. The evaluation of the absorption is fundamentally about evaluating the integral like Eqn. (11) <a class="reference external" href="https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html">here</a>. For the integral evaluation, the idea is to divide the whole sample (container) into small cuboids, and for each cuboid, the integration over the cuboid volume could be evaluated numerically. As such, the size of the cuboid determines the level of accuracy, and accordingly, the computation burden, of the absorption calculation. By default, the size of <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">mm</span></code> will be used and this is the <code class="docutils literal notranslate"><span class="pre">recommended</span></code> value to use, and therefore in most cases, users barely need to touch this parameter - one can leave this parameter out from the JSON input safely.</p>
+</li>
+</ul>
 </section>
 <section id="container-section">
 <h2>Container Section<a class="headerlink" href="#container-section" title="Link to this heading">#</a></h2>
 </section>
 <section id="normalization-section">
 <h2>Normalization Section<a class="headerlink" href="#normalization-section" title="Link to this heading">#</a></h2>
+<p>This refers to the <code class="docutils literal notranslate"><span class="pre">Normalization</span></code> key which takes care of the normalization measurement. By normalization, we mean the normalization over the detector efficiency and solid angle cover of detectors, with vanadium as a nearly perfect incoherent scatterer, i.e., vanadium scatters neutrons in a nearly uniform manner. Since the incoherent scattering length of vanadium is tabulated, given certain neutron flux, we know the expected number of neutrons to arrive at detectors. Therefore, with the measured neutron countings measured for vanadium, one can normalize out the detector efficiency and solid angle coverage. See the lecture notes by Dr. Yuanpeng Zhang <a class="reference internal" href="#../files/Yuanpeng_Neutron_Data_Proc_Lecture_04032025.pdf"><span class="xref myst">here</span></a> and the article <span id="id1">[<a class="reference internal" href="../../bib.html#id13" title="Peter F. Peterson, Daniel Olds, Marshall T. McDonnell, and Katharine Page. Illustrated formalisms for total scattering data: a guide for new practitioners. Journal of Applied Crystallography, 54(1):317–332, Feb 2021. URL: https://doi.org/10.1107/S1600576720015630, doi:10.1107/S1600576720015630.">Peterson <em>et al.</em>, 2021</a>]</span> for more details.</p>
 </section>
 <section id="general-aspects">
 <h2>General Aspects<a class="headerlink" href="#general-aspects" title="Link to this heading">#</a></h2>
 <ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Facility</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A string with the standard name of the facility, such as <code class="docutils literal notranslate"><span class="pre">SNS</span></code>.</p>
+</div></blockquote>
+<p>Name of the facility where data were collected. Currently, we have only tested MTS on serveral instruments at <code class="docutils literal notranslate"><span class="pre">SNS</span></code>. So, the only robustly working option for the facility name here is <code class="docutils literal notranslate"><span class="pre">SNS</span></code>. Together with the instrument name to be specified and the run number for those relevant data collections, the actual data files to be processed could be located.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A string with the standard name of the isntrument, such as <code class="docutils literal notranslate"><span class="pre">NOM</span></code> (for <code class="docutils literal notranslate"><span class="pre">NOMAD</span></code>), <code class="docutils literal notranslate"><span class="pre">PG3</span></code> (for <code class="docutils literal notranslate"><span class="pre">POWGEN</span></code>), <code class="docutils literal notranslate"><span class="pre">CORELLI</span></code>, etc.</p>
+</div></blockquote>
+<p>As mentioned above, together with the <code class="docutils literal notranslate"><span class="pre">Facility</span></code> key and the run numbers to be given, the actual data files involved in the data processing could be located.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Title</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A string, better without any white spaces (tabs or spaces).</p>
+</div></blockquote>
+<p>This will be used as the stem name for the series output files to be generated with the data processing, including the resulted reduced data in different forms and the log file to be generated regarding the reduction.</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Calibration</span></code></p>
 <blockquote>
 <div><p>Mandatory</p>
@@ -640,7 +784,61 @@ document.write(`
 <div><p>Example: <code class="docutils literal notranslate"><span class="pre">&quot;QBinning&quot;:</span> <span class="pre">[0.01,</span> <span class="pre">0.005,</span> <span class="pre">40.0]</span></code></p>
 </div></blockquote>
 </li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Grouping</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>If not existing, the grouping stored in the provided calibration file will be used for grouping detectors for both data processing and output.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Initial</span></code></p></li>
 </ul>
+<blockquote>
+<div><p>If the parent <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> key exists, this is <code class="docutils literal notranslate"><span class="pre">Mandatory</span></code>.</p>
+</div></blockquote>
+<p>Path to the grouping file in XML format to specify the grouping of detectors at the data processing stage. Path to the file can be given with either relative path (to the location where MTS will be running) or full path.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Output</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>If the parent <code class="docutils literal notranslate"><span class="pre">Grouping</span></code> key exists, this is <code class="docutils literal notranslate"><span class="pre">Mandatory</span></code>.</p>
+</div></blockquote>
+<p>Path to the grouping file in XML format to specify the grouping of detectors at the data output stage. Path to the file can be given with either relative path (to the location where MTS will be running) or full path.</p>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AlignAndFocusArgs</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specification of parameters for align-and-focus of data for all the detectors. It is taking and <code class="docutils literal notranslate"><span class="pre">only</span></code> taking two <code class="docutils literal notranslate"><span class="pre">mandatory</span></code> keys,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TMin</span></code>, for minimal value of time-of-flight (TOF)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMax</span></code>, for maximal value of TOF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SelfScatteringLevelCorrection</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>If existing, it specifies the range in <span class="math notranslate nohighlight">\(Q\)</span>-space of the reduced total scattering data to be used for the level fitting. A stright line with both slope and intercept parameters will be fitted against the pattern of the reduced total scattering data within the specified <span class="math notranslate nohighlight">\(Q\)</span>-region for each of the banks specified in the list. Depending on the number of banks specified for the data output, the number of needed entries here will vary accordingly. The sub-keys needed here should be continuously following the pattern <code class="docutils literal notranslate"><span class="pre">Bank1</span></code>, <code class="docutils literal notranslate"><span class="pre">Bank2</span></code>, etc.</p>
+<p>In principle, with background subtraction and normalization in place, together with all the corrections executed along the data reduction workflow, one is expecting the high-<span class="math notranslate nohighlight">\(Q\)</span> region in the reduced total scattering data to asymptotically approach the <code class="docutils literal notranslate"><span class="pre">self-scattering</span></code> level (see our ADDIE website to get more ideas about the expected <code class="docutils literal notranslate"><span class="pre">self-scattering</span></code> level given a certain composition, <a class="reference external" href="https://addie.ornl.gov/helpsheet">addie.ornl.gov/helpsheet</a>). However in practice, we would always be a bit off in the high-<span class="math notranslate nohighlight">\(Q\)</span> region of the reduced data, as compared to the <code class="docutils literal notranslate"><span class="pre">self-scattering</span></code> level. What MTS does here is to estimate the actual high-<span class="math notranslate nohighlight">\(Q\)</span> level in the reduced data, compare to the expected <code class="docutils literal notranslate"><span class="pre">self-scattering</span></code> level and write out the suggested packing fraction to tweak the high-<span class="math notranslate nohighlight">\(Q\)</span> level against the expected value. The idea is to tune the actual number of atoms (which would go into the data normalization factor) through tweaking the packing fraction, with the high-<span class="math notranslate nohighlight">\(Q\)</span> level being at the expected <code class="docutils literal notranslate"><span class="pre">self-scattering</span></code> level as the target. The relevant output will be saved a log file (further details will be given in the next section). With such an output log file, a high-level wrapper routine could be composed to cycle through the calling of <code class="docutils literal notranslate"><span class="pre">MTS</span></code>, reading the output log file for the suggested packing fraction, and tweak the packing fraction in the input JSON file accordingly, until the packing fraction converges. Such a workflow has already been implemented for <code class="docutils literal notranslate"><span class="pre">NOMAD</span></code> and <code class="docutils literal notranslate"><span class="pre">POWGEN</span></code> in the autoreduction framework for both.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BeamHeight</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A float number for defining the beam height in <code class="docutils literal notranslate"><span class="pre">cm</span></code>.</p>
+</div></blockquote>
+<p>If existing, it will be used for defining the beam size, which is critical for having an accurate absorption correction. Refer to the link <a class="reference external" href="https://iris2020.net/2025-02-12-abs_geo/">here</a> for further discussions. As discussed in previous sections, when the <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> is defined explicitly for either the sample (container), the defined <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> will take the priority over the beam height defined here regarding the intersection region between the beam and the sample (container).</p>
+<p>When the beam height defined here is taking the effect, the Mantid <code class="docutils literal notranslate"><span class="pre">SetBeam</span></code> algorithm (see <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SetBeam-v1.html">here</a> for documentation) would be used for defineing the beam size for the donor workspace to be used for the absorption correction. The <code class="docutils literal notranslate"><span class="pre">Slit</span></code> shape of the beam is assumed and beam width is set internally to a arbitrarily large value to guarantee the full covering for the sample horizontally. In the case of beam not fully covering the sample horizontally, we need some further implementations to cope with the special situation. For most cases at <code class="docutils literal notranslate"><span class="pre">NOMAD</span></code> and <code class="docutils literal notranslate"><span class="pre">POWGEN</span></code> instruments, the default behavior can be safely assumed. With the beam height specified, the gauge volume for either the sample or the container, or both, will be configured internally and it is assumed that the center of the gauge volume (i.e., the intersection region between the beam and the sample, or container) is set to the origin of the instrument coordinate system. In case of sample or container geometry definition with only the shape and size configured, the same assumption applies, i.e., the center of the geometry is set to the origin of the instrument coordinate system. In practice, both may not be the case and the relative position between the beam and the sample (container) could be flexibile. While the sample (container) geometry can be defined in a very flexible way to go beyond the assumption, the <code class="docutils literal notranslate"><span class="pre">SetBeam</span></code> algorithm currently does not allow such flexibilities and therefore we have to go with the assumption at this moment, for the beam definition. However, having the flexibility in the sample (contianer) geometry definition is probably enough to cover the possibilities of the relative position between the beam and the sample (container). Meanwhile, such a relative positioning between the beam and the sample (container) is expected to have a minimal impact upon the absorption correction.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Environment</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>If existing, it specifies the sample environment for the data collection. The <code class="docutils literal notranslate"><span class="pre">Name</span></code> key is not in practical use and is just for reference purpose. The <code class="docutils literal notranslate"><span class="pre">Container</span></code> key could be used for specifying the container being used for holding the sample and the corresponding container geometry would be used for the aborption correction. In <code class="docutils literal notranslate"><span class="pre">Mantid</span></code> framework, several typical container types are pre-defined in the code base (see <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/instrument/sampleenvironments/SNS/InAir.xml">here</a> for those defined container types for <code class="docutils literal notranslate"><span class="pre">SNS</span></code> instruments). With such standard containers, one could just give the container name, e.g., <code class="docutils literal notranslate"><span class="pre">PAC06</span></code> as in the template above and <code class="docutils literal notranslate"><span class="pre">Mantid</span></code> will grab the pre-defined geometry for the down stream calculations, e.g., the absorption calculation (see <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html">here</a> for details about the absorption correction).</p>
+<p>As discussed in previous sections, the sample and container geometry could be defined explicitly for the absorption correction, in which case the <code class="docutils literal notranslate"><span class="pre">Container</span></code> key defined here will be ignored and the explicitly defined container geometry will take the priority.</p>
 </li>
 </ul>
 </section>
