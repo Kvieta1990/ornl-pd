@@ -207,9 +207,11 @@ First, one can take the following example JSON input file as a bare minimal temp
 
 ## Container Section
 
+...to be completed soon...
+
 ## Normalization Section
 
-This refers to the `Normalization` key which takes care of the normalization measurement. By normalization, we mean the normalization over the detector efficiency and solid angle cover of detectors, with vanadium as a nearly perfect incoherent scatterer, i.e., vanadium scatters neutrons in a nearly uniform manner. Since the incoherent scattering length of vanadium is tabulated, given certain neutron flux, we know the expected number of neutrons to arrive at detectors. Therefore, with the measured neutron countings measured for vanadium, one can normalize out the detector efficiency and solid angle coverage. See the lecture notes by Dr. Yuanpeng Zhang [here](../files/Yuanpeng_Neutron_Data_Proc_Lecture_04032025.pdf) and the article {cite}`Peterson:gj5253` for more details.
+This refers to the `Normalization` key which takes care of the normalization measurement. By normalization, we mean the normalization over the detector efficiency and solid angle cover of detectors, with vanadium as a nearly perfect incoherent scatterer, i.e., vanadium scatters neutrons in a nearly uniform manner. Since the incoherent scattering length of vanadium is tabulated, given certain neutron flux, we know the expected number of neutrons to arrive at detectors. Therefore, with the measured neutron countings measured for vanadium, one can normalize out the detector efficiency and solid angle coverage. See the lecture notes by Dr. Yuanpeng Zhang [here](../../files/ndp_notes.pdf) and the article {cite}`Peterson:gj5253` for more details.
 
 ## General Aspects
 
@@ -318,3 +320,5 @@ This refers to the `Normalization` key which takes care of the normalization mea
     As discussed in previous sections, the sample and container geometry could be defined explicitly for the absorption correction, in which case the `Container` key defined here will be ignored and the explicitly defined container geometry will take the priority.
 
 ## Output and Post-Processing
+
+...to be completed soon...
