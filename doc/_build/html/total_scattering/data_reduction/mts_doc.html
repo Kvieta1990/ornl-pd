@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
@@ -491,6 +491,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-and-post-processing">Output and Post-Processing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-notes">More Notes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching">Caching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrument-specific-configs">Instrument Specific Configs</a></li>
 </ul>
 </li>
 </ul>
@@ -996,6 +997,9 @@ document.write(`
 <section id="caching">
 <h3>Caching<a class="headerlink" href="#caching" title="Link to this heading">#</a></h3>
 <p>MTS will try to cache the data processing wherever it can, to save future data procesing time. Mainly, this is about caching the align-and-focus outcome for each single run. After align-and-focus, the neutron events can be thrown away, leaving only the histogram data, with detectors focused in a certain manner. The caching for align-and-focus is entangled with the way that absorption calculation would be performed. According to the documentation <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html">here</a>, we found that the absorption spectra for detectors within certain mini-groups of detectors are very similar to each other and therefore only one absorption spectrum is needed for a certain mini-group of detectors. We have the routine available to group detectors into those mini-groups according to the similarity in their absorption spectra. The data processing and caching should follow such mini-groups. The cache files will be saved into the experiment-specific location. At SNS &amp; HFIR, ORNL, the <code class="docutils literal notranslate"><span class="pre">IPTS</span></code> system is used and each experiment has its own unique <code class="docutils literal notranslate"><span class="pre">IPTS</span></code> number. Taking the NOMAD calibration <code class="docutils literal notranslate"><span class="pre">IPTS</span></code> as the example, the cache files will be saved into <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/IPTS-28922/shared/autoreduce/cache</span></code>. The absorption calculations will also be cached, again, into the experiment-specific location. Taking the same NOMAD example for the calibration runs, the absorption cache will be saved into <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/abs_ms/IPTS-28922</span></code>.</p>
+</section>
+<section id="instrument-specific-configs">
+<h3>Instrument Specific Configs<a class="headerlink" href="#instrument-specific-configs" title="Link to this heading">#</a></h3>
 <p>When running the data processing against a certain instrument, MTS reads in some instrument-specific configurations from the cnetral configuration file dedicated for each instrument. The location to those central configuration files for each instrument is embedded in the MTS code base, as can be found <a class="reference external" href="https://github.com/neutrons/mantid_total_scattering/blob/next/total_scattering/params.py">here</a>. To add in more instruments, please get in touch with <a href="mailto:zhangy3@ornl.gov">Dr. Yuanpeng Zhang</a>. Here below is presented the central configuration file for NOMAD, as a typical example,</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;ClientID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
@@ -1192,6 +1196,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-and-post-processing">Output and Post-Processing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-notes">More Notes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching">Caching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrument-specific-configs">Instrument Specific Configs</a></li>
 </ul>
 </li>
 </ul>
