@@ -280,6 +280,20 @@ The container section is for putting down some informaation about the container 
 
     The material definition here will go into the Mantid `SetSample` algorithm call. Refer to the documentation page [here](https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html). The `ChemicalFormula` value should follow the same format as the `Material` key for `Sample` and both of them are following the Mantid format (see the documentation [here](https://docs.mantidproject.org/nightly/concepts/Materials.html)). For the density specification, it can be given with either `NumberDensity` ($Å^{-3}$) or `MassDensity` ($g/cm^3$).
 
+    If the `ChemicalFormula` value is among one of the pre-defined values for standard containers (vanadium can or quartz tube), namely "V", "V1", "Si O2", or "Si1 O2", one can safely leave out the density key as the density has been defined internally in the MTS code base.
+
+- `GaugeVolume`
+
+    > Optional
+
+    > Form: A path string
+
+    The key is expecting a string that specifies the path to an XML file defining the gauge volume for the container. The defined gauge volume here refers to the region of the container that the neutron beam is shining on. It defines the integration volume (i.e., where the scattering events are happening) over which the numerical integration for the absorption calculation will be performed. Without the gauge volume definition, the integration volume would be assumed to be the same as the whole container volume. In the `General Aspects` section, there is a parameter `BeamHeight` with which one can define the beam size. The defined beam size will then internally define the gauge volume for the container. However, if the `GaugeVolume` key is provided for the container, it will take the priority over the beam size definition.
+
+    The Mantid algorithm `DefineGaugeVolume` is used here for the gauge volume definition and one can refer to the documentation page [here](https://docs.mantidproject.org/v4.0.0/algorithms/DefineGaugeVolume-v1.html) for more information. The XML file specified here defines the gauge volume geometry following the Mantid format. Detailed documentation about how to define geometric shape can be found [here](https://docs.mantidproject.org/nightly/concepts/HowToDefineGeometricShape.html).
+
+    As usual, the path specified here can be either a relative path (to the location where MTS will be running) or an absolute path.
+
 ## Normalization Section
 
 > Mandatory
@@ -422,4 +436,178 @@ This refers to the `Normalization` key which takes care of the normalization mea
 
 ## Output and Post-Processing
 
-...to be completed soon...
+Inside the specified output directory, there will be several sub-directories to be created by MTS to host the output files, as listed below,
+
+```
+GSAS
+GSAS_unnorm
+Logs
+SofQ
+Topas
+Topas_unnorm
+```
+
+The reduced total scattering data in $Q$-space in the normalized $S(Q)$ form (see {cite}`Keen:th0051` for definition) will be stored in `SofQ`. The reduced bank-by-bank Bragg diffraction data in GSAS and Topas format will be saved into `GSAS` and `Topas` directory, respectively. In these two sub-directories, the Bragg diffraction data are simply the reduced total scattering data in TOF-space (transformed from $Q$-space to TOF-space using arbitrary DIFC values). Conventionally, the Bragg diffraction data are usually un-normalized data, meaning no normalization over the number of atoms in the system. Some Rietveld programs are assuming this type of Bragg data, in which case the normalized Bragg data output here may not be compatible. For example, in GSAS (I and II), it is assumed that all data points in the diffraction pattern should be with positive intensities and all negative intensities will be forced to 0. According to the definition of the normalized $S(Q)$ (see {cite}`Keen:th0051` for definition), it is totally possible that some of the intensities will be negative and therefore the corresponding Bragg diffraction data will also see some negative intensities. To deal with such an inconsistency problem, we also output the un-normalized version of the Bragg diffraction data, stored in `GSAS_unnorm` and `Topas_unnorm` sub-directory, respectively for the GSAS and Topas format of the data. The log information concerning the high-$Q$ level and the comparison to the `self-scattering` level is stored in the log file which will be saved into the `Logs` directory. All the output files are with the same stem name, which agrees with the value specified with the `Title` key.
+
+The Bragg diffraction data are in plain text form and ready to be loaded in GSAS-II, Topas, etc. For the $S(Q)$ data, it is saved in the NeXus format and one does need a tool to extract the data out to the plain text form. For such a purpose, we have a dedicated routine on ORNL Analysis cluster, called `mts_data`, which takes a reduced data file in the NeXus format as the input and extract out all the data.
+
+> N.B. It should be noted that the `mts_data` routine only works with the output created when `DebugMode` is set to `false` (the default) where we only have one workspace in the output NeXus file. When `DebugMode` is set to `true`, multiple workspaces will be created and put into a workspace group, in which case the `mts_data` will stop working.
+
+As mentioned above, there are two main ways for obtaining the merged version of the overall total scattering data. One approach, with the `AutoRed` flag set to `true`, will merge the patterns from all the detectors into a single pattern. In this case, one can take the output $S(Q)$ data and perform the Fourier transform to obtain the PDF data. When `AutoRed` is `false` (the default), data will be output into different groups. For example, on NOMAD, we usually output the data into 6 groups (banks) following the 6 physical panels of the detectors. Then for the data merging, the idea is to use the high resolution bank (i.e., the data from the backscattering bank) as much as possible and we will only use those low resolution bank data when we have to (when the $Q$ region becomes inaccessible for the high angle banks). We also want to have a seamless connection of the patterns from different banks to be used in the merged data, without overlapping between banks. On NOMAD, we have implemented a dedicated routine for performing such a data merging. Detailed instructions can be found [here](https://powder.ornl.gov/total_scattering/data_reduction/dr_howto.html).
+
+> N.B. Specifically for NOMAD, the convention of the bank numbering is to name the forward scattering bank as `Bank-Six`, and the bank number goes from `One` to `Five` as we go from low to high scattering angle. If the bank numbering starts from `0`, `Bank-Six` will be `Bank-5`, while `Bank-4` will be the back scattering bank. Otherwise, `Banb-6` is for `Bank-Six`, and so on.
+
+Concerning the post-processing of the total scattering, including the data rebinning, rescaling, Fourier transform, etc., we have a dedicated page with detailed instructions, as can be found [here](https://powder.ornl.gov/total_scattering/data_reduction/ts_pp.html). Also, we are trying to host a yearly one-day workshop focusing on such data post-processing. Some useful information and resources from the past workshops can be found [here](https://powder.ornl.gov/total_scattering/data_reduction/ts_dp_workshops.html).
+
+## More Notes
+
+### Caching
+
+MTS will try to cache the data processing wherever it can, to save future data procesing time. Mainly, this is about caching the align-and-focus outcome for each single run. After align-and-focus, the neutron events can be thrown away, leaving only the histogram data, with detectors focused in a certain manner. The caching for align-and-focus is entangled with the way that absorption calculation would be performed. According to the documentation [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html), we found that the absorption spectra for detectors within certain mini-groups of detectors are very similar to each other and therefore only one absorption spectrum is needed for a certain mini-group of detectors. We have the routine available to group detectors into those mini-groups according to the similarity in their absorption spectra. The data processing and caching should follow such mini-groups. The cache files will be saved into the experiment-specific location. At SNS & HFIR, ORNL, the `IPTS` system is used and each experiment has its own unique `IPTS` number. Taking the NOMAD calibration `IPTS` as the example, the cache files will be saved into `/SNS/NOM/IPTS-28922/shared/autoreduce/cache`. The absorption calculations will also be cached, again, into the experiment-specific location. Taking the same NOMAD example for the calibration runs, the absorption cache will be saved into `/SNS/NOM/shared/autoreduce/abs_ms/IPTS-28922`.
+
+When running the data processing against a certain instrument, MTS reads in some instrument-specific configurations from the cnetral configuration file dedicated for each instrument. The location to those central configuration files for each instrument is embedded in the MTS code base, as can be found [here](https://github.com/neutrons/mantid_total_scattering/blob/next/total_scattering/params.py). To add in more instruments, please get in touch with <a href="mailto:zhangy3@ornl.gov">Dr. Yuanpeng Zhang</a>. Here below is presented the central configuration file for NOMAD, as a typical example,
+
+```json
+{
+    "ClientID": ".....",
+    "Secret": ".....",
+    "TokenURL": ".....",
+    "IPTSURL": ".....",
+    "ONCatID": ".....",
+    "ONCatSecret": ".....",
+    "CacheDir": "/SNS/NOM/shared/autoreduce/abs_ms",
+    "EnvironmentName": "InAir",
+    "DummyContainerType": "C",
+    "PushPositiveLevel": 100.0,
+    "InstrumentGeometryRun": "NOM_172394",
+    "GroupingAllFile": "/SNS/NOM/shared/autoreduce/configs/nom_group_all.xml",
+    "SampleElementSize": 1.0,
+    "ContainerElementSize": 1.0,
+    "MergeRunsOptions": "2",
+    "ReGenerateGrouping": 0,
+    "QMaxByBank": "40.0",
+    "TMinBragg": "0.7,0.7,0.9,1.5,1.6,0.6",
+    "TMaxBragg": "10,15,15,16.8,15.5,10",
+    "QParamsProcessing": "0.0025,0.0025,55.",
+    "OverrideUserConfig": true,
+    "CyclePackingFrac": true,
+    "TMIN": 300,
+    "TMAX": 20000,
+    "QMin": 0.5,
+    "QMax": 35.0,
+    "RMax": 50.0,
+    "RStep": 0.01,
+    "QOffset": 0.0,
+    "RCutoff": 1.0,
+    "Lorch": false,
+    "FinalDIFC": [1428.818756011, 2861.506614873, 5606.556361966, 9041.704899514, 9910.536905573, 836.206546490]
+}
+```
+
+Several keys on the top of the list are sensitive information concerning the connection to several databases hosted at ORNL for sample and data information and the values are left out here. Below are presented the descriptions for the other keys,
+
+- `CacheDir`
+
+    Specifie where the absorption cache will be saved.
+
+- `EnvironmentName`
+
+    Name of the sample environment, Usually it is just `InAir` and we barely need to touch it.
+
+- `DummyContainerType`
+
+    For the situation where no pre-populated sample information can be found, some dummy information is needed for the sample and container. This key is for specifying the dummy container type, with `C` representing a `QuartzTube03` container.
+
+    > At SNS powder instruments NOMAD and POWGEN, we have the routine `abs_pre_calc` available for pre-populating the sample information into a table and performing the absorption correction even before the experiment. Refer to the documentation [here](https://powder.ornl.gov/auto_reduce/nomad_auto.html) for instructions.
+
+- `PushPositiveLevel`
+
+    This is for the autoreduction purpose without the sample information being ready. See the `PushPositiveLevel` key in the `Sample` section for details.
+
+- `InstrumentGeometryRun`
+
+    A typical run on NOMAD containing the instrument geometry. As long as there is no detector upgrade on the instrument, there is no need to change this.
+
+- `GroupingAllFile`
+
+    The XML file specifying the grouping of all detectors. Again, as long as there is no detector upgrade on the instrument, there is no need to change this.
+
+- `SampleElementSize`
+
+    Cuboid size in `mm` for the absorption calculation for the sample.
+
+- `ContainerElementSize`
+
+    Cuboid size in `mm` for the absorption calculation for the container.
+
+- `MergeRunsOptions`
+
+    The criterion for merging different run numbers. This is the configuration for NOMAD autoreduction. Two options are available, `1` for using the run title with dynamic temperature information and `2` for using the run title without the dynamic temperature. The default option is `2` as usually we are not interested in the temperature fluctuation around the set point.
+
+- `ReGenerateGrouping`
+
+    This is the key for detector grouping according to the similarity in absorption spectra as mentioned earlier. If no upgrade to the detectors, one can always stay with `0` as the input here, indicating that we don't want to re-generate the group. For NOMAD, the grouping files and information are stored in the following directory, `/SNS/NOM/shared/autoreduce/configs`.
+
+- `QMaxByBank`
+
+    The `QMax` value to be used for each of the output bank of data. If one value is given, it will be used for banks. Multiple values can be provided, separated by comma. The value should be given in a string, as presented in the example above.
+
+- `TMinBragg`
+
+    The minimal TOF value for the output Bragg diffraction data for each bank.
+
+- `TMaxBragg`
+
+    The maximal TOF value for the output Bragg diffraction data for each bank.
+
+- `QParamsProcessing`
+
+    This is the $Q$-space binning parameters used internally for MTS data processing. Since we are going to throw away the neutron events after the data processing, we have to use a fine $Q$-space binning to make sure that we can always go with a coarser bin for the binning down the road.
+
+- `OverrideUserConfig`
+
+    This is for the NOMAD autoreduction purpose. Any time the autoreduction is running, it will try to load or save the central configuration to the experiment-specific location so that later on, on the user side, they can change the parameter locally without influencing others. The default value for this flag is `false`, indicating that as long as the previously saved user configuration file can be found, the autoreduction routine will pick it up. If the flag is set to `true`, the central configuration will take the priority and after the reduction, the central configuration file will be copied into the experiment-specific location, with whatever existing configuration files there backed up to avoid losing history.
+
+- `CyclePackingFrac`
+
+    For NOMAD autoreduction purpose, we could check the log file from MTS running, grab the suggested packing fraction and start a new reduction with the tweaked packing fraction until the convergence of the packing fraction. This flag controls whether we want to perform such a loop. The default option is `true`, but in some cases, due to the poor data quality, the loop may get stuck, in which case we want to turn off the cycling.
+
+- `TMIN`
+
+    This value will go into the `TMin` key of `AlignAndFocusArgs` for the sample.
+
+- `TMAX`
+
+    This value will go into the `TMax` key of `AlignAndFocusArgs` for the sample.
+
+- `QMin`
+
+    This key controls the minimal $Q$ used for Fourier transform, regarding the NOMAD autoreduction to obtain the PDF.
+
+- `QMax`
+
+    This key controls the maximal $Q$ used for Fourier transform, regarding the NOMAD autoreduction to obtain the PDF.
+
+- `RMax`
+
+    This key controls the maximal $r$ of the PDF data.
+
+- `RStep`
+
+    This key controls the interval of the PDF data.
+
+- `QOffset`
+
+    The offset in $Q$-space that we want to apply to the reduced total scattering data before the Fourier transform.
+
+- `RCutoff`
+
+    The cutoff in $r$-space regarding the Fourier filter, i.e., all signals below the cutoff will be Fourier filtered.
+
+- `Lorch`
+
+    Whether to apply the lorch smoothing algorithm for the PDF data.
+
+- `FinalDIFC`
+
+    After the total scattering data processing, the data would be in $Q$-space. To obtain the Bragg diffraction data in TOF-space which can be imported into Rietveld programs for data analysis, we have to convert the $Q$-space data with some arbitrary values of DIFC for each bank of data. Here we can give the list of the DIFC values to be used for such a purpose and the aim is to keep consistent whatever conventional values that other data reduction programs were using.

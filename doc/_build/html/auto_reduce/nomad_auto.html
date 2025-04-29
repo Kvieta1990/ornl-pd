@@ -837,6 +837,10 @@ document.write(`
 </li>
 </ol>
 <p>Once the preparation work is done properly, the autoreduction will be running smoothly in the background as the data are being collected and populated to analysis hard drive. The location of the reduced data will be introduced later.</p>
+<div class="hint admonition">
+<p class="admonition-title">Attention!</p>
+<p>With the most recent implementation, the <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> tool now wraps up the procedures above into a single routine. With a normal run of <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> as demonstrated above, now at the end of the program running, it will ask whether we want to edit the CSV file. If the answer is ‘Y’, it will bring up the CSV sheet so that we can populate the characterization runs information. Or, if we run <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span> <span class="pre">-c</span></code>, it will skip the absorption calculation part and directly open the CSV file for editing.</p>
+</div>
 </section>
 <section id="manual-submission">
 <h2>Manual submission<a class="headerlink" href="#manual-submission" title="Link to this heading">#</a></h2>

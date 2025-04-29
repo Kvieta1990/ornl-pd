@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
@@ -489,6 +489,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-section">Normalization Section</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-aspects">General Aspects</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-and-post-processing">Output and Post-Processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-notes">More Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching">Caching</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -797,6 +801,18 @@ document.write(`
 </pre></div>
 </div>
 <p>The material definition here will go into the Mantid <code class="docutils literal notranslate"><span class="pre">SetSample</span></code> algorithm call. Refer to the documentation page <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html">here</a>. The <code class="docutils literal notranslate"><span class="pre">ChemicalFormula</span></code> value should follow the same format as the <code class="docutils literal notranslate"><span class="pre">Material</span></code> key for <code class="docutils literal notranslate"><span class="pre">Sample</span></code> and both of them are following the Mantid format (see the documentation <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Materials.html">here</a>). For the density specification, it can be given with either <code class="docutils literal notranslate"><span class="pre">NumberDensity</span></code> (<span class="math notranslate nohighlight">\(Å^{-3}\)</span>) or <code class="docutils literal notranslate"><span class="pre">MassDensity</span></code> (<span class="math notranslate nohighlight">\(g/cm^3\)</span>).</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">ChemicalFormula</span></code> value is among one of the pre-defined values for standard containers (vanadium can or quartz tube), namely “V”, “V1”, “Si O2”, or “Si1 O2”, one can safely leave out the density key as the density has been defined internally in the MTS code base.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GaugeVolume</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A path string</p>
+</div></blockquote>
+<p>The key is expecting a string that specifies the path to an XML file defining the gauge volume for the container. The defined gauge volume here refers to the region of the container that the neutron beam is shining on. It defines the integration volume (i.e., where the scattering events are happening) over which the numerical integration for the absorption calculation will be performed. Without the gauge volume definition, the integration volume would be assumed to be the same as the whole container volume. In the <code class="docutils literal notranslate"><span class="pre">General</span> <span class="pre">Aspects</span></code> section, there is a parameter <code class="docutils literal notranslate"><span class="pre">BeamHeight</span></code> with which one can define the beam size. The defined beam size will then internally define the gauge volume for the container. However, if the <code class="docutils literal notranslate"><span class="pre">GaugeVolume</span></code> key is provided for the container, it will take the priority over the beam size definition.</p>
+<p>The Mantid algorithm <code class="docutils literal notranslate"><span class="pre">DefineGaugeVolume</span></code> is used here for the gauge volume definition and one can refer to the documentation page <a class="reference external" href="https://docs.mantidproject.org/v4.0.0/algorithms/DefineGaugeVolume-v1.html">here</a> for more information. The XML file specified here defines the gauge volume geometry following the Mantid format. Detailed documentation about how to define geometric shape can be found <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/HowToDefineGeometricShape.html">here</a>.</p>
+<p>As usual, the path specified here can be either a relative path (to the location where MTS will be running) or an absolute path.</p>
 </li>
 </ul>
 </section>
@@ -955,7 +971,153 @@ document.write(`
 </section>
 <section id="output-and-post-processing">
 <h2>Output and Post-Processing<a class="headerlink" href="#output-and-post-processing" title="Link to this heading">#</a></h2>
-<p>…to be completed soon…</p>
+<p>Inside the specified output directory, there will be several sub-directories to be created by MTS to host the output files, as listed below,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GSAS</span>
+<span class="n">GSAS_unnorm</span>
+<span class="n">Logs</span>
+<span class="n">SofQ</span>
+<span class="n">Topas</span>
+<span class="n">Topas_unnorm</span>
+</pre></div>
+</div>
+<p>The reduced total scattering data in <span class="math notranslate nohighlight">\(Q\)</span>-space in the normalized <span class="math notranslate nohighlight">\(S(Q)\)</span> form (see <span id="id2">[<a class="reference internal" href="../../bib.html#id14" title="David A. Keen. A comparison of various commonly used correlation functions for describing total scattering. Journal of Applied Crystallography, 34(2):172–177, Apr 2001. URL: https://doi.org/10.1107/S0021889800019993, doi:10.1107/S0021889800019993.">Keen, 2001</a>]</span> for definition) will be stored in <code class="docutils literal notranslate"><span class="pre">SofQ</span></code>. The reduced bank-by-bank Bragg diffraction data in GSAS and Topas format will be saved into <code class="docutils literal notranslate"><span class="pre">GSAS</span></code> and <code class="docutils literal notranslate"><span class="pre">Topas</span></code> directory, respectively. In these two sub-directories, the Bragg diffraction data are simply the reduced total scattering data in TOF-space (transformed from <span class="math notranslate nohighlight">\(Q\)</span>-space to TOF-space using arbitrary DIFC values). Conventionally, the Bragg diffraction data are usually un-normalized data, meaning no normalization over the number of atoms in the system. Some Rietveld programs are assuming this type of Bragg data, in which case the normalized Bragg data output here may not be compatible. For example, in GSAS (I and II), it is assumed that all data points in the diffraction pattern should be with positive intensities and all negative intensities will be forced to 0. According to the definition of the normalized <span class="math notranslate nohighlight">\(S(Q)\)</span> (see <span id="id3">[<a class="reference internal" href="../../bib.html#id14" title="David A. Keen. A comparison of various commonly used correlation functions for describing total scattering. Journal of Applied Crystallography, 34(2):172–177, Apr 2001. URL: https://doi.org/10.1107/S0021889800019993, doi:10.1107/S0021889800019993.">Keen, 2001</a>]</span> for definition), it is totally possible that some of the intensities will be negative and therefore the corresponding Bragg diffraction data will also see some negative intensities. To deal with such an inconsistency problem, we also output the un-normalized version of the Bragg diffraction data, stored in <code class="docutils literal notranslate"><span class="pre">GSAS_unnorm</span></code> and <code class="docutils literal notranslate"><span class="pre">Topas_unnorm</span></code> sub-directory, respectively for the GSAS and Topas format of the data. The log information concerning the high-<span class="math notranslate nohighlight">\(Q\)</span> level and the comparison to the <code class="docutils literal notranslate"><span class="pre">self-scattering</span></code> level is stored in the log file which will be saved into the <code class="docutils literal notranslate"><span class="pre">Logs</span></code> directory. All the output files are with the same stem name, which agrees with the value specified with the <code class="docutils literal notranslate"><span class="pre">Title</span></code> key.</p>
+<p>The Bragg diffraction data are in plain text form and ready to be loaded in GSAS-II, Topas, etc. For the <span class="math notranslate nohighlight">\(S(Q)\)</span> data, it is saved in the NeXus format and one does need a tool to extract the data out to the plain text form. For such a purpose, we have a dedicated routine on ORNL Analysis cluster, called <code class="docutils literal notranslate"><span class="pre">mts_data</span></code>, which takes a reduced data file in the NeXus format as the input and extract out all the data.</p>
+<blockquote>
+<div><p>N.B. It should be noted that the <code class="docutils literal notranslate"><span class="pre">mts_data</span></code> routine only works with the output created when <code class="docutils literal notranslate"><span class="pre">DebugMode</span></code> is set to <code class="docutils literal notranslate"><span class="pre">false</span></code> (the default) where we only have one workspace in the output NeXus file. When <code class="docutils literal notranslate"><span class="pre">DebugMode</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, multiple workspaces will be created and put into a workspace group, in which case the <code class="docutils literal notranslate"><span class="pre">mts_data</span></code> will stop working.</p>
+</div></blockquote>
+<p>As mentioned above, there are two main ways for obtaining the merged version of the overall total scattering data. One approach, with the <code class="docutils literal notranslate"><span class="pre">AutoRed</span></code> flag set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, will merge the patterns from all the detectors into a single pattern. In this case, one can take the output <span class="math notranslate nohighlight">\(S(Q)\)</span> data and perform the Fourier transform to obtain the PDF data. When <code class="docutils literal notranslate"><span class="pre">AutoRed</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> (the default), data will be output into different groups. For example, on NOMAD, we usually output the data into 6 groups (banks) following the 6 physical panels of the detectors. Then for the data merging, the idea is to use the high resolution bank (i.e., the data from the backscattering bank) as much as possible and we will only use those low resolution bank data when we have to (when the <span class="math notranslate nohighlight">\(Q\)</span> region becomes inaccessible for the high angle banks). We also want to have a seamless connection of the patterns from different banks to be used in the merged data, without overlapping between banks. On NOMAD, we have implemented a dedicated routine for performing such a data merging. Detailed instructions can be found <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/dr_howto.html">here</a>.</p>
+<blockquote>
+<div><p>N.B. Specifically for NOMAD, the convention of the bank numbering is to name the forward scattering bank as <code class="docutils literal notranslate"><span class="pre">Bank-Six</span></code>, and the bank number goes from <code class="docutils literal notranslate"><span class="pre">One</span></code> to <code class="docutils literal notranslate"><span class="pre">Five</span></code> as we go from low to high scattering angle. If the bank numbering starts from <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">Bank-Six</span></code> will be <code class="docutils literal notranslate"><span class="pre">Bank-5</span></code>, while <code class="docutils literal notranslate"><span class="pre">Bank-4</span></code> will be the back scattering bank. Otherwise, <code class="docutils literal notranslate"><span class="pre">Banb-6</span></code> is for <code class="docutils literal notranslate"><span class="pre">Bank-Six</span></code>, and so on.</p>
+</div></blockquote>
+<p>Concerning the post-processing of the total scattering, including the data rebinning, rescaling, Fourier transform, etc., we have a dedicated page with detailed instructions, as can be found <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/ts_pp.html">here</a>. Also, we are trying to host a yearly one-day workshop focusing on such data post-processing. Some useful information and resources from the past workshops can be found <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/ts_dp_workshops.html">here</a>.</p>
+</section>
+<section id="more-notes">
+<h2>More Notes<a class="headerlink" href="#more-notes" title="Link to this heading">#</a></h2>
+<section id="caching">
+<h3>Caching<a class="headerlink" href="#caching" title="Link to this heading">#</a></h3>
+<p>MTS will try to cache the data processing wherever it can, to save future data procesing time. Mainly, this is about caching the align-and-focus outcome for each single run. After align-and-focus, the neutron events can be thrown away, leaving only the histogram data, with detectors focused in a certain manner. The caching for align-and-focus is entangled with the way that absorption calculation would be performed. According to the documentation <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html">here</a>, we found that the absorption spectra for detectors within certain mini-groups of detectors are very similar to each other and therefore only one absorption spectrum is needed for a certain mini-group of detectors. We have the routine available to group detectors into those mini-groups according to the similarity in their absorption spectra. The data processing and caching should follow such mini-groups. The cache files will be saved into the experiment-specific location. At SNS &amp; HFIR, ORNL, the <code class="docutils literal notranslate"><span class="pre">IPTS</span></code> system is used and each experiment has its own unique <code class="docutils literal notranslate"><span class="pre">IPTS</span></code> number. Taking the NOMAD calibration <code class="docutils literal notranslate"><span class="pre">IPTS</span></code> as the example, the cache files will be saved into <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/IPTS-28922/shared/autoreduce/cache</span></code>. The absorption calculations will also be cached, again, into the experiment-specific location. Taking the same NOMAD example for the calibration runs, the absorption cache will be saved into <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/abs_ms/IPTS-28922</span></code>.</p>
+<p>When running the data processing against a certain instrument, MTS reads in some instrument-specific configurations from the cnetral configuration file dedicated for each instrument. The location to those central configuration files for each instrument is embedded in the MTS code base, as can be found <a class="reference external" href="https://github.com/neutrons/mantid_total_scattering/blob/next/total_scattering/params.py">here</a>. To add in more instruments, please get in touch with <a href="mailto:zhangy3@ornl.gov">Dr. Yuanpeng Zhang</a>. Here below is presented the central configuration file for NOMAD, as a typical example,</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ClientID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Secret&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TokenURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;IPTSURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ONCatID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ONCatSecret&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CacheDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/SNS/NOM/shared/autoreduce/abs_ms&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;EnvironmentName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;InAir&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;DummyContainerType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;PushPositiveLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;InstrumentGeometryRun&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NOM_172394&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;GroupingAllFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/SNS/NOM/shared/autoreduce/configs/nom_group_all.xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SampleElementSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ContainerElementSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;MergeRunsOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ReGenerateGrouping&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;QMaxByBank&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TMinBragg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.7,0.7,0.9,1.5,1.6,0.6&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TMaxBragg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10,15,15,16.8,15.5,10&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;QParamsProcessing&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0025,0.0025,55.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;OverrideUserConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CyclePackingFrac&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TMIN&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TMAX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;QMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;QMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">35.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RStep&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;QOffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;RCutoff&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Lorch&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;FinalDIFC&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1428.818756011</span><span class="p">,</span><span class="w"> </span><span class="mf">2861.506614873</span><span class="p">,</span><span class="w"> </span><span class="mf">5606.556361966</span><span class="p">,</span><span class="w"> </span><span class="mf">9041.704899514</span><span class="p">,</span><span class="w"> </span><span class="mf">9910.536905573</span><span class="p">,</span><span class="w"> </span><span class="mf">836.206546490</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Several keys on the top of the list are sensitive information concerning the connection to several databases hosted at ORNL for sample and data information and the values are left out here. Below are presented the descriptions for the other keys,</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">CacheDir</span></code></p>
+<p>Specifie where the absorption cache will be saved.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnvironmentName</span></code></p>
+<p>Name of the sample environment, Usually it is just <code class="docutils literal notranslate"><span class="pre">InAir</span></code> and we barely need to touch it.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DummyContainerType</span></code></p>
+<p>For the situation where no pre-populated sample information can be found, some dummy information is needed for the sample and container. This key is for specifying the dummy container type, with <code class="docutils literal notranslate"><span class="pre">C</span></code> representing a <code class="docutils literal notranslate"><span class="pre">QuartzTube03</span></code> container.</p>
+<blockquote>
+<div><p>At SNS powder instruments NOMAD and POWGEN, we have the routine <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> available for pre-populating the sample information into a table and performing the absorption correction even before the experiment. Refer to the documentation <a class="reference external" href="https://powder.ornl.gov/auto_reduce/nomad_auto.html">here</a> for instructions.</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PushPositiveLevel</span></code></p>
+<p>This is for the autoreduction purpose without the sample information being ready. See the <code class="docutils literal notranslate"><span class="pre">PushPositiveLevel</span></code> key in the <code class="docutils literal notranslate"><span class="pre">Sample</span></code> section for details.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">InstrumentGeometryRun</span></code></p>
+<p>A typical run on NOMAD containing the instrument geometry. As long as there is no detector upgrade on the instrument, there is no need to change this.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GroupingAllFile</span></code></p>
+<p>The XML file specifying the grouping of all detectors. Again, as long as there is no detector upgrade on the instrument, there is no need to change this.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SampleElementSize</span></code></p>
+<p>Cuboid size in <code class="docutils literal notranslate"><span class="pre">mm</span></code> for the absorption calculation for the sample.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ContainerElementSize</span></code></p>
+<p>Cuboid size in <code class="docutils literal notranslate"><span class="pre">mm</span></code> for the absorption calculation for the container.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MergeRunsOptions</span></code></p>
+<p>The criterion for merging different run numbers. This is the configuration for NOMAD autoreduction. Two options are available, <code class="docutils literal notranslate"><span class="pre">1</span></code> for using the run title with dynamic temperature information and <code class="docutils literal notranslate"><span class="pre">2</span></code> for using the run title without the dynamic temperature. The default option is <code class="docutils literal notranslate"><span class="pre">2</span></code> as usually we are not interested in the temperature fluctuation around the set point.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ReGenerateGrouping</span></code></p>
+<p>This is the key for detector grouping according to the similarity in absorption spectra as mentioned earlier. If no upgrade to the detectors, one can always stay with <code class="docutils literal notranslate"><span class="pre">0</span></code> as the input here, indicating that we don’t want to re-generate the group. For NOMAD, the grouping files and information are stored in the following directory, <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/configs</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QMaxByBank</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">QMax</span></code> value to be used for each of the output bank of data. If one value is given, it will be used for banks. Multiple values can be provided, separated by comma. The value should be given in a string, as presented in the example above.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMinBragg</span></code></p>
+<p>The minimal TOF value for the output Bragg diffraction data for each bank.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMaxBragg</span></code></p>
+<p>The maximal TOF value for the output Bragg diffraction data for each bank.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QParamsProcessing</span></code></p>
+<p>This is the <span class="math notranslate nohighlight">\(Q\)</span>-space binning parameters used internally for MTS data processing. Since we are going to throw away the neutron events after the data processing, we have to use a fine <span class="math notranslate nohighlight">\(Q\)</span>-space binning to make sure that we can always go with a coarser bin for the binning down the road.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OverrideUserConfig</span></code></p>
+<p>This is for the NOMAD autoreduction purpose. Any time the autoreduction is running, it will try to load or save the central configuration to the experiment-specific location so that later on, on the user side, they can change the parameter locally without influencing others. The default value for this flag is <code class="docutils literal notranslate"><span class="pre">false</span></code>, indicating that as long as the previously saved user configuration file can be found, the autoreduction routine will pick it up. If the flag is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the central configuration will take the priority and after the reduction, the central configuration file will be copied into the experiment-specific location, with whatever existing configuration files there backed up to avoid losing history.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CyclePackingFrac</span></code></p>
+<p>For NOMAD autoreduction purpose, we could check the log file from MTS running, grab the suggested packing fraction and start a new reduction with the tweaked packing fraction until the convergence of the packing fraction. This flag controls whether we want to perform such a loop. The default option is <code class="docutils literal notranslate"><span class="pre">true</span></code>, but in some cases, due to the poor data quality, the loop may get stuck, in which case we want to turn off the cycling.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMIN</span></code></p>
+<p>This value will go into the <code class="docutils literal notranslate"><span class="pre">TMin</span></code> key of <code class="docutils literal notranslate"><span class="pre">AlignAndFocusArgs</span></code> for the sample.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMAX</span></code></p>
+<p>This value will go into the <code class="docutils literal notranslate"><span class="pre">TMax</span></code> key of <code class="docutils literal notranslate"><span class="pre">AlignAndFocusArgs</span></code> for the sample.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QMin</span></code></p>
+<p>This key controls the minimal <span class="math notranslate nohighlight">\(Q\)</span> used for Fourier transform, regarding the NOMAD autoreduction to obtain the PDF.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QMax</span></code></p>
+<p>This key controls the maximal <span class="math notranslate nohighlight">\(Q\)</span> used for Fourier transform, regarding the NOMAD autoreduction to obtain the PDF.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RMax</span></code></p>
+<p>This key controls the maximal <span class="math notranslate nohighlight">\(r\)</span> of the PDF data.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RStep</span></code></p>
+<p>This key controls the interval of the PDF data.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QOffset</span></code></p>
+<p>The offset in <span class="math notranslate nohighlight">\(Q\)</span>-space that we want to apply to the reduced total scattering data before the Fourier transform.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RCutoff</span></code></p>
+<p>The cutoff in <span class="math notranslate nohighlight">\(r\)</span>-space regarding the Fourier filter, i.e., all signals below the cutoff will be Fourier filtered.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Lorch</span></code></p>
+<p>Whether to apply the lorch smoothing algorithm for the PDF data.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FinalDIFC</span></code></p>
+<p>After the total scattering data processing, the data would be in <span class="math notranslate nohighlight">\(Q\)</span>-space. To obtain the Bragg diffraction data in TOF-space which can be imported into Rietveld programs for data analysis, we have to convert the <span class="math notranslate nohighlight">\(Q\)</span>-space data with some arbitrary values of DIFC for each bank of data. Here we can give the list of the DIFC values to be used for such a purpose and the aim is to keep consistent whatever conventional values that other data reduction programs were using.</p>
+</li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -1028,6 +1190,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-section">Normalization Section</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-aspects">General Aspects</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-and-post-processing">Output and Post-Processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-notes">More Notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching">Caching</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
