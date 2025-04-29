@@ -103,6 +103,8 @@ First, one can take the following example JSON input file as a bare minimal temp
 
 ## Sample Section
 
+> Mandatory
+
 - `Runs`
 
     > Either this key or the `Filenames` key should be present.
@@ -205,11 +207,82 @@ First, one can take the following example JSON input file as a bare minimal temp
 
     Specification of the side length of cuboids for absorption correction. MTS implements the numerical approach for evaluating the absorption of neutrons along the pathway inside the sample and container. Detailed mathematics can be found [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html) and the Mantid documentation page [here](https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html). The evaluation of the absorption is fundamentally about evaluating the integral like Eqn. (11) [here](https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html). For the integral evaluation, the idea is to divide the whole sample (container) into small cuboids, and for each cuboid, the integration over the cuboid volume could be evaluated numerically. As such, the size of the cuboid determines the level of accuracy, and accordingly, the computation burden, of the absorption calculation. By default, the size of `1 mm` will be used and this is the `recommended` value to use, and therefore in most cases, users barely need to touch this parameter - one can leave this parameter out from the JSON input safely.
 
+- `GaugeVolume`
+
+    > Optional
+
+    > Form: A path string
+
+    The key is expecting a string that specifies the path to an XML file defining the gauge volume for the sample. The defined gauge volume here refers to the region of the sample that the neutron beam is shining on. It defines the integration volume (i.e., where the scattering events are happening) over which the numerical integration for the absorption calculation will be performed. Without the gauge volume definition, the integration volume would be assumed to be the same as the whole sample volume. In the `General Aspects` section, there is a parameter `BeamHeight` with which one can define the beam size. The defined beam size will then internally define the gauge volume for the sample. However, if the `GaugeVolume` key is provided for the sample, it will take the priority over the beam size definition.
+
+    The Mantid algorithm `DefineGaugeVolume` is used here for the gauge volume definition and one can refer to the documentation page [here](https://docs.mantidproject.org/v4.0.0/algorithms/DefineGaugeVolume-v1.html) for more information. The XML file specified here defines the gauge volume geometry following the Mantid format. Detailed documentation about how to define geometric shape can be found [here](https://docs.mantidproject.org/nightly/concepts/HowToDefineGeometricShape.html).
+
+    As usual, the path specified here can be either a relative path (to the location where MTS will be running) or an absolute path.
+
+- `DummyInfo`
+
+    > Optional
+
+    > Form: A logical value, default as `false`
+
+    Specify whether the sample information is dummy. For the autoreduction purpose, to save efforts for the manual input of the accurate sample information and for a quick checking, we would fill in some dummy sample information automatically, in which case the `DummyInfo` value should be set to `true` so that MTS is aware of the sample information being dummy and will be taking corresponding action to avoid weird behavior in the reduced data as the result of the improper normalization.
+
+- `PushPositiveLevel`
+
+    > Optional
+
+    > Form: A float number, default as `100`.
+
+    In case of dummy sample information, sometimes, the reduced Bragg diffraction data could be with negative intensities across the diffraction pattern. To avoid unnecessary confusions, we would like to add a postive value to the reduced data to push the data positive. The positive offset level can be given with the current key. If `DummyInfo` is `false`, the key here does not take any effects.
+
 ## Container Section
 
-...to be completed soon...
+> Optional
+
+The container section is for putting down some informaation about the container being used for holding the sample. The section is not included in the example above, since usually instruments use regular container that are already defined in the Mantid code base -- see the `Environment` key in the `General Aspects` section below. In case non-standard container is used, one needs to specify the container information explicitly, including the geometry, material, and potentially the gauge volume. The container section has the main key of `Container`, parallel to `Sample`, `Normalization`, etc.
+
+- `Geometry`
+
+    > Mandatory
+
+    > Form: A dictionary
+
+    > Example:
+
+    ```json
+    "Geometry": {
+        "Shape": "HollowCylinderHolder",
+        "Height": 4.0,
+        "InnerRadius": 1.5,
+        "InnerOuterRadius": 2.0,
+        "OuterInnerRadius": 3.0,
+        "OuterRadius": 4.0,
+        "Center": [0.0, 0.0, 0.0]
+    }
+    ```
+
+    The defined container geometry here will go into the Mantid `SetSample` algorithm call. Refer to the documentation page [here](https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html) for options of the container geometry definition in the JSON format. The example given above refers to a hollow contaienr where the sample will fill in the interlayer space between the container inner and outer wall. The length unit is given in `cm` here.
+
+- `Material`
+
+    > Mandatory
+
+    > Form: A dictionary
+
+    > Example:
+
+    ```json
+    "Material": {
+        "ChemicalFormula": "(Li7)2-C-H4-N-Cl6",
+        "NumberDensity": 0.1
+    }
+    ```
+
+    The material definition here will go into the Mantid `SetSample` algorithm call. Refer to the documentation page [here](https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html). The `ChemicalFormula` value should follow the same format as the `Material` key for `Sample` and both of them are following the Mantid format (see the documentation [here](https://docs.mantidproject.org/nightly/concepts/Materials.html)). For the density specification, it can be given with either `NumberDensity` ($Å^{-3}$) or `MassDensity` ($g/cm^3$).
 
 ## Normalization Section
+
+> Mandatory
 
 This refers to the `Normalization` key which takes care of the normalization measurement. By normalization, we mean the normalization over the detector efficiency and solid angle cover of detectors, with vanadium as a nearly perfect incoherent scatterer, i.e., vanadium scatters neutrons in a nearly uniform manner. Since the incoherent scattering length of vanadium is tabulated, given certain neutron flux, we know the expected number of neutrons to arrive at detectors. Therefore, with the measured neutron countings measured for vanadium, one can normalize out the detector efficiency and solid angle coverage. See the lecture notes by Dr. Yuanpeng Zhang [here](../../files/ndp_notes.pdf) and the article {cite}`Peterson:gj5253` for more details.
 
@@ -318,6 +391,34 @@ This refers to the `Normalization` key which takes care of the normalization mea
     If existing, it specifies the sample environment for the data collection. The `Name` key is not in practical use and is just for reference purpose. The `Container` key could be used for specifying the container being used for holding the sample and the corresponding container geometry would be used for the aborption correction. In `Mantid` framework, several typical container types are pre-defined in the code base (see [here](https://github.com/mantidproject/mantid/blob/main/instrument/sampleenvironments/SNS/InAir.xml) for those defined container types for `SNS` instruments). With such standard containers, one could just give the container name, e.g., `PAC06` as in the template above and `Mantid` will grab the pre-defined geometry for the down stream calculations, e.g., the absorption calculation (see [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html) for details about the absorption correction).
 
     As discussed in previous sections, the sample and container geometry could be defined explicitly for the absorption correction, in which case the `Container` key defined here will be ignored and the explicitly defined container geometry will take the priority.
+
+- `DebugMode`
+
+    > Optional
+
+    > A logical value, default as `false`
+
+    Flag for enabling the debug mode of running MTS, in which case a series of workspaces will be saved along the way of the reduction, for checking and debugging purpose.
+
+- `ReCaching`
+
+    > Optional
+
+    > Form: A logical value, default as `false`
+
+    Flag for ignoring all the existing cache and re-caching. In MTS, the align-and-focused pattern would be saved to cache so that any furture reduction involving the same run could directly load in the saved cache without repeating the reduction from the raw event data. This significantly boosts the MTS performance. For example, with a standard Si sample, a typical NOMAD measurement with `2 C` proton charge accumulation would yield the raw event nexus file with the size of ~3 GB. Without any caching, the overall MTS processing time is ~7 minutes. With caching, the processing time could be reduced to ~0.5 minutes.
+
+    In case the previously cache does not apply any more for the reduction, one can then use the current flag to redo the caching. For example, it is possible that previously an improper calibration file was used for the reduction. Once we get the new calibration file and want to redo the whole reduction, the previously cached files no longer apply, in which case the current flag is a pretty handy switch to ignore the existing cache.
+
+- `AutoRed`
+
+    > Optional
+
+    > Form: A logical value, default as `false`
+
+    Flag for specifying whether the reduction is for autoreduction purpose. Once the flag is set to `true`, the autoreduction mode will be activated and the data processing and output will group all detectors together. The benefit of such a manner of detectors grouping is obvious -- a single pattern of the reduced total scattering data could be obtained and we could then perform the Fourier transform automatically to obtain the pair distribution function (PDF). The downside is that patterns for detectors with different scattering angle and thus different resolution would be merged together to yield a peak shape that could be a bit complicated to interpret. Regarding this, the Rietveld program often has complicated peak profile function that could potentially describe the peak shape well enough. Concerning the impact upon the PDF data, as long as we are not fitting the data up to that high $r$ (e.g., well above 30 angstrom), the `Qdamp` and `Qbroad` parameters based on the Gaussian assumption of the peak shape would still work safely.
+
+    When the `AutoRed` flag is `false` (the default value), the data would be reduced to multiple groups (which are usually called `banks`). Rietveld program could then take the multiple-banks data and refine the model against multiple banks of data simultaneously. To obtain PDF, one needs a routine to merge the data from multiple banks into a single pattern. This will be covered in the `Output and Post-Processing` section.
 
 ## Output and Post-Processing
 

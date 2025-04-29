@@ -249,17 +249,17 @@ The container section is for putting down some informaation about the container 
 
     > Example:
 
-        ```json
-        "Geometry": {
-            "Shape": "HollowCylinderHolder",
-            "Height": 4.0,
-            "InnerRadius": 1.5,
-            "InnerOuterRadius": 2.0,
-            "OuterInnerRadius": 3.0,
-            "OuterRadius": 4.0,
-            "Center": [0.0, 0.0, 0.0]
-        }
-        ```
+    ```json
+    "Geometry": {
+        "Shape": "HollowCylinderHolder",
+        "Height": 4.0,
+        "InnerRadius": 1.5,
+        "InnerOuterRadius": 2.0,
+        "OuterInnerRadius": 3.0,
+        "OuterRadius": 4.0,
+        "Center": [0.0, 0.0, 0.0]
+    }
+    ```
 
     The defined container geometry here will go into the Mantid `SetSample` algorithm call. Refer to the documentation page [here](https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html) for options of the container geometry definition in the JSON format. The example given above refers to a hollow contaienr where the sample will fill in the interlayer space between the container inner and outer wall. The length unit is given in `cm` here.
 
@@ -271,12 +271,12 @@ The container section is for putting down some informaation about the container 
 
     > Example:
 
-        ```json
-        "Material": {
-            "ChemicalFormula": "(Li7)2-C-H4-N-Cl6",
-            "NumberDensity": 0.1
-        }
-        ```
+    ```json
+    "Material": {
+        "ChemicalFormula": "(Li7)2-C-H4-N-Cl6",
+        "NumberDensity": 0.1
+    }
+    ```
 
     The material definition here will go into the Mantid `SetSample` algorithm call. Refer to the documentation page [here](https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html). The `ChemicalFormula` value should follow the same format as the `Material` key for `Sample` and both of them are following the Mantid format (see the documentation [here](https://docs.mantidproject.org/nightly/concepts/Materials.html)). For the density specification, it can be given with either `NumberDensity` ($Å^{-3}$) or `MassDensity` ($g/cm^3$).
 
