@@ -1,4 +1,4 @@
-HB-2C (WAND$^2$)
+HB-2C (WAND^2)
 ===
 
 - `all_wpd`
