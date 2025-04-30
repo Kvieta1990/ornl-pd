@@ -3,10 +3,12 @@ NOMAD
 
 - `nom_cal`
 
-    The calibration routine for NOMAD. It takes the following JSON file as the input,
+    > The calibration has been incorporated into the NOMAD autoreduction workflow so any time a suitable diamond calibration run is available, the calibration routine will be kicked off automatically. In case of problems, one then log in Analysis cluster and use the current routine for running the calibration manually -- normally, even the calibration running at the autoreduction stage encounters issues, still the input json file can be generated automatically so in most cases, one does not need to worry about manually populating the input json file here.
+
+    The calibration routine for NOMAD. It takes the following JSON file as the input (we don't need to give the input explicitly, so on command line, just execute `nom_cal`),
 
     ```
-    /SNS/users/y8z/NOM_Shared/CALIBRATION/cal_config.json
+    /SNS/NOM/shared/CALIBRATION/cal_config.json
     ```
 
     Here is presented the contents of the configuration file,
@@ -106,4 +108,26 @@ NOMAD
     /SNS/users/y8z/NOM_Shared/CALIBRATION
     ```
 
-    To run this routine, one has to `cd` into the directory and run `./nom_cal_local`, or one can just give the full path to the routine.
+    To run this routine, one has to `cd` into the directory and run `./nom_cal_local`, or one can just give the full path to the routine. This routine does take an argument to specify the input json file which follows exactly the same form as presented for `nom_cal` above.
+
+- `all_nom`
+
+    This will run the same autoreduction as on Monitor ([monitor.sns.gov](https://monitor.sns.gov)). It runs locally and multiple run numbers can be processed in a batch manner. The program runs as follows,
+
+    ```bash
+    all_nom IPTS RunsToProcess
+    ```
+
+    e.g., `all_nom 29792 '193462, 193474-193484'`
+
+- `confirm-nom`
+
+    Routine for confirming the data availability for NOMAD experiments. It can run with either of the ways below,
+
+    ```
+    confirm-nom
+    confirm-nom <IPTS>
+    confirm-nom <IPTS> Submission_Number
+    ```
+
+    With the first way, the program will ask for a few user inputs while running. With the second way, it will run directly, taking the `<IPTS>` number and assume the submission number of `1`. With the third way, one can also specify the submission number of an `<IPTS>` -- for some experiments, there may be some continuation runs and each run has a certain submission number, `1, 2, 3, ...`.
