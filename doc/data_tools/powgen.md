@@ -97,3 +97,7 @@ POWGEN
     ```
 
     With the first way, the program will ask for a few user inputs while running. With the second way, it will run directly, taking the `<IPTS>` number and assume the submission number of `1`. With the third way, one can also specify the submission number of an `<IPTS>` -- for some experiments, there may be some continuation runs and each run has a certain submission number, `1, 2, 3, ...`.
+
+- `pg3_larc`
+
+    A handy routine to check the POWGEN auto reduction and live reduction setup to see whether we have some obvious errors. This is just for quickly checking whether necessary files are existing and are connected properly but `NOT` for checking whether the actual configuration inside the file does make sense or not.

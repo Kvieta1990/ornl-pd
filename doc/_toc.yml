@@ -53,6 +53,13 @@ parts:
   - file: auto_reduce/hb2c_auto
   - file: auto_reduce/nomad_auto
   - file: auto_reduce/powgen_auto
+- caption: Toolbox
+  chapters:
+  - file: data_tools/nomad
+  - file: data_tools/powgen
+  - file: data_tools/hb2a
+  - file: data_tools/hb2c
+  - file: data_tools/general
 - caption: More
   chapters:
   - file: uptime
