@@ -112,6 +112,8 @@ NOMAD
 
 - `all_nom`
 
+    > The script here is running the reduction script located at `/SNS/NOM/shared/autoreduce/reduce_NOM_man.py`.
+
     This will run the same autoreduction as on Monitor ([monitor.sns.gov](https://monitor.sns.gov)). It runs locally and multiple run numbers can be processed in a batch manner. The program runs as follows,
 
     ```bash
