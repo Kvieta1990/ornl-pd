@@ -203,9 +203,9 @@ First, one can take the following example JSON input file as a bare minimal temp
 
     > Optional
 
-    > Form: A float number, in `mm`
+    > Form: A dictionary, which for the moment only takes in a single key `ElementSize` specifying the side length (in `mm`) of cuboids for absorption evaluation.
 
-    Specification of the side length of cuboids for absorption correction. MTS implements the numerical approach for evaluating the absorption of neutrons along the pathway inside the sample and container. Detailed mathematics can be found [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html) and the Mantid documentation page [here](https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html). The evaluation of the absorption is fundamentally about evaluating the integral like Eqn. (11) [here](https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html). For the integral evaluation, the idea is to divide the whole sample (container) into small cuboids, and for each cuboid, the integration over the cuboid volume could be evaluated numerically. As such, the size of the cuboid determines the level of accuracy, and accordingly, the computation burden, of the absorption calculation. By default, the size of `1 mm` will be used and this is the `recommended` value to use, and therefore in most cases, users barely need to touch this parameter - one can leave this parameter out from the JSON input safely.
+    MTS implements the numerical approach for evaluating the absorption of neutrons along the pathway inside the sample and container. Detailed mathematics can be found [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html) and the Mantid documentation page [here](https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html). The evaluation of the absorption is fundamentally about evaluating the integral like Eqn. (11) [here](https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html). For the integral evaluation, the idea is to divide the whole sample (container) into small cuboids, and for each cuboid, the integration over the cuboid volume could be evaluated numerically. As such, the size of the cuboid determines the level of accuracy, and accordingly, the computation burden, of the absorption calculation. By default, the size of `1 mm` will be used and this is the `recommended` value to use, and therefore in most cases, users barely need to touch this parameter - one can leave this parameter out from the JSON input safely.
 
 - `GaugeVolume`
 
@@ -297,6 +297,8 @@ The container section is for putting down some informaation about the container 
 ## Normalization Section
 
 > Mandatory
+
+> Keys in current section follow the same format as those in the `Sample` section above.
 
 This refers to the `Normalization` key which takes care of the normalization measurement. By normalization, we mean the normalization over the detector efficiency and solid angle cover of detectors, with vanadium as a nearly perfect incoherent scatterer, i.e., vanadium scatters neutrons in a nearly uniform manner. Since the incoherent scattering length of vanadium is tabulated, given certain neutron flux, we know the expected number of neutrons to arrive at detectors. Therefore, with the measured neutron countings measured for vanadium, one can normalize out the detector efficiency and solid angle coverage. See the lecture notes by Dr. Yuanpeng Zhang [here](../../files/ndp_notes.pdf) and the article {cite}`Peterson:gj5253` for more details.
 

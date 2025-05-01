@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
@@ -258,7 +258,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../data_tools/nomad.html">NOMAD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data_tools/powgen.html">POWGEN</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data_tools/hb2a.html">HB-2A (POWDER)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../data_tools/hb2c.html">HB-2C (WAND<span class="math notranslate nohighlight">\(^2\)</span>)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/hb2c.html">HB-2C (WAND^2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data_tools/general.html">General Tools</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">More</span></p>
@@ -274,6 +274,7 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../collections/toc.html">Powder Diffraction Collections</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../collections/local_envs.html">Local Dev &amp; Test Setups</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../collections/mts_for_developers.html">MTS Collections for Developers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../collections/mobile_apps.html">Mobile Apps for SNS &amp; HFIR</a></li>
 </ul>
@@ -728,9 +729,9 @@ document.write(`
 <div><p>Optional</p>
 </div></blockquote>
 <blockquote>
-<div><p>Form: A float number, in <code class="docutils literal notranslate"><span class="pre">mm</span></code></p>
+<div><p>Form: A dictionary, which for the moment only takes in a single key <code class="docutils literal notranslate"><span class="pre">ElementSize</span></code> specifying the side length (in <code class="docutils literal notranslate"><span class="pre">mm</span></code>) of cuboids for absorption evaluation.</p>
 </div></blockquote>
-<p>Specification of the side length of cuboids for absorption correction. MTS implements the numerical approach for evaluating the absorption of neutrons along the pathway inside the sample and container. Detailed mathematics can be found <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html">here</a> and the Mantid documentation page <a class="reference external" href="https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html">here</a>. The evaluation of the absorption is fundamentally about evaluating the integral like Eqn. (11) <a class="reference external" href="https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html">here</a>. For the integral evaluation, the idea is to divide the whole sample (container) into small cuboids, and for each cuboid, the integration over the cuboid volume could be evaluated numerically. As such, the size of the cuboid determines the level of accuracy, and accordingly, the computation burden, of the absorption calculation. By default, the size of <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">mm</span></code> will be used and this is the <code class="docutils literal notranslate"><span class="pre">recommended</span></code> value to use, and therefore in most cases, users barely need to touch this parameter - one can leave this parameter out from the JSON input safely.</p>
+<p>MTS implements the numerical approach for evaluating the absorption of neutrons along the pathway inside the sample and container. Detailed mathematics can be found <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html">here</a> and the Mantid documentation page <a class="reference external" href="https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html">here</a>. The evaluation of the absorption is fundamentally about evaluating the integral like Eqn. (11) <a class="reference external" href="https://docs.mantidproject.org/v6.1.0/concepts/AbsorptionAndMultipleScattering.html">here</a>. For the integral evaluation, the idea is to divide the whole sample (container) into small cuboids, and for each cuboid, the integration over the cuboid volume could be evaluated numerically. As such, the size of the cuboid determines the level of accuracy, and accordingly, the computation burden, of the absorption calculation. By default, the size of <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">mm</span></code> will be used and this is the <code class="docutils literal notranslate"><span class="pre">recommended</span></code> value to use, and therefore in most cases, users barely need to touch this parameter - one can leave this parameter out from the JSON input safely.</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">GaugeVolume</span></code></p>
 <blockquote>
@@ -829,6 +830,9 @@ document.write(`
 <h2>Normalization Section<a class="headerlink" href="#normalization-section" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><p>Mandatory</p>
+</div></blockquote>
+<blockquote>
+<div><p>Keys in current section follow the same format as those in the <code class="docutils literal notranslate"><span class="pre">Sample</span></code> section above.</p>
 </div></blockquote>
 <p>This refers to the <code class="docutils literal notranslate"><span class="pre">Normalization</span></code> key which takes care of the normalization measurement. By normalization, we mean the normalization over the detector efficiency and solid angle cover of detectors, with vanadium as a nearly perfect incoherent scatterer, i.e., vanadium scatters neutrons in a nearly uniform manner. Since the incoherent scattering length of vanadium is tabulated, given certain neutron flux, we know the expected number of neutrons to arrive at detectors. Therefore, with the measured neutron countings measured for vanadium, one can normalize out the detector efficiency and solid angle coverage. See the lecture notes by Dr. Yuanpeng Zhang <a class="reference download internal" download="" href="../../_downloads/7a05ad4f767efa1e416c4a4d07e73ec9/ndp_notes.pdf"><span class="xref download myst">here</span></a> and the article <span id="id1">[<a class="reference internal" href="../../bib.html#id13" title="Peter F. Peterson, Daniel Olds, Marshall T. McDonnell, and Katharine Page. Illustrated formalisms for total scattering data: a guide for new practitioners. Journal of Applied Crystallography, 54(1):317–332, Feb 2021. URL: https://doi.org/10.1107/S1600576720015630, doi:10.1107/S1600576720015630.">Peterson <em>et al.</em>, 2021</a>]</span> for more details.</p>
 </section>
