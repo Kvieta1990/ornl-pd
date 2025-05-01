@@ -183,3 +183,69 @@ The source codes of `PyStoG` are stored on GitHub [here](https://github.com/neut
 git clone https://github.com/neutrons/pystog.git
 ```
 
+There is no special setups needed for running `PyStog` locally. The local modules can be imported as such (in Python),
+
+```python
+import sys
+sys.path.append("<pystog_repo_loc>/src")
+import pystog
+from pystog import Converter
+from pystog import Transformer
+from pystog import FourierFilter
+from pystog import StoG
+```
+
+where `<pystog_repo_loc>` should be replaced with the full path to the `PyStoG` repository. On Analysis, there is a local conda environment for `PyStoG` under the name of [Dr. Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang), at,
+
+```
+/SNS/users/y8z/miniconda/envs/pystog/
+```
+
+which has `PyStoG` installed. For the installation, it is straightforward, by running,
+
+```bash
+conda create -n pystog
+conda activate pystog
+conda install -c neutrons pystog
+```
+
+If the name `pystog` has already been taken, just change it to something else, like `pystog_new`. On Analysis, a wrapper `Python` script was created to call the CLI (command-line interface) of `PyStoG`, using the local environment mentioned above,
+
+```python
+#!/SNS/users/y8z/miniconda/envs/pystog/bin/python3.12
+# -*- coding: utf-8 -*-
+import re
+import sys
+from pystog.cli import pystog_cli
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(pystog_cli())
+```
+
+It is saved as `/SNS/software/powder/pystog_cli` and a soft link was created for it, at `/SNS/software/bin/pystog_cli` to make it system-wise available to general users.
+
+## GSAS-II
+
+GSAS-II is an open source program for performing scattering data analysis. The source codes are now hosted on GitHub (repo is [here](https://github.com/AdvancedPhotonSource/GSAS-II)) and are open for the community to make contributions.
+
+> As of writing (May-01-2025), the new `main` branch has become the main developing branch and the original main branch `master` has retired.
+
+Notes for developers are well documented and here below are listed several useful resources concerning the local development of GSAS-II,
+
+- [GSAS-II Home Page](https://advancedphotonsource.github.io/GSAS-II-tutorials/index.html)
+
+- [Notes for GSAS-II developers](https://advancedphotonsource.github.io/GSAS-II-tutorials/developers.html)
+
+- [Installing GSAS-II for code development](https://advancedphotonsource.github.io/GSAS-II-tutorials/install_dev.html)
+
+- [Local Development of GSAS-II with VSCode](https://iris2020.net/2025-04-21-gsasii_dev_new/)
+
+On ORNL Analysis, a wrapper `bash` script is available for general users to test out the latest development of GSAS-II. The script wraps up all setup steps, including the conda environment creation, fetching GSAS-II source codes and the program launching. In the old days, those binary files necessary for GSAS-II running need to be downloaded into a specific location for GSAS-II to work. However, with the new `main` branch, GSAS-II can figure out those binaries automatically. So, although the wrapper script still downloads those binaries, they are not taking any real effect. The script is fetching the source codes from a forked repository under the name of [Dr. Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang) at, [https://github.com/Kvieta1990/GSAS-II/tree/main](https://github.com/Kvieta1990/GSAS-II/tree/main). One can download the script [here](../files/gsasii_manual_test/G2full_Linux64.sh) for checking.
+
+As a general user, one does not need to worry about the technical details above. On Analysis, one can simply execute,
+
+```bash
+test_gsas2
+```
+
+to fire up the test version of GSAS-II locally on Analysis. `test_gsas2` is another wrapper script that download the wrapper script mentioned above (hosted [here](https://powder.ornl.gov/files/gsasii_manual_test/G2full_Linux64.sh)) to locally and execute it. On Analysis, `test_gsas2` was saved as `/SNS/software/powder/test_gsas2` and a soft link was created at `/SNS/software/bin/test_gsas2` to make it system-wise available to general users.

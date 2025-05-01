@@ -49,7 +49,7 @@ if [ "$gitinstall" = "True" ]; then
 	set -x
 	rm -rf $WORKSPACE/GSAS2-code
 	mkdir $WORKSPACE/GSAS2-code
-	git clone -b master $gitCodeRepo $WORKSPACE/GSAS2-code --depth 50
+	git clone -b main $gitCodeRepo $WORKSPACE/GSAS2-code --depth 50
 fi
 
 directory="$WORKSPACE/GSAS2-code/GSASII/bindist"
@@ -82,6 +82,6 @@ END
 
 download_binaries
 
-python $WORKSPACE/GSAS2-code/GSASII/GSASII.py
+python $WORKSPACE/GSAS2-code/GSASII/G2.py
 
 exit
