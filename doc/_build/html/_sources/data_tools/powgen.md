@@ -78,6 +78,8 @@ POWGEN
 
 - `all_pg3`
 
+    > The script here is running the reduction script located at `/SNS/PG3/shared/autoreduce/reduce_PG3_man.py`.
+
     This will run the same autoreduction as on Monitor ([monitor.sns.gov](https://monitor.sns.gov)). It runs locally and multiple run numbers can be processed in a batch manner. The program runs as follows,
 
     ```bash
