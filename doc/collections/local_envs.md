@@ -3,6 +3,8 @@ Local Developing & Testing Setups
 
 ## Mantid
 
+> On ORNL Analysis, there are three versions of `Mantid` available for both the Workbench and the Python interface,
+
 Instructions for building `Mantid` locally can be found [here](https://developer.mantidproject.org/GettingStarted/GettingStarted.html) and here I am only noting down the steps on ORNL Analysis cluster that runs Red Hat 9.
 
 - Create the conda environment, by running,
@@ -12,6 +14,8 @@ Instructions for building `Mantid` locally can be found [here](https://developer
     ```
 
     > Here, we may need to change the default name `mantid-developer` of the conda environment to something else in case to deal with different versions of `Mantid` since the package dependencies for different versions of `Mantid` may vary.
+
+    > Sometimes, when a new conda environment is created and activated, launching a previous `Mantid` build would fail, either due to some packages are missing or some incompatible configurations. In this case, one has to remove the `build` directory and run the `cmake` and `ninja` steps again -- see instructions below.
 
 - Assuming the default conda environment name `mantid-developer` is being used, activate the environment by,
 
@@ -52,3 +56,49 @@ Instructions for building `Mantid` locally can be found [here](https://developer
     ```bash
     ./bin/launch_mantidworkbench.sh
     ```
+
+    > On ORNL Analysis cluster, there exists a local build of `Mantid` under the name of [Dr. Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang). The source codes are stored at `/SNS/users/y8z/NOM_Shared/Dev/mantid`, and `Mantid` Workbench can be launched by the command `mantidl`, pointing to this local version of `Mantid` build.
+
+- There is no direct entry point to launch the Python interface with a local `Mantid` build. One has to run the `AddPythonPath.py` script under `<Mantid_Dir>/build/bin/` with a certain version of Python -- see, e.g., the instructions below for local build of `MantidTotalScattering`.
+
+## MantidTotalScattering
+
+In the source codes repository on GitHub (see [here](https://github.com/neutrons/mantid_total_scattering)), it was detailed several options for the local development for MantidTotalScattering (MTS). Here I am noting down the one that is most commonly used. Following the instructions above for the local build of `Mantid`, we should already have the `mantid-developer` conda environment ready and get `Mantid` built locally, and here I am assuming we are using the default name of the environment, namely, `mantid-developer`.
+
+```bash
+cd <MTS-repo-loc>
+virtualenv -p <mantid-developer-env-loc>/bin/python --system-site-packages .venv
+source .venv/bin/activate
+python <mantid-repo-loc>/build/bin/AddPythonPath.py
+pip install -r requirements.txt -r requirements-dev.txt
+python setup.py develop
+```
+
+where `<MTS-repo-loc>` should be replaced with the path to the MTS source codes repository. `<mantid-developer-env-loc>` refers to the location of the `mantid-developer` environment, which can be obtained via `conda env list`. `<mantid-repo-loc>` is the path to the `Mantid` source codes repository.
+
+After the setup steps, MTS can be started by running `mantidtotalscattering <input_json_file>`. One can refer to the documentation [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html) for details about the input JSON file for MTS.
+
+Here follows is a `bash` script that is deployed on ORNL Analysis to quickly launch the local build of MTS,
+
+```bash
+#!/bin/bash
+
+source /gpfs/neutronsfs/instruments/NOM/shared/Dev/mantid_total_scattering/.venv/bin/activate
+python /gpfs/neutronsfs/instruments/NOM/shared/Dev/mantid/build/bin/AddPythonPath.py > /dev/null 2>&1
+
+cwd=${PWD}
+
+cd /gpfs/neutronsfs/instruments/NOM/shared/Dev/mantid_total_scattering/
+python setup_local.py develop
+
+cd ${cwd}
+
+mantidtotalscattering $1
+```
+
+The script is saved as `/SNS/software/powder/mts` on Analysis and a soft link for it is created at `/SNS/software/bin/mts` to make `mts` system-wise available to all users.
+
+> `setup_local.py` script above is an alternative version of `setup.py` in the respository. With `setup_local.py`, the terminal output associated with the script running will be suppressed.
+
+## ADDIE
+
