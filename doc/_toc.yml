@@ -72,6 +72,7 @@ parts:
     - file: work_items/software_and_projects
   - file: collections/toc
     sections:
+    - file: collections/local_envs
     - file: collections/mts_for_developers
     - file: collections/mobile_apps
   - file: bib.md
