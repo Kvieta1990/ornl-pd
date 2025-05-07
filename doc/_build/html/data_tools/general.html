@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -525,6 +525,11 @@ document.write(`
 <blockquote>
 <div><p>This routine only works with the non-debugging mode, where only one workspace will be generated to host the finally reduced data. If the <code class="docutils literal notranslate"><span class="pre">DebugMode</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> in <code class="docutils literal notranslate"><span class="pre">MTS</span></code> (see the instructions <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html">here</a>), this routine is not applicable. Normally, the debug mode is more for developers anyways.</p>
 </div></blockquote>
+<ul class="simple">
+<li><p>[Optional] <code class="docutils literal notranslate"><span class="pre">-h</span></code> to print out the help</p></li>
+<li><p>[Optional] <code class="docutils literal notranslate"><span class="pre">-o</span></code> to specify the output directory. If not specified, the output directory will be set to be the directory containing the input file.</p></li>
+<li><p>[Optional] <code class="docutils literal notranslate"><span class="pre">-w</span></code> to specify the index of the workspace to extract. When the <code class="docutils literal notranslate"><span class="pre">DebugMode</span></code> (see <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html">here</a> for <code class="docutils literal notranslate"><span class="pre">MTS</span></code> documentation) in <code class="docutils literal notranslate"><span class="pre">MTS</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, a series of output workspaces will be saved for debugging purpose and they will be saved into a workspace group, with each workspace having a title. The flag here is to specify the index (starting from <code class="docutils literal notranslate"><span class="pre">0</span></code>) of the workspace to extract. If the input file does contain a workspace group (i.e., <code class="docutils literal notranslate"><span class="pre">DebugMode</span></code> was set to <code class="docutils literal notranslate"><span class="pre">True</span></code> when running <code class="docutils literal notranslate"><span class="pre">MTS</span></code>) and no <code class="docutils literal notranslate"><span class="pre">-w</span></code> flag is provided, the program will prompt users with input for the index of workspace to extract.</p></li>
+</ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mantidl</span></code></p>
 <p>Run a local version of Mantid Workbench on Analysis. This local version is using the local conda environment under the name of <a class="reference external" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Dr. Yuanpeng Zhang</a> on Analysis cluster.</p>

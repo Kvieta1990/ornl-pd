@@ -39,6 +39,12 @@ General Tools
 
     > This routine only works with the non-debugging mode, where only one workspace will be generated to host the finally reduced data. If the `DebugMode` is set to `true` in `MTS` (see the instructions [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html)), this routine is not applicable. Normally, the debug mode is more for developers anyways.
 
+    - [Optional] `-h` to print out the help
+
+    - [Optional] `-o` to specify the output directory. If not specified, the output directory will be set to be the directory containing the input file.
+
+    - [Optional] `-w` to specify the index of the workspace to extract. When the `DebugMode` (see [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html) for `MTS` documentation) in `MTS` is set to `True`, a series of output workspaces will be saved for debugging purpose and they will be saved into a workspace group, with each workspace having a title. The flag here is to specify the index (starting from `0`) of the workspace to extract. If the input file does contain a workspace group (i.e., `DebugMode` was set to `True` when running `MTS`) and no `-w` flag is provided, the program will prompt users with input for the index of workspace to extract.
+
 - `mantidl`
 
     Run a local version of Mantid Workbench on Analysis. This local version is using the local conda environment under the name of [Dr. Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang) on Analysis cluster.

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
@@ -659,6 +659,16 @@ document.write(`
 <p>This is to specify the background runs needed for the data processing (specifically, the background subtraction). By ‘background’, we mean the empty container as usually, samples will be held in containers for the measurement. The <code class="docutils literal notranslate"><span class="pre">Runs</span></code> key and alternatively the <code class="docutils literal notranslate"><span class="pre">Filenames</span></code> key behaves in a consistent way as those for the sample as detailed above. The <code class="docutils literal notranslate"><span class="pre">Background</span></code> key inside the dictionary is to specify the ‘background of the background’, which usually refers to the empty instrument, of which the signal is supposed to be subtracted from the empty container measurement. Again, the data files could be specified either with run numbers or a list of explicit file names, following the same format as presented above for the sample, i.e., something like,</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Background&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;Runs&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Background&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/path/to/NOM_179271.nxs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/path/to/NOM_179272.nxs&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>If <code class="docutils literal notranslate"><span class="pre">Scale</span></code> parameter is provided, the empty container signal will be multiplied by the specified scale factor before being subtracted. This is expected to account for any potential over- or under-subtraction of the empty container, e.g.,</p>
+</div></blockquote>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;Background&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Runs&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Scale&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;Background&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/path/to/NOM_179271.nxs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/path/to/NOM_179272.nxs&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>

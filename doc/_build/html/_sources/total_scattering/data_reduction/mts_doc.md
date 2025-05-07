@@ -144,6 +144,16 @@ First, one can take the following example JSON input file as a bare minimal temp
     }
     ```
 
+    > If `Scale` parameter is provided, the empty container signal will be multiplied by the specified scale factor before being subtracted. This is expected to account for any potential over- or under-subtraction of the empty container, e.g.,
+
+    ```json
+    "Background": {
+        "Runs": "11",
+        "Scale": 1.2,
+        "Background": ["/path/to/NOM_179271.nxs", "/path/to/NOM_179272.nxs"]
+    }
+    ```
+
 - `Material`
 
     > Mandatory
