@@ -58,3 +58,11 @@ General Tools
     - [The official documentation page for `pystog`](https://pystog.readthedocs.io/en/latest/)
 
     - [The web page containing tutorials for `pystog`](https://powder.ornl.gov/total_scattering/data_reduction/ts_pp.html)
+
+    Running `pystog_cli` on Analysis without any arguments provided, the help message will be displayed. Usually, the program takes in a JSON file and it will produce files compatible with the [`RMCProfile`](https://rmcprofile.ornl.gov) program, as originally the `pystog_cli` program was designed to reproduce the `stog` program that is bundled with the [`RMCProfile`](https://rmcprofile.ornl.gov) package. One can refer to the links above for detailed information about how to use `pystog` and `pystog_cli`.
+    
+    ``````{admonition} Work in Progress
+    :class: attention
+
+    One thing that is worth mentioning is the extra flag `-ft` that can be provided to `pystog_cli` -- this flag was introduced in the wrapper script that calls `pystog_cli` so it is not directly available in the underlying `pystog_cli` routine. What this flag does is to skip the `RMCProfile` part of the data processing. Instead, it will produce pair distribution function (PDF) data in the `pdffit G(r)` format, while performing the Fourier filter, if specified to. When `-ft` is provided to `pystog_cli` on Analysis, the wrapper script will read in the provided JSON file (same as the one running `pystog_cli` without the `-ft` flag) for necessary parameters regarding the Fourier transform and filter. The output will be saved according to the `Outputs` entry in the JSON file.
+    ``````
