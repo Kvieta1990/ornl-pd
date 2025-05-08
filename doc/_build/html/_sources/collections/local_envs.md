@@ -120,6 +120,10 @@ The script is saved as `/SNS/software/powder/mts` on Analysis and a soft link fo
 
 > `setup_local.py` script above is an alternative version of `setup.py` in the respository. With `setup_local.py`, the terminal output associated with the script running will be suppressed.
 
+To make contributions to the `MTS` source codes, one can check out the repository (if no permission to create branches in the central repo, one can choose to fork), do the development, and submit a pull request to the `next` branch. Once we are happy with the `next` branch, it will be merged into the `qa` branch which is for the release candidate testing purpose. Once codes are merged into `qa`, a tag associated with the `qa` head can be created following the format like `v1.2.0rc1` which will then triggers the GitHub action to build the conda package and push to the Anaconda cloud so it can be downloaded on the user side. Further, once we are happy with the release candidate testing, the `qa` branch can be merged into the `main` branch which is supposed to hold the codes for the production level of release. A tag associated with the `main` head should be created in the format of `v1.2.0` which will trigger the GitHub action to build the conda package and upload to the Anaconda cloud. The conda packages can be found [here](https://anaconda.org/neutrons/mantid-total-scattering).
+
+> If one needs to have the permission of creating branches in the central repo, get in touch with [Dr. Yuanpeng Zhang](https://iris2020.net/contact/).
+
 ## ADDIE
 
 > On ORNL Analysis, there are three versions of `ADDIE` available,
