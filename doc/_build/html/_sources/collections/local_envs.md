@@ -72,13 +72,15 @@ Instructions for building `Mantid` locally can be found [here](https://developer
 
 ## MantidTotalScattering
 
-> On ORNL Analysis, there are three versions of `MantidTotalScattering` available,
+> On ORNL Analysis, there are three versions of `MantidTotalScattering` (MTS) available,
 
 | Command                     | Version Info                   |
 |-----------------------------|--------------------------------|
 | `mantidtotalscattering`       | Production version             |
 | `mantidtotalscattering --qa`  | QA version for testing         |
 | `mantidtotalscattering --dev` | Nightly version for developing |
+
+One can also install their own version of `MTS` using conda -- see the page [here](https://anaconda.org/neutrons/mantid-total-scattering) for information.
 
 In the source codes repository on GitHub (see [here](https://github.com/neutrons/mantid_total_scattering)), it was detailed several options for the local development for MantidTotalScattering (MTS). Here I am noting down the one that is most commonly used. Following the instructions above for the local build of `Mantid`, we should already have the `mantid-developer` conda environment ready and get `Mantid` built locally, and here I am assuming we are using the default name of the environment, namely, `mantid-developer`.
 

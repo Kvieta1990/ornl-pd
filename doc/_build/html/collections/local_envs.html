@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -596,7 +596,7 @@ ninja
 <section id="mantidtotalscattering">
 <h2>MantidTotalScattering<a class="headerlink" href="#mantidtotalscattering" title="Link to this heading">#</a></h2>
 <blockquote>
-<div><p>On ORNL Analysis, there are three versions of <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> available,</p>
+<div><p>On ORNL Analysis, there are three versions of <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> (MTS) available,</p>
 </div></blockquote>
 <table class="table">
 <thead>
@@ -616,6 +616,7 @@ ninja
 </tr>
 </tbody>
 </table>
+<p>One can also install their own version of <code class="docutils literal notranslate"><span class="pre">MTS</span></code> using conda – see the page <a class="reference external" href="https://anaconda.org/neutrons/mantid-total-scattering">here</a> for information.</p>
 <p>In the source codes repository on GitHub (see <a class="reference external" href="https://github.com/neutrons/mantid_total_scattering">here</a>), it was detailed several options for the local development for MantidTotalScattering (MTS). Here I am noting down the one that is most commonly used. Following the instructions above for the local build of <code class="docutils literal notranslate"><span class="pre">Mantid</span></code>, we should already have the <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code> conda environment ready and get <code class="docutils literal notranslate"><span class="pre">Mantid</span></code> built locally, and here I am assuming we are using the default name of the environment, namely, <code class="docutils literal notranslate"><span class="pre">mantid-developer</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/neutrons/mantid_total_scattering.git
 <span class="nb">cd</span><span class="w"> </span>&lt;MTS-repo-loc&gt;
