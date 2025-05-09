@@ -418,6 +418,14 @@ This refers to the `Normalization` key which takes care of the normalization mea
 
     As discussed in previous sections, the sample and container geometry could be defined explicitly for the absorption correction, in which case the `Container` key defined here will be ignored and the explicitly defined container geometry will take the priority.
 
+- `ContainerPeaks`
+
+    > Optional
+
+    > A string, default as `None`
+
+    With this flag, one can specify a list of peaks (in `d`-space) for the container in case there are Bragg peaks in the container signal that needs to be stripped off. The list should be given in a string and different peak positions should be separated with `comma`.
+
 - `DebugMode`
 
     > Optional
@@ -625,3 +633,7 @@ Several keys on the top of the list are sensitive information concerning the con
 - `FinalDIFC`
 
     After the total scattering data processing, the data would be in $Q$-space. To obtain the Bragg diffraction data in TOF-space which can be imported into Rietveld programs for data analysis, we have to convert the $Q$-space data with some arbitrary values of DIFC for each bank of data. Here we can give the list of the DIFC values to be used for such a purpose and the aim is to keep consistent whatever conventional values that other data reduction programs were using.
+
+- `ContainerPeaks`
+
+    With this flag, one can specify a list of peaks (in `d`-space) for the container in case there are Bragg peaks in the container signal that needs to be stripped off. The list should be given in a string and different peak positions should be separated with `comma`.

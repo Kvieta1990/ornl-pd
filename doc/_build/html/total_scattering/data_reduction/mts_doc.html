@@ -961,6 +961,15 @@ document.write(`
 <p>If existing, it specifies the sample environment for the data collection. The <code class="docutils literal notranslate"><span class="pre">Name</span></code> key is not in practical use and is just for reference purpose. The <code class="docutils literal notranslate"><span class="pre">Container</span></code> key could be used for specifying the container being used for holding the sample and the corresponding container geometry would be used for the aborption correction. In <code class="docutils literal notranslate"><span class="pre">Mantid</span></code> framework, several typical container types are pre-defined in the code base (see <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/instrument/sampleenvironments/SNS/InAir.xml">here</a> for those defined container types for <code class="docutils literal notranslate"><span class="pre">SNS</span></code> instruments). With such standard containers, one could just give the container name, e.g., <code class="docutils literal notranslate"><span class="pre">PAC06</span></code> as in the template above and <code class="docutils literal notranslate"><span class="pre">Mantid</span></code> will grab the pre-defined geometry for the down stream calculations, e.g., the absorption calculation (see <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html">here</a> for details about the absorption correction).</p>
 <p>As discussed in previous sections, the sample and container geometry could be defined explicitly for the absorption correction, in which case the <code class="docutils literal notranslate"><span class="pre">Container</span></code> key defined here will be ignored and the explicitly defined container geometry will take the priority.</p>
 </li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ContainerPeaks</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<blockquote>
+<div><p>A string, default as <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</div></blockquote>
+<p>With this flag, one can specify a list of peaks (in <code class="docutils literal notranslate"><span class="pre">d</span></code>-space) for the container in case there are Bragg peaks in the container signal that needs to be stripped off. The list should be given in a string and different peak positions should be separated with <code class="docutils literal notranslate"><span class="pre">comma</span></code>.</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">DebugMode</span></code></p>
 <blockquote>
 <div><p>Optional</p>
@@ -1141,6 +1150,9 @@ document.write(`
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FinalDIFC</span></code></p>
 <p>After the total scattering data processing, the data would be in <span class="math notranslate nohighlight">\(Q\)</span>-space. To obtain the Bragg diffraction data in TOF-space which can be imported into Rietveld programs for data analysis, we have to convert the <span class="math notranslate nohighlight">\(Q\)</span>-space data with some arbitrary values of DIFC for each bank of data. Here we can give the list of the DIFC values to be used for such a purpose and the aim is to keep consistent whatever conventional values that other data reduction programs were using.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ContainerPeaks</span></code></p>
+<p>With this flag, one can specify a list of peaks (in <code class="docutils literal notranslate"><span class="pre">d</span></code>-space) for the container in case there are Bragg peaks in the container signal that needs to be stripped off. The list should be given in a string and different peak positions should be separated with <code class="docutils literal notranslate"><span class="pre">comma</span></code>.</p>
 </li>
 </ul>
 </section>
