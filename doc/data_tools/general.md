@@ -249,7 +249,7 @@ General Tools
 
         > Form: A string
         
-        The form of the $Q$-space outpout data. Acceptable values are `S(Q)`, `S(Q)-1`, `F(Q)` and `FK(Q)`. Refer to the `pystog` documentation [here](https://pystog.readthedocs.io/en/latest/pystog/converter.html) for details about those forms.
+        The form of the $Q$-space outpout data. Acceptable values are `S(Q)`, `F(Q)` and `FK(Q)`. Refer to the `pystog` documentation [here](https://pystog.readthedocs.io/en/latest/pystog/converter.html) for details about those forms.
 
     - `RSpaceOutputForm`
 
@@ -292,3 +292,29 @@ General Tools
         > Form: A boolean
 
         Specify whether or not to run the program in the debug mode. In case of `true`, the program will print out detailed information while encountering errors. Otherwise, only brief information will be presented in case of error.
+
+    Output files will be generated for the processed data in both real and reciprocal space. A typical list of output files will be,
+
+    ```
+    <output_stem>_cbyc_ff_fkofq.png
+    <output_stem>_cbyc_ff_fkofq.sq
+    <output_stem>_cbyc_ff_gkofr.gr
+    <output_stem>_cbyc_ff_gkofr.png
+    <output_stem>_cbyc_gofr_parts.gr
+    <output_stem>_cbyc_gofr_parts.png
+    <output_stem>_cbyc_sofq_parts.png
+    <output_stem>_cbyc_sofq_parts.sq
+    ```
+
+    where `<output_stem>` refers to the value provided with `OutputStem` for each of the files being processed. `<output_stem>_cbyc_ff_fkofq.sq` and `<output_stem>_cbyc_ff_fkofq.sq` are the output $Q$- and $r$-space data, respectively. The `_fkofq` and `_gkofr` part in the file names varies according to the parameters specified with `QSpaceOutputForm` and `RSpaceOutputForm`, respectively, according to the list below,
+
+    ```
+    g(r): '_gofr'
+    G(r): '_pdf'
+    GK(): '_gkofr'
+    S(Q): '_sofq'
+    F(Q): '_fofq'
+    FK(Q): '_fkofq'
+    ```
+
+    Those files with `_parts` in their names correspond to the diagnostic data generated for the chunk-by-chunk Fourier transform.
