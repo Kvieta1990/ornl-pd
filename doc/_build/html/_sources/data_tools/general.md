@@ -65,3 +65,256 @@ General Tools
 
     One thing that is worth mentioning is the extra flag `-ft` that can be provided to `pystog_cli` -- this flag was introduced in the wrapper script that calls `pystog_cli` so it is not directly available in the underlying `pystog_cli` routine. What this flag does is to skip the `RMCProfile` part of the data processing. Instead, it will produce pair distribution function (PDF) data in the `pdffit G(r)` format, while performing the Fourier filter, if specified to. When `-ft` is provided to `pystog_cli` on Analysis, the wrapper script will read in the provided JSON file (same as the one running `pystog_cli` without the `-ft` flag) for necessary parameters regarding the Fourier transform and filter. The output will be saved according to the `Outputs` entry in the JSON file.
     ``````
+
+- `pystog_ck`
+
+    The routine for processing the total scattering data Fourier transform in a chunk-by-chunk manner. The idea is that the main region in $Q$-space contributing to different regions in $r$-space varies. For example, the main contribution to the high-$r$ part (e.g., $> 50\ Å$) of the signal in real-space would be coming from the very low-$Q$ region in the reciprocal space. Therefore, while Fourier transforming from the $Q$-space to $r$-space, one may choose to use just very low-$Q$ region (e.g., $< 7.0 Å^{-1}$) of the $Q$-space data. For sure, using such a narrow $Q$-space data for the Fourier transform will lead to a significant broadening of the features in the real-space. However, since the features in the very high-$r$ region is very broad anyhow due to the asymptotically losing of correlations at large distances, the broadeing effect as the result of limited $Q$-range being used for the Fourier transform should not seriously matter. The benefit of doing so is obvious -- the high frequency component in the high-$Q$ region of the $Q$-space data are all filtered out while performing the inverse Fourier transform for the obtained high-$r$ part of the real-space data back into the reciprocal-space. Follow the same logic, one can choose a slightly larger $Q$ range (e.g., $< 18 Å^{-1}$) corresponding to a slightly lower range of the real-space signal (e.g., $6-50 Å$), and so on. Here down below is the formula summarizing the routine,
+
+    $$S_{ff}(Q) = \sum_i InvFT_{r_i^l}^{r_i^u}\Bigg\{WF_i^r \times \bigg[ FT_{Q_i^l}^{Q_i^u}\Big[WF_i^Q \times S(Q))\Big] \bigg]
+    $$
+
+    where $S(Q)$ refers to the original $Q$-space data coming out from the data reduction pipeline. $S_{ff}(Q)$ refers to the final output $Q$-space data after the chunk-by-chunk processing. $[r_i^l, r_i^u]$ and $[Q_i^l, Q_i^u]$ refers to the corresponding chunks in real and reciprocal space for performing the back-and-forth Fourier transform, where $i$ refers to a specific chunk. $WF$ refers to the window function that is $1$ within the chunk in either real or reciprocal space, and $0$ otherwise. $FT$ and $InvFT$ refers to the forward (from $Q$-space to $r$-space) and inverse (from $r$-space to $Q$-space) Fourier transform, respectively, with respect to the integration range as specified by the subscript and superscript for each.
+
+    > The routine I wrote here was initialized by [Prof. Eric O’Quinn](https://ne.utk.edu/people/eric-oquinn/) who used to work at ORNL and now is a faculty member of the Department of Nuclear Engineering at University of Tennessee, Knoxville. The main idea was originated from [Joerg C Neuefeind](https://www.ornl.gov/staff-profile/joerg-c-neuefeind) working as a neutron scattering scientist on the NOMAD diffratometer at SNS, ORNL.
+
+    The routine available on ORNL Analysis cluster takes a JSON file as the input, and here I am presenting a typical example of the input file,
+
+    ```json
+    {
+        "Files": [
+            "file_1.dat",
+            "file_2.dat"
+        ],
+        "NumberDensity": [
+            0.0705
+        ],
+        "FaberZiman": [
+            0.15
+        ],
+        "OutputStem": [
+            "out_1",
+            "out_2"
+        ],
+        "InputForm": "S(Q)",
+        "HeaderLines": 2,
+        "QMin": 1.0,
+        "QBin": 0.01,
+        "RMax": 50.0,
+        "RBin": 0.01,
+        "RMinScaling": 1.1,
+        "RMaxScaling": 1.5,
+        "RCutoff": 1.64,
+        "QChunks": [31.4, 18.37, 10.5, 6.9],
+        "RChunks": [2.58, 6.0, 50.0, 314.0],
+        "QSpaceOutputForm": "FK(Q)",
+        "RSpaceOutputForm": "GK(r)",
+        "LowRInspectRegion": [[0, 6], [-2, 1]],
+        "Interactive": true,
+        "Diagnostic": true,
+        "DebugMode": true
+    }
+    ```
+
+    - `Files`
+
+        > Mandatory
+
+        > Form: A list of strings
+
+        A list of files to be processed. It can be a single file or multiple files. No matter which, file(s) should be provided as a list. Files provided should be $Q$s-pace total scattering data files in the form of $S(Q)$ (the normalized one, which goes to $1$ at high $Q$) or $S(Q) - 1$.
+
+    - `NumberDensity`
+
+        > Mandatory
+
+        > Form: A list of numbers
+
+        A list of number density values corresponding to the file list provided. If multiple entries in the list, the entries should be corresponding to the entries for `Files` in order, in which case the length should match. If a single entry is in the list here, the value will be applied to all files provided in `Files` list.
+
+        The number density will be used for Fourier filter and data format conversion.
+
+    - `FaberZiman`
+
+        > Optional. If the form of the real (reciprocal) space output is specified as `GK(r)` (`FK(Q)`), this value is then `Mandatory`.
+
+        > Form: A list of numbers
+
+        A list of `Faber-Ziman` coefficients corresponding to the file list provided. If multiple entries in the list, the entries should be corresponding to the entries for `Files` in order, in which case the length should match. If a single entry is in the list here, the value will be applied to all files provided in `Files` list.
+
+        The `Faber-Ziman` coefficient is defined as $\sum_{i,j}c_ic_jb_ib_j$ where $c_i$ and $c_j$ refers to the concentration of atom type $i$ and $j$, respectively. $b_i$ and $b_j$ refers to the coherent scattering length of atom type $i$ and $j$, respectively. It will be used for conversion of the data into certain forms, e.g., the $G(r)$ function as defined in {cite}`Keen:th0051`.
+
+    - `OutputStem`
+
+        > Mandatory
+
+        > Form: A list of strings
+
+        The output stem name corresponding to each of the files in `Files`. The length of the list here should be consistent with the one for `Files`.
+
+    - `InputForm`
+
+        > Optional, default to `S(Q)`
+
+        > Form: A string
+
+        Specification of the input data form. Acceptable values are `S(Q)` and `S(Q)-1`.
+
+    - `HeaderLines`
+
+        > Optional, default to `2`
+
+        > Form: An integer
+
+        Specification of the number of header lines in the input data files. Apparently, all the input data files should be consistent in terms of the number of header lines.
+
+    - `QMin`
+
+        > Optional, default to `0.4`
+
+        > Form: A float
+
+        Lower boundary in $Q$-space for the Fourier transform.
+
+    - `QBin`
+
+        > Optional, default to `0.01`
+
+        > Form: A float
+
+        Bin size of the $Q$-space data. Internally, the program will check whether the provided data is equally spaced. If not, the data will be rebinned according to the bin size provided here. Or, if the bin size in the provided data is not consistent with the provide bin size, the data will also be rebinned according to the bin size provided here.
+
+    - `RMax`
+
+        > Optional, default to `50.0`
+
+        > Form: A float
+
+        The maximum $r$ value for the output $r$-space data produced from the processing.
+
+    - `RBin`
+
+        > Optional, default to `0.01`
+
+        > Form: A float
+
+        Bin size of the $r$-space output data.
+
+    - `RMinScaling`
+
+        > Optional. If the value is not given, the program will bring up a low-$r$ region plot of the $g(r)-1$ data so that one can decide and input the required value from the command line interfae. 
+
+        > Form: A float
+
+        The lower boundary in the low-r region of the real space data for the data scaling. Internally, the prpgram will initially Fourier transform the data into real-space $g(r) - 1$ form, which should in principle oscillate around $1$ in the low-r region. Then, an average value in a specified low-$r$ region will be calculated to give an indicator for how far the data scale is off (by comparing to the level that the data should oscillate around, i.e., $1$). Then the $Q$-space data will be rescaled according to the scale factor calculated here.
+
+    - `RMaxScaling`
+
+        > Optional. If the value is not given, the program will bring up a low-$r$ region plot of the $g(r)-1$ data so that one can decide and input the required value from the command line interfae.
+
+        > Form: A float
+
+        The lower boundary in the low-r region of the real space data for the data scaling. See the notes for `RMinScaling` presented above.
+
+    - `RCutoff`
+
+        > Optional. If the value is not given, the program will bring up a low-$r$ region plot of the $g(r)-1$ data so that one can decide and input the required value from the command line interfae.
+
+        > Form: A float
+
+        The low-$r$ cutoff in $r$-space for the Fourier filter, i.e., features below this cutoff will be filtered out.
+
+    - `QChunks`
+
+        > Mandatory
+
+        > Form: A list of numbers
+
+        Specification of the `Qmax` to be used for the Fourier transform for each of the $r$-space chunks. Normally, the $r$-space chunks (see `RChunks` below) should be provided in an increasing order, i.e., from low-$r$ to high-$r$. Accordingly, the `QMax` values here should be given in a decreasing order. The length should be matching that of the `RChunks` entry.
+
+    - `RChunks`
+
+        > Mandatory
+
+        > Form: A list of numbers
+
+        Specification of the $r$-space chunking for the data processing. Normally, we are expecting that the $r$-space chunks should be provided in an increasing order, i.e., from low-$r$ to high-$r$.
+        
+        > The first chunk will always go from $0$ to the first entry in the list.
+        
+        > The ending point of the last chunk will always be internally calculated to be $\pi/\Delta Q$ (where $\Delta Q$ refers to the bin size in $Q$-space), according to the Nyquist-Shannon sampling theorem. `However, the ending point of the last chunk, e.g., '314.0' in the example given above, should still be provided, for the informative purpose`.
+
+    - `QSpaceOutputForm`
+
+        > Optional, default to `S(Q)`
+
+        > Form: A string
+        
+        The form of the $Q$-space outpout data. Acceptable values are `S(Q)`, `F(Q)` and `FK(Q)`. Refer to the `pystog` documentation [here](https://pystog.readthedocs.io/en/latest/pystog/converter.html) for details about those forms.
+
+    - `RSpaceOutputForm`
+
+        > Optional, default to `g(r)`
+
+        > Form: A string
+        
+        The form of the $r$-space outpout data. Acceptable values are `g(r)`, `G(r)` and `GK(r)`. Refer to the `pystog` documentation [here](https://pystog.readthedocs.io/en/latest/pystog/converter.html) for details about those forms.
+
+    - `LowRInspectRegion`
+
+        > Optional
+
+        > Form: A list
+
+        > Example: "LowRInspectRegion": [[0, 6], [-2, 1]]
+
+        For the interactive determination of the lower and upper limit in the low-$r$ region for the scaling purpose, we need to plot the $g(r)-1$ data and focus on the low-$r$ region. The parameter here is for specifying the plotting range to save the efforts of zooming on the user side. The first entry in the list gives the lower and upper limit for the `x`-axis while the second entry is for the `y`-axis.
+
+    - `Interactive`
+
+        > Optional, default to `false`
+
+        > Form: A boolean
+
+        Specify whether or not to run the program interactivel, in which parameters including `RCutoff`, `RMinScaling` and `RMinScaling` will be ignored. They will be read in from the command line prompt. Meanwhile, plots will be generated interactively during the program running. So, the interactive mode is not suitable for running a series of files.
+
+    - `Diagnostic`
+
+        > Optional, default to `false`
+
+        > Form: A boolean
+
+        Specify whether or not to generate diagnostic data and plots. In case of `true`, the chunk-by-chunk $r$-space data and their corresponding Fourier transform in $Q$-space will be output to files and presented with plots.
+
+    - `DebugMode`
+
+        > Optional, default to `false`
+
+        > Form: A boolean
+
+        Specify whether or not to run the program in the debug mode. In case of `true`, the program will print out detailed information while encountering errors. Otherwise, only brief information will be presented in case of error.
+
+    Output files will be generated for the processed data in both real and reciprocal space. A typical list of output files will be,
+
+    ```
+    <output_stem>_cbyc_ff_fkofq.png
+    <output_stem>_cbyc_ff_fkofq.sq
+    <output_stem>_cbyc_ff_gkofr.gr
+    <output_stem>_cbyc_ff_gkofr.png
+    <output_stem>_cbyc_gofr_parts.gr
+    <output_stem>_cbyc_gofr_parts.png
+    <output_stem>_cbyc_sofq_parts.png
+    <output_stem>_cbyc_sofq_parts.sq
+    ```
+
+    where `<output_stem>` refers to the value provided with `OutputStem` for each of the files being processed. `<output_stem>_cbyc_ff_fkofq.sq` and `<output_stem>_cbyc_ff_fkofq.sq` are the output $Q$- and $r$-space data, respectively. The `_fkofq` and `_gkofr` part in the file names varies according to the parameters specified with `QSpaceOutputForm` and `RSpaceOutputForm`, respectively, according to the list below,
+
+    ```
+    g(r): '_gofr'
+    G(r): '_pdf'
+    GK(): '_gkofr'
+    S(Q): '_sofq'
+    F(Q): '_fofq'
+    FK(Q): '_fkofq'
+    ```
+
+    Those files with `_parts` in their names correspond to the diagnostic data generated for the chunk-by-chunk Fourier transform.
