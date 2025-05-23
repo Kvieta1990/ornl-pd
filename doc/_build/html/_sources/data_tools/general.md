@@ -35,15 +35,70 @@ General Tools
 
 - `mts_data`
 
-    Routine for extracting data from the reduced $S(Q)$ data from the MTS running. In a terminal on Analysis cluster, just execute this command followed by the name of the NeXus file we want to extract.
+    Routine for extracting data from the reduced $S(Q)$ data from the MTS running. Also, it has the functionality of removing the hydrogen background automatically.
 
-    > This routine only works with the non-debugging mode, where only one workspace will be generated to host the finally reduced data. If the `DebugMode` is set to `true` in `MTS` (see the instructions [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html)), this routine is not applicable. Normally, the debug mode is more for developers anyways.
+    - [Optional] `-d`, followed by a file name to specify the input data file to process, in the NeXus format.
 
-    - [Optional] `-h` to print out the help
+    - [Optional] `-w`, followed by an integer number. If the `DebugMode` is set to `true` in `MTS` (see the instructions [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html)), This option can be used to specify the index of the workspace to extract. If not sure about the index, just leave out this option and the program will print out the available options and prompt for the input of the index.
 
-    - [Optional] `-o` to specify the output directory. If not specified, the output directory will be set to be the directory containing the input file.
+    - [Optional] `-b`, followed by an input JSON file, the details of which will be presented below. Here follows is an example of the input JSON file,
 
-    - [Optional] `-w` to specify the index of the workspace to extract. When the `DebugMode` (see [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html) for `MTS` documentation) in `MTS` is set to `True`, a series of output workspaces will be saved for debugging purpose and they will be saved into a workspace group, with each workspace having a title. The flag here is to specify the index (starting from `0`) of the workspace to extract. If the input file does contain a workspace group (i.e., `DebugMode` was set to `True` when running `MTS`) and no `-w` flag is provided, the program will prompt users with input for the index of workspace to extract.
+        ```json
+        {
+            "InputFile": "/SNS/users/y8z/Temp/hydro_bkg_proc/NOM_BaO_HEO.nxs",
+            "NIterations": [2000, 2000, 2000, 2000, 2000, 2000],
+            "XWindow": [0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+            "ApplyFilterSG": false,
+            "PolyDegree": [7, 5, 5],
+            "QMin": [0.57, 0.93, 1.73, 3.12, 3.95, 0.6],
+            "QMax": [14.0, 25.0, 40.0, 40.0, 40.0, 6.0],
+            "Cycles": 3
+        }
+        ```
+
+        - `InputFile`
+        
+            To specify the input data file in the NeXus format. This is expected to be the output from `MTS`.
+
+        - `NIterations`
+
+            In the backend, the Mantid [`EnggEstimateFocussedBackground`](https://docs.mantidproject.org/nightly/algorithms/EnggEstimateFocussedBackground-v1.html) is used for estimating the background through the application of a top-hat convolution iteratively. This is followed by a fitting of a polynomial function against the estimated background for smoothing purpose. The current key specifies the number of iterations to be performed for `EnggEstimateFocussedBackground`. Refer to the algorithm documentation [here](https://docs.mantidproject.org/nightly/algorithms/EnggEstimateFocussedBackground-v1.html) for more details.
+
+            > If a single number is provided as an integer, it will be applied to all the banks. Otherwise, if a list of integer numbers is provided, the length of the list should be equal to the number of banks.
+
+        - `XWindow`
+
+            Extent of the convolution window in the x-axis for all spectra. Refer to the algorithm documentation [here](https://docs.mantidproject.org/nightly/algorithms/EnggEstimateFocussedBackground-v1.html) for more details.
+
+            > If a single number is provided as an integer, it will be applied to all the banks. Otherwise, if a list of integer numbers is provided, the length of the list should be equal to the number of banks.
+
+        - `ApplyFilterSG`
+
+            Apply a Savitzky–Golay filter with a linear polynomial over the same XWindow before the iterative smoothing procedure (recommended for noisy data).
+
+        - `PolyDegree`
+
+            The degree of the polynomial to fit the estimated background from `EnggEstimateFocussedBackground`.
+
+            > The parameter will apply to each of the processing cycles (see the `Cycles` key below). If a single value is given (as an integer), it will be applied to all cycles. Otherwise, the length of the list provided here should not be smaller than the number of cycles for any of the banks.
+
+        - `QMin`
+
+            The lower limit in $Q$-space for each bank of data to be considered. The available data range in $Q$-space for each bank is usually different and beyond the available range, the data could be very noisy or showing strong spikes, which would prevent the background estimation from working properly. Here we can specify the range of data to be considered to suppress the problem.
+
+            > The length of the list provided here should be equal to the number of banks.
+
+        - `QMax`
+
+            The upper limit in $Q$-space for each bank of data to be considered. See the details above for the `QMin` key.
+
+            > The length of the list provided here should be equal to the number of banks.
+
+        - `Cycles`
+
+            Sometimes, the background estimation plus the polynomial fitting and the background removal process may need to be repeated multiple times before the background can be removed cleanly. This parameter controls the number of such cycles.
+
+            > If a single number is provided as an integer, it will be applied to all the banks. Otherwise, if a list of integer numbers is provided, the length of the list should be equal to the number of banks, in which case different number of cycles will be applied to different banks of data. As pointed above in the `PolyDegree`, the length of the list provided with `PolyDegree` should not be smaller than the number of cycles for any of the banks.
 
 - `mantidl`
 

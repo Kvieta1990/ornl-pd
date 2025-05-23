@@ -41,20 +41,20 @@ General Tools
 
     - [Optional] `-w`, followed by an integer number. If the `DebugMode` is set to `true` in `MTS` (see the instructions [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html)), This option can be used to specify the index of the workspace to extract. If not sure about the index, just leave out this option and the program will print out the available options and prompt for the input of the index.
 
-    - [Optional] `-b`, followed by an input JSON file, specifying the input data file (in the NeXus format) and configurations for the hydrogen background removal. Here follows is an example of the input JSON file,
+    - [Optional] `-b`, followed by an input JSON file, the details of which will be presented below. Here follows is an example of the input JSON file,
 
-    ```json
-    {
-        "InputFile": "/SNS/users/y8z/Temp/hydro_bkg_proc/NOM_BaO_HEO.nxs",
-        "NIterations": [2000, 2000, 2000, 2000, 2000, 2000],
-        "XWindow": [0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
-        "ApplyFilterSG": false,
-        "PolyDegree": [7, 5, 5],
-        "QMin": [0.57, 0.93, 1.73, 3.12, 3.95, 0.6],
-        "QMax": [14.0, 25.0, 40.0, 40.0, 40.0, 6.0],
-        "Cycles": 3
-    }
-    ```
+        ```json
+        {
+            "InputFile": "/SNS/users/y8z/Temp/hydro_bkg_proc/NOM_BaO_HEO.nxs",
+            "NIterations": [2000, 2000, 2000, 2000, 2000, 2000],
+            "XWindow": [0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+            "ApplyFilterSG": false,
+            "PolyDegree": [7, 5, 5],
+            "QMin": [0.57, 0.93, 1.73, 3.12, 3.95, 0.6],
+            "QMax": [14.0, 25.0, 40.0, 40.0, 40.0, 6.0],
+            "Cycles": 3
+        }
+        ```
 
         - `InputFile`
         
