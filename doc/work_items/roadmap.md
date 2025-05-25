@@ -14,7 +14,7 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} Work in Progress
 :class: attention
 
-- User definition of sample and container geometry for absorption correction.
+- Geometry and beam size definition for `abs_pre_calc` routine.
 
 - Texture correction for total scattering.
 
@@ -26,15 +26,11 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} New Features & Bug Fixes
 :class: tip
 
-- SNS and HFIR instruments monitor mobile apps are available. See the link [here](https://powder.ornl.gov/collections/mobile_apps.html), thanks to the nice work by [Dr. Jie Xing (ORNL)](https://www.ornl.gov/staff-profile/jie-xing).
+- User definition of sample and container geometry for absorption correction.
 
-- For the tools relevant to powder Bragg diffraction or PDF simulation, sometimes the underlying engine (`GSAS-II` for powder Bragg diffraction and `diffpy-CMI` for PDF) would fail to process the uploaded CIF files, due to the flexible nature of the CIF file formatting. We now incorporate `VESTA` as the backend engine to take the uploaded CIF file and export a `VESTA` version of the CIF file, followed by whatever process that users request. With this, we can deal with however formatted CIFs that are compatible with `VESTA`.
+- A chunk-by-chunk Fourier filter routine `pystog_ck` made available to general users on Analysis cluster. This is based on the work by [Prof. Eric O’Quinn](https://ne.utk.edu/people/eric-oquinn/) and [Dr. Joerg C Neuefeind](https://www.ornl.gov/staff-profile/joerg-c-neuefeind). Detailed instructions can be found [here](https://powder.ornl.gov/data_tools/general.html).
 
-- Data streaming and caching from live reduction to auto reduction for performance boosting.
-
-    > Process data on live streaming, caching to save processing time at the autoreduction stage when data is ready.
-
-- Consistent way of producing total scattering data on NOMAD and POWGEN, using the [`mantidtotalscattering`](https://github.com/neutrons/mantid_total_scattering) framework.
+- A hydrogen background removal routine is available on Analysis through `mts_data`. This is a wrapper routine for [EnggEstimateFocussedBackground](https://docs.mantidproject.org/nightly/algorithms/EnggEstimateFocussedBackground-v1.html) which estimates the background via a cycling process of applying the top-hat convolution and [CalculatePolynomialBackground](https://docs.mantidproject.org/nightly/algorithms/CalculatePolynomialBackground-v1.html) which fits a polynomial function to the estimated background for the purpose of smoothing. Detailed instructions can be found [here](https://powder.ornl.gov/data_tools/general.html).
 ``````
 
 ``````{admonition} Planned Items
@@ -101,6 +97,20 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````
 
 # Archive
+
+## May-2025
+
+- SNS and HFIR instruments monitor mobile apps are available. See the link [here](https://powder.ornl.gov/collections/mobile_apps.html), thanks to the nice work by [Dr. Jie Xing (ORNL)](https://www.ornl.gov/staff-profile/jie-xing).
+
+- For the tools relevant to powder Bragg diffraction or PDF simulation, sometimes the underlying engine (`GSAS-II` for powder Bragg diffraction and `diffpy-CMI` for PDF) would fail to process the uploaded CIF files, due to the flexible nature of the CIF file formatting. We now incorporate `VESTA` as the backend engine to take the uploaded CIF file and export a `VESTA` version of the CIF file, followed by whatever process that users request. With this, we can deal with however formatted CIFs that are compatible with `VESTA`.
+
+## Apr-2025
+
+- Data streaming and caching from live reduction to auto reduction for performance boosting.
+
+    > Process data on live streaming, caching to save processing time at the autoreduction stage when data is ready.
+
+- Consistent way of producing total scattering data on NOMAD and POWGEN, using the [`mantidtotalscattering`](https://github.com/neutrons/mantid_total_scattering) framework.
 
 ## Mar-2025
 
