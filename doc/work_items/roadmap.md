@@ -35,7 +35,13 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 
 ``````{admonition} Planned Items
 
-- Data visualization on ADDIE web platform.
+- Add in NESL sample environment support in `MTS`.
+
+- Data visualization on NOVA for powder diffraction.
+
+- Fix the Bragg peak shape name output for the RMCProfile implementation in GSAS-II.
+
+- Configuration of live and auto reduction on NOVA.
 
 - Visualization of incommensurate magnetic structure on ADDIE web platform.
 
@@ -61,7 +67,7 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} Backlog -- Items on the radar but not planned yet 
 :class: note
 
-- Use different Q range for Fourier transform into different range of PDF.
+- 
 
 - Workshop for Mantid training among the instrument team.
 
@@ -94,6 +100,20 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
     - Instrument control through API on command line.
 
     - PV monitoring.
+
+- Updates for the HFIR estimator tool on ADDIE
+
+    - Need to convert the origin choice 1 to origin choice 2 automatically to avoid the GSAS-II complaint on origin choice.
+
+    - Need to generate a list of atoms from the uploaded CIF to a list of atom types with check box in front and update the web interface dynamically. Users can then check those magnetic species in the list. On our side, we need to grab the multiplicity of the selected sites and populate the corresponding input for the estimator.
+
+- Add the link to the PowderDoc website on instrument landing page
+
+- Update NOMAD & POWGEN data reduction demo links to point to the PowderDoc website pages
+
+- Use the MongoDB vector search capability to implement some useful tools to mine the ONCAT database.
+
+- RMCProfile version 7 support in GSAS-II.
 ``````
 
 # Archive

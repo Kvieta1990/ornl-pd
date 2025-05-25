@@ -556,7 +556,10 @@ document.write(`
 <div class="admonition-planned-items admonition">
 <p class="admonition-title">Planned Items</p>
 <ul class="simple">
-<li><p>Data visualization on ADDIE web platform.</p></li>
+<li><p>Add in NESL sample environment support in <code class="docutils literal notranslate"><span class="pre">MTS</span></code>.</p></li>
+<li><p>Data visualization on NOVA for powder diffraction.</p></li>
+<li><p>Fix the Bragg peak shape name output for the RMCProfile implementation in GSAS-II.</p></li>
+<li><p>Configuration of live and auto reduction on NOVA.</p></li>
 <li><p>Visualization of incommensurate magnetic structure on ADDIE web platform.</p></li>
 <li><p>Control over live reduction from monitor web interface.</p></li>
 <li><p>Convenient workflow for autoreduction configuration for NOMAD.</p></li>
@@ -581,7 +584,7 @@ document.write(`
 <div class="note admonition">
 <p class="admonition-title">Backlog – Items on the radar but not planned yet</p>
 <ul class="simple">
-<li><p>Use different Q range for Fourier transform into different range of PDF.</p></li>
+<li></li>
 <li><p>Workshop for Mantid training among the instrument team.</p></li>
 <li><p>Make livereduction and autoreduction consistent for POWGEN.</p></li>
 <li><p>Web page for Mantid funky commands and usage, serving as a collection of tips for Mantid usage among the team.</p></li>
@@ -607,6 +610,16 @@ document.write(`
 <li><p>PV monitoring.</p></li>
 </ul>
 </li>
+<li><p>Updates for the HFIR estimator tool on ADDIE</p>
+<ul>
+<li><p>Need to convert the origin choice 1 to origin choice 2 automatically to avoid the GSAS-II complaint on origin choice.</p></li>
+<li><p>Need to generate a list of atoms from the uploaded CIF to a list of atom types with check box in front and update the web interface dynamically. Users can then check those magnetic species in the list. On our side, we need to grab the multiplicity of the selected sites and populate the corresponding input for the estimator.</p></li>
+</ul>
+</li>
+<li><p>Add the link to the PowderDoc website on instrument landing page</p></li>
+<li><p>Update NOMAD &amp; POWGEN data reduction demo links to point to the PowderDoc website pages</p></li>
+<li><p>Use the MongoDB vector search capability to implement some useful tools to mine the ONCAT database.</p></li>
+<li><p>RMCProfile version 7 support in GSAS-II.</p></li>
 </ul>
 </div>
 </section>
