@@ -14,13 +14,13 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} Work in Progress
 :class: attention
 
+- Automatic calibration job running on Analysis.
+
 - Geometry and beam size definition for `abs_pre_calc` routine.
 
 - Texture correction for total scattering.
 
     > Use spherical harmonics to correct for the texture effect. This involves the correction over both the azimuthal and the polar angle. The polar angle bit is tricky as resolution effect is entangled with the potential texture effect.
-
-- Proper normalization of HB-2A data by applying proper corrections to the vanadium measurement.
 ``````
 
 ``````{admonition} New Features & Bug Fixes
@@ -67,7 +67,7 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} Backlog -- Items on the radar but not planned yet 
 :class: note
 
-- 
+- Proper normalization of HB-2A data by applying proper corrections to the vanadium measurement.
 
 - Workshop for Mantid training among the instrument team.
 
