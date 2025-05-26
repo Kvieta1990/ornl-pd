@@ -1,7 +1,8 @@
 HB-2C (WAND^2)
 ===
 
-- `all_wpd`
+(all_wpd)=
+- {ref}`all_wpd<all_wpd>`
 
     This will run the same autoreduction as on Monitor ([monitor.sns.gov](https://monitor.sns.gov)). It runs locally and multiple run numbers can be processed in a batch manner. The program runs as follows,
 
@@ -11,7 +12,8 @@ HB-2C (WAND^2)
 
     e.g., `all_wpd 22745 '531817, 531819-531820'`
 
-- `confirm-hb2c`
+(confirm-hb2c)=
+- {ref}`confirm-hb2c<confirm-hb2c>`
 
     Routine for confirming the data availability for HB-2C experiments. It can run with either of the ways below,
 

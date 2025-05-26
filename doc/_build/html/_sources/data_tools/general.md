@@ -1,7 +1,8 @@
 General Tools
 ===
 
-- `abs_pre_calc`
+(abs_pre_calc)=
+- {ref}`abs_pre_calc<abs_pre_calc>`
 
     Routine for the pre-calculation of absorption correction and autoreduction configuration for `NOMAD` and `POWGEN`. For the evaluation of the absorption, once the sample information is ready, it can already be done even before the experiment data are ready. So, the idea here is to use this routine to collect the sample information (via talking to the `ITEMS` database where the sample information will be stored), perform the absorption calculation and cache the result for later reduction use. In the documentation page for `NOMAD` autoreduction, detailed introduction and instructions for the routine are available -- see [here](https://powder.ornl.gov/auto_reduce/nomad_auto.html). Regarding the autoreduction setup, we also need to populate the characterization runs information to specify those characterization runs to be used for the reduction, including the empty container run(s), empty instrument run(s), vanadium run(s) and the calibration diamond run. With the current routine, one can do (on Analysis cluster, from the command line),
 
@@ -29,11 +30,13 @@ General Tools
 
     Once the absorption calculation and caching is finished, the program will prompt users with the question whether to bring up the central characterization file for editing. If yes, the characterization file will be brought up and one can fill in the characterization runs as needed.
 
-- `mts`
+(mts)=
+- {ref}`mts<mts>`
 
     The local version of `MantidTotalScattering` (MTS) on Analysis. This local version is using the local conda environment under the name of [Dr. Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang) on Analysis cluster.
 
-- `mts_data`
+(mts_data)=
+- {ref}`mts_data<mts_data>`
 
     Routine for extracting data from the reduced $S(Q)$ data from the MTS running. Also, it has the functionality of removing the hydrogen background automatically.
 
@@ -100,11 +103,13 @@ General Tools
 
             > If a single number is provided as an integer, it will be applied to all the banks. Otherwise, if a list of integer numbers is provided, the length of the list should be equal to the number of banks, in which case different number of cycles will be applied to different banks of data. As pointed above in the `PolyDegree`, the length of the list provided with `PolyDegree` should not be smaller than the number of cycles for any of the banks.
 
-- `mantidl`
+(mantidl)=
+- {ref}`mantidl<mantidl>`
 
     Run a local version of Mantid Workbench on Analysis. This local version is using the local conda environment under the name of [Dr. Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang) on Analysis cluster.
 
-- `pystog_cli`
+(pystog_cli)=
+- {ref}`pystog_cli<pystog_cli>`
 
     Run a local version of `pystog_cli` on Analysis. This local version is using the local conda environment under the name of [Dr. Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang) on Analysis cluster. Refer to the following links for further information about `pystog`,
 
@@ -126,7 +131,8 @@ General Tools
     With `pystog_cli`, one can specify a scale factor for the data rescaling purpose. It should be noticed the difference from the `stog_new` program in the `RMCProfile` package which also has the same parameter. However, in `stog_new`, the scale factor is applied through division, meaning the new data will be `new = old / scale`, whereas with `pystog_cli`, the scale factor is applied via muiltiplication, i.e., `new = old * scale`
     ``````
 
-- `pystog_ck`
+(pystog_ck)=
+- {ref}`pystog_ck<pystog_ck>`
 
     The routine for processing the total scattering data Fourier transform in a chunk-by-chunk manner. The idea is that the main region in $Q$-space contributing to different regions in $r$-space varies. For example, the main contribution to the high-$r$ part (e.g., $> 50\ Å$) of the signal in real-space would be coming from the very low-$Q$ region in the reciprocal space. Therefore, while Fourier transforming from the $Q$-space to $r$-space, one may choose to use just very low-$Q$ region (e.g., $< 7.0 Å^{-1}$) of the $Q$-space data. For sure, using such a narrow $Q$-space data for the Fourier transform will lead to a significant broadening of the features in the real-space. However, since the features in the very high-$r$ region is very broad anyhow due to the asymptotically losing of correlations at large distances, the broadeing effect as the result of limited $Q$-range being used for the Fourier transform should not seriously matter. The benefit of doing so is obvious -- the high frequency component in the high-$Q$ region of the $Q$-space data are all filtered out while performing the inverse Fourier transform for the obtained high-$r$ part of the real-space data back into the reciprocal-space. Follow the same logic, one can choose a slightly larger $Q$ range (e.g., $< 18 Å^{-1}$) corresponding to a slightly lower range of the real-space signal (e.g., $6-50 Å$), and so on. Here down below is the formula summarizing the routine,
 

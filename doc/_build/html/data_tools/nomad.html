@@ -54,7 +54,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-TFL7TZY8LR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -258,6 +258,7 @@
 <li class="toctree-l1"><a class="reference internal" href="hb2a.html">HB-2A (POWDER)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hb2c.html">HB-2C (WAND^2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="general.html">General Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">System Services</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul class="nav bd-sidenav">
@@ -495,8 +496,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="nomad">
 <h1>NOMAD<a class="headerlink" href="#nomad" title="Link to this heading">#</a></h1>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">nom_cal</span></code></p>
+<ul id="nom-cal">
+<li><p><a class="reference internal" href="#nom-cal"><span class="std std-ref">nom_cal</span></a></p>
 <blockquote>
 <div><p>The calibration has been incorporated into the NOMAD autoreduction workflow so any time a suitable diamond calibration run is available, the calibration routine will be kicked off automatically. In case of problems, one then log in Analysis cluster and use the current routine for running the calibration manually – normally, even the calibration running at the autoreduction stage encounters issues, still the input json file can be generated automatically so in most cases, one does not need to worry about manually populating the input json file here.</p>
 </div></blockquote>
@@ -575,14 +576,18 @@ document.write(`
 </li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nom_cal_local</span></code></p>
+</ul>
+<ul id="nom-cal-local">
+<li><p><a class="reference internal" href="#nom-cal-local"><span class="std std-ref">nom_cal_local</span></a></p>
 <p>This is a local version of the <code class="docutils literal notranslate"><span class="pre">nom_cal</span></code> (which is systemwise available), stored in the following directory,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">SNS</span><span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">y8z</span><span class="o">/</span><span class="n">NOM_Shared</span><span class="o">/</span><span class="n">CALIBRATION</span>
 </pre></div>
 </div>
 <p>To run this routine, one has to <code class="docutils literal notranslate"><span class="pre">cd</span></code> into the directory and run <code class="docutils literal notranslate"><span class="pre">./nom_cal_local</span></code>, or one can just give the full path to the routine. This routine does take an argument to specify the input json file which follows exactly the same form as presented for <code class="docutils literal notranslate"><span class="pre">nom_cal</span></code> above.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">all_nom</span></code></p>
+</ul>
+<ul id="all-nom">
+<li><p><a class="reference internal" href="#all-nom"><span class="std std-ref">all_nom</span></a></p>
 <blockquote>
 <div><p>The script here is running the reduction script located at <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/reduce_NOM_man.py</span></code>.</p>
 </div></blockquote>
@@ -592,7 +597,9 @@ document.write(`
 </div>
 <p>e.g., <code class="docutils literal notranslate"><span class="pre">all_nom</span> <span class="pre">29792</span> <span class="pre">'193462,</span> <span class="pre">193474-193484'</span></code></p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">confirm-nom</span></code></p>
+</ul>
+<ul id="confirm-nom">
+<li><p><a class="reference internal" href="#confirm-nom"><span class="std std-ref">confirm-nom</span></a></p>
 <p>Routine for confirming the data availability for NOMAD experiments. It can run with either of the ways below,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">confirm</span><span class="o">-</span><span class="n">nom</span>
 <span class="n">confirm</span><span class="o">-</span><span class="n">nom</span> <span class="o">&lt;</span><span class="n">IPTS</span><span class="o">&gt;</span>
@@ -601,7 +608,9 @@ document.write(`
 </div>
 <p>With the first way, the program will ask for a few user inputs while running. With the second way, it will run directly, taking the <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;</span></code> number and assume the submission number of <code class="docutils literal notranslate"><span class="pre">1</span></code>. With the third way, one can also specify the submission number of an <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;</span></code> – for some experiments, there may be some continuation runs and each run has a certain submission number, <code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">...</span></code>.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">addie_nom</span></code></p>
+</ul>
+<ul id="addie-nom">
+<li><p><a class="reference internal" href="#addie-nom"><span class="std std-ref">addie_nom</span></a></p>
 <p>Run a local version of <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code> for data reduction and post-processing. This local version is using the local conda environment under the name of <a class="reference external" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Dr. Yuanpeng Zhang</a> on Analysis cluster.</p>
 </li>
 </ul>

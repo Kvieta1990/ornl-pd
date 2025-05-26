@@ -60,6 +60,7 @@ parts:
   - file: data_tools/hb2a
   - file: data_tools/hb2c
   - file: data_tools/general
+  - file: data_tools/services
 - caption: More
   chapters:
   - file: uptime

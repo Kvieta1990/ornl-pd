@@ -1,7 +1,8 @@
 POWGEN
 ===
 
-- `pg3_cal`
+(pg3_cal)=
+- {ref}`pg3_cal<pg3_cal>`
 
     > The calibration has been incorporated into the POWGEN autoreduction workflow so any time a suitable diamond calibration run is available, the calibration routine will be kicked off automatically. In case of problems, one then log in Analysis cluster and use the current routine for running the calibration manually -- normally, even the calibration running at the autoreduction stage encounters issues, still the input json file can be generated automatically so in most cases, one does not need to worry about manually populating the input json file here.
 
@@ -76,7 +77,8 @@ POWGEN
 
         The manual mask file to be merged into the the mask generated during the calibration process.
 
-- `all_pg3`
+(all_pg3)=
+- {ref}`all_pg3<all_pg3>`
 
     > The script here is running the reduction script located at `/SNS/PG3/shared/autoreduce/reduce_PG3_man.py`.
 
@@ -100,6 +102,7 @@ POWGEN
 
     With the first way, the program will ask for a few user inputs while running. With the second way, it will run directly, taking the `<IPTS>` number and assume the submission number of `1`. With the third way, one can also specify the submission number of an `<IPTS>` -- for some experiments, there may be some continuation runs and each run has a certain submission number, `1, 2, 3, ...`.
 
-- `pg3_larc`
+(pg3_larc)=
+- {ref}`pg3_larc<pg3_larc>`
 
     A handy routine to check the POWGEN auto reduction and live reduction setup to see whether we have some obvious errors. This is just for quickly checking whether necessary files are existing and are connected properly but `NOT` for checking whether the actual configuration inside the file does make sense or not.

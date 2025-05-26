@@ -54,7 +54,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-TFL7TZY8LR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -80,7 +80,7 @@
     <link rel="icon" href="../_static/powder_fav.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Services Monitor" href="../uptime.html" />
+    <link rel="next" title="System Services" href="services.html" />
     <link rel="prev" title="HB-2C (WAND^2)" href="hb2c.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -260,6 +260,7 @@
 <li class="toctree-l1"><a class="reference internal" href="hb2a.html">HB-2A (POWDER)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hb2c.html">HB-2C (WAND^2)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">General Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">System Services</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul class="nav bd-sidenav">
@@ -497,8 +498,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="general-tools">
 <h1>General Tools<a class="headerlink" href="#general-tools" title="Link to this heading">#</a></h1>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code></p>
+<ul id="abs-pre-calc">
+<li><p><a class="reference internal" href="#abs-pre-calc"><span class="std std-ref">abs_pre_calc</span></a></p>
 <p>Routine for the pre-calculation of absorption correction and autoreduction configuration for <code class="docutils literal notranslate"><span class="pre">NOMAD</span></code> and <code class="docutils literal notranslate"><span class="pre">POWGEN</span></code>. For the evaluation of the absorption, once the sample information is ready, it can already be done even before the experiment data are ready. So, the idea here is to use this routine to collect the sample information (via talking to the <code class="docutils literal notranslate"><span class="pre">ITEMS</span></code> database where the sample information will be stored), perform the absorption calculation and cache the result for later reduction use. In the documentation page for <code class="docutils literal notranslate"><span class="pre">NOMAD</span></code> autoreduction, detailed introduction and instructions for the routine are available – see <a class="reference external" href="https://powder.ornl.gov/auto_reduce/nomad_auto.html">here</a>. Regarding the autoreduction setup, we also need to populate the characterization runs information to specify those characterization runs to be used for the reduction, including the empty container run(s), empty instrument run(s), vanadium run(s) and the calibration diamond run. With the current routine, one can do (on Analysis cluster, from the command line),</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>abs_pre_calc<span class="w"> </span>-c
 </pre></div>
@@ -517,10 +518,14 @@ document.write(`
 </div>
 <p>Once the absorption calculation and caching is finished, the program will prompt users with the question whether to bring up the central characterization file for editing. If yes, the characterization file will be brought up and one can fill in the characterization runs as needed.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mts</span></code></p>
+</ul>
+<ul id="mts">
+<li><p><a class="reference internal" href="#mts"><span class="std std-ref">mts</span></a></p>
 <p>The local version of <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> (MTS) on Analysis. This local version is using the local conda environment under the name of <a class="reference external" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Dr. Yuanpeng Zhang</a> on Analysis cluster.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mts_data</span></code></p>
+</ul>
+<ul id="mts-data">
+<li><p><a class="reference internal" href="#mts-data"><span class="std std-ref">mts_data</span></a></p>
 <p>Routine for extracting data from the reduced <span class="math notranslate nohighlight">\(S(Q)\)</span> data from the MTS running. Also, it has the functionality of removing the hydrogen background automatically.</p>
 <ul>
 <li><p>[Optional] <code class="docutils literal notranslate"><span class="pre">-d</span></code>, followed by a file name to specify the input data file to process, in the NeXus format.</p></li>
@@ -585,10 +590,14 @@ document.write(`
 </li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mantidl</span></code></p>
+</ul>
+<ul id="mantidl">
+<li><p><a class="reference internal" href="#mantidl"><span class="std std-ref">mantidl</span></a></p>
 <p>Run a local version of Mantid Workbench on Analysis. This local version is using the local conda environment under the name of <a class="reference external" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Dr. Yuanpeng Zhang</a> on Analysis cluster.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pystog_cli</span></code></p>
+</ul>
+<ul id="pystog-cli">
+<li><p><a class="reference internal" href="#pystog-cli"><span class="std std-ref">pystog_cli</span></a></p>
 <p>Run a local version of <code class="docutils literal notranslate"><span class="pre">pystog_cli</span></code> on Analysis. This local version is using the local conda environment under the name of <a class="reference external" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Dr. Yuanpeng Zhang</a> on Analysis cluster. Refer to the following links for further information about <code class="docutils literal notranslate"><span class="pre">pystog</span></code>,</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/neutrons/pystog?tab=readme-ov-file">The source code hosted on GitHub</a></p></li>
@@ -605,7 +614,9 @@ document.write(`
 <p>With <code class="docutils literal notranslate"><span class="pre">pystog_cli</span></code>, one can specify a scale factor for the data rescaling purpose. It should be noticed the difference from the <code class="docutils literal notranslate"><span class="pre">stog_new</span></code> program in the <code class="docutils literal notranslate"><span class="pre">RMCProfile</span></code> package which also has the same parameter. However, in <code class="docutils literal notranslate"><span class="pre">stog_new</span></code>, the scale factor is applied through division, meaning the new data will be <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">=</span> <span class="pre">old</span> <span class="pre">/</span> <span class="pre">scale</span></code>, whereas with <code class="docutils literal notranslate"><span class="pre">pystog_cli</span></code>, the scale factor is applied via muiltiplication, i.e., <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">=</span> <span class="pre">old</span> <span class="pre">*</span> <span class="pre">scale</span></code></p>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pystog_ck</span></code></p>
+</ul>
+<ul id="pystog-ck">
+<li><p><a class="reference internal" href="#pystog-ck"><span class="std std-ref">pystog_ck</span></a></p>
 <p>The routine for processing the total scattering data Fourier transform in a chunk-by-chunk manner. The idea is that the main region in <span class="math notranslate nohighlight">\(Q\)</span>-space contributing to different regions in <span class="math notranslate nohighlight">\(r\)</span>-space varies. For example, the main contribution to the high-<span class="math notranslate nohighlight">\(r\)</span> part (e.g., <span class="math notranslate nohighlight">\(&gt; 50\ Å\)</span>) of the signal in real-space would be coming from the very low-<span class="math notranslate nohighlight">\(Q\)</span> region in the reciprocal space. Therefore, while Fourier transforming from the <span class="math notranslate nohighlight">\(Q\)</span>-space to <span class="math notranslate nohighlight">\(r\)</span>-space, one may choose to use just very low-<span class="math notranslate nohighlight">\(Q\)</span> region (e.g., <span class="math notranslate nohighlight">\(&lt; 7.0 Å^{-1}\)</span>) of the <span class="math notranslate nohighlight">\(Q\)</span>-space data. For sure, using such a narrow <span class="math notranslate nohighlight">\(Q\)</span>-space data for the Fourier transform will lead to a significant broadening of the features in the real-space. However, since the features in the very high-<span class="math notranslate nohighlight">\(r\)</span> region is very broad anyhow due to the asymptotically losing of correlations at large distances, the broadeing effect as the result of limited <span class="math notranslate nohighlight">\(Q\)</span>-range being used for the Fourier transform should not seriously matter. The benefit of doing so is obvious – the high frequency component in the high-<span class="math notranslate nohighlight">\(Q\)</span> region of the <span class="math notranslate nohighlight">\(Q\)</span>-space data are all filtered out while performing the inverse Fourier transform for the obtained high-<span class="math notranslate nohighlight">\(r\)</span> part of the real-space data back into the reciprocal-space. Follow the same logic, one can choose a slightly larger <span class="math notranslate nohighlight">\(Q\)</span> range (e.g., <span class="math notranslate nohighlight">\(&lt; 18 Å^{-1}\)</span>) corresponding to a slightly lower range of the real-space signal (e.g., <span class="math notranslate nohighlight">\(6-50 Å\)</span>), and so on. Here down below is the formula summarizing the routine,</p>
 <div class="math notranslate nohighlight">
 \[S_{ff}(Q) = \sum_i InvFT_{r_i^l}^{r_i^u}\Bigg\{WF_i^r \times \bigg[ FT_{Q_i^l}^{Q_i^u}\Big[WF_i^Q \times S(Q))\Big] \bigg]\Bigg\}
@@ -917,11 +928,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../uptime.html"
+       href="services.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Services Monitor</p>
+        <p class="prev-next-title">System Services</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

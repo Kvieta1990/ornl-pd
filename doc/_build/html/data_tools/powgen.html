@@ -54,7 +54,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-TFL7TZY8LR"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -258,6 +258,7 @@
 <li class="toctree-l1"><a class="reference internal" href="hb2a.html">HB-2A (POWDER)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hb2c.html">HB-2C (WAND^2)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="general.html">General Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">System Services</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul class="nav bd-sidenav">
@@ -495,8 +496,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="powgen">
 <h1>POWGEN<a class="headerlink" href="#powgen" title="Link to this heading">#</a></h1>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">pg3_cal</span></code></p>
+<ul id="pg3-cal">
+<li><p><a class="reference internal" href="#pg3-cal"><span class="std std-ref">pg3_cal</span></a></p>
 <blockquote>
 <div><p>The calibration has been incorporated into the POWGEN autoreduction workflow so any time a suitable diamond calibration run is available, the calibration routine will be kicked off automatically. In case of problems, one then log in Analysis cluster and use the current routine for running the calibration manually – normally, even the calibration running at the autoreduction stage encounters issues, still the input json file can be generated automatically so in most cases, one does not need to worry about manually populating the input json file here.</p>
 </div></blockquote>
@@ -560,7 +561,9 @@ document.write(`
 </li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">all_pg3</span></code></p>
+</ul>
+<ul id="all-pg3">
+<li><p><a class="reference internal" href="#all-pg3"><span class="std std-ref">all_pg3</span></a></p>
 <blockquote>
 <div><p>The script here is running the reduction script located at <code class="docutils literal notranslate"><span class="pre">/SNS/PG3/shared/autoreduce/reduce_PG3_man.py</span></code>.</p>
 </div></blockquote>
@@ -579,7 +582,9 @@ document.write(`
 </div>
 <p>With the first way, the program will ask for a few user inputs while running. With the second way, it will run directly, taking the <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;</span></code> number and assume the submission number of <code class="docutils literal notranslate"><span class="pre">1</span></code>. With the third way, one can also specify the submission number of an <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;</span></code> – for some experiments, there may be some continuation runs and each run has a certain submission number, <code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">...</span></code>.</p>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pg3_larc</span></code></p>
+</ul>
+<ul id="pg3-larc">
+<li><p><a class="reference internal" href="#pg3-larc"><span class="std std-ref">pg3_larc</span></a></p>
 <p>A handy routine to check the POWGEN auto reduction and live reduction setup to see whether we have some obvious errors. This is just for quickly checking whether necessary files are existing and are connected properly but <code class="docutils literal notranslate"><span class="pre">NOT</span></code> for checking whether the actual configuration inside the file does make sense or not.</p>
 </li>
 </ul>

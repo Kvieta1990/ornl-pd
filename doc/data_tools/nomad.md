@@ -1,7 +1,8 @@
 NOMAD
 ===
 
-- `nom_cal`
+(nom_cal)=
+- {ref}`nom_cal<nom_cal>`
 
     > The calibration has been incorporated into the NOMAD autoreduction workflow so any time a suitable diamond calibration run is available, the calibration routine will be kicked off automatically. In case of problems, one then log in Analysis cluster and use the current routine for running the calibration manually -- normally, even the calibration running at the autoreduction stage encounters issues, still the input json file can be generated automatically so in most cases, one does not need to worry about manually populating the input json file here.
 
@@ -100,7 +101,8 @@ NOMAD
 
         Usually, we don't need to touch this.
 
-- `nom_cal_local`
+(nom_cal_local)=
+- {ref}`nom_cal_local<nom_cal_local>`
 
     This is a local version of the `nom_cal` (which is systemwise available), stored in the following directory,
 
@@ -110,7 +112,8 @@ NOMAD
 
     To run this routine, one has to `cd` into the directory and run `./nom_cal_local`, or one can just give the full path to the routine. This routine does take an argument to specify the input json file which follows exactly the same form as presented for `nom_cal` above.
 
-- `all_nom`
+(all_nom)=
+- {ref}`all_nom<all_nom>`
 
     > The script here is running the reduction script located at `/SNS/NOM/shared/autoreduce/reduce_NOM_man.py`.
 
@@ -122,7 +125,8 @@ NOMAD
 
     e.g., `all_nom 29792 '193462, 193474-193484'`
 
-- `confirm-nom`
+(confirm-nom)=
+- {ref}`confirm-nom<confirm-nom>`
 
     Routine for confirming the data availability for NOMAD experiments. It can run with either of the ways below,
 
@@ -134,6 +138,7 @@ NOMAD
 
     With the first way, the program will ask for a few user inputs while running. With the second way, it will run directly, taking the `<IPTS>` number and assume the submission number of `1`. With the third way, one can also specify the submission number of an `<IPTS>` -- for some experiments, there may be some continuation runs and each run has a certain submission number, `1, 2, 3, ...`.
 
-- `addie_nom`
+(addie_nom)=
+- {ref}`addie_nom<addie_nom>`
 
     Run a local version of `ADDIE` for data reduction and post-processing. This local version is using the local conda environment under the name of [Dr. Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang) on Analysis cluster.

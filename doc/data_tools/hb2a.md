@@ -1,7 +1,8 @@
 HB-2A (POWDER)
 ===
 
-- `confirm-hb2a`
+(confirm-hb2a)=
+- {ref}`confirm-hb2a<confirm-hb2a>`
 
     Routine for confirming the data availability for HB-2A experiments. It can run with either of the ways below,
 
