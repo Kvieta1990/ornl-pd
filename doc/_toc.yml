@@ -17,6 +17,9 @@ parts:
   - file: general_aspects/catalogue/toc
     sections:
     - file: general_aspects/catalogue/oncat
+  - file: general_aspects/mantid/toc
+    sections:
+    - file: general_aspects/mantid/configuration
 - caption: Bragg Diffraction
   chapters:
   - file: bragg_diffraction/intro
