@@ -388,9 +388,19 @@ This refers to the `Normalization` key which takes care of the normalization mea
 
     Specification of parameters for align-and-focus of data for all the detectors. It is taking and `only` taking two `mandatory` keys,
 
-    - `TMin`, for minimal value of time-of-flight (TOF)
+    - `TMin` (mandatory), for minimal value of time-of-flight (TOF)
 
-    - `TMax`, for maximal value of TOF
+    - `TMax` (andatory), for maximal value of TOF
+
+    - `ResonanceFilterUnits` (optional), for the specification of the space where the resonance absorption filter will be performed. Acceptable values are those in Mantid unit factory -- see [here](https://docs.mantidproject.org/nightly/concepts/UnitFactory.html#unit-factory).
+
+    - `ResonanceFilterLowerLimits` (optional), a list of the lower limit for a series of window regarding the resonance absorption filter.
+
+    - `ResonanceFilterUpperLimits` (optional), a list of the upper limit for a series of window regarding the resonance absorption filter.
+
+    > Apparently, the `ResonanceFilterUnits`, `ResonanceFilterLowerLimits` and `ResonanceFilterUpperLimits` should be defined simultaneously for them to take effects.
+
+    > The length of the list specified in `ResonanceFilterLowerLimits` and `ResonanceFilterUpperLimits` should be equal to each other.
 
 - `SelfScatteringLevelCorrection`
 
