@@ -1,7 +1,9 @@
 Powder Diffraction at ORNL
 ===
 
-> Follow the updates and announcements at <a href="https://iris2020.net/updates" target="_blank">iris2020.net/updates</a>.
+> Check out our announcements for our software and services at <a href="https://iris2020.net/updates" target="_blank">iris2020.net/updates</a>.
+
+> Check out our software features release timeline at <a href="https://powder-updates.com" target="_blank">powder-updates.com</a>.
 
 > Check out our software development roadmap <a href="./work_items/roadmap.html" target="_blank">here</a>.
 
