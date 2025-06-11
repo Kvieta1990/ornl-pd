@@ -1078,7 +1078,15 @@ document.write(`
 <span class="w">    </span><span class="nt">&quot;QOffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;RCutoff&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;Lorch&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;FinalDIFC&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1428.818756011</span><span class="p">,</span><span class="w"> </span><span class="mf">2861.506614873</span><span class="p">,</span><span class="w"> </span><span class="mf">5606.556361966</span><span class="p">,</span><span class="w"> </span><span class="mf">9041.704899514</span><span class="p">,</span><span class="w"> </span><span class="mf">9910.536905573</span><span class="p">,</span><span class="w"> </span><span class="mf">836.206546490</span><span class="p">]</span>
+<span class="w">    </span><span class="nt">&quot;FinalDIFC&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1428.818756011</span><span class="p">,</span><span class="w"> </span><span class="mf">2861.506614873</span><span class="p">,</span><span class="w"> </span><span class="mf">5606.556361966</span><span class="p">,</span><span class="w"> </span><span class="mf">9041.704899514</span><span class="p">,</span><span class="w"> </span><span class="mf">9910.536905573</span><span class="p">,</span><span class="w"> </span><span class="mf">836.206546490</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;ContainerPeaks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;BkgScale&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ResonanceFilter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Units&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wavelength&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LowerLimits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.3</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;UpperLimits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;SkipRamping&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1167,6 +1175,44 @@ document.write(`
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ContainerPeaks</span></code></p>
 <p>With this flag, one can specify a list of peaks (in <code class="docutils literal notranslate"><span class="pre">d</span></code>-space) for the container in case there are Bragg peaks in the container signal that needs to be stripped off. The list should be given in a string and different peak positions should be separated with <code class="docutils literal notranslate"><span class="pre">comma</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BkgScale</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>Specify a scale factor to be multiplied onto the container background in case of over or under subtraction of the container signal.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResonanceFilter</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>A dictionary is expected to be provided with the key. Here are the expected entries of the dictionary,</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Units</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specify the space in which the resonance filter parameters will be applied. Acceptable values are those in Mantid unit factor – see <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/UnitFactory.html">here</a>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LowerLimits</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specify a list of lower limits of the window within which the neutron counts are to be excluded.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UpperLimits</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specify a list of upper limits of the window within which the neutron counts are to be excluded. The length of the <code class="docutils literal notranslate"><span class="pre">LowerLimits</span></code> and <code class="docutils literal notranslate"><span class="pre">UpperLimits</span></code> lists should be equal to each other.</p>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SkipRamping</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>For NOMAD autoreduction, this specifies whether or not to skip the ramping runs (temperature, etc.) regarding the data reduction. The default option is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 </li>
 </ul>
 </section>

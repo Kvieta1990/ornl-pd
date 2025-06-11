@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -72,6 +72,8 @@
                 gtag('config', 'G-TFL7TZY8LR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'auto_reduce/powgen_auto';</script>
     <script data-website-id="3fc28470-259d-4b4f-bf0c-d4635edb6515" src="https://umm.iris-home.net/script.js"></script>
     <link rel="canonical" href="https://powder.ornl.gov/auto_reduce/powgen_auto.html" />
@@ -558,7 +560,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -574,6 +578,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoreduction-configuration">AutoReduction Configuration</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -598,15 +610,12 @@ document.write(`
 </pre></div>
 </div>
 <p>Based on the information provided in the central configuration file <code class="docutils literal notranslate"><span class="pre">auto_config.json</span></code>, the autoreduction routine knows how to find those specific configuration files which contains the parameters to be used by the backend data reduction engine.</p>
-<p>Usually, all the files mentioned above need to be populated or modified by first logging into the analysis cluster, followed by editing those relevant files one-by-one using plain text editor. First, this is a tedious process. Second, it is very easy to make mistakes, which could then kill the whole autoreduction pipeline without anyone having a quick idea about what is happening. To make the whole process more transparent, easy to configure and error-proofing, we implemented a web-based interface in the <a href="https://addie.ornl.gov" target="_blank">ADDIE web platform</a>. The web interface intends to replace the tedious way of configuring the POWGEN autoreduction pipeline. Several key things to mention,</p>
+<p>Usually, all the files mentioned above need to be populated or modified by first logging into the analysis cluster, followed by editing those relevant files one-by-one using plain text editor. First, this is a tedious process. Second, it is very easy to make mistakes, which could then kill the whole autoreduction pipeline without anyone having a quick idea about what is happening. To make the whole process more transparent, easy to configure and error-proofing, we implemented a web-based interface in the <a href="https://addie.ornl.gov/pg3_auto" target="_blank">ADDIE web interface</a>. The web interface intends to replace the tedious way of configuring the POWGEN autoreduction pipeline. Several key things to mention,</p>
 <ol class="arabic simple">
 <li><p>To get access to the web interface concerning the POWGEN autoreduction configuration, one needs to hold a valid UCAMS/XCAMS account. Further, for the specific interfaces that will write files to the central POWGEN shared locations, only POWGEN team members can have the access.</p></li>
-<li><p>The configuration web interface is only for the configuration purpose but not is <code class="docutils literal notranslate"><span class="pre">NOT</span></code> intended to interfere with the running of the autoreduction routine. To do the interference with the autoreduction running, one needs to go to the monitor web service <a href="https://monitor.sns.gov/dasmon/pg3/" target="_blank">here</a>.</p></li>
+<li><p>The configuration web interface is only for the configuration purpose but is <code class="docutils literal notranslate"><span class="pre">NOT</span></code> intended to interfere with the running of the autoreduction routine. To do the interference with the autoreduction running, one needs to go to the monitor web service <a href="https://monitor.sns.gov/dasmon/pg3/" target="_blank">here</a>.</p></li>
 </ol>
-<p>The autoreduction configuration is implemented in such a way that a specific IPTS has its dedicated version of the configuration. In practice, if the IPTS specific version of the configuration cannot be found, the central configuration (those located in the POWGEN shared location as mentioned above) will be copied over to the IPTS specific location. Otherwise, the IPTS specific version will win over and general users are expected to make changes in IPTS specific locations for configuring the autoreduction for their experiments.</p>
-<blockquote>
-<div><p>Currently, the web interface for general users for configuring the autoreduction is under development and will be online soon.</p>
-</div></blockquote>
+<p>The autoreduction configuration is implemented in such a way that a specific IPTS has its dedicated version of the configuration. In practice, if the IPTS specific version of the configuration cannot be found, the central configuration (those located in the POWGEN shared location as mentioned above) will be copied over to the IPTS specific location. Otherwise, depending on the configuration in the central config file, either the central version or the IPTS specific version will win over. See the section below for more details.</p>
 <p>A demonstration video has been recorded to go through the how-tos of using the web interface for characterization and autoreduction configuration, as can be found below,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -627,6 +636,345 @@ document.write(`
         ></iframe>
         </div></div>
 </div>
+<section id="autoreduction-configuration">
+<h2>AutoReduction Configuration<a class="headerlink" href="#autoreduction-configuration" title="Link to this heading">#</a></h2>
+<p>Here follows is a template autoreduction configuration file in json format,</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Cycle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-1_11A_CAL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SampleEnvironment&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PAC&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;OverwriteUserJsonFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Y&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ConfigFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;PAC&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PAC_default.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;HTJANIS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTJANIS_default.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LTJANIS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LTJANIS_default.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;OC&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OC_default.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;MICAS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MICAS_default.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;MICAS-33420&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MICAS_33420.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;MICAS-32378&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MICAS_32378.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;AGES&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AGES_default.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;JANIS_GAS_noscale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JANIS_GAS_noscale.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;JANIS_GAS&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JANIS_GAS.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;MAG&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MAG_default.json&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;MAG-He3&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MAG_He3_default.json&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;Notes&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SNSPowderRedAbsCacheDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/SNS/PG3/shared/autoreduce/snspdr_abs_ms&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Comment-1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Entries below are for MantidTotalScattering&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ClientID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Secret&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TokenURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://snsapp1.sns.ornl.gov/xprod_ro/proposal_production/oauth/token&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;IPTSURL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://snsapp1.sns.ornl.gov/xprod_ro/proposal_production/sec_smpl/getSampleDetailsByIPTS/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ONCatID&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ONCatSecret&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CacheDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/SNS/PG3/shared/autoreduce/mts_abs_ms&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;EnvironmentName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;InAir&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;InstrumentGeometryRun&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PG3_56131&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;GroupingAllFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/SNS/PG3/shared/autoreduce/configs/pg3_group_all.xml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SampleElementSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ContainerElementSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;MergeRunsOptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ReGenerateGrouping&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;QMaxByBank&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TMinBragg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TMaxBragg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;266.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;TBinBragg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-0.0008&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ResampleX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-8000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;QParamsProcessing&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.5,0.0005,40.&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;OverrideUserConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;MTSFourierTransform&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;TMIN&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;TMAX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">270000.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;QMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;QMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">35.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RStep&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;QOffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RCutoff&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Lorch&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ContainerPeaks&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;BkgScale&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;CyclePackingFrac&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ResonanceFilter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Units&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wavelength&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;LowerLimits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.3</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;UpperLimits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ReCaching&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;FinalDIFC&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">22585.8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;LastModifiedBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;y8z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;LastModifiedTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;07-16-2024 17:38:01 EST&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cycle</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specification of the run cycle. The value coming with the key should be a valid directory name under <code class="docutils literal notranslate"><span class="pre">/SNS/PG3/shared/CALIBRATION/</span></code></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SampleEnvironment</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specification of the sample environment name. The value should be one of the keys in the following <code class="docutils literal notranslate"><span class="pre">ConfigFile</span></code> value. The <code class="docutils literal notranslate"><span class="pre">Cycle</span></code>, <code class="docutils literal notranslate"><span class="pre">SampleEnvironment</span></code> and <code class="docutils literal notranslate"><span class="pre">ConfigFile</span></code> keys together pin down the configuration file to use specific to the sample environment in a certain cycle. In the template presented above, the <code class="docutils literal notranslate"><span class="pre">SampleEnvironment</span></code> value is <code class="docutils literal notranslate"><span class="pre">PAC</span></code> and therefore one should be looking for the value in <code class="docutils literal notranslate"><span class="pre">ConfigFile</span></code> corresponding to the <code class="docutils literal notranslate"><span class="pre">PAC</span></code> key (namely, <code class="docutils literal notranslate"><span class="pre">PAC_default.json</span></code> in the example). So, the environment specific configuration to use in this case is located at,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">SNS</span><span class="o">/</span><span class="n">PG3</span><span class="o">/</span><span class="n">shared</span><span class="o">/</span><span class="n">CALIBRATION</span><span class="o">/</span><span class="mi">2025</span><span class="o">-</span><span class="mi">1_11</span><span class="n">A_CAL</span><span class="o">/</span><span class="n">PAC_default</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OverwriteUserJsonFile</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Whether or not to overwrite the potentially existing IPTS specific configuration file. The mechanism of central and IPTS specific configuration working together is presented in the section above. With the current key, the instrument team has the power to control whether or not to let the central configuration win over. <code class="docutils literal notranslate"><span class="pre">Y</span></code> is for <code class="docutils literal notranslate"><span class="pre">Yes</span></code> and <code class="docutils literal notranslate"><span class="pre">N</span></code> for <code class="docutils literal notranslate"><span class="pre">No</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConfigFile</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>This specifies a dictionary pointing each sample environment to its dedicated configuration file name. As mentioned above, the value here will be used together with the <code class="docutils literal notranslate"><span class="pre">Cycle</span></code> and <code class="docutils literal notranslate"><span class="pre">SampleEnvironment</span></code> keys to pin down the configuration file to load. The configuration to load applies to only specific sample enviroments and this is why we are separating out the sample environment specific configurations.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Notes</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>This is expected to be a single string without any white spaces (tabs or spaces). If a non-empty string is given, it will be used as part of the name for the calibration file to be used. See the sample environment specific configurations documentation below for more details.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SNSPowderRedAbsCacheDir</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>With the <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> routine, it is now possible to pre-calculate the absorption given a certain IPTS and the pre-calculated absorption will be saved into the specified location here. If the key is provided here, the autoreduction will try to find the pre-calculated absorption saved in the specified location and if existing, autoreduction will load it in for boosting the calculation. If the key is not provided, autoreduction will use an IPTS specific directory for absorption caching while running the reduction.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Comment-1</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>This is just an annotation entry for the verbose purpose without any real functionality attached. It is for indicating that the configurations above the comment entry are for <code class="docutils literal notranslate"><span class="pre">SNSPowderReduction</span></code> and below the comemnt entry, the configurations are for <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClientID</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The client ID for talking to the <code class="docutils literal notranslate"><span class="pre">ITEMS</span></code> database.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Secret</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The secret for talking to the <code class="docutils literal notranslate"><span class="pre">ITEMS</span></code> database.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TokenURL</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The token URL for talking to the <code class="docutils literal notranslate"><span class="pre">ITEMS</span></code> database.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IPTSURL</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The IPTS URL for talking to the <code class="docutils literal notranslate"><span class="pre">ITEMS</span></code> database.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ONCatID</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The ONCAT ID for talking to the <code class="docutils literal notranslate"><span class="pre">ONCAT</span></code> database.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ONCatSecret</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The ONCAT secret for talking to the <code class="docutils literal notranslate"><span class="pre">ONCAT</span></code> database.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CacheDir</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specify the cache directory for the <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> reduction.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnvironmentName</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>Name of the sample environment, Usually it is just <code class="docutils literal notranslate"><span class="pre">InAir</span></code> and we barely need to touch it.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GroupingAllFile</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>The XML file specifying the grouping of all detectors. As long as there is no detector upgrade on the instrument, there is no need to change this.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SampleElementSize</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>Cuboid size in <code class="docutils literal notranslate"><span class="pre">mm</span></code> for the absorption calculation for the sample.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ContainerElementSize</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>Cuboid size in <code class="docutils literal notranslate"><span class="pre">mm</span></code> for the absorption calculation for the container.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MergeRunsOptions</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>The criterion for merging different run numbers. Two options are available, <code class="docutils literal notranslate"><span class="pre">1</span></code> for using the run title with dynamic temperature information and <code class="docutils literal notranslate"><span class="pre">2</span></code> for using the run title without the dynamic temperature. The default option is <code class="docutils literal notranslate"><span class="pre">2</span></code> as usually we are not interested in the temperature fluctuation around the set point.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ReGenerateGrouping</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>This is the key for detector grouping according to the similarity in absorption spectra as mentioned earlier. If no upgrade to the detectors, one can always stay with <code class="docutils literal notranslate"><span class="pre">0</span></code> as the input here, indicating that we don’t want to re-generate the group. For POWGEN, the grouping files and information are stored in the following directory, <code class="docutils literal notranslate"><span class="pre">/SNS/PG3/shared/autoreduce/configs</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QMaxByBank</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">QMax</span></code> value to be used for each of the output bank of data. If one value is given, it will be used for banks. Multiple values can be provided, separated by comma. The value should be given in a string, as presented in the example above.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMinBragg</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The minimal TOF value for the output Bragg diffraction data for each bank.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMaxBragg</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The maximal TOF value for the output Bragg diffraction data for each bank.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QParamsProcessing</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>This is the <span class="math notranslate nohighlight">\(Q\)</span>-space binning parameters used internally for MTS data processing. Since we are going to throw away the neutron events after the data processing, we have to use a fine <span class="math notranslate nohighlight">\(Q\)</span>-space binning to make sure that we can always go with a coarser bin for the binning down the road.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OverrideUserConfig</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>Any time the autoreduction is running, it will try to load or save the central configuration to the experiment-specific location so that later on, on the user side, they can change the parameter locally without influencing others. The default value for this flag is <code class="docutils literal notranslate"><span class="pre">false</span></code>, indicating that as long as the previously saved user configuration file can be found, the autoreduction routine will pick it up. If the flag is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the central configuration will take the priority and after the reduction, the central configuration file will be copied into the experiment-specific location, with whatever existing configuration files there backed up to avoid losing history.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CyclePackingFrac</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>For the autoreduction purpose, we could check the log file from <code class="docutils literal notranslate"><span class="pre">MTS</span></code> running, grab the suggested packing fraction and start a new reduction with the tweaked packing fraction until the convergence of the packing fraction. This flag controls whether we want to perform such a loop. The default option is <code class="docutils literal notranslate"><span class="pre">true</span></code>, but in some cases, due to the poor data quality, the loop may get stuck, in which case we want to turn off the cycling.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MTSFourierTransform</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>A dictionary should be given as the value. Here are the entries in the dictionary,</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMIN</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>This value will go into the <code class="docutils literal notranslate"><span class="pre">TMin</span></code> key of <code class="docutils literal notranslate"><span class="pre">AlignAndFocusArgs</span></code> for the sample, specifying the minimum TOF for the align-and-focus operation in microsecond.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMAX</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>This value will go into the <code class="docutils literal notranslate"><span class="pre">TMax</span></code> key of <code class="docutils literal notranslate"><span class="pre">AlignAndFocusArgs</span></code> for the sample, specifying the maximum TOF for the align-and-focus operation in microsecond.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QMin</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>This key controls the minimal <span class="math notranslate nohighlight">\(Q\)</span> used for Fourier transform, to obtain the PDF.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QMax</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>This key controls the maximal <span class="math notranslate nohighlight">\(Q\)</span> used for Fourier transform, to obtain the PDF.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RMax</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>This key controls the maximal <span class="math notranslate nohighlight">\(r\)</span> of the PDF data.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RStep</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>This key controls the interval of the PDF data.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QOffset</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The offset in <span class="math notranslate nohighlight">\(Q\)</span>-space that we want to apply to the reduced total scattering data before the Fourier transform.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RCutoff</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>The cutoff in <span class="math notranslate nohighlight">\(r\)</span>-space regarding the Fourier filter, i.e., all signals below the cutoff will be Fourier filtered.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Lorch</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Whether to apply the lorch smoothing algorithm for the PDF data.</p>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FinalDIFC</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>After the total scattering data processing, the data would be in <span class="math notranslate nohighlight">\(Q\)</span>-space. To obtain the Bragg diffraction data in TOF-space which can be imported into Rietveld programs for data analysis, we have to convert the <span class="math notranslate nohighlight">\(Q\)</span>-space data with some arbitrary values of DIFC for each bank of data. Here we can give the list of the DIFC values to be used for such a purpose and the aim is to keep consistent whatever conventional values that other data reduction programs were using.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ContainerPeaks</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>With this flag, one can specify a list of peaks (in <code class="docutils literal notranslate"><span class="pre">d</span></code>-space) for the container in case there are Bragg peaks in the container signal that needs to be stripped off. The list should be given in a string and different peak positions should be separated with <code class="docutils literal notranslate"><span class="pre">comma</span></code>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BkgScale</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>Specify a scale factor to be multiplied onto the container background in case of over or under subtraction of the container signal.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ResonanceFilter</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<p>A dictionary is expected to be provided with the key. Here are the expected entries of the dictionary,</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Units</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specify the space in which the resonance filter parameters will be applied. Acceptable values are those in Mantid unit factor – see <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/UnitFactory.html">here</a>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LowerLimits</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specify a list of lower limits of the window within which the neutron counts are to be excluded.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UpperLimits</span></code></p>
+<blockquote>
+<div><p>Mandatory</p>
+</div></blockquote>
+<p>Specify a list of upper limits of the window within which the neutron counts are to be excluded. The length of the <code class="docutils literal notranslate"><span class="pre">LowerLimits</span></code> and <code class="docutils literal notranslate"><span class="pre">UpperLimits</span></code> lists should be equal to each other.</p>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -684,7 +1032,20 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoreduction-configuration">AutoReduction Configuration</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

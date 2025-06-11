@@ -532,7 +532,15 @@ When running the data processing against a certain instrument, MTS reads in some
     "QOffset": 0.0,
     "RCutoff": 1.0,
     "Lorch": false,
-    "FinalDIFC": [1428.818756011, 2861.506614873, 5606.556361966, 9041.704899514, 9910.536905573, 836.206546490]
+    "FinalDIFC": [1428.818756011, 2861.506614873, 5606.556361966, 9041.704899514, 9910.536905573, 836.206546490],
+    "ContainerPeaks": [1.1, 1.5],
+    "BkgScale": 1.0,
+    "ResonanceFilter": {
+        "Units": "Wavelength",
+        "LowerLimits": [0.3],
+        "UpperLimits": [0.5]
+    },
+    "SkipRamping": true
 }
 ```
 
@@ -647,3 +655,39 @@ Several keys on the top of the list are sensitive information concerning the con
 - `ContainerPeaks`
 
     With this flag, one can specify a list of peaks (in `d`-space) for the container in case there are Bragg peaks in the container signal that needs to be stripped off. The list should be given in a string and different peak positions should be separated with `comma`.
+
+- `BkgScale`
+
+    > Optional
+
+    Specify a scale factor to be multiplied onto the container background in case of over or under subtraction of the container signal.
+
+- `ResonanceFilter`
+
+    > Optional
+
+    A dictionary is expected to be provided with the key. Here are the expected entries of the dictionary,
+
+    - `Units`
+
+        > Mandatory
+
+        Specify the space in which the resonance filter parameters will be applied. Acceptable values are those in Mantid unit factor -- see [here](https://docs.mantidproject.org/nightly/concepts/UnitFactory.html).
+
+    - `LowerLimits`
+
+        > Mandatory
+
+        Specify a list of lower limits of the window within which the neutron counts are to be excluded.
+
+    - `UpperLimits`
+
+        > Mandatory
+
+        Specify a list of upper limits of the window within which the neutron counts are to be excluded. The length of the `LowerLimits` and `UpperLimits` lists should be equal to each other.
+
+- `SkipRamping`
+
+    > Optional
+
+    For NOMAD autoreduction, this specifies whether or not to skip the ramping runs (temperature, etc.) regarding the data reduction. The default option is `true`.

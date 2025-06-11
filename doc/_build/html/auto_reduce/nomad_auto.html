@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -847,6 +847,9 @@ document.write(`
 <p>There is a parameter <code class="docutils literal notranslate"><span class="pre">OverrideUserConfig</span></code> which controls whether the parameters listed in the table above from the central configuration file (i.e., <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/auto_config.json</span></code>) will override those from the user configuration. Starting from scratch, when the auto-reduction is running, it will copy over those parameters in the table to user configuration file in JSON format located at an IPTS specific location – taking the <code class="docutils literal notranslate"><span class="pre">IPTS-28922</span></code> example, the user configuration file will be saved at <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/IPTS-28922/shared/autoreduce/auto_params.json</span></code>. The next time when running the auto-reduction, if <code class="docutils literal notranslate"><span class="pre">OverrideUserConfig</span></code> is specified to be <code class="docutils literal notranslate"><span class="pre">False</span></code>, the existing user configuration file will be loaded and those loaded parameters will be used. Otherwise, the parameters from the central configuration file will be used and the user configuration file will be overwritten. Before the overwriting, the user configuration file will be backed up to the same directory as the existing file to keep the history. The backup file will be named as something like <code class="docutils literal notranslate"><span class="pre">auto_params_backup_05262023_2.json</span></code>, where <code class="docutils literal notranslate"><span class="pre">05262023</span></code> is the time stamp and <code class="docutils literal notranslate"><span class="pre">2</span></code> is a representative integer which is determined as the smallest number that guarantees a non-existing backup file. Here, the hash value for the backup file contents will be checked to guarantee that only unique parameters set will be backed up.</p>
 <blockquote>
 <div><p>N.B. The verison of the <code class="docutils literal notranslate"><span class="pre">Mantid</span></code> framework and the underlying <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> engine will also be populated into the user configuration file.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Detailed documentation for the NOMAD autoreduction configuration can be found <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html#instrument-specific-configs">here</a>.</p>
 </div></blockquote>
 </li>
 </ol>
