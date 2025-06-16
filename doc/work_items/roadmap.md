@@ -14,9 +14,7 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} Work in Progress
 :class: attention
 
-- Automatic calibration job running on Analysis.
-
-- Geometry and beam size definition for `abs_pre_calc` routine.
+- Powder diffraction data visualization tools and reduction configuration tools development in the ORNL `nova` platform. Here is the production environment, [nova.ornl.gov](https://nova.ornl.gov), and here is the test environment, [nova-test.ornl.gov](https://nova-test.ornl.gov).
 
 - Texture correction for total scattering.
 
@@ -25,6 +23,10 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 
 ``````{admonition} New Features & Bug Fixes
 :class: tip
+
+- Automatic calibration job running on instrument machine. This is about the automatic calibration once a diamond run is detected. Due to the proton power upgrade, the strong scatterer diamond would yield more neutron counting than before which would create large file size and thus require large memory for data handling. The autoreducer cannot take such heavy a load and now with this implementation, we managed to tranfer the heavy loaded job of calibration to those instrument machines.
+
+- Beam size definition is now available in the `abs_pre_calc` routine for the pre-calculation of absorption correction.
 
 - User definition of sample and container geometry for absorption correction.
 
@@ -37,8 +39,6 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 
 - Add in NESL sample environment support in `MTS`.
 
-- Data visualization on NOVA for powder diffraction.
-
 - Fix the Bragg peak shape name output for the RMCProfile implementation in GSAS-II.
 
 - Configuration of live and auto reduction on NOVA.
@@ -46,8 +46,6 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 - Visualization of incommensurate magnetic structure on ADDIE web platform.
 
 - Control over live reduction from monitor web interface.
-
-- Convenient workflow for autoreduction configuration for NOMAD.
 
 - RMCProfile version 6 upgrade
 
