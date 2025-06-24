@@ -4,6 +4,7 @@ root: index
 parts:
 - chapters:
   - file: about_this_book
+  - file: get_in_touch
 - caption: General Topics
   chapters:
   - file: general_aspects/nsources
