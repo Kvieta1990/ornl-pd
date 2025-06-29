@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python &amp; Virtual Environment &#8212; Powder Diffraction at ORNL</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-TFL7TZY8LR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TFL7TZY8LR');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TFL7TZY8LR');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'general_aspects/tools_utils/python_venv';</script>
+    <script data-website-id="3fc28470-259d-4b4f-bf0c-d4635edb6515" src="https://umm.iris-home.net/script.js"></script>
+    <link rel="canonical" href="https://powder.ornl.gov/general_aspects/tools_utils/python_venv.html" />
+    <link rel="icon" href="../../_static/powder_fav.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Introduction" href="../../bragg_diffraction/intro.html" />
+    <link rel="prev" title="Tools and Utilities" href="toc.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/ornl_logo.png" class="logo__image only-light" alt="Powder Diffraction at ORNL - Home"/>
+    <script>document.write(`<img src="../../_static/ornl_logo.png" class="logo__image only-dark" alt="Powder Diffraction at ORNL - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../about_this_book.html">About this book</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../get_in_touch.html">Get in touch</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../nsources.html">Neutron Sources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../calibration/toc.html">Calibration of Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/pd_calib_principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/instrument_files.html">Instrument Calibration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_acquire/toc.html">Data Acquisition</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_acquire/monitor.html">Data Monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../catalogue/toc.html">Data Catalog</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../catalogue/oncat.html">ONCAT Catalog</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mantid/toc.html">Mantid</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mantid/configuration.html">Mantid Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="toc.html">Tools and Utilities</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Python &amp; Virtual Environment</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bragg Diffraction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../bragg_diffraction/intro.html">Introduction</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../bragg_diffraction/data_reduction/toc.html">Data Reduction</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../bragg_diffraction/data_reduction/hb2a.html">POWDER | HB-2A | HFIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bragg_diffraction/data_reduction/hb2c.html">WAND² | HB-2C | HFIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bragg_diffraction/data_reduction/nomad.html">NOMAD | BL-1B | SNS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bragg_diffraction/data_reduction/powgen.html">POWGEN | BL-11A | SNS</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../bragg_diffraction/data_analysis/toc.html">Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../bragg_diffraction/data_analysis/software.html">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bragg_diffraction/data_analysis/tutorials.html">Tutorials &amp; Workshops</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Total Scattering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../total_scattering/intro.html">Introduction</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../total_scattering/data_reduction/toc.html">Data Reduction</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../total_scattering/data_reduction/princple_implementation.html">Principle &amp; Implementation</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../total_scattering/data_reduction/mts_flow.html">MTS workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../total_scattering/data_reduction/mts_abs_ms.html">Absorption and Multiple Scattering Correction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/dr_howto.html">Data Reduction How-to</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/ts_powgen.html">For POWGEN Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/mts_doc.html">MTS Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/ts_pp.html">Post-processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/ts_dp_workshops.html">Data Processing Workshops</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../total_scattering/data_analysis/toc.html">Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_analysis/software.html">Software</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Auto Reduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../auto_reduce/hb2a_auto.html">POWDER | HB-2A | HFIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_reduce/hb2c_auto.html">WAND² | HB-2C | HFIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_reduce/nomad_auto.html">NOMAD | BL-1B | SNS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_reduce/powgen_auto.html">POWGEN | BL-11A | SNS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Toolbox</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/nomad.html">NOMAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/powgen.html">POWGEN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/hb2a.html">HB-2A (POWDER)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/hb2c.html">HB-2C (WAND^2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/general.html">General Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/services.html">System Services</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../uptime.html">Services Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addie.html">ADDIE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../powder_forum.html">Discussion Forum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../run_time.html">Data reduction running time</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../work_items/toc.html">Powder Diffraction Work Items</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../work_items/roadmap.html">Roadmap</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../work_items/software_and_projects.html">Community Software and Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../collections/toc.html">Powder Diffraction Collections</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../collections/local_envs.html">Local Dev &amp; Test Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collections/mts_for_developers.html">MTS Collections for Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collections/mobile_apps.html">Mobile Apps for SNS &amp; HFIR</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../bib.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../follow.html">Follow Us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Kvieta1990/ornl-pd" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/edit/main/doc/general_aspects/tools_utils/python_venv.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/issues/new?title=Issue%20on%20page%20%2Fgeneral_aspects/tools_utils/python_venv.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/general_aspects/tools_utils/python_venv.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python & Virtual Environment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-versions-and-virtual-environment">Python versions and Virtual environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-virtual-environment-management">Tools for virtual environment management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a">Q &amp; A</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-virtual-environment">
+<h1>Python &amp; Virtual Environment<a class="headerlink" href="#python-virtual-environment" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<section id="python-versions-and-virtual-environment">
+<h3>Python versions and Virtual environment<a class="headerlink" href="#python-versions-and-virtual-environment" title="Link to this heading">#</a></h3>
+<p>These days, Python is probably the most popular programming language – as a research, we want to be rigorous so let’s keep the word ‘probably’ here. In fact, according to the programming language ranking from multiple resources, Python is indeed #1 in terms of the popularity, e.g., the one by <code class="docutils literal notranslate"><span class="pre">TIOBE</span> <span class="pre">Index</span></code> <span id="id1">[<a class="reference internal" href="../../bib.html#id16" title="TIOBE. Tiobe index | tiobe - the software quality company. 2024. URL: https://www.tiobe.com/tiobe-index/.">TIOBE, 2024</a>]</span> and <code class="docutils literal notranslate"><span class="pre">IEEE</span> <span class="pre">Spectrum</span></code> <span id="id2">[<a class="reference internal" href="../../bib.html#id15" title="Stephen Cass. The top programming languages 2024. 08 2024. URL: https://spectrum.ieee.org/top-programming-languages-2024.">Cass, 2024</a>]</span>. We love Python because it is easy to learn and use. Meanwhile, we have a large Python community supporting the development, package sharing and Q&amp;A. Together with its popularity and large community support comes enormous tools (which then unavoidably comes with a lot of jargons). One side, this is definitely a good thing since we have a lot of tools to turn to, but the down side is also obvious – we have too many to choose from. As a non-programmer, quite often we found ourselves not even knowing what those tools are for – the only thing, we, as researchers, care about is probably just that we have a Python script and when we do <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">my_script.py</span></code>, it gives me a meaningful output following the physics we put into the script, and that’s it. So, why should we care about those tools and jargons? Yes, that is true – we really don’t need to care about those annoying stuff, until we have to. Why? Well, there are several obvious reasons that immediately pop up,</p>
+<ul class="simple">
+<li><p>The language is actively progressing. Developers are working on adding in more functionalities, making it easier to use, and probably faster to run. Meanwhile, we are also progressing. The requirement for features in the language on our side as users will also change from time to time, or from here to there. Therefore, quite often we would find that some useful features that we need are only available in a certain version of Python but meanwhile some other features that we also need at some point are only available in another version of Python. In this case, what do we do?</p></li>
+<li><p>Sometimes, even the feature requirement does not change, there will be factors that may force us to make changes. One typical reason is <code class="docutils literal notranslate"><span class="pre">security</span></code>. For example, Python <code class="docutils literal notranslate"><span class="pre">2.0</span></code> was first released in <code class="docutils literal notranslate"><span class="pre">2000</span></code> and came finally came to its end of life in <code class="docutils literal notranslate"><span class="pre">2020</span></code>. People have been using it for a long time but as it is coming to its end of life, no support will be provided by the community and therefore vulnerabilty will never be patched, which will bring in serious security concerns if we are still using it. In this case, there is nothing we can do but to switch to a higher version of Python. Then at the transition stage, say, we still need some features in Python <code class="docutils literal notranslate"><span class="pre">2.0</span></code> for some of our daily routines while being forced to switched to Python <code class="docutils literal notranslate"><span class="pre">3.x</span></code>, what do we do?</p></li>
+<li><p>The Python community is providing us with a lot of modules (e.g., <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> for plotting, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">scipy</span></code> for scientific calculations) as building blocks so that we don’t need to always reinvent the wheel. Again, the language itself is progressing, the modules themselves are also progressing, which naturally brings in the version compatability issue. If we need the feature available in <code class="docutils literal notranslate"><span class="pre">numpy</span></code> version <code class="docutils literal notranslate"><span class="pre">x.y.z</span></code> which is only compatible with Python version <code class="docutils literal notranslate"><span class="pre">&lt;=i.j.k</span></code> but we also need the feature available in <code class="docutils literal notranslate"><span class="pre">numpy</span></code> version <code class="docutils literal notranslate"><span class="pre">p.q.s</span></code> which is only compatible with Python version <code class="docutils literal notranslate"><span class="pre">&gt;=l.m.n</span></code>. Then, what do we do?</p></li>
+</ul>
+<p>To deal with such complex scenarios, the <code class="docutils literal notranslate"><span class="pre">virtual</span> <span class="pre">environment</span></code> comes to rescue. It basically puts a certain version of Python and all the compatible dependencies in a <code class="docutils literal notranslate"><span class="pre">self-contained</span></code> environment and we can have multiple such environments that are independent from each other so they are not interfering each other. Probably, we all know the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">environment</span></code> with this regard. We all know it because it is probably the most popular one, among all the alternatives. In fact, for many people, <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">environment</span></code> would be used interchangeably with <code class="docutils literal notranslate"><span class="pre">virtual</span> <span class="pre">environment</span></code>. Anyhow, it is an <code class="docutils literal notranslate"><span class="pre">environment</span></code> and who cares whether it is <code class="docutils literal notranslate"><span class="pre">donda</span> <span class="pre">environment</span></code>, <code class="docutils literal notranslate"><span class="pre">fonda</span> <span class="pre">environment</span></code>, or <code class="docutils literal notranslate"><span class="pre">whatever</span> <span class="pre">environment</span></code>… Yes, that is true and indeed we don’t care, until we have to. So, <code class="docutils literal notranslate"><span class="pre">conda</span></code> is the name of the tool for managing the so-called <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">environment</span></code>. There are multiple ways to install the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool. <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> is one of the providers of the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool and it is probably the most notable provider, through the <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> or <code class="docutils literal notranslate"><span class="pre">Miniconda</span></code> distribution – see <a class="reference external" href="https://www.anaconda.com/blog/is-conda-free">here</a> for more information. There is another layer of complexity (the <code class="docutils literal notranslate"><span class="pre">channel</span></code>) which I don’t want to go into here, but anyways, it is something associated with the <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> release of <code class="docutils literal notranslate"><span class="pre">conda</span></code> that we need to pay, if the organization using it has 200 or more people. ORNL decides not to pay for that and we are forced to change and to make the change, we better know something about it.</p>
+</section>
+<section id="tools-for-virtual-environment-management">
+<h3>Tools for virtual environment management<a class="headerlink" href="#tools-for-virtual-environment-management" title="Link to this heading">#</a></h3>
+<p>Getting back to the <code class="docutils literal notranslate"><span class="pre">virtual</span> <span class="pre">environment</span></code>, as I said, we have multiple alterntive tools to set up such self-contained <code class="docutils literal notranslate"><span class="pre">virtual</span> <span class="pre">environments</span></code>. Typical examples are <a class="reference external" href="https://virtualenv.pypa.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">virtualenv</span></code></a>, <a class="reference external" href="https://github.com/mamba-org/mamba"><code class="docutils literal notranslate"><span class="pre">mamba</span></code></a>, <a class="reference external" href="https://pixi.sh/latest/"><code class="docutils literal notranslate"><span class="pre">pixi</span></code></a>, <a class="reference external" href="https://python-poetry.org/"><code class="docutils literal notranslate"><span class="pre">peotry</span></code></a> and <a class="reference external" href="https://github.com/astral-sh/uv"><code class="docutils literal notranslate"><span class="pre">uv</span></code></a>. Maybe there are more, but those are what I am aware of. Here I am not spelling out <code class="docutils literal notranslate"><span class="pre">conda</span></code>, because, 1) we mentioned it above and 2) it is indeed a bit confusing, since we have two different <code class="docutils literal notranslate"><span class="pre">conda</span></code>’s – one is the <code class="docutils literal notranslate"><span class="pre">conda</span></code> from the <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> company (the one mentioned above) and the other is from the <a class="reference external" href="https://conda-forge.org/"><code class="docutils literal notranslate"><span class="pre">conda-forge</span></code></a> community. We said above that something associated with the <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code> is non-free now, but the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> community version of <code class="docutils literal notranslate"><span class="pre">conda</span></code> is all free. Each of the tools mentioned here works differently and two of them are worth special mentioning. One of them is for sure <code class="docutils literal notranslate"><span class="pre">conda</span></code> (here, I specifically mean the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code>) – as being said, it is all free and we can happily use it just like <code class="docutils literal notranslate"><span class="pre">conda</span></code> (I mean the <code class="docutils literal notranslate"><span class="pre">conda</span></code> command we have been using before, which was most likely installed via <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code>). Well, in terms of usage, they do not really make any differences. So, if we decide to install the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code>, all the <code class="docutils literal notranslate"><span class="pre">conda</span></code> commands we were happily executing before should stay the same. Another tool to specially mention is <code class="docutils literal notranslate"><span class="pre">mamba</span></code> – it is also coming from <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> and works very much like <code class="docutils literal notranslate"><span class="pre">conda</span></code>. For many typical commands we were executing before with <code class="docutils literal notranslate"><span class="pre">conda</span></code>, like <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span></code>, etc., we only need to replace <code class="docutils literal notranslate"><span class="pre">conda</span></code> with <code class="docutils literal notranslate"><span class="pre">mamba</span></code>.</p>
+</section>
+<section id="packages">
+<h3>Packages<a class="headerlink" href="#packages" title="Link to this heading">#</a></h3>
+<p>It is actually not true that the <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> and <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code> is all the same. The major difference is on the channel to pull the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">packages</span></code> from. Here, we come across with the terminology of <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">package</span></code>. Literally, it means a package – developers implement some modules for certain purposes, like <code class="docutils literal notranslate"><span class="pre">numpy</span></code> for scientific calculation, and they package the module up in a certain way and host it somewhere on the cloud so that users can install on their machines. <code class="docutils literal notranslate"><span class="pre">conda</span></code> is one of the ways for packaging up modules and again, it is probably the most popular one. For <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">packages</span></code>, they are hosted in the cloud in <code class="docutils literal notranslate"><span class="pre">channels</span></code> which is just like a big pool of <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">packages</span></code>. When uploading or downloading <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">packages</span></code>, we need to specify the <code class="docutils literal notranslate"><span class="pre">channel</span></code> to push into or pull from. If no <code class="docutils literal notranslate"><span class="pre">channel</span></code> is specified for the uploading or downloading, thta means we have some default <code class="docutils literal notranslate"><span class="pre">channel</span></code> being used there. If we are using the <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code>, the default channel is just called <code class="docutils literal notranslate"><span class="pre">defaults</span></code>. If the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code> is used, the default channel is <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>. Now, we are ready to mention that it is those packages included in the <code class="docutils literal notranslate"><span class="pre">defaults</span></code> channel maintained by <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> that becomes non-free. This means,</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">packages</span></code> are installed from channels other than the <code class="docutils literal notranslate"><span class="pre">defaults</span></code> channel maintained by <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code>, they can be used, for free, and the <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> version of the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool can still be used, for free, since the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool itself is still free.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">packages</span></code> are installed from the <code class="docutils literal notranslate"><span class="pre">defaults</span></code> channel maintained by <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code>, they <code class="docutils literal notranslate"><span class="pre">cannot</span></code> be used for free, for organizations with 200 or more people.</p></li>
+</ul>
+<p>Apart from <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">packages</span></code>, there are other ways to package up Python modules to be released for people to downloand and install. Another typical type of packaging is through the <a class="reference external" href="https://pypi.org/"><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">Python</span> <span class="pre">Package</span> <span class="pre">Index</span> <span class="pre">(PyPI)</span></code></a> and the tool associated with the package installation is also very popular, namely <code class="docutils literal notranslate"><span class="pre">pip</span></code>. One thing to note is, <code class="docutils literal notranslate"><span class="pre">pip</span></code> is only a package installation tool but <code class="docutils literal notranslate"><span class="pre">not</span></code> a virtual environment management tool. That means it does have as powerful compatability checking capability as those environment management tools, such as <code class="docutils literal notranslate"><span class="pre">conda</span></code>. Therefore, when using <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install packages into a virtual environment, it is possible that packages with conflicting dependencies can be installed into the same environment, which then will break the environment due to the conflicts.</p>
+</section>
+</section>
+<section id="q-a">
+<h2>Q &amp; A<a class="headerlink" href="#q-a" title="Link to this heading">#</a></h2>
+<div class="hint admonition">
+<p class="admonition-title">Q: What is ‘conda’?</p>
+<p><em><strong>A</strong></em>: When we say <code class="docutils literal notranslate"><span class="pre">conda</span></code>, we may refer to,</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool for virtual environment management – basically, it is just the <code class="docutils literal notranslate"><span class="pre">conda</span></code> command. As mentioned above, the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool carries two possible meanings,</p>
+<ul>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool provided by <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code>, which uses the <code class="docutils literal notranslate"><span class="pre">defaults</span></code> channel maintained by <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> as the default channel.</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool provided by <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>, which uses the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel maintained by the community as the default channel.</p></li>
+</ul>
+</li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment, i.e., the self-contained environment for Python and modules to live in, independently</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">conda</span></code> package, i.e., the package like <code class="docutils literal notranslate"><span class="pre">numpy</span></code> that incorporates the modules to be used in our Python script regarding certain functionalities.</p></li>
+</ul>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Q: How is the commercial to non-commercial switching for the virutal environment tools relevant to me?</p>
+<p><em><strong>A</strong></em>: It depends. Two scenarios here,</p>
+<ul class="simple">
+<li><p>On ORNL Analysis, many data reduction and analysis software are deployed with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">environment</span></code> and the switching to non-commercial tools will have impacts on all of them. However, in this case, as general users of those software, we are not supposed to see any differences in our daily routines. For example, if we want to launch the <code class="docutils literal notranslate"><span class="pre">Mantid</span> <span class="pre">Workbench</span></code>, we still do <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code>.</p></li>
+<li><p>If we want to set up virtual environments on our own, we need to take some actions – details will be covered in the next question.</p></li>
+</ul>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Q: What should I do regarding the commercial to non-commercial switching?</p>
+<p><em><strong>A</strong></em>: First, we need to make it clear that the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool itself is <code class="docutils literal notranslate"><span class="pre">free</span></code> and it is only the packages in the <code class="docutils literal notranslate"><span class="pre">defaults</span></code> channel maitained by <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> is <code class="docutils literal notranslate"><span class="pre">non-free</span></code>. So, no matter whether the <code class="docutils literal notranslate"><span class="pre">conda</span></code> tool was installed via <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> or <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>, the <code class="docutils literal notranslate"><span class="pre">conda</span></code> command can still be used without any problems. Action is potentially needed regarding those packages we previously installed via <code class="docutils literal notranslate"><span class="pre">conda</span></code>. For example, I have a <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">environment</span></code> called <code class="docutils literal notranslate"><span class="pre">my_env</span></code> and I was ever installing some packages through the <code class="docutils literal notranslate"><span class="pre">defaults</span></code> channel into the <code class="docutils literal notranslate"><span class="pre">my_env</span></code> environment, then I can no longer use those packages in the <code class="docutils literal notranslate"><span class="pre">my_env</span></code> environment. If it is just several packages that become non-usable, we can first execute <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span> <span class="pre">--show-channel-urls</span></code> to see what packages were installed via the <code class="docutils literal notranslate"><span class="pre">defaults</span></code> channel and then use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">the_package</span></code> to remove those packages. Otherwise, we need to remove the <code class="docutils literal notranslate"><span class="pre">my_env</span></code> environment, create a new one and reinstall those packages via the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel or whatever other channels. It can be tedious if we reinstall all those packages one by one. The following steps could be followed as a quicker solution,</p>
+<ul>
+<li><p>Although the <code class="docutils literal notranslate"><span class="pre">conda</span></code> command installed via <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> is still free, I personally think it is better to uninstall it and install the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code>, the reason being that the <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code> is using the <code class="docutils literal notranslate"><span class="pre">defaults</span></code> channel by default and it is highly possible then to hit the <code class="docutils literal notranslate"><span class="pre">non-free</span></code> zone if we are still using the <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code> for virtual environments management and packages installation. To uninstall <code class="docutils literal notranslate"><span class="pre">conda</span></code>, refer to the instructions <a class="reference external" href="https://www.anaconda.com/docs/getting-started/anaconda/uninstall">here</a>.</p></li>
+<li><p>Install a new virtual environment management tool. The <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code> is for sure a very good solution, since most of the <code class="docutils literal notranslate"><span class="pre">conda</span></code> commands that we used before will stay the same. For the installation, see <a class="reference external" href="https://conda-forge.org/download/">here</a>.</p></li>
+<li><p>Export the existing conda environment to a <code class="docutils literal notranslate"><span class="pre">YAML</span></code> file for later use for rebuilding the environment. Assuming the conda environment is called <code class="docutils literal notranslate"><span class="pre">my_env</span></code>, the export command will be,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span><span class="nb">export</span><span class="w"> </span>-n<span class="w"> </span>my_env<span class="w"> </span>&gt;<span class="w"> </span>environment.yml
+</pre></div>
+</div>
+</li>
+<li><p>Rebuild the environment using the new installed <code class="docutils literal notranslate"><span class="pre">conda</span></code> with the previously exported <code class="docutils literal notranslate"><span class="pre">YAML</span></code> file,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+</pre></div>
+</div>
+</li>
+<li><p>Another alternative environment too to choose is <code class="docutils literal notranslate"><span class="pre">mamba</span></code>, which is also provided by <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>. Installation instructions can be found <a class="reference external" href="https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html">here</a>. The procedure for rebuilding conda environments will be the same as above, <code class="docutils literal notranslate"><span class="pre">except</span></code> that we need to replace <code class="docutils literal notranslate"><span class="pre">conda</span></code> with <code class="docutils literal notranslate"><span class="pre">mamba</span></code> in those commands.</p></li>
+</ul>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Q: I heard of tools like ‘pixi’, etc. Should we worry about using them?</p>
+<p><em><strong>A</strong></em>: No, if you don’t want to. Having the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> version of <code class="docutils literal notranslate"><span class="pre">conda</span></code> or the <code class="docutils literal notranslate"><span class="pre">mamba</span></code> tool should be good enough for our needs. But if you do want to give it a try, check out their website <a class="reference external" href="https://pixi.sh/latest/">here</a>. Also, quite a few other options exist, including <a class="reference external" href="https://python-poetry.org/">poetry</a> and <a class="reference external" href="https://github.com/astral-sh/uv">uv</a>.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "Kvieta1990/ornl-pd",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./general_aspects\tools_utils"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="toc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tools and Utilities</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../bragg_diffraction/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-versions-and-virtual-environment">Python versions and Virtual environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-virtual-environment-management">Tools for virtual environment management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#q-a">Q &amp; A</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yuanpeng Zhang & the Powder Diffraction Group at ORNL
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

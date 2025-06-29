@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Data Monitor &#8212; Powder Diffraction at ORNL</title>
+    <title>Tools and Utilities &#8212; Powder Diffraction at ORNL</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
@@ -72,14 +72,14 @@
                 gtag('config', 'G-TFL7TZY8LR');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'general_aspects/data_acquire/monitor';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'general_aspects/tools_utils/toc';</script>
     <script data-website-id="3fc28470-259d-4b4f-bf0c-d4635edb6515" src="https://umm.iris-home.net/script.js"></script>
-    <link rel="canonical" href="https://powder.ornl.gov/general_aspects/data_acquire/monitor.html" />
+    <link rel="canonical" href="https://powder.ornl.gov/general_aspects/tools_utils/toc.html" />
     <link rel="icon" href="../../_static/powder_fav.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Data Catalog" href="../catalogue/toc.html" />
-    <link rel="prev" title="Data Acquisition" href="toc.html" />
+    <link rel="next" title="Python &amp; Virtual Environment" href="python_venv.html" />
+    <link rel="prev" title="Mantid Configuration" href="../mantid/configuration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -199,8 +199,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../calibration/instrument_files.html">Instrument Calibration Files</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="toc.html">Data Acquisition</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data Monitor</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_acquire/toc.html">Data Acquisition</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_acquire/monitor.html">Data Monitor</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../catalogue/toc.html">Data Catalog</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -211,8 +211,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../mantid/configuration.html">Mantid Configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../tools_utils/toc.html">Tools and Utilities</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tools_utils/python_venv.html">Python &amp; Virtual Environment</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Tools and Utilities</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="python_venv.html">Python &amp; Virtual Environment</a></li>
 </ul>
 </li>
 </ul>
@@ -335,91 +335,6 @@
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://mybinder.org/v2/gh/Kvieta1990/ornl-pd/main?urlpath=tree/doc/general_aspects/data_acquire/monitor.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://powder.ornl.gov/hub/hub/user-redirect/git-pull?repo=https%3A//github.com/Kvieta1990/ornl-pd&urlpath=tree/ornl-pd/doc/general_aspects/data_acquire/monitor.ipynb&branch=main" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../_static/images/logo_jupyterhub.svg">
-  </span>
-<span class="btn__text-container">JupyterHub</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/Kvieta1990/ornl-pd/blob/main/doc/general_aspects/data_acquire/monitor.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch onColab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img src="../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -445,7 +360,7 @@
       
       
       
-      <li><a href="https://github.com/Kvieta1990/ornl-pd/edit/main/doc/general_aspects/data_acquire/monitor.ipynb" target="_blank"
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/edit/main/doc/general_aspects/tools_utils/toc.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -462,7 +377,7 @@
       
       
       
-      <li><a href="https://github.com/Kvieta1990/ornl-pd/issues/new?title=Issue%20on%20page%20%2Fgeneral_aspects/data_acquire/monitor.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/issues/new?title=Issue%20on%20page%20%2Fgeneral_aspects/tools_utils/toc.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -492,7 +407,7 @@
       
       
       
-      <li><a href="../../_sources/general_aspects/data_acquire/monitor.ipynb" target="_blank"
+      <li><a href="../../_sources/general_aspects/tools_utils/toc.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -502,7 +417,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -563,9 +478,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -576,19 +489,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Data Monitor</h1>
+    <h1>Tools and Utilities</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-pvs-to-be-displayed-on-monitor">Configure PVs To Be Displayed On Monitor</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -598,32 +503,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="data-monitor">
-<h1>Data Monitor<a class="headerlink" href="#data-monitor" title="Link to this heading">#</a></h1>
-<p>A web-based data monitoring interface is available to monitor the experiment progress, at <a class="reference external" href="https://monitor.sns.gov">https://monitor.sns.gov</a>.</p>
-<section id="configure-pvs-to-be-displayed-on-monitor">
-<h2>Configure PVs To Be Displayed On Monitor<a class="headerlink" href="#configure-pvs-to-be-displayed-on-monitor" title="Link to this heading">#</a></h2>
-<p>On the instrument landing page, a series of sample logs will be displayed for users to quickly check the status of the experiment and instrument configuration. The sample logs to be displayed are configurable, and here below is a demo video about how to do the configuration in CSS (the frontend interface for instrument control).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
-<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;diPdjyutpfU&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">720</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="tools-and-utilities">
+<h1>Tools and Utilities<a class="headerlink" href="#tools-and-utilities" title="Link to this heading">#</a></h1>
+<p>In this chapter, we will include introductions and documentations for those general tools which are not necessarily constrained in the powder diffraction area. They can be some useful tools for general data processing and analysis, tools for general academic purposes, etc. Basically, it is a collection of tools that may be helpful for researches, here or there.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_venv.html">Python &amp; Virtual Environment</a></li>
+</ul>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="720"
-            height="500"
-            src="https://www.youtube.com/embed/diPdjyutpfU"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -639,7 +526,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./general_aspects\data_acquire"
+            path: "./general_aspects\tools_utils"
         },
         predefinedOutput: true
     }
@@ -657,20 +544,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="toc.html"
+       href="../mantid/configuration.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Data Acquisition</p>
+        <p class="prev-next-title">Mantid Configuration</p>
       </div>
     </a>
     <a class="right-next"
-       href="../catalogue/toc.html"
+       href="python_venv.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data Catalog</p>
+        <p class="prev-next-title">Python &amp; Virtual Environment</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -681,20 +568,7 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-pvs-to-be-displayed-on-monitor">Configure PVs To Be Displayed On Monitor</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>

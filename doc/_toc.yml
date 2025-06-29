@@ -21,6 +21,9 @@ parts:
   - file: general_aspects/mantid/toc
     sections:
     - file: general_aspects/mantid/configuration
+  - file: general_aspects/tools_utils/toc
+    sections:
+    - file: general_aspects/tools_utils/python_venv
 - caption: Bragg Diffraction
   chapters:
   - file: bragg_diffraction/intro
