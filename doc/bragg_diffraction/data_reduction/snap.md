@@ -102,7 +102,7 @@ Frequently, users will want to export their data for further analysis (e.g. usin
 
 Another commonly used function is `wrap.resample()` this allows easy control of data binning. The underlying binning used by SNAPRed is chosen to ensure ~10 histogram bins across the Full Width at Half Maximum (FWHM) of the standard Nist 640D Silicon standard used during calibration. Thus, it is matched to the intrinsic resolution of the instrument. This binning will be maintained in any output reduced spectrum regardless of instrument configuration and regardless of pixel grouping scheme used. 
 
-However, commonly, internal strain in the sample, or pressure gradients cause the sample peaks to significantly broaden beyond the instrument resolution. `resample` allows consistent rebinning across the entire set of reduced data by specifying a single number to scale the native binning. Thus `wrap.resample(0.5)` will reduce the binning to 5 histogram bins across the FWHM of the silicon sample. This can be adjusted to appropriately match any sample. Around 10 bins across the sample FWHM should be the goal for data that will undergo Rietveld refinement.
+However, commonly, internal strain in the sample, or pressure gradients cause the sample peaks to significantly broaden beyond the instrument resolution. `resample` allows consistent rebinning across the entire set of reduced data by specifying a single number to scale the native binning. Thus `wrap.resample(0.5)` will reduce the binning to 5 histogram bins across the FWHM of the silicon sample. This can be adjusted to appropriately match any sample. Around 10 bins across the sample FWHM should be the goal for data that will undergo Rietveld refinement. The resampled reduced data have the workspace name prefix `resampled_dsp` to distinguish them from the original full resoluation data. 
 
 In light of these considerations, we could extend our script above to:
 
@@ -120,7 +120,7 @@ for run in runs:
     wrap.resample(0.5)
     wrap.exportData(prefix="resampled_dsp")
 ```
-This will reduce all requested runs, resample the binning of the reduced data to an appropriate level and then output all four supported formats for subsequent analysis
+This will reduce all requested runs, resample the binning of the reduced data to an appropriate level and then output ther resampled data all four supported formats for subsequent analysis
 
 ### Advanced usage
 

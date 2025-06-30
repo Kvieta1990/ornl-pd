@@ -53,7 +53,7 @@ If a different format needs to be supported, just let the SNAP Team know.
 
 ### `latestOnly`
 
-Defaulting to `True` this ensures that only the latest reduced workspace is exported and that it's timestamp is excluded from the exported filename. If, instead, this is set `False` _all_ existing reductions of a given run are exported and their filenames will include their timestamps.
+Defaulting to `True` this ensures that only the latest reduced workspace is exported and that its timestamp is excluded from the exported filename. If, instead, this is set `False` _all_ existing reductions of a given run are exported and their filenames will include their timestamps.
 
 ### `gsasInstPrm`
 
@@ -61,7 +61,7 @@ Defaults to `True`. This will export a dummy instPrm to the gsas export folder w
 
 ### `fileTag`
 
-This should be a string which, if specified will be added to the name of the output reduced data file. e.g. 
+This should be a string which, if specified, will be added to the name of the output reduced data file. e.g. 
 
 ```python
 wrap.exportData(fileTag='banana')

@@ -8,8 +8,8 @@ This utility is able to generate automatic pixel masks, which are applicable for
 
 ### `maskType`
 
-This is envisaged for future expansion of the mask provision. Currently, the default option "PE" for Parid-Edinburgh cells is the only supported mask type.
+This is envisaged for future expansion of the mask provision. Currently, the default option "PE" for Paris-Edinburgh cells is the only supported mask type.
 
 ### `plotOn`
 
-Defaulting to `True`, this will pop up a 2d ploy visually showing the mask that has been created. Changing the value of this parameter to `False` will prevent this image being shown.
+Defaulting to `True`, this will pop up a 2d plot visually showing the mask that has been created. Changing the value of this parameter to `False` will prevent this image being shown.
