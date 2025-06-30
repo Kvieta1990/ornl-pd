@@ -83,5 +83,6 @@ parts:
     - file: collections/local_envs
     - file: collections/mts_for_developers
     - file: collections/mobile_apps
+    - file: collections/pd_software_tests
   - file: bib.md
   - file: follow.md
