@@ -1,5 +1,0 @@
-Principle & Implementation
-===
-
-```{tableofcontents}
-```
