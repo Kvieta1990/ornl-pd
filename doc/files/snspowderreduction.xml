@@ -1,0 +1,77 @@
+<Reduction>
+  <instrument_name>PG3</instrument_name>
+  <timestamp>Mon Jun 30 11:24:51 2025</timestamp>
+  <python_version>3.11.13 | packaged by conda-forge | (main, Jun  4 2025, 14:48:23) [GCC 13.3.0]</python_version>
+  <platform>Linux</platform>
+  <architecture>('64bit', 'ELF')</architecture>
+  <mantid_version>6.12.20250624.0926</mantid_version>
+<RunSetup>
+  <runnumber>60456</runnumber>
+  <sum>0</sum>
+  <calibrationfile>/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_PAC_d58666_2025-01-30.h5</calibrationfile>
+  <groupingfile></groupingfile>
+  <characterizationrunsfile>/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_char_2025_1-HighRes_PAC_1.4MW.txt,/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_char_2025_1_PAC_limit_1.4MW.txt</characterizationrunsfile>
+  <expinifilename></expinifilename>
+  <binning>-0.0008000</binning>
+  <resamplex></resamplex>
+  <binindspace>1</binindspace>
+  <saveas>gsas and fullprof and topas</saveas>
+  <outputdirectory>/SNS/users/y8z/Temp</outputdirectory>
+  <finaldataunits>dSpacing</finaldataunits>
+  <backgroundnumber></backgroundnumber>
+  <vanadiumnumber></vanadiumnumber>
+  <vanadiumnoisenumber></vanadiumnoisenumber>
+  <vanadiumbackgroundnumber></vanadiumbackgroundnumber>
+  <disablebackgroundcorrection>0</disablebackgroundcorrection>
+  <disablevanadiumcorrection>0</disablevanadiumcorrection>
+  <disablevanadiumbackgroundcorrection>0</disablevanadiumbackgroundcorrection>
+  <doresamplex>0</doresamplex>
+  <interpolatetargettemp>0.0</interpolatetargettemp>
+  <enableinterpolate>0</enableinterpolate>
+</RunSetup>
+<AdvancedSetup>
+<lowresref></lowresref>
+<cropwavelengthmin></cropwavelengthmin>
+<cropwavelengthmax></cropwavelengthmax>
+<removepromptpulsewidth>50.0</removepromptpulsewidth>
+<maxchunksize></maxchunksize>
+<filterbadpulses>90.0</filterbadpulses>
+<backgroundsmoothparams>5,2</backgroundsmoothparams>
+<pushdatapositive>None</pushdatapositive>
+<offsetdata>0.0</offsetdata>
+<stripvanadiumpeaks>1</stripvanadiumpeaks>
+<vanadiumfwhm></vanadiumfwhm>
+<vanadiumpeaktol></vanadiumpeaktol>
+<vanadiumsmoothparams></vanadiumsmoothparams>
+<vanadiumradius>0.3175</vanadiumradius>
+<preserveevents>1</preserveevents>
+<outputfileprefix></outputfileprefix>
+<scaledata>100.0</scaledata>
+<typeofcorrection>None</typeofcorrection>
+<sampleformula>Cr-S-Br</sampleformula>
+<measuredmassdensity>5.0</measuredmassdensity>
+<samplegeometry>{'Height': 40.0}</samplegeometry>
+<samplenumberdensity>0.07</samplenumberdensity>
+<containershape>PAC06</containershape>
+<cachedir>/SNS/users/y8z/Temp,,</cachedir>
+<cleancache>0</cleancache>
+</AdvancedSetup>
+<FilterSetup>
+  <titleofsplitters></titleofsplitters>
+  <filterbytimemin></filterbytimemin>
+  <filterbytimemax></filterbytimemax>
+  <filtertype>NoFilter</filtertype>
+  <lengthoftimeinterval></lengthoftimeinterval>
+  <numberoftimeinterval>None</numberoftimeinterval>
+  <unitoftime>Seconds</unitoftime>
+  <logname></logname>
+  <minimumlogvalue></minimumlogvalue>
+  <maximumlogvalue></maximumlogvalue>
+  <logvalueinterval></logvalueinterval>
+  <filterlogvaluebychangingdirection>Both</filterlogvaluebychangingdirection>
+  <timetolerance></timetolerance>
+  <logboundary>Centre</logboundary>
+  <logvaluetolerance></logvaluetolerance>
+  <logvaluetimesections>1</logvaluetimesections>
+</FilterSetup>
+</Reduction>
