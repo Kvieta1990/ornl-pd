@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -540,6 +540,67 @@ document.write(`
 <ul>
 <li><p>[Optional] <code class="docutils literal notranslate"><span class="pre">-d</span></code>, followed by a file name to specify the input data file to process, in the NeXus format.</p></li>
 <li><p>[Optional] <code class="docutils literal notranslate"><span class="pre">-w</span></code>, followed by an integer number. If the <code class="docutils literal notranslate"><span class="pre">DebugMode</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> in <code class="docutils literal notranslate"><span class="pre">MTS</span></code> (see the instructions <a class="reference external" href="https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html">here</a>), This option can be used to specify the index of the workspace to extract. If not sure about the index, just leave out this option and the program will print out the available options and prompt for the input of the index.</p></li>
+<li><p>[Optional] <code class="docutils literal notranslate"><span class="pre">-g</span></code>, followed by an input file name in <code class="docutils literal notranslate"><span class="pre">json</span></code> form, which specifies some further inputs. The flag is for merging multiple banks of reduced data, e.g., from <code class="docutils literal notranslate"><span class="pre">MantidTotalScattering</span></code> reduction, into a single merged data. The provided input file should be like this,</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;MergeParams&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;merge_params.json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;Mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;NumBanks&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;FileListInput&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;files_to_merge_s.txt&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">MergeParams</span></code> entry specifies a <code class="docutils literal notranslate"><span class="pre">json</span></code> file containing the parameters for the data merging and the parameter set provided will be applied to all the data to be merged. The list of datasets to be merged are provided with the <code class="docutils literal notranslate"><span class="pre">FileListInput</span></code> entry, and a plain text file should be provided to contain all the datasets to be merged, one dataset in each line. Two modes are available here – the single-file mode and multiple-files mode, as can be specified with the <code class="docutils literal notranslate"><span class="pre">Mode</span></code> entry. <code class="docutils literal notranslate"><span class="pre">S</span></code> or <code class="docutils literal notranslate"><span class="pre">s</span></code> is for the single-file mode while <code class="docutils literal notranslate"><span class="pre">M</span></code> or <code class="docutils literal notranslate"><span class="pre">m</span></code> is for multiple-files mode. For the single-file mode, one is expecting the input dataset in the <code class="docutils literal notranslate"><span class="pre">NeXus</span></code> format. For the multiple-files mode, one is expecting the input dataset in plain text. For the <code class="docutils literal notranslate"><span class="pre">S</span></code> mode, the specification of data files in the file corresponding to the <code class="docutils literal notranslate"><span class="pre">FileListInput</span></code> entry is straightforward – one just puts the <code class="docutils literal notranslate"><span class="pre">NeXus</span></code> file names in each of the lines in the file. The path for each dataset should be specified relative to the current running directory (i.e., where the <code class="docutils literal notranslate"><span class="pre">mts_data</span></code> command will be running). For the <code class="docutils literal notranslate"><span class="pre">M</span></code> mode, a stem name is expected for each dataset and we are expecting the names of the data files are following the standard. For example, if I put in the stem name <code class="docutils literal notranslate"><span class="pre">my_data</span></code> for a dataset, I am expecting the following files to be available,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_data_bank1</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">my_data_bank2</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">my_data_bank3</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">my_data_bank4</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">my_data_bank5</span><span class="o">.</span><span class="n">dat</span>
+<span class="n">my_data_bank6</span><span class="o">.</span><span class="n">dat</span>
+</pre></div>
+</div>
+<p>The number of expected files is determined by the <code class="docutils literal notranslate"><span class="pre">NumBanks</span></code> entry. Here it should be noted that for the <code class="docutils literal notranslate"><span class="pre">S</span></code> mode, even though we can extract the number of banks from the <code class="docutils literal notranslate"><span class="pre">NeXus</span></code> file, we are not doing that with the <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag, meaning we still need to provide the <code class="docutils literal notranslate"><span class="pre">NumBanks</span></code> entry for the <code class="docutils literal notranslate"><span class="pre">S</span></code> mode. Here below we are attaching a template parameter file (corresponding to the <code class="docutils literal notranslate"><span class="pre">MergeParams</span></code> flag),</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Qmin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Qmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yoffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yscale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Qmin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Qmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.5&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yoffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yscale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;3&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Qmin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.5&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Qmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yoffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yscale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;4&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Qmin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Qmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yoffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yscale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;5&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Qmin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Qmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yoffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yscale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;6&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Qmin&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Qmax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yoffset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Yscale&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The merged data file will be saved to the same directory as for each individual dataset, individually, with the name of <code class="docutils literal notranslate"><span class="pre">&lt;STEM&gt;_merged.dat</span></code>. For the <code class="docutils literal notranslate"><span class="pre">S</span></code> mode, <code class="docutils literal notranslate"><span class="pre">&lt;STEM&gt;</span></code> is just the stem name of the corresponding <code class="docutils literal notranslate"><span class="pre">NeXus</span></code> file while for the <code class="docutils literal notranslate"><span class="pre">M</span></code> mode, <code class="docutils literal notranslate"><span class="pre">&lt;STEM&gt;</span></code> refers to the input stem in each of the file provided with the <code class="docutils literal notranslate"><span class="pre">FileListInput</span></code> flag.</p>
+</li>
 <li><p>[Optional] <code class="docutils literal notranslate"><span class="pre">-b</span></code>, followed by an input JSON file, the details of which will be presented below. Here follows is an example of the input JSON file,</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;InputFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/SNS/users/y8z/Temp/hydro_bkg_proc/NOM_BaO_HEO.nxs&quot;</span><span class="p">,</span>
