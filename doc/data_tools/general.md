@@ -44,6 +44,73 @@ General Tools
 
     - [Optional] `-w`, followed by an integer number. If the `DebugMode` is set to `true` in `MTS` (see the instructions [here](https://powder.ornl.gov/total_scattering/data_reduction/mts_doc.html)), This option can be used to specify the index of the workspace to extract. If not sure about the index, just leave out this option and the program will print out the available options and prompt for the input of the index.
 
+    - [Optional] `-g`, followed by an input file name in `json` form, which specifies some further inputs. The flag is for merging multiple banks of reduced data, e.g., from `MantidTotalScattering` reduction, into a single merged data. The provided input file should be like this,
+
+        ```json
+        {
+            "MergeParams": "merge_params.json",
+            "Mode": "S",
+            "NumBanks": 6,
+            "FileListInput": "files_to_merge_s.txt"
+        }
+        ```
+
+        The `MergeParams` entry specifies a `json` file containing the parameters for the data merging and the parameter set provided will be applied to all the data to be merged. The list of datasets to be merged are provided with the `FileListInput` entry, and a plain text file should be provided to contain all the datasets to be merged, one dataset in each line. Two modes are available here -- the single-file mode and multiple-files mode, as can be specified with the `Mode` entry. `S` or `s` is for the single-file mode while `M` or `m` is for multiple-files mode. For the single-file mode, one is expecting the input dataset in the `NeXus` format. For the multiple-files mode, one is expecting the input dataset in plain text. For the `S` mode, the specification of data files in the file corresponding to the `FileListInput` entry is straightforward -- one just puts the `NeXus` file names in each of the lines in the file. The path for each dataset should be specified relative to the current running directory (i.e., where the `mts_data` command will be running). For the `M` mode, a stem name is expected for each dataset and we are expecting the names of the data files are following the standard. For example, if I put in the stem name `my_data` for a dataset, I am expecting the following files to be available,
+
+        ```
+        my_data_bank1.dat
+        my_data_bank2.dat
+        my_data_bank3.dat
+        my_data_bank4.dat
+        my_data_bank5.dat
+        my_data_bank6.dat
+        ```
+
+        The number of expected files is determined by the `NumBanks` entry. Here it should be noted that for the `S` mode, even though we can extract the number of banks from the `NeXus` file, we are not doing that with the `-g` flag, meaning we still need to provide the `NumBanks` entry for the `S` mode. Here below we are attaching a template parameter file (corresponding to the `MergeParams` flag),
+
+        ```json
+        {
+            "1": {
+                "Qmin": "0",
+                "Qmax": "1.0",
+                "Yoffset": "0",
+                "Yscale": "1"
+            },
+            "2": {
+                "Qmin": "1",
+                "Qmax": "1.5",
+                "Yoffset": "0",
+                "Yscale": "1"
+            },
+            "3": {
+                "Qmin": "1.5",
+                "Qmax": "4",
+                "Yoffset": "0",
+                "Yscale": "1"
+            },
+            "4": {
+                "Qmin": "0",
+                "Qmax": "0",
+                "Yoffset": "0",
+                "Yscale": "1"
+            },
+            "5": {
+                "Qmin": "4",
+                "Qmax": "40",
+                "Yoffset": "0",
+                "Yscale": "1"
+            },
+            "6": {
+                "Qmin": "0",
+                "Qmax": "0",
+                "Yoffset": "0",
+                "Yscale": "1"
+            }
+        }
+        ```
+
+        The merged data file will be saved to the same directory as for each individual dataset, individually, with the name of `<STEM>_merged.dat`. For the `S` mode, `<STEM>` is just the stem name of the corresponding `NeXus` file while for the `M` mode, `<STEM>` refers to the input stem in each of the file provided with the `FileListInput` flag.
+
     - [Optional] `-b`, followed by an input JSON file, the details of which will be presented below. Here follows is an example of the input JSON file,
 
         ```json
