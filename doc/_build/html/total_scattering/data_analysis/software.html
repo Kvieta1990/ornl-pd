@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
@@ -580,10 +580,28 @@ document.write(`
 <h3>PDFgui<a class="headerlink" href="#pdfgui" title="Link to this heading">#</a></h3>
 <p>PDFgui is a convenient and easy to use graphical front end for the PDFfit2 refinement program. It is capable of full-profile fitting of the atomic pair distribution function (PDF) derived from x-ray or neutron diffraction data and comes with built in graphical and structure visualization capabilities.</p>
 <p>Link to software: <a href="https://www.diffpy.org/products/pdfgui.html" target="_blank">https://www.diffpy.org/products/pdfgui.html</a></p>
-<p><u>Tutorial</u></p>
+<p id="pdfgui-tutorial"><a class="reference internal" href="#pdfgui-tutorial"><span class="std std-ref">Tutorial</span></a></p>
 <ul class="simple">
 <li><p><a href="https://www.youtube.com/watch?v=7xQdDnmsywI" target="_blank">Fitting Si NIST Standard Data from Nomad in PDFgui</a></p></li>
 <li><p><a href="https://www.dropbox.com/sh/c1ojfaerb6yadwp/AAD1Q2pmuRw-dg5MFEf3FTYXa?dl=0" target="_blank">PDFgui tutorials from 2023 US total scattering school</a></p></li>
+</ul>
+<p id="pdfgui-mamba"><a class="reference internal" href="#pdfgui-mamba"><span class="std std-ref">Installation</span></a></p>
+<p>We have been seeing quite a few issues that people are having in installing <code class="docutils literal notranslate"><span class="pre">PDFgui</span></code> using <code class="docutils literal notranslate"><span class="pre">conda</span></code>. Here I am posting the installation procedure that I found to be working robustly, using <code class="docutils literal notranslate"><span class="pre">mamba</span></code>.</p>
+<ul>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">mamba</span></code>, following the instruction <a class="reference external" href="https://github.com/conda-forge/miniforge?tab=readme-ov-file#install">here</a>.</p></li>
+<li><p>For Unix-like platforms (macOS, Linux, &amp; WSL), the shell initialization will be done after the installation finishes and we just need to follow the command line prompt. For <code class="docutils literal notranslate"><span class="pre">Windows</span></code>, after the installation, we need to find and launch <code class="docutils literal notranslate"><span class="pre">Miniforge</span> <span class="pre">Prompt</span></code> in <code class="docutils literal notranslate"><span class="pre">Start</span></code>. Then on the <code class="docutils literal notranslate"><span class="pre">Miniforge</span> <span class="pre">Prompt</span></code> command line, we type <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">shell</span> <span class="pre">init</span></code>. This is for the purpose of initializing the Windows terminal (e.g., <code class="docutils literal notranslate"><span class="pre">CMD</span></code>) so that the <code class="docutils literal notranslate"><span class="pre">mamba</span></code> command can be executed from terminal other than <code class="docutils literal notranslate"><span class="pre">Miniforge</span> <span class="pre">Prompt</span></code>.</p>
+<blockquote>
+<div><p>It is recommended to install the full version of <code class="docutils literal notranslate"><span class="pre">mamba</span></code> using the installer <a class="reference external" href="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe">here</a>. Otherwise, <code class="docutils literal notranslate"><span class="pre">Miniforge</span> <span class="pre">Prompt</span></code> will not be installed.</p>
+</div></blockquote>
+</li>
+<li><p>After all the previous steps (installation and initialization), we want to open a terminal and type <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to see whether it is working.</p></li>
+<li><p>Then proceed to install <code class="docutils literal notranslate"><span class="pre">PDFgui</span></code>,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>diffpy.pdfgui_env<span class="w"> </span>diffpy.pdfgui
+mamba<span class="w"> </span>activate<span class="w"> </span>diffpy.pdfgui_env
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import diffpy.pdfgui; print(diffpy.pdfgui.__version__)&quot;</span>
+</pre></div>
+</div>
+</li>
 </ul>
 </section>
 <section id="topas">

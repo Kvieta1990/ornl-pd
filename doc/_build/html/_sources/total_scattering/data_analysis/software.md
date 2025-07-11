@@ -51,11 +51,33 @@ PDFgui is a convenient and easy to use graphical front end for the PDFfit2 refin
 
 Link to software: <a href="https://www.diffpy.org/products/pdfgui.html" target="_blank">https://www.diffpy.org/products/pdfgui.html</a>
 
-<u>Tutorial</u>
+(pdfgui_tutorial)=
+{ref}`Tutorial<pdfgui_tutorial>`
 
 - <a href="https://www.youtube.com/watch?v=7xQdDnmsywI" target="_blank">Fitting Si NIST Standard Data from Nomad in PDFgui</a>
 
 - <a href="https://www.dropbox.com/sh/c1ojfaerb6yadwp/AAD1Q2pmuRw-dg5MFEf3FTYXa?dl=0" target="_blank">PDFgui tutorials from 2023 US total scattering school</a>
+
+(pdfgui_mamba)=
+{ref}`Installation<pdfgui_mamba>`
+
+We have been seeing quite a few issues that people are having in installing `PDFgui` using `conda`. Here I am posting the installation procedure that I found to be working robustly, using `mamba`.
+
+- Install `mamba`, following the instruction [here](https://github.com/conda-forge/miniforge?tab=readme-ov-file#install).
+
+- For Unix-like platforms (macOS, Linux, & WSL), the shell initialization will be done after the installation finishes and we just need to follow the command line prompt. For `Windows`, after the installation, we need to find and launch `Miniforge Prompt` in `Start`. Then on the `Miniforge Prompt` command line, we type `mamba shell init`. This is for the purpose of initializing the Windows terminal (e.g., `CMD`) so that the `mamba` command can be executed from terminal other than `Miniforge Prompt`.
+
+   > It is recommended to install the full version of `mamba` using the installer [here](https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe). Otherwise, `Miniforge Prompt` will not be installed.
+
+- After all the previous steps (installation and initialization), we want to open a terminal and type `mamba` to see whether it is working.
+
+- Then proceed to install `PDFgui`,
+
+   ```bash
+   mamba create -n diffpy.pdfgui_env diffpy.pdfgui
+   mamba activate diffpy.pdfgui_env
+   python -c "import diffpy.pdfgui; print(diffpy.pdfgui.__version__)"
+   ```
 
 ### Topas
 
