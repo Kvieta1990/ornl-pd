@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -504,6 +504,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roadmap</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#archive">Archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jun-2025">Jun-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#may-2025">May-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apr-2025">Apr-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mar-2025">Mar-2025</a></li>
@@ -558,11 +559,8 @@ document.write(`
 <div class="tip admonition">
 <p class="admonition-title">New Features &amp; Bug Fixes</p>
 <ul class="simple">
-<li><p>Automatic calibration job running on instrument machine. This is about the automatic calibration once a diamond run is detected. Due to the proton power upgrade, the strong scatterer diamond would yield more neutron counting than before which would create large file size and thus require large memory for data handling. The autoreducer cannot take such heavy a load and now with this implementation, we managed to tranfer the heavy loaded job of calibration to those instrument machines.</p></li>
-<li><p>Beam size definition is now available in the <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> routine for the pre-calculation of absorption correction.</p></li>
-<li><p>User definition of sample and container geometry for absorption correction.</p></li>
-<li><p>A chunk-by-chunk Fourier filter routine <code class="docutils literal notranslate"><span class="pre">pystog_ck</span></code> made available to general users on Analysis cluster. This is based on the work by <a class="reference external" href="https://ne.utk.edu/people/eric-oquinn/">Prof. Eric O’Quinn</a> and <a class="reference external" href="https://www.ornl.gov/staff-profile/joerg-c-neuefeind">Dr. Joerg C Neuefeind</a>. Detailed instructions can be found <a class="reference external" href="https://powder.ornl.gov/data_tools/general.html">here</a>.</p></li>
-<li><p>A hydrogen background removal routine is available on Analysis through <code class="docutils literal notranslate"><span class="pre">mts_data</span></code>. This is a wrapper routine for <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/EnggEstimateFocussedBackground-v1.html">EnggEstimateFocussedBackground</a> which estimates the background via a cycling process of applying the top-hat convolution and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculatePolynomialBackground-v1.html">CalculatePolynomialBackground</a> which fits a polynomial function to the estimated background for the purpose of smoothing. Detailed instructions can be found <a class="reference external" href="https://powder.ornl.gov/data_tools/general.html#mts_data">here</a>.</p></li>
+<li><p>RMCProfile in GSAS-II. See details <a class="reference external" href="https://github.com/Kvieta1990/Kvieta1990/issues/68">here</a>.</p></li>
+<li><p>Batch data merging tool for post processing the MantidTotalScattering reduction. See the documentation <a class="reference external" href="https://powder.ornl.gov/data_tools/general.html#mts-data">here</a>. For the feature mentioned here, refer to the <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag.</p></li>
 </ul>
 </div>
 <div class="admonition-planned-items admonition">
@@ -572,7 +570,6 @@ document.write(`
 <li><p>Fix the Bragg peak shape name output for the RMCProfile implementation in GSAS-II.</p></li>
 <li><p>Configuration of live and auto reduction on NOVA.</p></li>
 <li><p>Visualization of incommensurate magnetic structure on ADDIE web platform.</p></li>
-<li><p>Control over live reduction from monitor web interface.</p></li>
 <li><p>RMCProfile version 6 upgrade</p>
 <ul>
 <li><p>Test out the ADP constraint</p></li>
@@ -635,6 +632,16 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="archive">
 <h1>Archive<a class="headerlink" href="#archive" title="Link to this heading">#</a></h1>
+<section id="jun-2025">
+<h2>Jun-2025<a class="headerlink" href="#jun-2025" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Automatic calibration job running on instrument machine. This is about the automatic calibration once a diamond run is detected. Due to the proton power upgrade, the strong scatterer diamond would yield more neutron counting than before which would create large file size and thus require large memory for data handling. The autoreducer cannot take such heavy a load and now with this implementation, we managed to tranfer the heavy loaded job of calibration to those instrument machines.</p></li>
+<li><p>Beam size definition is now available in the <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> routine for the pre-calculation of absorption correction.</p></li>
+<li><p>User definition of sample and container geometry for absorption correction.</p></li>
+<li><p>A chunk-by-chunk Fourier filter routine <code class="docutils literal notranslate"><span class="pre">pystog_ck</span></code> made available to general users on Analysis cluster. This is based on the work by <a class="reference external" href="https://ne.utk.edu/people/eric-oquinn/">Prof. Eric O’Quinn</a> and <a class="reference external" href="https://www.ornl.gov/staff-profile/joerg-c-neuefeind">Dr. Joerg C Neuefeind</a>. Detailed instructions can be found <a class="reference external" href="https://powder.ornl.gov/data_tools/general.html">here</a>.</p></li>
+<li><p>A hydrogen background removal routine is available on Analysis through <code class="docutils literal notranslate"><span class="pre">mts_data</span></code>. This is a wrapper routine for <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/EnggEstimateFocussedBackground-v1.html">EnggEstimateFocussedBackground</a> which estimates the background via a cycling process of applying the top-hat convolution and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CalculatePolynomialBackground-v1.html">CalculatePolynomialBackground</a> which fits a polynomial function to the estimated background for the purpose of smoothing. Detailed instructions can be found <a class="reference external" href="https://powder.ornl.gov/data_tools/general.html#mts_data">here</a>.</p></li>
+</ul>
+</section>
 <section id="may-2025">
 <h2>May-2025<a class="headerlink" href="#may-2025" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -861,6 +868,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roadmap</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#archive">Archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jun-2025">Jun-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#may-2025">May-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apr-2025">Apr-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mar-2025">Mar-2025</a></li>
