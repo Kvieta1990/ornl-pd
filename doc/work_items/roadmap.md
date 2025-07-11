@@ -24,15 +24,9 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} New Features & Bug Fixes
 :class: tip
 
-- Automatic calibration job running on instrument machine. This is about the automatic calibration once a diamond run is detected. Due to the proton power upgrade, the strong scatterer diamond would yield more neutron counting than before which would create large file size and thus require large memory for data handling. The autoreducer cannot take such heavy a load and now with this implementation, we managed to tranfer the heavy loaded job of calibration to those instrument machines.
+- RMCProfile in GSAS-II. See details [here](https://github.com/Kvieta1990/Kvieta1990/issues/68).
 
-- Beam size definition is now available in the `abs_pre_calc` routine for the pre-calculation of absorption correction.
-
-- User definition of sample and container geometry for absorption correction.
-
-- A chunk-by-chunk Fourier filter routine `pystog_ck` made available to general users on Analysis cluster. This is based on the work by [Prof. Eric O’Quinn](https://ne.utk.edu/people/eric-oquinn/) and [Dr. Joerg C Neuefeind](https://www.ornl.gov/staff-profile/joerg-c-neuefeind). Detailed instructions can be found [here](https://powder.ornl.gov/data_tools/general.html).
-
-- A hydrogen background removal routine is available on Analysis through `mts_data`. This is a wrapper routine for [EnggEstimateFocussedBackground](https://docs.mantidproject.org/nightly/algorithms/EnggEstimateFocussedBackground-v1.html) which estimates the background via a cycling process of applying the top-hat convolution and [CalculatePolynomialBackground](https://docs.mantidproject.org/nightly/algorithms/CalculatePolynomialBackground-v1.html) which fits a polynomial function to the estimated background for the purpose of smoothing. Detailed instructions can be found [here](https://powder.ornl.gov/data_tools/general.html#mts_data).
+- Batch data merging tool for post processing the MantidTotalScattering reduction. See the documentation [here](https://powder.ornl.gov/data_tools/general.html#mts-data). For the feature mentioned here, refer to the `-g` flag.
 ``````
 
 ``````{admonition} Planned Items
@@ -44,8 +38,6 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 - Configuration of live and auto reduction on NOVA.
 
 - Visualization of incommensurate magnetic structure on ADDIE web platform.
-
-- Control over live reduction from monitor web interface.
 
 - RMCProfile version 6 upgrade
 
@@ -115,6 +107,18 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````
 
 # Archive
+
+## Jun-2025
+
+- Automatic calibration job running on instrument machine. This is about the automatic calibration once a diamond run is detected. Due to the proton power upgrade, the strong scatterer diamond would yield more neutron counting than before which would create large file size and thus require large memory for data handling. The autoreducer cannot take such heavy a load and now with this implementation, we managed to tranfer the heavy loaded job of calibration to those instrument machines.
+
+- Beam size definition is now available in the `abs_pre_calc` routine for the pre-calculation of absorption correction.
+
+- User definition of sample and container geometry for absorption correction.
+
+- A chunk-by-chunk Fourier filter routine `pystog_ck` made available to general users on Analysis cluster. This is based on the work by [Prof. Eric O’Quinn](https://ne.utk.edu/people/eric-oquinn/) and [Dr. Joerg C Neuefeind](https://www.ornl.gov/staff-profile/joerg-c-neuefeind). Detailed instructions can be found [here](https://powder.ornl.gov/data_tools/general.html).
+
+- A hydrogen background removal routine is available on Analysis through `mts_data`. This is a wrapper routine for [EnggEstimateFocussedBackground](https://docs.mantidproject.org/nightly/algorithms/EnggEstimateFocussedBackground-v1.html) which estimates the background via a cycling process of applying the top-hat convolution and [CalculatePolynomialBackground](https://docs.mantidproject.org/nightly/algorithms/CalculatePolynomialBackground-v1.html) which fits a polynomial function to the estimated background for the purpose of smoothing. Detailed instructions can be found [here](https://powder.ornl.gov/data_tools/general.html#mts_data).
 
 ## May-2025
 
