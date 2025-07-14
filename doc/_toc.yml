@@ -44,7 +44,31 @@ parts:
     - file: bragg_diffraction/data_reduction/powgen
     - file: bragg_diffraction/data_reduction/snap
       sections:
+      - file: bragg_diffraction/data_reduction/snap/maskUtils
+        sections:
+        - file: bragg_diffraction/data_reduction/snap/maskUtils/swissCheese
       - file: bragg_diffraction/data_reduction/snap/utils
+        sections:
+        - file: bragg_diffraction/data_reduction/snap/utils/file
+        - file: bragg_diffraction/data_reduction/snap/utils/autoMask
+        - file: bragg_diffraction/data_reduction/snap/utils/propagateDifcal
+        - file: bragg_diffraction/data_reduction/snap/utils/indexStates
+        - file: bragg_diffraction/data_reduction/snap/utils/reduce
+        - file: bragg_diffraction/data_reduction/snap/utils/reload
+        - file: bragg_diffraction/data_reduction/snap/utils/workspaceHandles
+        - file: bragg_diffraction/data_reduction/snap/utils/exportData
+        - file: bragg_diffraction/data_reduction/snap/utils/confirmIPTS
+      - file: bragg_diffraction/data_reduction/snap/snapStateMgr
+        sections:
+        - file: bragg_diffraction/data_reduction/snap/snapStateMgr/stateDef
+        - file: bragg_diffraction/data_reduction/snap/snapStateMgr/availableStates
+        - file: bragg_diffraction/data_reduction/snap/snapStateMgr/createState
+        - file: bragg_diffraction/data_reduction/snap/snapStateMgr/autoStateName
+        - file: bragg_diffraction/data_reduction/snap/snapStateMgr/checkCalibrationStatus
+        - file: bragg_diffraction/data_reduction/snap/snapStateMgr/checkStateExists
+        - file: bragg_diffraction/data_reduction/snap/snapStateMgr/isCalibrated
+        - file: bragg_diffraction/data_reduction/snap/snapStateMgr/printCalibrationHome
+        - file: bragg_diffraction/data_reduction/snap/snapStateMgr/pullStateDict
   - file: bragg_diffraction/data_analysis/toc
     sections:
     - file: bragg_diffraction/data_analysis/software
