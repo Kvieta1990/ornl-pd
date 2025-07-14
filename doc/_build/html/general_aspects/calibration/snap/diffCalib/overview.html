@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Diffraction Calibration &#8212; Powder Diffraction at ORNL</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=44323870" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-TFL7TZY8LR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TFL7TZY8LR');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TFL7TZY8LR');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'general_aspects/calibration/snap/diffCalib/overview';</script>
+    <script data-website-id="3fc28470-259d-4b4f-bf0c-d4635edb6515" src="https://umm.iris-home.net/script.js"></script>
+    <link rel="canonical" href="https://powder.ornl.gov/general_aspects/calibration/snap/diffCalib/overview.html" />
+    <link rel="icon" href="../../../../_static/powder_fav.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Calibration assessment, completion and output" href="diffCal_assessment_output.html" />
+    <link rel="prev" title="Diffraction Calibration" href="toc.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/ornl_logo.png" class="logo__image only-light" alt="Powder Diffraction at ORNL - Home"/>
+    <script>document.write(`<img src="../../../../_static/ornl_logo.png" class="logo__image only-dark" alt="Powder Diffraction at ORNL - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../about_this_book.html">About this book</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../../../get_in_touch.html">Get in touch</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../nsources.html">Neutron Sources</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../toc.html">Calibration of Instruments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../pd_calib_principles.html">Principles</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../SNAP_calibration.html">SNAP | BL-3 | SNS</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../coreConcepts.html">Core Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binning.html">A note on data binning…</a></li>
+<li class="toctree-l3 current active has-children"><a class="reference internal" href="toc.html">Diffraction Calibration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l4 current active"><a class="current reference internal" href="#">Diffraction Calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="diffCal_assessment_output.html">Calibration assessment, completion and output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../normCalib/overview.html">Normalisation Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../instrument_files.html">Instrument Calibration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../data_acquire/toc.html">Data Acquisition</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_acquire/monitor.html">Data Monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../catalogue/toc.html">Data Catalog</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../catalogue/oncat.html">ONCAT Catalog</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../mantid/toc.html">Mantid</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../mantid/configuration.html">Mantid Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../tools_utils/toc.html">Tools and Utilities</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools_utils/python_venv.html">Python &amp; Virtual Environment</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bragg Diffraction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../bragg_diffraction/intro.html">Introduction</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../bragg_diffraction/data_reduction/toc.html">Data Reduction</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../bragg_diffraction/data_reduction/hb2a.html">POWDER | HB-2A | HFIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../bragg_diffraction/data_reduction/hb2c.html">WAND² | HB-2C | HFIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../bragg_diffraction/data_reduction/nomad.html">NOMAD | BL-1B | SNS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../bragg_diffraction/data_reduction/powgen.html">POWGEN | BL-11A | SNS</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../bragg_diffraction/data_analysis/toc.html">Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../bragg_diffraction/data_analysis/software.html">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../bragg_diffraction/data_analysis/tutorials.html">Tutorials &amp; Workshops</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Total Scattering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../total_scattering/intro.html">Introduction</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../total_scattering/data_reduction/toc.html">Data Reduction</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../total_scattering/data_reduction/princple_implementation.html">Principle &amp; Implementation</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../total_scattering/data_reduction/mts_flow.html">MTS workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../total_scattering/data_reduction/mts_abs_ms.html">Absorption and Multiple Scattering Correction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../total_scattering/data_reduction/dr_howto.html">Data Reduction How-to</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../total_scattering/data_reduction/ts_powgen.html">For POWGEN Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../total_scattering/data_reduction/mts_doc.html">MTS Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../total_scattering/data_reduction/ts_pp.html">Post-processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../total_scattering/data_reduction/ts_dp_workshops.html">Data Processing Workshops</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../total_scattering/data_analysis/toc.html">Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../total_scattering/data_analysis/software.html">Software</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Auto Reduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../auto_reduce/hb2a_auto.html">POWDER | HB-2A | HFIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../auto_reduce/hb2c_auto.html">WAND² | HB-2C | HFIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../auto_reduce/nomad_auto.html">NOMAD | BL-1B | SNS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../auto_reduce/powgen_auto.html">POWGEN | BL-11A | SNS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Toolbox</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_tools/nomad.html">NOMAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_tools/powgen.html">POWGEN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_tools/hb2a.html">HB-2A (POWDER)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_tools/hb2c.html">HB-2C (WAND^2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_tools/general.html">General Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_tools/services.html">System Services</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../uptime.html">Services Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addie.html">ADDIE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../powder_forum.html">Discussion Forum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../run_time.html">Data reduction running time</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../work_items/toc.html">Powder Diffraction Work Items</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../work_items/roadmap.html">Roadmap</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../../work_items/software_and_projects.html">Community Software and Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../collections/toc.html">Powder Diffraction Collections</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../collections/local_envs.html">Local Dev &amp; Test Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../collections/mts_for_developers.html">MTS Collections for Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../collections/mobile_apps.html">Mobile Apps for SNS &amp; HFIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../collections/pd_software_tests.html">PD Software Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../bib.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../follow.html">Follow Us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Kvieta1990/ornl-pd" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/edit/main/doc/general_aspects/calibration/snap/diffCalib/overview.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/issues/new?title=Issue%20on%20page%20%2Fgeneral_aspects/calibration/snap/diffCalib/overview.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/general_aspects/calibration/snap/diffCalib/overview.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diffraction Calibration</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-goal-of-diffraction-calibration">The goal of Diffraction Calibration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs">Inputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-methodology">Overall methodology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibrant-samples">Calibrant samples.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#essential-background-theory">Essential background theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffraction-calibration-part-1-pixel-calibration">Diffraction Calibration part 1: pixel calibration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-the-offset">Determining the offset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-peak-cross-correlation">Single peak cross correlation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whole-pattern-cross-correlation">Whole pattern cross correlation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masking">Masking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration">Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-correlation-completion">Cross correlation completion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffraction-calibration-part-2-group-calibration">Diffraction Calibration Part 2: Group Calibration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-assessment-completion-and-output">Calibration assessment, completion and output</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diffraction-focused-data">Diffraction focused data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-mask">Calibration Mask</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-inspection-group-calibration">Detailed inspection: Group Calibration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffraction-calibration-outputs">Diffraction calibration outputs</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diffraction-calibration">
+<span id="label-difcal"></span><h1>Diffraction Calibration<a class="headerlink" href="#diffraction-calibration" title="Link to this heading">#</a></h1>
+<section id="the-goal-of-diffraction-calibration">
+<h2>The goal of Diffraction Calibration<a class="headerlink" href="#the-goal-of-diffraction-calibration" title="Link to this heading">#</a></h2>
+<p>Powder diffraction measurements embody a rich source of information on the atomic structure of the sample of interest. The presence and position of Bragg peaks encode information on the crystallographic unit cell (and the effects of any stress it is under). The intensity of the peaks encode the details of the nuclear density within the unit cell convolved with the orientational distribution of the sample crystallites, while the width and shape of the Bragg peaks encode details of sample strain fields, particle size and shape <span id="id1">[<a class="reference internal" href="../../../../bib.html#id17" title="H. Schenk C.J. Gilmore, J.A. Kaduk. International Tables for Crystallography Volume H: Powder Diffraction. International Union of Crystallography, 2009.">C.J. Gilmore, 2009</a>]</span>.</p>
+<p>As these properties of Bragg peaks are also modified by purely instrumental artifacts,the goal of calibration measurements is determine these fully, in order to deconvolve those effects from the sample measurement. The process of diffraction calibration has two main goals: to determine the relationship between crystallographic d-space and measured time-of-flight of detected neutrons and to fully quantify the native peak width and shape of the instrument.</p>
+<p>This section specifies the process used by <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> for the former goal. The latter goal is captured via separate workflows currently using external Rietveld packages, such as GSAS <span id="id2">[<a class="reference internal" href="../../../../bib.html#id18" title="A.C. Larson and R.B. Von Dreele. GSAS General Structure Analysis System. Los Alamos National Laboratory Report LAUR 86-748, 2004.">Larson and Dreele, 2004</a>]</span>.</p>
+</section>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Link to this heading">#</a></h2>
+<p>The inputs to <code class="docutils literal notranslate"><span class="pre">Diffraction</span> <span class="pre">Calibration</span></code> are:</p>
+<ol class="arabic simple">
+<li><p>A set of neutron powder diffraction data from a known calibrant material, measured in a given instrument state. This is specified via its run number.</p></li>
+<li><p>Crystallographic information on the calibrant material (see below).</p></li>
+<li><p>A pixel grouping scheme (e.g. <code class="docutils literal notranslate"><span class="pre">Column</span></code> or any arbitrary scheme) that is used during calibration (as described below), but does not impose any constraint on any subsequent choice of grouping used during reduction.</p></li>
+<li><p>A set of parameters governing the calibration workflow. Some of these are fixed and some are variable. The ultimate goal is to fix everything possible to fully automate the calibration process.</p></li>
+</ol>
+<p>A note on input data: Despite it’s best efforts, SNAPRed will always be limited to the quality of the input calibration data. Known issues have been observed under the following circumstances:</p>
+<ul class="simple">
+<li><p><strong>Input data with insufficient counting statistics.</strong> both components of the diffraction calibration workflow include execution of algorithms that will fail if input data are too noisy.</p></li>
+<li><p><strong>Calibrant sample too far off instrument centre.</strong> initial guesses for peak positions will fail if the physical location of the calibrant sample is too far away from the nominal instrument centre. Best practice is to identify the instrument centre and deploy aligment approaches guaranteed to repeatedly position the calibrant sample in this absolute location.</p></li>
+<li><p><strong>Crystallographic properties of calibrant.</strong> SNAPRed uses the mantid alogrithm <code class="docutils literal notranslate"><span class="pre">PDCalibration</span></code>, which is limited to fitting isolated peaks. At least two non-overlapping peaks <em>in every pixel group</em> are required for it to run.</p></li>
+<li><p><strong>Input data with poor signal-to-background</strong> the pixel calibration requires the determination of a peak centre from a cross-correlation, which can become unreliable for high-background data.</p></li>
+</ul>
+</section>
+<section id="overall-methodology">
+<h2>Overall methodology<a class="headerlink" href="#overall-methodology" title="Link to this heading">#</a></h2>
+<p>The basic approach is to use the diffraction signal from a known calibrant material in order to establish the relationship between the measured variable of time-of-flight and the crystallographic parameters of the calibrant. SNAPRed borrows the diffraction calibration methodology from <a class="reference external" href="https://docs.mantidproject.org/v6.1.0/concepts/calibration/PowderDiffractionCalibration.html">an existing approach</a>, developed for <code class="docutils literal notranslate"><span class="pre">POWGEN</span></code> and <code class="docutils literal notranslate"><span class="pre">NOMAD</span></code>. This approach consists of two operations:</p>
+<ol class="arabic simple">
+<li><p>Make the diffraction-focused peaks as sharp as possible</p></li>
+<li><p>Make the resulting (sharp) peaks positions (as ascertained via a specified peak fit) match as closely as possible the correct d-spacing</p></li>
+</ol>
+<p>The first step is referred to as “pixel calibration”, the second step “group calibration”. The word group calibration implies the existence of a “Pixel Grouping Scheme”, this is nothing other than an assigned grouping ID to SNAP pixels. For example, grouping can be defined according to detector components (such as “Banks” or “Columns”), but SNAPRed is not limited to this and can calibrate with any arbitrary grouping definition</p>
+<p>The pixel grouping scheme is chosen by the user at the onset of the Diffraction Calibration workflow.</p>
+</section>
+<section id="calibrant-samples">
+<h2>Calibrant samples.<a class="headerlink" href="#calibrant-samples" title="Link to this heading">#</a></h2>
+<p>The choice of calibrant sample is fundamental to the calibration measurement. For example, any uncertainty in the absolute values of the calibrant lattice parameter will propagate - via the diffractometer constants - into error in the subsequent measurement of any sample that uses that calibration. Similarly, the use of calibrant samples with intrinsic strain, or small particle sizes will interfere with accurate characterisation of the native instrumental peak shape. An additional consideration is the range of d-spaces to be study, which on SNAP is highly variable, depending on instrument state.</p>
+<p>For these reasons, <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> uses an established library of calibrant samples. Each calibrant sample is represented by a <code class="docutils literal notranslate"><span class="pre">json</span></code> file containing relevant information on the sample including its crystal structure (and a citation to the source of this information), and its geometry, material and nuclear properties. Each calibrant has a unique ID and an easily readable name.</p>
+<p>A future goal is to record the calibrant within the experimental process variable logs via use of RFID tags.</p>
+</section>
+<section id="essential-background-theory">
+<h2>Essential background theory<a class="headerlink" href="#essential-background-theory" title="Link to this heading">#</a></h2>
+<p>A sufficient theoretical background to follow diffraction calibration process is obtained from Bragg’s Law:</p>
+<p><span class="math notranslate nohighlight">\(\lambda = 2d\sin\theta\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(d\)</span> is a d-spacing corresponding to the separation of a particular set of cystallographic planes (labelled by Miller indices <span class="math notranslate nohighlight">\(hkl\)</span>) and <span class="math notranslate nohighlight">\(\theta\)</span> is half of the scattering angle, and the deBroglie relation for non-relativistic neutrons:</p>
+<p><span class="math notranslate nohighlight">\(\lambda = \frac{h}{p_n}\)</span></p>
+<p>Here <span class="math notranslate nohighlight">\(p_n\)</span> is the neutron momentum, which is given by the product of the neutron mass (<span class="math notranslate nohighlight">\(m_n\)</span>) and its velocity (<span class="math notranslate nohighlight">\(v_n\)</span>). A neutron travelling at a constant velocity will traverse a known pathlength <span class="math notranslate nohighlight">\(L\)</span> in a time <span class="math notranslate nohighlight">\(T\)</span>. For neutrons at a pulsed source, it is possible to measure <span class="math notranslate nohighlight">\(T\)</span> as the “time-of-flight” between neutron generation and detection.</p>
+<p>By substituting this above and equating the two equations, we see that a given Bragg peak with indices <span class="math notranslate nohighlight">\(hkl\)</span> will be observed at a corresponding time of flight <span class="math notranslate nohighlight">\(T^{hkl}\)</span> given by:</p>
+<p><span class="math notranslate nohighlight">\(T_{hkl}=(\frac{2m_n}{h})L\sin\theta d_{hkl}\)</span></p>
+<p>For any given pixel, <span class="math notranslate nohighlight">\(i\)</span>, this can be written as</p>
+<p><span class="math notranslate nohighlight">\(T_{hkl,i}=C_i d_{hkl,i}\)</span></p>
+<p>Where <span class="math notranslate nohighlight">\(C_i=(\frac{2m_n}{h})L_i\sin\theta_i\)</span> is a constant for pixel i at fixed scattering angle <span class="math notranslate nohighlight">\(2\theta_i\)</span> and for which a detected neutron will have traversed a total distance of <span class="math notranslate nohighlight">\(L_i\)</span> after scattering from the sample.</p>
+<p>In general, details including the finite thickness of the neutron source (a moderator) and time offsets between proton pulse and neutron generation require a more complex relation where the relation from between <span class="math notranslate nohighlight">\(T^{hkl}\)</span> and <span class="math notranslate nohighlight">\(d^{hkl}\)</span> is parabolic, follow the definition in the GSAS manual <span id="id3">[<a class="reference internal" href="../../../../bib.html#id18" title="A.C. Larson and R.B. Von Dreele. GSAS General Structure Analysis System. Los Alamos National Laboratory Report LAUR 86-748, 2004.">Larson and Dreele, 2004</a>]</span>.</p>
+<p><span class="math notranslate nohighlight">\(T_{hkl,i}=A_i {d_{hkl,i}}^2 + C_i d_{hkl,i} + Z\)</span></p>
+<p>And the set of values <span class="math notranslate nohighlight">\(A_i\)</span>, <span class="math notranslate nohighlight">\(C_i\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> are called the diffractometer constants, specified as arrays for each of the <span class="math notranslate nohighlight">\(N_{pix}\)</span> pixels.</p>
+<p>However, at present, SNAPRed calibration is based on the approximation <span class="math notranslate nohighlight">\(T_{hkl}=C_i d_{hkl,i}\)</span>.</p>
+</section>
+<section id="diffraction-calibration-part-1-pixel-calibration">
+<span id="label-cc"></span><h2>Diffraction Calibration part 1: pixel calibration<a class="headerlink" href="#diffraction-calibration-part-1-pixel-calibration" title="Link to this heading">#</a></h2>
+<p>The first step of diffraction calibration, Pixel Calibration, is based on the mathematical process of cross correlation (CC) between the data in a reference pixel and adjacent pixels. In SNAPRed, this is governed by the selected Pixel Grouping Scheme. For example, if “Column” grouping is selected, the algorithm will progress through each of the corresponding 6 pixel groups (one for each detector column). <em>In each group</em>, a reference pixel is selected (ensuring that this is always the same pixel for every group in a given pixel grouping scheme), and then the diffraction data in every other pixel in the group is cross-correlated against that of the reference.</p>
+<p>Prior to the cross-correlation calculation, input data that are measured as a function of TOF are converted to d-spacing (this is currently done using the default instrument definition, but will be extended to use any pre-existing calibration) and histogrammed, using a logarithmic binning scale. Logarithmic binning is essential to enable to full-pattern cross correlation conducted by SNAPRed, discussed below. The selection of binning parameters occurs automatically, with SNAPRed selecting values that are appropriate for the relevant instrument state and selected pixel group.</p>
+<p>The cross-correlation itself is conducted using the mantid algorithm <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/CrossCorrelate-v1.html"><code class="docutils literal notranslate"><span class="pre">CrossCorrelate</span></code></a>. The operation is a way to identify how similar two signals are as a function of their offset relative to each other along a shared x-axis. In our case, the input data are histogrammed neutron counts <em>versus</em> d-spacing.</p>
+<p>Since the input spectra contain sharp Bragg peaks all at the same d-spacings, the CC will <em>also</em> have a sharp peak. In a perfectly calibrated instrument, the Bragg peaks in any spectra should occur at the same d-spacings and the CC peak would be centred on an offset of zero. However, if errors in calibration are present, they will cause this peak to shift from zero by a certain number of d-space bins, <span class="math notranslate nohighlight">\(N^{off}\)</span>. By correcting for this non-zero offset, we obtain optimal agreement between the observed d-spacings in every pixel.</p>
+<p>An important advantage of the CC approach is that it is independent of any assumption of peak shape <em>and</em> a reliable CC signal can be obtained even when the input data are rather noisy (especially when using whole-pattern cross correlation). This is a significant boon when trying to minimise data collection time needed for calibration.</p>
+<p>In real data, the Bragg signal will be combined with experimental background that (normally) will be broadly varying as a function of d-spacing. This background propagates into the CC with the corollary that the algorithm will work better for high signal-to-background input data (n.b. During testing, specific issues were observed with input silicon powder data measured in a kapton container). It is intended that <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> will calculate and subtract a background prior to CC calculation, but this feature isn’t yet available.</p>
+<section id="determining-the-offset">
+<h3>Determining the offset<a class="headerlink" href="#determining-the-offset" title="Link to this heading">#</a></h3>
+<p>Once the CC has been obtained, a second step is to determine the centre of the sharp CC peak corresponding to the value of offset  (<span class="math notranslate nohighlight">\(N^{off}\)</span>), that maximises the overlap of the diffraction data in the two spectra. Again, SNAPRed uses a mantid algorithm <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/GetDetectorOffsets-v1.html"><code class="docutils literal notranslate"><span class="pre">GetDetectorOffsets</span></code></a>, which performs peak fitting to extract a peak centre of the CC to return (<span class="math notranslate nohighlight">\(N^{off}\)</span>). SNAPRed currently uses a Gaussian peak shape to fit the CC. <code class="docutils literal notranslate"><span class="pre">GetDetectorOffsets</span></code> will create a workspace of offsets, containing a the numerical value of the determined offset for each pixel.</p>
+<p>Once CC has executed across all pixel groups, and (<span class="math notranslate nohighlight">\(N^{off}_i\)</span>)  has been determined for every pixel <span class="math notranslate nohighlight">\(i\)</span>, the final step in pixel calibration is to apply this to the initial values of the diffractometer constants <span class="math notranslate nohighlight">\(C_i\)</span> used to convert each i from TOF to d-spacing. This calculation is conducted by the mantid algorithm <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/ConvertDiffCal-v1.html"><code class="docutils literal notranslate"><span class="pre">ConvertDiffCal</span></code></a> and returns a new set of <span class="math notranslate nohighlight">\(C_i\)</span> values that include the offset correction.</p>
+</section>
+<section id="single-peak-cross-correlation">
+<h3>Single peak cross correlation<a class="headerlink" href="#single-peak-cross-correlation" title="Link to this heading">#</a></h3>
+<p>The most common approach when conducting cross-correlation while calibrating a TOF diffractometer is to select a single Bragg peak. This peak must be common to all pixels within the group of pixels that are being cross correlated.</p>
+<p>In such a calculation, it is appropriate that the input data are a function of d-space and have linear binnning with step size <span class="math notranslate nohighlight">\(\Delta d_{lin}\)</span>. The resultant applied CC correction corresponds to an <em>additive</em> shift of the x-values by <span class="math notranslate nohighlight">\(N^{off}_i \Delta d_{lin}\)</span> of the input data for pixel <span class="math notranslate nohighlight">\(i\)</span> to maximise overlap with the data in the reference pixel.</p>
+<p>The offset is currently managed in <code class="docutils literal notranslate"><span class="pre">Mantid</span></code> by replacing the initial diffractometer constant <span class="math notranslate nohighlight">\(C^{init}_i\)</span> by a new constant <span class="math notranslate nohighlight">\(C^{CC}_i\)</span> that includes the offset correction. This immediately creates consideration that the diffractometer constants are applied by multiplication versus in contrast to an offset, which is additive (a shift of the histogram of y-values along the x-axis by <span class="math notranslate nohighlight">\(N^{off}\)</span> bins). These two distinct operations can only agree at a single point in d-space, <span class="math notranslate nohighlight">\(d'\)</span> (see <a class="reference internal" href="#cc-singlepeak"><span class="std std-ref">Figure</span></a>).</p>
+<figure class="align-default" id="cc-singlepeak">
+<a class="reference internal image-reference" href="../../../../_images/CC_singlePeak.png"><img alt="../../../../_images/CC_singlePeak.png" src="../../../../_images/CC_singlePeak.png" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">The solid blue line shows the initial relationship between <span class="math notranslate nohighlight">\(\mathbf{T}_i\)</span> and <span class="math notranslate nohighlight">\(\mathbf{d}_i\)</span> for pixel <span class="math notranslate nohighlight">\(i\)</span>: a straight line with gradient <span class="math notranslate nohighlight">\(\frac{1}{C^{init}_i}\)</span>. Instead of applying an additive offset, which would shift the all values of d by a constant (as indicated by the dashed blue line), the CC-corrected diffractometer constant <span class="math notranslate nohighlight">\(C^{CC}_i\)</span> must be calculated by considering the offset at a specific d-value <span class="math notranslate nohighlight">\(d'\)</span>, using this to calculate the gradient of the red line, which gives the new <span class="math notranslate nohighlight">\(C^{CC}i\)</span>.</span><a class="headerlink" href="#cc-singlepeak" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>To enable this, a value for <span class="math notranslate nohighlight">\(d'\)</span> (typically the expected d-spacing of the chosen Bragg peak) must be specified when calling the mantid algorithm <code class="docutils literal notranslate"><span class="pre">GetDetectorOffsets</span></code> and, from this, the corresponding corrected diffractometer constant <span class="math notranslate nohighlight">\(C^{CC}_i\)</span> can be obtained. This calculation is supported by chosing the  <em>Relative Offset</em> output mode of <code class="docutils literal notranslate"><span class="pre">GetDetectorOffsets</span></code>.</p>
+</section>
+<section id="whole-pattern-cross-correlation">
+<h3>Whole pattern cross correlation<a class="headerlink" href="#whole-pattern-cross-correlation" title="Link to this heading">#</a></h3>
+<p>SNAPRed adopts a different approach, whereby the entire pattern is cross correlated. This utilises the counts from all present Bragg peaks, reducing the necessary collection time by a factor of 2-3, which is important for the frequent recalibrations necessary on SNAP.</p>
+<p>This approach hinges on ensuring that the input diffraction data for each pixel have been binned <span class="math notranslate nohighlight">\(logarithmically\)</span>. Due to the property of a TOF diffractometer that the diffraction resolution <span class="math notranslate nohighlight">\(\delta d/d\)</span> is approximately constant for a given detector, logarithmic binning ensures that each Bragg peak is (approximately) sampled with the same number of histogram bins. Consequently, intensity from each Bragg peak in the pattern will contribute to the total CC peak according to its own intensity.</p>
+<p>Since the cross-correlation is not conducted using a single peak, there’s no obvious way to select a <span class="math notranslate nohighlight">\(d'\)</span> to scale the offset. However, this issue is also solved by log binning. This is seen from the (mantid) definition of log binning, where successive bin edges are related by the corresponding binning parameter is <span class="math notranslate nohighlight">\(\Delta d_{log}\)</span> according to:</p>
+<p><span class="math notranslate nohighlight">\(d_{j+1}=d_j(1+\Delta d_{log})\)</span></p>
+<p>and, the <span class="math notranslate nohighlight">\(j^{th}\)</span> d value can be calculated from the constant initial d value, <span class="math notranslate nohighlight">\(d_0\)</span> via</p>
+<p><span class="math notranslate nohighlight">\(d_j = d_0(1+\Delta d_{log})^n\)</span></p>
+<p>In this case, the CC offset of of <span class="math notranslate nohighlight">\(N^{off}_j\)</span>, is applied in the exponent:</p>
+<p><span class="math notranslate nohighlight">\(d_j^{CC} = d_0(1+\Delta d_{log})^{(n+N^{off}_j)}\)</span></p>
+<p>This is equivalent to a multiplication and so the extracted <span class="math notranslate nohighlight">\(N^{off}_i\)</span> can be used   directly to scale the diffractometer constants. This will be returned by <code class="docutils literal notranslate"><span class="pre">GetDetectorOffsets</span></code> by choosing the <span class="math notranslate nohighlight">\(signed\)</span> output mode.</p>
+</section>
+<section id="masking">
+<h3>Masking<a class="headerlink" href="#masking" title="Link to this heading">#</a></h3>
+<p>A mask is automatically created for any pixels where the cross-correlation operation fails. This mask is persisted to disk as a property of the calibration and, subsequently, these pixels will not be included in data reduction using that calibration. During the calibration process, it’s important to inspect the output mask to identify pathlological issues (high background in the input data, for instance) with cross correlation that have been observed to lead to large numbers of pixels being masked.</p>
+</section>
+<section id="iteration">
+<h3>Iteration<a class="headerlink" href="#iteration" title="Link to this heading">#</a></h3>
+<p>After running <code class="docutils literal notranslate"><span class="pre">CrossCorrelation</span></code> and <code class="docutils literal notranslate"><span class="pre">GetDetectorOffsets</span></code>, every pixel for which these operations have been successful will have a numerical value of the measured offset, stored in an <code class="docutils literal notranslate"><span class="pre">offsets</span> <span class="pre">workspace</span></code>. The next step is to apply these offsets via an operation that returns the corrected set of diffractometer constant for each pixel <span class="math notranslate nohighlight">\(\mathbf{C}^{CC}\)</span>. This is done using the mantid algorithm <code class="docutils literal notranslate"><span class="pre">ConvertDiffCal</span></code> noting that <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> returns offsets using the “Signed” mode. Subsequently, the set of CC-corrected diffractometer constants <span class="math notranslate nohighlight">\(\mathbf{C}^{CC}\)</span>, are then applied to the input data set (Mantid algorithm <code class="docutils literal notranslate"><span class="pre">ApplyDiffCal</span></code>). If the data are then converted from the measured TOF to d-space (Mantid algorithm <code class="docutils literal notranslate"><span class="pre">ConvertUnits</span></code>) the Bragg peaks <em>in each pixel within a specific subgroup</em> will all have been offset towards same d-value, equal to that of the corresponding reference pixel.</p>
+<p>At this point, <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> will repeat the cross-correlation to try to further improve agreement between pixels. Since a cross-correlation has already been applied, the offsets calculated in a subsequent operation should be smaller than those in the preceding interation. These operations will continue until a specified <code class="docutils literal notranslate"><span class="pre">Convergence</span> <span class="pre">Threshold</span></code> is reached, which is defined as the average offset of pixels in the group (in units of number of bins) or until a maximum number of iterations (default is 10) is reached.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If convergence is not achieved before the maximum number of iterations is reached, it is likely there is a problem with your input data (e.g. low signal to background) and the final values of offsets may not be correct.</p>
+</div>
+</section>
+<section id="cross-correlation-completion">
+<h3>Cross correlation completion<a class="headerlink" href="#cross-correlation-completion" title="Link to this heading">#</a></h3>
+<p>Once optimised values for the offsets, and corresponding DIFC’s, have been determined, these should ensure that all common Bragg peaks in any spectrum in the group will have the same d-spacing values as the reference spectrum. However, these values may still be incorrect, due to any present (and unknown) offset of the reference pixel. This necessitates the second step of the diffraction calibration process: group calibration.</p>
+</section>
+</section>
+<section id="diffraction-calibration-part-2-group-calibration">
+<span id="group-cal"></span><h2>Diffraction Calibration Part 2: Group Calibration<a class="headerlink" href="#diffraction-calibration-part-2-group-calibration" title="Link to this heading">#</a></h2>
+<p>The input data for Group Calibration is a diffraction focussed (Mantid algorithm <code class="docutils literal notranslate"><span class="pre">DiffractionFocusing</span></code>), using the CC-corrected diffractometer constants, and applying the specified pixel grouping scheme (PGS). This process combines the neutron counts in all pixels in each group into a single spectrum, reducing the total number of spectra in the dataset to the number of sub groups in the PGS, <span class="math notranslate nohighlight">\(N_{grp}\)</span>. Due to the application of the cross correlation correction, the Bragg peaks in each diffraction-focussed group should be as sharp as possible, however, the absolute value of their d-spacings will, in general, still be incorrect. This is dealt with using a process of <code class="docutils literal notranslate"><span class="pre">Group</span> <span class="pre">Calibration</span></code> which employs the mantid algorithm <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/PDCalibration-v1.html"><code class="docutils literal notranslate"><span class="pre">PDCalibration</span></code></a> applied independently for each subgroup in the PGS. The output of this process is a complete set of diffractometer constants that ensure the sharpest possible peaks at the correct positions in d-space.</p>
+<p>The approach applied by <code class="docutils literal notranslate"><span class="pre">PDCalibration</span></code> is to fit the Bragg peaks in each input spectrum. This works well on the focussed dataset as the statistical quality of the data in each <span class="math notranslate nohighlight">\(focused\)</span> spectrum are much better than in individual pixels.</p>
+<p><code class="docutils literal notranslate"><span class="pre">PDCalibration</span></code> fits the data as a function of TOF and unit conversion must be done on the diffraction focused data prior to input into the algorithm. It operates by conducting a series of individual peak fits and, thus, has a requirement that the peaks selected for fitting do not overlap. To enable this, <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> orchestrates the peak fitting in the following way for each pixel group:</p>
+<ul>
+<li><p>The peak positions in d-spacing are calculated for the calibrant sample via the user-selected cif file. The resultant list is truncated between the limits of the minimum and maximum d-spacings accessible to each pixel group, which <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> calculates, respecting both the grouping scheme and the instrument state. Bragg peak intensity is estimated approximately by applying the TOF-powder specific Lorentz correction to the calculated structure factors squared and weak peaks can then be removed via a user-specified threshold (<span class="math notranslate nohighlight">\(I_{thresh}\)</span>) entered as a percentage of the estimated intensity of the strongest calibrant Bragg peak.</p></li>
+<li><p>The peak extents are estimated by first calculating the FWHM of each peak to be fitted - deriving this from the known diffraction resolution, respecting the pixel group properties and the instrument state. Second, the exponent of the exponential trailing edge tail of the TOF Bragg peak shape is determined. This latter follows the same parameterisation used by the GSAS TOF Peak Profile Function 3 <span id="id4">[<a class="reference internal" href="../../../../bib.html#id18" title="A.C. Larson and R.B. Von Dreele. GSAS General Structure Analysis System. Los Alamos National Laboratory Report LAUR 86-748, 2004.">Larson and Dreele, 2004</a>]</span>, whereby the exponent <span class="math notranslate nohighlight">\(\beta\)</span> is determined from its parameterised d-space dependence, converted to its equivalent in d-space <span class="math notranslate nohighlight">\(\beta_d\)</span> and the corresponding 1/e length calculated. These calculated values are then used to define a left and right extent (<span class="math notranslate nohighlight">\(E_L\)</span> and <span class="math notranslate nohighlight">\(E_R\)</span> respectively) by applying three multipliers (constants fixed for the instrument): <span class="math notranslate nohighlight">\(M_{FWHM-L}\)</span>, <span class="math notranslate nohighlight">\(M_{FWHM-R}\)</span> and <span class="math notranslate nohighlight">\(M_{tail}\)</span> in the following way:</p>
+<p><span class="math notranslate nohighlight">\(E_L = FWHM*M_{FWHM-L}\)</span></p>
+<p><span class="math notranslate nohighlight">\(E_R = FWHM*M_{FWHM-R}+M_{tail}/\beta _d\)</span></p>
+</li>
+<li><p>Using the calculated peak extents, the list of peaks is purged of any peaks that overlap. Since the calculation respects the varying (angular-dependent) diffraction resolution, different peaks may be purged in different groups. At least two peaks per group are required for <code class="docutils literal notranslate"><span class="pre">PDCalibration</span></code> to execute, but a larger number of peaks are recommended.</p></li>
+</ul>
+<p>Prior to execution, the user is able to fine tune the list of peaks by adjusting the minimum and maximum d-spacing of the list and the peak intensity threshold <span class="math notranslate nohighlight">\(I_{thresh}\)</span>. <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> provides a visualisation of data and peak extents to support optimising the peak list prior to execution of group calibration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An idea, not yet implemented, is to record the optimal settings for each calibrant in its <code class="docutils literal notranslate"><span class="pre">.json</span></code> file. This will further automate the calibration process. At present there’s insufficient knowledge of what the best settings are, not how these vary with PGS and instrument state.</p>
+</div>
+<p>Lastly, the user is allowed the possiblity to select a peak shape. At present, due to a limitation of <code class="docutils literal notranslate"><span class="pre">PDCalibration</span></code> only symmetric shapes are supported: Gaussian, Lorentzian and psuedoVoigt. This is a known limitation but the best solution isn’t yet settled as use of asymmetric peak shapes will have additional impacts on subsequent analysis of reduced data (see <em><strong>here (to do)</strong></em>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">PDCalibration</span></code> executes by fitting all of the specified peaks in each pixel group. This provides a set of pairs of <span class="math notranslate nohighlight">\(T_{hkl}:d_{hkl}\)</span> values (where <span class="math notranslate nohighlight">\(d_{hkl}\)</span> are known for the reference calibrant material) that can be used to determine the “correct” diffractometer constant <span class="math notranslate nohighlight">\(C^{CC,PD}_j\)</span> for the <span class="math notranslate nohighlight">\(j^{th}\)</span> group. Since - post cross correlation correction - all pixels in the group have their peaks at the same d-spacings, multiplying each diffractometer contant by the ratio <span class="math notranslate nohighlight">\(\frac{C^{CC,PD}_j}{C^{CC}_i}\)</span> will shift the peak for <em>every pixel</em> to the correct d-spacing.</p>
+</section>
+<section id="calibration-assessment-completion-and-output">
+<h2>Calibration assessment, completion and output<a class="headerlink" href="#calibration-assessment-completion-and-output" title="Link to this heading">#</a></h2>
+<p>At present, graphical inspection of calibration output is achieved via inspection of workspaces within mantid workbench. The output of a typical calibration is shown in <a class="reference internal" href="#outputws-cismodefalse1"><span class="std std-ref">Figure</span></a></p>
+<figure class="align-default" id="outputws-cismodefalse1">
+<a class="reference internal image-reference" href="../../../../_images/outputWS_cisModeFalse.png"><img alt="../../../../_images/outputWS_cisModeFalse.png" src="../../../../_images/outputWS_cisModeFalse.png" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">The mantid workbench workspace tree with useful workspaces indicated.</span><a class="headerlink" href="#outputws-cismodefalse1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="diffraction-focused-data">
+<h3>Diffraction focused data<a class="headerlink" href="#diffraction-focused-data" title="Link to this heading">#</a></h3>
+<p>At this stage in diffraction calibration, the resultant set of diffractometer coefficients, generated via the two step pixel and group calibration approach, <span class="math notranslate nohighlight">\(\mathbf{C^{CC,PD}}\)</span> have to be assessed. This is done by applying them to the input data (Mantid algorithm <code class="docutils literal notranslate"><span class="pre">ApplyDiffCal</span></code>) and then diffraction focusing (using the specified PGS).</p>
+<p>The resultant spectra are available in the mantid workspace tree to inspect, which will have the name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dsp_</span><span class="p">{</span><span class="n">pixel</span> <span class="n">grouping</span> <span class="n">scheme</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">run</span> <span class="n">number</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>These can be compared with earlier calibrations from the same state, allowing comparisons of different calibration approaches and different calibrants. If an earlier calibration exists, it can be loaded by selecting from the <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Record</span></code> drop down on the assessment tab. Loading an earlier calibration will load it’s set of diffraction focused data (focused using the applied pixel grouping scheme) and its calibration metric workspaces (see <a class="reference internal" href="#metrics1"><span class="std std-ref">below</span></a>)</p>
+</section>
+<section id="calibration-mask">
+<h3>Calibration Mask<a class="headerlink" href="#calibration-mask" title="Link to this heading">#</a></h3>
+<p>Another useful workspace to inspect is the mask file, which has the name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">diffract_consts_mask_</span><span class="p">{</span><span class="n">run</span> <span class="n">number</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>You can expand the workspace to inspect the number of masked pixels, ideally this will be zero, but a small number of masked pixels is not uncommon. If there are many masked pixels, it likely indicates something is wrong. You can right click on the workspace and select <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Instrument</span></code> to look for geometric patterns that may help diagnose issues.</p>
+</section>
+<section id="metrics">
+<span id="metrics1"></span><h3>Metrics<a class="headerlink" href="#metrics" title="Link to this heading">#</a></h3>
+<p>It is helpful to have a simple metric that allows rapid assessment of calibration quality and comparison between calibrations. This is done fitting the diffraction focused data - using a Gaussian peak shape - to extract peak position and widths (the latter estimated via  the Gaussian standard deviation). These are used to calculate two parameters:</p>
+<ul class="simple">
+<li><p>“strain” this is <span class="math notranslate nohighlight">\(\frac{1}{N_{hkl}}\sum_{hkl}\frac{d^{obs}_{hkl}-d^{calc}_{hkl}}{\sigma_{hkl}}\)</span> for each subgroup. Thus, this captures the average deviation from the correct d-spacings in each group, as a fraction of the gaussian standard deviation <span class="math notranslate nohighlight">\(\sigma_{hkl}\)</span> of each peak. A smaller absolute valuer is better.</p></li>
+<li><p>“sigma” this is <span class="math notranslate nohighlight">\(\frac{1}{N_{hkl}}\sum_{hkl}\frac{\sigma_{hkl}}{d_{hkl}}\)</span> for each subgroup. This captures something that approximates an average <span class="math notranslate nohighlight">\(\frac{\delta d}{d}\)</span> for the subgroup, smaller is better.</p></li>
+</ul>
+<p>The resultant two values are captured for each group in the PGS as a function of scattering angle %2\theta$ in workspaces with names similar to these (for calibrant run 57474):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">calib_metrics_sigma_057474_ts1711137415314</span>
+<span class="n">calib_metrics_strain_057474_ts1711137415314</span>
+</pre></div>
+</div>
+<p>Here the final part of the workspace name is a time stamp. <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> allows the calibration process to be repeated iteratively allowing, the optimal calibration to be accepted (<em>n.b.</em> at present - in Phase 2 - a calibration is not propagated from one interation to the subsequent one, so not truly iterative. This is planned to be fixed.).</p>
+<p>It is also possible to compare these metrics with earlier completed calibrations for the same state, allowing a more global assessment of quality between calibrations conducted at different times, or for different calibrant materials.</p>
+<p>When a calibration is finalised, these metrics are saved as part of the calibration record and can be reloaded for comparison between different calibrations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plotting these parameters vesus 2<span class="math notranslate nohighlight">\(\theta\)</span> works well for pixel groups at non-overlapping angles. However, this is not so clear where these overlap (e.g. when both detectors are at 90° there is 100% overlap of pixel group angles between the two banks). Addressing this may be possible with a customised GUI.</p>
+</div>
+</section>
+<section id="detailed-inspection-group-calibration">
+<h3>Detailed inspection: Group Calibration<a class="headerlink" href="#detailed-inspection-group-calibration" title="Link to this heading">#</a></h3>
+<p>During Group Calibration, a set of peaks is fitted in each pixel group using mantid algorithm <code class="docutils literal notranslate"><span class="pre">PDCalibration</span></code>. The resultant fits are stored in the workspace <code class="docutils literal notranslate"><span class="pre">_PDCal_diag</span></code>, these are in TOF and can be compared with the corresponding input data, which are stored in `tof_{pixel grouping scheme}_{run number} using the plot spectrum option in workbench.</p>
+<p>Meanwhile, the corresponding fit parameters are stored in a grouped workspace <code class="docutils literal notranslate"><span class="pre">fitPeaksWSGroup</span></code>. These contain table workspaces with names <code class="docutils literal notranslate"><span class="pre">fitPeaksWSGroup_fitted_params_{n}</span></code> for each pixel group (note <span class="math notranslate nohighlight">\(n\)</span> is the spectrum index, which is groupID-1). In addition to the parameters, a <span class="math notranslate nohighlight">\(\chi^2\)</span> is reported, a graphic interface for this has been developed, whereby a grid of plot axes shows the data and fitted spectra for each group and indicates peaks with <span class="math notranslate nohighlight">\(\chi^2\)</span> above a threshold value of 100 by colouring these red.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In testing it was noticed that very high <span class="math notranslate nohighlight">\(\chi^2\)</span> values can be found for long datasets. This is due to random errors due to Poisson counting statistics becoming very small relative to systematic errors from using incorrect peak shape (at present, <code class="docutils literal notranslate"><span class="pre">PDCalibration</span></code> can only use symmetric peak models, which do not perfectly fit the TOF peakshape).</p>
+<p>Modification of the threshold value of <span class="math notranslate nohighlight">\(\chi^2\)</span> can be achieved via editing `application.yml. This allows calibration to continue with for these longer datasets</p>
+</div>
+</section>
+</section>
+<section id="diffraction-calibration-outputs">
+<h2>Diffraction calibration outputs<a class="headerlink" href="#diffraction-calibration-outputs" title="Link to this heading">#</a></h2>
+<p>When satisfied with the results of the calibration, the resultant output is saved to disk:</p>
+<ul class="simple">
+<li><p>a set of calibrated diffractometer constants stored in an mantid diffcal .h5 file (this includes the calibration mask)</p></li>
+<li><p>a calibration record capturing all other parameters from the calibration.</p></li>
+<li><p>a copy of the “strain” and “sigma” metrics and final diffraction-focused dataset.</p></li>
+</ul>
+<p>It is also required that the user specify to which run number the calibration applies <em>from</em>. This defaults to the run number of the diffraction calibrant however, it can be specified to an earlier run number (for example when a calibration is conducted after a sample dataset was measured). This is then stored in the calibration index for the state to allow for the automatic location of the appropriate calibration to be used when reducing sample data.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "Kvieta1990/ornl-pd",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./general_aspects\calibration\snap\diffCalib"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="toc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Diffraction Calibration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="diffCal_assessment_output.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Calibration assessment, completion and output</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-goal-of-diffraction-calibration">The goal of Diffraction Calibration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs">Inputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-methodology">Overall methodology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibrant-samples">Calibrant samples.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#essential-background-theory">Essential background theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffraction-calibration-part-1-pixel-calibration">Diffraction Calibration part 1: pixel calibration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-the-offset">Determining the offset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-peak-cross-correlation">Single peak cross correlation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whole-pattern-cross-correlation">Whole pattern cross correlation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masking">Masking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration">Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-correlation-completion">Cross correlation completion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffraction-calibration-part-2-group-calibration">Diffraction Calibration Part 2: Group Calibration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-assessment-completion-and-output">Calibration assessment, completion and output</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diffraction-focused-data">Diffraction focused data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-mask">Calibration Mask</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metrics">Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-inspection-group-calibration">Detailed inspection: Group Calibration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffraction-calibration-outputs">Diffraction calibration outputs</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yuanpeng Zhang & the Powder Diffraction Group at ORNL
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

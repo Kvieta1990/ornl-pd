@@ -15,10 +15,11 @@ parts:
       sections:
       - file: general_aspects/calibration/snap/coreConcepts
       - file: general_aspects/calibration/snap/binning
-      - file: general_aspects/calibration/snap/diffCalib
+      - file: general_aspects/calibration/snap/diffCalib/toc
         sections:
         - file: general_aspects/calibration/snap/diffCalib/overview
         - file: general_aspects/calibration/snap/diffCalib/diffCal_assessment_output
+      - file: general_aspects/calibration/snap/normCalib/overview
     - file: general_aspects/calibration/instrument_files
   - file: general_aspects/data_acquire/toc
     sections:
