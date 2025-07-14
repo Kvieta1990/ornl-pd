@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SNAP | BL-3 | SNS &#8212; Powder Diffraction at ORNL</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-TFL7TZY8LR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TFL7TZY8LR');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-TFL7TZY8LR');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bragg_diffraction/data_reduction/snap';</script>
+    <script data-website-id="3fc28470-259d-4b4f-bf0c-d4635edb6515" src="https://umm.iris-home.net/script.js"></script>
+    <link rel="canonical" href="https://powder.ornl.gov/bragg_diffraction/data_reduction/snap.html" />
+    <link rel="icon" href="../../_static/powder_fav.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="maskUtils" href="snap/maskUtils.html" />
+    <link rel="prev" title="POWGEN | BL-11A | SNS" href="powgen.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/ornl_logo.png" class="logo__image only-light" alt="Powder Diffraction at ORNL - Home"/>
+    <script>document.write(`<img src="../../_static/ornl_logo.png" class="logo__image only-dark" alt="Powder Diffraction at ORNL - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../about_this_book.html">About this book</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../get_in_touch.html">Get in touch</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">General Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../general_aspects/nsources.html">Neutron Sources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../general_aspects/calibration/toc.html">Calibration of Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../general_aspects/calibration/pd_calib_principles.html">Principles</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../general_aspects/calibration/SNAP_calibration.html">SNAP | BL-3 | SNS</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../general_aspects/calibration/snap/coreConcepts.html">Core Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../general_aspects/calibration/snap/binning.html">A note on data binning…</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../general_aspects/calibration/snap/diffCalib/toc.html">Diffraction Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../general_aspects/calibration/snap/diffCalib/overview.html">Diffraction Calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../general_aspects/calibration/snap/diffCalib/diffCal_assessment_output.html">Calibration assessment, completion and output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../general_aspects/calibration/snap/normCalib/overview.html">Normalisation Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../general_aspects/calibration/instrument_files.html">Instrument Calibration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../general_aspects/data_acquire/toc.html">Data Acquisition</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../general_aspects/data_acquire/monitor.html">Data Monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../general_aspects/catalogue/toc.html">Data Catalog</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../general_aspects/catalogue/oncat.html">ONCAT Catalog</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../general_aspects/mantid/toc.html">Mantid</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../general_aspects/mantid/configuration.html">Mantid Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../general_aspects/tools_utils/toc.html">Tools and Utilities</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../general_aspects/tools_utils/python_venv.html">Python &amp; Virtual Environment</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bragg Diffraction</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="toc.html">Data Reduction</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hb2a.html">POWDER | HB-2A | HFIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hb2c.html">WAND² | HB-2C | HFIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nomad.html">NOMAD | BL-1B | SNS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="powgen.html">POWGEN | BL-11A | SNS</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">SNAP | BL-3 | SNS</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="snap/maskUtils.html">maskUtils</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="snap/maskUtils/swissCheese.html"><code class="docutils literal notranslate"><span class="pre">swissCheese</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="snap/utils.html">utils</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="snap/utils/file.html"><code class="docutils literal notranslate"><span class="pre">file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/utils/autoMask.html"><code class="docutils literal notranslate"><span class="pre">autoMask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/utils/propagateDifcal.html"><code class="docutils literal notranslate"><span class="pre">propagateDifcal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/utils/indexStates.html"><code class="docutils literal notranslate"><span class="pre">indexStates</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/utils/reduce.html"><code class="docutils literal notranslate"><span class="pre">reduce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/utils/reload.html"><code class="docutils literal notranslate"><span class="pre">reload</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/utils/workspaceHandles.html"><code class="docutils literal notranslate"><span class="pre">workspaceHandles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/utils/exportData.html"><code class="docutils literal notranslate"><span class="pre">exportData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/utils/confirmIPTS.html"><code class="docutils literal notranslate"><span class="pre">confirmIPTS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="snap/snapStateMgr.html">snapStateMgr</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="snap/snapStateMgr/stateDef.html"><code class="docutils literal notranslate"><span class="pre">stateDef</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/snapStateMgr/availableStates.html"><code class="docutils literal notranslate"><span class="pre">availableStates</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/snapStateMgr/createState.html"><code class="docutils literal notranslate"><span class="pre">createState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/snapStateMgr/autoStateName.html"><code class="docutils literal notranslate"><span class="pre">autoStateName</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/snapStateMgr/checkCalibrationStatus.html"><code class="docutils literal notranslate"><span class="pre">checkCalibrationStatus</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/snapStateMgr/checkStateExists.html"><code class="docutils literal notranslate"><span class="pre">checkStateExists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/snapStateMgr/isCalibrated.html"><code class="docutils literal notranslate"><span class="pre">isCalibrated</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/snapStateMgr/printCalibrationHome.html"><code class="docutils literal notranslate"><span class="pre">printCalibrationHome</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="snap/snapStateMgr/pullStateDict.html"><code class="docutils literal notranslate"><span class="pre">pullStateDict</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_analysis/toc.html">Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/software.html">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_analysis/tutorials.html">Tutorials &amp; Workshops</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Total Scattering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../total_scattering/intro.html">Introduction</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../total_scattering/data_reduction/toc.html">Data Reduction</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../total_scattering/data_reduction/princple_implementation.html">Principle &amp; Implementation</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../total_scattering/data_reduction/mts_flow.html">MTS workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../total_scattering/data_reduction/mts_abs_ms.html">Absorption and Multiple Scattering Correction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/dr_howto.html">Data Reduction How-to</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/ts_powgen.html">For POWGEN Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/mts_doc.html">MTS Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/ts_pp.html">Post-processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_reduction/ts_dp_workshops.html">Data Processing Workshops</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../total_scattering/data_analysis/toc.html">Data Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../total_scattering/data_analysis/software.html">Software</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Auto Reduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../auto_reduce/hb2a_auto.html">POWDER | HB-2A | HFIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_reduce/hb2c_auto.html">WAND² | HB-2C | HFIR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_reduce/nomad_auto.html">NOMAD | BL-1B | SNS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../auto_reduce/powgen_auto.html">POWGEN | BL-11A | SNS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Toolbox</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/nomad.html">NOMAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/powgen.html">POWGEN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/hb2a.html">HB-2A (POWDER)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/hb2c.html">HB-2C (WAND^2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/general.html">General Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_tools/services.html">System Services</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">More</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../uptime.html">Services Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addie.html">ADDIE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../powder_forum.html">Discussion Forum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../run_time.html">Data reduction running time</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../work_items/toc.html">Powder Diffraction Work Items</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../work_items/roadmap.html">Roadmap</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../work_items/software_and_projects.html">Community Software and Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../collections/toc.html">Powder Diffraction Collections</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../collections/local_envs.html">Local Dev &amp; Test Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collections/mts_for_developers.html">MTS Collections for Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collections/mobile_apps.html">Mobile Apps for SNS &amp; HFIR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collections/pd_software_tests.html">PD Software Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../bib.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../follow.html">Follow Us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Kvieta1990/ornl-pd" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/edit/main/doc/bragg_diffraction/data_reduction/snap.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Kvieta1990/ornl-pd/issues/new?title=Issue%20on%20page%20%2Fbragg_diffraction/data_reduction/snap.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/bragg_diffraction/data_reduction/snap.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SNAP | BL-3 | SNS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-reducing-data-on-snap">Introduction to reducing data on SNAP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-lite-mode">Understanding “Lite” mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-pixel-grouping-schemes">A note on pixel grouping schemes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#snapred-the-reduction-backend"><code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> the reduction backend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#snapwrap-the-reduction-frontend"><code class="docutils literal notranslate"><span class="pre">snapwrap</span></code> the reduction frontend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-data-reduction-using-snapwrap">Basic data reduction using <code class="docutils literal notranslate"><span class="pre">snapwrap</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-the-reduced-data">Inspecting the reduced data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting-the-data">Exporting the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage">Advanced usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-following-lists-individual-functions-of-the-four-modules">The following lists individual functions of the four modules</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="snap-bl-3-sns">
+<h1>SNAP | BL-3 | SNS<a class="headerlink" href="#snap-bl-3-sns" title="Link to this heading">#</a></h1>
+<section id="introduction-to-reducing-data-on-snap">
+<h2>Introduction to reducing data on SNAP<a class="headerlink" href="#introduction-to-reducing-data-on-snap" title="Link to this heading">#</a></h2>
+<section id="understanding-lite-mode">
+<h3>Understanding “Lite” mode<a class="headerlink" href="#understanding-lite-mode" title="Link to this heading">#</a></h3>
+<p>Significant effort has gone into careful compression of SNAP data to maximise processing time while maintaining diffraction resolution. These compressed data are referred to as “Lite” and, by default, this compression will be used. In a very small number of cases, the resolution of the output data can be increased by deactivating lite mode and the corresponding “Native” mode is supported for all reduction operations. This will typically manifest as a toggle called <code class="docutils literal notranslate"><span class="pre">isLite</span></code> which has (default) value of True for compressed data and can be set to False for Native mode.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Part of the compression used in lite mode involves merging the neutron events in adjacent pixels. This affects how pixels are numbered (and, indeed, the total number of unique pixels defined). Correspondingly, all auxilliary information (for example pixel masks) must correctly correspond to the lite or native mode being used.</p>
+</div>
+</section>
+<section id="a-note-on-pixel-grouping-schemes">
+<h3>A note on pixel grouping schemes<a class="headerlink" href="#a-note-on-pixel-grouping-schemes" title="Link to this heading">#</a></h3>
+<p>SNAP has 1.2M pixels in its detectors. During reduction, the events measured in these individual pixels are merged according to a pixel grouping scheme - via a process called “diffraction focussing” - leading to a small number of familiar 1d powder diffraction patterns. The choice of pixel grouping scheme is entirely arbitrary but, by default, data measured on SNAP will be reduced according to 3 different schemes:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Scheme Name</p></th>
+<th class="head"><p>Number of spectra</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>all</p></td>
+<td><p>1</p></td>
+<td><p>All pixels in the instrument are merged into a single spectrum</p></td>
+</tr>
+<tr class="row-odd"><td><p>bank</p></td>
+<td><p>2</p></td>
+<td><p>Pixels in the two separate detector banks are merged into one spectrum per bank</p></td>
+</tr>
+<tr class="row-even"><td><p>column</p></td>
+<td><p>6</p></td>
+<td><p>The pixels in the 6 vertical columns formed by the individual detector banks are merged separately</p></td>
+</tr>
+</tbody>
+</table>
+<p>These 3 different grouping schemes are always available and allow different views on the data, and allowing optimal compromise between angular resolution and count levels to be found.</p>
+<p>It is also possible to retain the unfocussed dataset, which will show the full angular resolution of the instrument: with complete powder pattern in each pixel (albeit a noisy pattern because a single pixel is small).</p>
+<p>Finally, it is also possible to define custom pixel groups if needed for you experiment. An instrument scientist can help set these up.</p>
+</section>
+<section id="snapred-the-reduction-backend">
+<h3><code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> the reduction backend<a class="headerlink" href="#snapred-the-reduction-backend" title="Link to this heading">#</a></h3>
+<p>SNAP is unique amongst the SNS powder diffractometers in that it is highly reconfigurable. Each change of configuration, for example moving one of the detectors, modifies the calibration data and parameters needed to reduce data. For this reason, a sophisticated backend software application for reducing data - called <a class="reference external" href="https://github.com/neutrons/SNAPRed"><code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code></a> has been developed. <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> manages all of the effects of instrument configuration, greatly simplifying the user experience of reduction: by design, reduction is possible knowing only your neutron run numbner</p>
+</section>
+<section id="snapwrap-the-reduction-frontend">
+<h3><code class="docutils literal notranslate"><span class="pre">snapwrap</span></code> the reduction frontend<a class="headerlink" href="#snapwrap-the-reduction-frontend" title="Link to this heading">#</a></h3>
+<p>Most users will never interact directly with SNAPRed. Instead, they will usually use a specially created python wrapper called <a class="reference external" href="https://github.com/neutrons/snapwrap">snapwrap</a> that provides easy access to the functionality via a python script, intended to be run inside the <code class="docutils literal notranslate"><span class="pre">mantidworkbench</span></code> application. Normally an instrument scientist will provide a template script and help set this up, so there is no need to know python.</p>
+</section>
+<section id="basic-data-reduction-using-snapwrap">
+<h3>Basic data reduction using <code class="docutils literal notranslate"><span class="pre">snapwrap</span></code><a class="headerlink" href="#basic-data-reduction-using-snapwrap" title="Link to this heading">#</a></h3>
+<p>In order to reduce SNAP data, using <code class="docutils literal notranslate"><span class="pre">snapwrap</span></code> a user should log into the SNS analysis cluster at <a class="reference external" href="https://analysis.sns.gov">analysis.sns.gov</a> either using a web browser or the <a class="reference external" href="https://www.cendio.com/thinlinc/download/">free thinlinc client application</a>. This presents a linux desktop, from which a terminal can be opened simply by right-clicking on the desktop and selecting <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Terminal</span> <span class="pre">Here</span></code>.</p>
+<p>Once the terminal opens, just typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">snapwrap</span>
+</pre></div>
+</div>
+<p>will open an instance of <code class="docutils literal notranslate"><span class="pre">mantid</span> <span class="pre">workbench</span></code> from which snapwrap can be accessed through a python script. One of the windows in the workbench is an Editor window. A buttom marked with <code class="docutils literal notranslate"><span class="pre">+</span></code> at the top right of this window will create a new script with three standard imports:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import mantid algorithms, numpy and matplotlib</span>
+<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<p>In order to access snapwrap we must add a single additional import:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snapwrap.utils</span> <span class="k">as</span> <span class="nn">wrap</span>
+</pre></div>
+</div>
+<p>the <code class="docutils literal notranslate"><span class="pre">snapwrap.utils</span></code> module includes the primary methods needed to reduce data. The most commonly used method is <code class="docutils literal notranslate"><span class="pre">reduce</span></code> which will reduce data. The only mandatory argument for <code class="docutils literal notranslate"><span class="pre">reduce</span></code> is the run number of your neutron dataset. So, to reduce the data from run 64413, the complete script would be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import mantid algorithms, numpy and matplotlib</span>
+<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">snapwrap.utils</span> <span class="k">as</span> <span class="nn">wrap</span>
+
+<span class="n">wrap</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="mi">44613</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you need to reduce the data from many runs, this can be done with a python for loop, specifying the run numbers as a list or a range, e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import mantid algorithms, numpy and matplotlib</span>
+<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">snapwrap.utils</span> <span class="k">as</span> <span class="nn">wrap</span>
+
+<span class="n">runs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">44613</span><span class="p">,</span><span class="mi">64431</span><span class="p">,</span><span class="mi">64437</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">runs</span><span class="p">:</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note, it is perfectly fine if the run numbers correspond to different instrument configurations: the underlying SNAPRed framework will automatically load the correct calibration and reduction parameters.</p>
+</section>
+<section id="inspecting-the-reduced-data">
+<h3>Inspecting the reduced data<a class="headerlink" href="#inspecting-the-reduced-data" title="Link to this heading">#</a></h3>
+<p>Each time <code class="docutils literal notranslate"><span class="pre">wrap.reduce()</span></code> is run, the output is a set of at least 3 mantid workspaces that contain the reduced data according to the 3 default pixel grouping schemes. The names of these workspaces act as keys to understand their contents. e.g. reducing run 59056 will create the following workspaces in the mantid workbench workspace tree</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reduced_dsp_all_059056_2025</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">11</span><span class="n">T150755</span>
+<span class="n">reduced_dsp_bank_059056_2025</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">11</span><span class="n">T150755</span>
+<span class="n">reduced_dsp_column_059056_2025</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">11</span><span class="n">T150755</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">reduced_</span></code> is a flag indicating that data have been reduced. <code class="docutils literal notranslate"><span class="pre">dsp</span></code> indicates that the x-unit of the data is in d-Spacing  (alternately, this could be <code class="docutils literal notranslate"><span class="pre">qsp</span></code> if an x-unit of momentum transfer was requested). <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">bank</span></code> and <code class="docutils literal notranslate"><span class="pre">column</span></code> correspond to the pixel grouping schemes and the final part of the name is a time stamp: <code class="docutils literal notranslate"><span class="pre">2025-06-11T150755</span></code> = June 11th 2025 at 3:07:55pm.</p>
+<p>The mantid workbench workspace tree has a filter option. Typing, for example <code class="docutils literal notranslate"><span class="pre">bank</span></code> into this will only show workspaces with the name bank in them. This can help keep the tree tidy if you have a lot of workspaces. <code class="docutils literal notranslate"><span class="pre">snapwrap</span></code> also has a “file” function that will move unneeded workspaces to a “filecabinet” (a mantid workspace group), this can also help keep the tree tidy.</p>
+</section>
+<section id="exporting-the-data">
+<h3>Exporting the data<a class="headerlink" href="#exporting-the-data" title="Link to this heading">#</a></h3>
+<p>Frequently, users will want to export their data for further analysis (e.g. using GSAS-II to do a Rietveld refinement) this is supported with the <code class="docutils literal notranslate"><span class="pre">wrap.exportData()</span></code> method. By default, this will export data in formats suitable for use with GSAS-II, TOPAS, Fullprof and as plain (tab-delineated) ascii.</p>
+<p>Another commonly used function is <code class="docutils literal notranslate"><span class="pre">wrap.resample()</span></code> this allows easy control of data binning. The underlying binning used by SNAPRed is chosen to ensure ~10 histogram bins across the Full Width at Half Maximum (FWHM) of the standard Nist 640D Silicon standard used during calibration. Thus, it is matched to the intrinsic resolution of the instrument. This binning will be maintained in any output reduced spectrum regardless of instrument configuration and regardless of pixel grouping scheme used.</p>
+<p>However, commonly, internal strain in the sample, or pressure gradients cause the sample peaks to significantly broaden beyond the instrument resolution. <code class="docutils literal notranslate"><span class="pre">resample</span></code> allows consistent rebinning across the entire set of reduced data by specifying a single number to scale the native binning. Thus <code class="docutils literal notranslate"><span class="pre">wrap.resample(0.5)</span></code> will reduce the binning to 5 histogram bins across the FWHM of the silicon sample. This can be adjusted to appropriately match any sample. Around 10 bins across the sample FWHM should be the goal for data that will undergo Rietveld refinement. The resampled reduced data have the workspace name prefix <code class="docutils literal notranslate"><span class="pre">resampled_dsp</span></code> to distinguish them from the original full resoluation data.</p>
+<p>In light of these considerations, we could extend our script above to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># import mantid algorithms, numpy and matplotlib</span>
+<span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">snapwrap.utils</span> <span class="k">as</span> <span class="nn">wrap</span>
+
+<span class="n">runs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">44613</span><span class="p">,</span><span class="mi">64431</span><span class="p">,</span><span class="mi">64437</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="n">runs</span><span class="p">:</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">wrap</span><span class="o">.</span><span class="n">exportData</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;resampled_dsp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will reduce all requested runs, resample the binning of the reduced data to an appropriate level and then output ther resampled data all four supported formats for subsequent analysis</p>
+</section>
+<section id="advanced-usage">
+<h3>Advanced usage<a class="headerlink" href="#advanced-usage" title="Link to this heading">#</a></h3>
+<p>The above examples just show the most basic functionality of <code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> and <code class="docutils literal notranslate"><span class="pre">snapwrap</span></code>. In particular the <code class="docutils literal notranslate"><span class="pre">reduce</span></code>, <code class="docutils literal notranslate"><span class="pre">exportData</span></code> and <code class="docutils literal notranslate"><span class="pre">resample</span></code> methods all have customisable parameters that can be adjusted as needed. There are also many more advanced functions to support other data reduction needs. A common example of advanced usage is allowing the necessary corrections for pressure cells that are ubiquitous in most SNAP measurements.</p>
+<p>What follows are detailed descriptions of the majority of functions available in the snapwrap package which, in addition to <code class="docutils literal notranslate"><span class="pre">utils</span></code> has  other main modules:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>module</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>utils</p></td>
+<td><p>Most common tools needed for reducing data, including the main function <code class="docutils literal notranslate"><span class="pre">reduce</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>maskUtils</p></td>
+<td><p>Functions supporting masking needs for different pressure cells, including pixel masks and bin masks</p></td>
+</tr>
+<tr class="row-even"><td><p>io</p></td>
+<td><p>Supports input and output needs, such as exporting data</p></td>
+</tr>
+<tr class="row-odd"><td><p>snapStateMgr</p></td>
+<td><p>Tools using SNAPRed to enable easy management of multiple instrument configurations</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-following-lists-individual-functions-of-the-four-modules">
+<h3>The following lists individual functions of the four modules<a class="headerlink" href="#the-following-lists-individual-functions-of-the-four-modules" title="Link to this heading">#</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="snap/maskUtils.html">maskUtils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="snap/maskUtils/swissCheese.html"><code class="docutils literal notranslate"><span class="pre">swissCheese</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="snap/utils.html">utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="snap/utils/file.html"><code class="docutils literal notranslate"><span class="pre">file</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/utils/autoMask.html"><code class="docutils literal notranslate"><span class="pre">autoMask</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/utils/propagateDifcal.html"><code class="docutils literal notranslate"><span class="pre">propagateDifcal</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/utils/indexStates.html"><code class="docutils literal notranslate"><span class="pre">indexStates</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/utils/reduce.html"><code class="docutils literal notranslate"><span class="pre">reduce</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/utils/reload.html"><code class="docutils literal notranslate"><span class="pre">reload</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/utils/workspaceHandles.html"><code class="docutils literal notranslate"><span class="pre">workspaceHandles</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/utils/exportData.html"><code class="docutils literal notranslate"><span class="pre">exportData</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/utils/confirmIPTS.html"><code class="docutils literal notranslate"><span class="pre">confirmIPTS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="snap/snapStateMgr.html">snapStateMgr</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="snap/snapStateMgr/stateDef.html"><code class="docutils literal notranslate"><span class="pre">stateDef</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/snapStateMgr/availableStates.html"><code class="docutils literal notranslate"><span class="pre">availableStates</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/snapStateMgr/createState.html"><code class="docutils literal notranslate"><span class="pre">createState</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/snapStateMgr/autoStateName.html"><code class="docutils literal notranslate"><span class="pre">autoStateName</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/snapStateMgr/checkCalibrationStatus.html"><code class="docutils literal notranslate"><span class="pre">checkCalibrationStatus</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/snapStateMgr/checkStateExists.html"><code class="docutils literal notranslate"><span class="pre">checkStateExists</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/snapStateMgr/isCalibrated.html"><code class="docutils literal notranslate"><span class="pre">isCalibrated</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/snapStateMgr/printCalibrationHome.html"><code class="docutils literal notranslate"><span class="pre">printCalibrationHome</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap/snapStateMgr/pullStateDict.html"><code class="docutils literal notranslate"><span class="pre">pullStateDict</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "Kvieta1990/ornl-pd",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./bragg_diffraction\data_reduction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="powgen.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">POWGEN | BL-11A | SNS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="snap/maskUtils.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">maskUtils</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-reducing-data-on-snap">Introduction to reducing data on SNAP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-lite-mode">Understanding “Lite” mode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-pixel-grouping-schemes">A note on pixel grouping schemes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#snapred-the-reduction-backend"><code class="docutils literal notranslate"><span class="pre">SNAPRed</span></code> the reduction backend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#snapwrap-the-reduction-frontend"><code class="docutils literal notranslate"><span class="pre">snapwrap</span></code> the reduction frontend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-data-reduction-using-snapwrap">Basic data reduction using <code class="docutils literal notranslate"><span class="pre">snapwrap</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-the-reduced-data">Inspecting the reduced data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting-the-data">Exporting the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage">Advanced usage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-following-lists-individual-functions-of-the-four-modules">The following lists individual functions of the four modules</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yuanpeng Zhang & the Powder Diffraction Group at ORNL
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

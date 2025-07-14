@@ -29,15 +29,15 @@ Finally, it is also possible to define custom pixel groups if needed for you exp
 
 ### `SNAPRed` the reduction backend 
 
-SNAP is unique amongst the SNS powder diffractometers in that it is highly reconfigurable. Each change of configuration, for example moving one of the detectors, modifies the calibration data and parameters needed to reduce data. For this reason, a sophisticated backend software application for reducing data - called [`SNAPRed`](github.com/neutrons/SNAPRed) has been developed. `SNAPRed` manages all of the effects of instrument configuration, greatly simplifying the user experience of reduction: by design, reduction is possible knowing only your neutron run numbner 
+SNAP is unique amongst the SNS powder diffractometers in that it is highly reconfigurable. Each change of configuration, for example moving one of the detectors, modifies the calibration data and parameters needed to reduce data. For this reason, a sophisticated backend software application for reducing data - called [`SNAPRed`](https://github.com/neutrons/SNAPRed) has been developed. `SNAPRed` manages all of the effects of instrument configuration, greatly simplifying the user experience of reduction: by design, reduction is possible knowing only your neutron run numbner 
 
 ### `snapwrap` the reduction frontend
 
-Most users will never interact directly with SNAPRed. Instead, they will usually use a specially created python wrapper called [snapwrap]((github.com/neutrons/snapwrap)) that provides easy access to the functionality via a python script, intended to be run inside the `mantidworkbench` application. Normally an instrument scientist will provide a template script and help set this up, so there is no need to know python.
+Most users will never interact directly with SNAPRed. Instead, they will usually use a specially created python wrapper called [snapwrap](https://github.com/neutrons/snapwrap) that provides easy access to the functionality via a python script, intended to be run inside the `mantidworkbench` application. Normally an instrument scientist will provide a template script and help set this up, so there is no need to know python.
 
 ### Basic data reduction using `snapwrap`
 
-In order to reduce SNAP data, using `snapwrap` a user should log into the SNS analysis cluster at [analysis.sns.gov](analysis.sns.gov) either using a web browser or the [free thinlinc client application](https://www.cendio.com/thinlinc/download/). This presents a linux desktop, from which a terminal can be opened simply by right-clicking on the desktop and selecting `Open Terminal Here`. 
+In order to reduce SNAP data, using `snapwrap` a user should log into the SNS analysis cluster at [analysis.sns.gov](https://analysis.sns.gov) either using a web browser or the [free thinlinc client application](https://www.cendio.com/thinlinc/download/). This presents a linux desktop, from which a terminal can be opened simply by right-clicking on the desktop and selecting `Open Terminal Here`. 
 
 Once the terminal opens, just typing:
 
