@@ -42,6 +42,9 @@ parts:
     - file: bragg_diffraction/data_reduction/hb2c
     - file: bragg_diffraction/data_reduction/nomad
     - file: bragg_diffraction/data_reduction/powgen
+    - file: bragg_diffraction/data_reduction/snap
+      sections:
+      - file: bragg_diffraction/data_reduction/snap/utils
   - file: bragg_diffraction/data_analysis/toc
     sections:
     - file: bragg_diffraction/data_analysis/software
