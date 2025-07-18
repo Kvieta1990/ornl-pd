@@ -24,7 +24,7 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} New Features & Bug Fixes
 :class: tip
 
-- Analysis cluster monitor tool for monitoring the available system resources on available nodes, [https://addie.ornl.gov/analysis_mon](https://addie.ornl.gov/analysis_mon)
+- Analysis cluster monitor tool for monitoring the available system resources on available nodes, [https://addie.ornl.gov/analysis_mon](https://addie.ornl.gov/analysis_mon).
 
 - RMCProfile in GSAS-II. See details [here](https://github.com/Kvieta1990/Kvieta1990/issues/68).
 
