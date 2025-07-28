@@ -9,8 +9,12 @@ Analysis Nodes Resources Monitor: <a href="https://addie.ornl.gov/analysis_mon" 
 
 Useful Powder Diffraction Resources: <a href="https://uptime.ornl.gov/status/resources" target="_blank">uptime.ornl.gov/status/resources</a>
 
+Maintenance Schedule for PD Resources: <a href="https://powder.ornl.gov/forum/calendar.php" target="_blank">powder.ornl.gov/forum/calendar.php</a>
+
 Auto Reducers: <a href="https://uptime.ornl.gov/status/autored" target="_blank">uptime.ornl.gov/status/autored</a>
 
 Instrument Machines: <a href="https://uptime.ornl.gov/status/instruments" target="_blank">uptime.ornl.gov/status/instruments</a>
 
 Computation Resources: <a href="https://uptime.ornl.gov/status/compute" target="_blank">uptime.ornl.gov/status/compute</a>
+
+Computation Resources Monitor: <a href="https://addie.ornl.gov/analysis_mon_alt" target="_blank">addie.ornl.gov/analysis_mon_alt</a>
