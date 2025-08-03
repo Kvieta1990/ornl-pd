@@ -18,8 +18,8 @@
 |-|-|-|
 | 09:00 - 09:10 | Opening Remarks | Yuanpeng Zhang |
 | 09:10 - 09:45 | Introduction to Neutron Total Scattering and Data Analysis Tools | Matthew Tucker |
-| 09:45 - 10:00 | Coffee Break | |
-| 10:00 - 10:35 | Data Processing for Total Scattering - Part-1 | Yuanpeng Zhang |
+| 09:45 - 10:20 | Data Processing for Total Scattering - Part-1 | Yuanpeng Zhang |
+| 10:20 - 10:35 | Coffee Break | |
 | 10:35 - 11:10 | Data Processing for Total Scattering - Part-2 | Matthew Tucker |
 | 11:10 - 11:55 | Data Processing Hands-on | Yuanpeng & Matt |
 | 11:55 - 12:00 | Closing out | Yuanpeng & Matt |
@@ -43,6 +43,8 @@
 - Introduction & Demonstration to the total scattering data post-processing: <a href="./ts_pp.html" target="_blank">Click Me</a>
 
 - RMCProfile package (for the workshop, please download the version of 6.7.9): <a href="https://rmcprofile.ornl.gov/download/" target="_blank">Click Me</a>
+
+- Demo data can be downloaded <a href="../../files/si_demo_data.zip" target="_blank" download>here</a>.
 
 ## Satellite workshop with [ACNS meeting 2024 at Knoxville](https://ceramics.org/event/american-conference-on-neutron-scattering-acns-2024/)
 
