@@ -14,19 +14,20 @@
 
 **Schedule**
 
-|-|-|-|
-| 08:30 - 09:15 | Welcome, Introductions, Opening Remarks, & Working Breakfast | Yuanpeng Zhang |
-| 09:15 - 09:50 | General Introduction to Total Scattering | Thomas Proffen |
-| 09:50 - 10:30 | Data Analysis for Total Scattering | Matt Tucker |
-| 10:30 - 10:45 | Coffee Break | |
-| 10:45 - 11:30 | Data Reduction for Neutron Total Scattering – Part-1 | Yuanpeng |
-| 11:30 - 13:00 | Lunch Break & Machine learning and phase transition | Dayton Kizzire |
-| 13:00 - 13:30 | Data Reduction for Neutron Total Scattering – Part-2 | Yuanpeng |
-| 13:30 - 14:00 | Computer Setup & Break | Matt & Yuanpeng |
-| 14:00 - 14:45 | Data Processing Hands-on – Part-1 | Matt |
-| 14:45 - 15:00 | Coffee Break | |
-| 15:00 - 16:30 | Data Processing Hands-on – Part-2 | All |
-| 16:30 - 17:00 | Poll, Summary, and Close-out | Yuanpeng |
+| Time              | Topic                                                     |          |
+|-------------------|-----------------------------------------------------------|-----------------|
+| 08:30 - 09:15     | Welcome, Introductions, Opening Remarks, & Working Breakfast | Yuanpeng Zhang |
+| 09:15 - 09:50     | General Introduction to Total Scattering                 | Thomas Proffen  |
+| 09:50 - 10:30     | Data Analysis for Total Scattering                        | Matt Tucker     |
+| 10:30 - 10:45     | Coffee Break                                              |                 |
+| 10:45 - 11:30     | Data Reduction for Neutron Total Scattering – Part-1     | Yuanpeng        |
+| 11:30 - 13:00     | Lunch Break & Machine learning and phase transition       | Dayton Kizzire  |
+| 13:00 - 13:30     | Data Reduction for Neutron Total Scattering – Part-2     | Yuanpeng        |
+| 13:30 - 14:00     | Computer Setup & Break                                   | Matt & Yuanpeng |
+| 14:00 - 14:45     | Data Processing Hands-on – Part-1                        | Matt            |
+| 14:45 - 15:00     | Coffee Break                                              |                 |
+| 15:00 - 16:30     | Data Processing Hands-on – Part-2                        | All             |
+| 16:30 - 17:00     | Poll, Summary, and Close-out                             | Yuanpeng       |
 
 **Workshop materials**
 
