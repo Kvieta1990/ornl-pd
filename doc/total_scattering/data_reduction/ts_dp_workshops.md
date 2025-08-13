@@ -53,6 +53,8 @@
 
 - Demo data can be downloaded <a href="../../files/si_demo_data.zip" target="_blank" download>here</a>.
 
+- Poll about the workshop: <a href="https://forms.gle/EZPEqksCa18QcyXYA" target="_blank">Click Me</a>
+
 ## [Workshop at DXC 2025: Data Processing of Total Scattering and How to Avoid Pitfalls Along the Way](https://www.dxcicdd.com/dxc-program-2025/)
 
 **Date:** August 04th, 2025
