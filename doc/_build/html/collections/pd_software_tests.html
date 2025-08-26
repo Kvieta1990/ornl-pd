@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -330,6 +330,8 @@
 <li class="toctree-l2"><a class="reference internal" href="mts_for_developers.html">MTS Collections for Developers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mobile_apps.html">Mobile Apps for SNS &amp; HFIR</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">PD Software Tests</a></li>
+
+
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bib.html">References</a></li>
@@ -546,14 +548,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">PD Software Tests</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aug-2025">Aug-2025</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nomad">NOMAD</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#powgen">POWGEN</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#june-2025">June-2025</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#powgen">POWGEN</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nomad">NOMAD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">POWGEN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">NOMAD</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hb-2a-powder">HB-2A (POWDER)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hb-2c-wand-2">HB-2C (WAND<span class="math notranslate nohighlight">\(^2\)</span>)</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -567,10 +578,136 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="pd-software-tests">
 <h1>PD Software Tests<a class="headerlink" href="#pd-software-tests" title="Link to this heading">#</a></h1>
 <p>Here we are posting the powder diffraction manual tests that we have been performing to make sure the data processing software is producing consistent result as the updating of the underlying software and architecture.</p>
+<section id="aug-2025">
+<h2>Aug-2025<a class="headerlink" href="#aug-2025" title="Link to this heading">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="nomad">
+<h1>NOMAD<a class="headerlink" href="#nomad" title="Link to this heading">#</a></h1>
+<p>Testing Date: 08/26/2025</p>
+<p>Tested Routines: AutoRed, LiveRed &amp; some utils</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> LiveRed</p>
+<blockquote>
+<div><p>Configured on <code class="docutils literal notranslate"><span class="pre">bl1b-analysis2.sns.gov</span></code></p>
+</div></blockquote>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">CONDA_ENV</span> <span class="pre">=</span> <span class="pre">'mantid-dev'</span></code> is given in the livereduction script to select the version of Mantid to use.</p>
+</div></blockquote>
+<p>Items checked,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">--user</span> <span class="pre">status</span> <span class="pre">livereduce_zyp.service</span></code></p></li>
+<li><p>Check log file at <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/log_files/livereduce.log</span></code> if any errors.</p></li>
+<li><p>Check the live reduction cache file.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> AutoCalib</p>
+<blockquote>
+<div><p>Embedded in the <code class="docutils literal notranslate"><span class="pre">autoreduction</span></code> workflow, creating the input file for running calibration.</p>
+</div></blockquote>
+<blockquote>
+<div><p>A monitor service is configured on <code class="docutils literal notranslate"><span class="pre">bl1b-analysis2.sns.gov</span></code> to detect any changes for the calibration file (<code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/CALIBRATION/cal_config.json</span></code>). If changes detected, calibration will be started.</p>
+</div></blockquote>
+<p>Items Checked,</p>
+<ul class="simple">
+<li><p>Slack message sent.</p></li>
+<li><p>Calibration file under <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/calibration</span></code>.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Absorption pre-calculation</p>
+<blockquote>
+<div><p>The <code class="docutils literal notranslate"><span class="pre">abs_pre_calc</span></code> routine</p>
+</div></blockquote>
+<blockquote>
+<div><p>Local MTS virtual environment is used, <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/Dev/mantid_total_scattering</span></code>.</p>
+</div></blockquote>
+<blockquote>
+<div><p>See the bottom of the script <code class="docutils literal notranslate"><span class="pre">/SNS/software/bin/abs_pre_calc</span></code>.</p>
+</div></blockquote>
+<p>Items Checked,</p>
+<ul class="simple">
+<li><p>Run the routine interactively.</p></li>
+<li><p>Check the absorption cache file at <code class="docutils literal notranslate"><span class="pre">/SNS/NOM/shared/autoreduce/abs_ms_alt</span></code>.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> AutoRed</p>
+<blockquote>
+<div><p>Dummy sample information auto populated</p>
+</div></blockquote>
+<blockquote>
+<div><p>When error occurs, Slack message is sent to the <code class="docutils literal notranslate"><span class="pre">nomad-monitor</span></code> channel in the <code class="docutils literal notranslate"><span class="pre">ORNL</span> <span class="pre">Neutron</span> <span class="pre">Sciences</span></code> workspace.</p>
+</div></blockquote>
+<p>Items checked,</p>
+<ul class="simple">
+<li><p>Run on monitor</p></li>
+<li><p>Check monitor plots</p></li>
+<li><p>Check IPTS autoreduce directory</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> MantidTotalScattering</p>
+<p>Items Checked,</p>
+<ul class="simple">
+<li><p>Run the routine interactively.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> pystog_cli</p>
+<p>Items Checked,</p>
+<ul class="simple">
+<li><p>Run the routine interactively.</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> ADDIE</p>
+<p>Items Checked,</p>
+<ul class="simple">
+<li><p>addie</p></li>
+<li><p>addie –qa</p></li>
+<li><p>addie –dev</p></li>
+<li><p>addie_nom</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="powgen">
+<h1>POWGEN<a class="headerlink" href="#powgen" title="Link to this heading">#</a></h1>
+<p>Testing Date: 08/26/2025</p>
+<p>Tested Routines: AutoRed, LiveRed &amp; some utils</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> AutoRed</p>
+<p>Checked Items,</p>
+<ul class="simple">
+<li><p>Monitor, e.g., errors?</p></li>
+<li><p>Check monitor plots</p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Calibration</p>
+<blockquote>
+<div><p>Embedded in the <code class="docutils literal notranslate"><span class="pre">autoreduction</span></code> workflow, creating the input file for running calibration.</p>
+</div></blockquote>
+<blockquote>
+<div><p>A monitor service is configured on <code class="docutils literal notranslate"><span class="pre">bl11a-analysis2.sns.gov</span></code> to detect any changes for the calibration file (<code class="docutils literal notranslate"><span class="pre">/SNS/PG3/shared/CALIBRATION/cal_config.json</span></code>). If changes detected, calibration will be started.</p>
+</div></blockquote>
+<p>Checked Items,</p>
+<ul class="simple">
+<li><p>Calibration file under <code class="docutils literal notranslate"><span class="pre">/SNS/PG3/shared/CALIBRATION</span></code></p></li>
+</ul>
+</li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> LiveRed</p>
+<blockquote>
+<div><p>A monitor is configured on</p>
+</div></blockquote>
+<blockquote>
+<div><p>Cronjob configured on <code class="docutils literal notranslate"><span class="pre">bl11a-livereduce.sns.gov</span></code> to monitor failures. If error occurs, Slack message is sent to the <code class="docutils literal notranslate"><span class="pre">powgen-monitor</span></code> channel in the <code class="docutils literal notranslate"><span class="pre">ORNL</span> <span class="pre">Neutron</span> <span class="pre">Sciences</span></code> workspace and the LiveRed service will be restarted.</p>
+</div></blockquote>
+<p>Checked Items,</p>
+<ul class="simple">
+<li><p>Check monitor plots</p></li>
+</ul>
+</li>
+</ul>
 <section id="june-2025">
 <h2>June-2025<a class="headerlink" href="#june-2025" title="Link to this heading">#</a></h2>
-<section id="powgen">
-<h3>POWGEN<a class="headerlink" href="#powgen" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h3>POWGEN<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>Testing date: 06/30/2025</p>
 </div></blockquote>
@@ -607,8 +744,8 @@ document.write(`
 </tbody>
 </table>
 </section>
-<section id="nomad">
-<h3>NOMAD<a class="headerlink" href="#nomad" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h3>NOMAD<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <blockquote>
 <div><p>Testing date: 06/30/2025</p>
 </div></blockquote>
@@ -772,14 +909,23 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">PD Software Tests</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aug-2025">Aug-2025</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#nomad">NOMAD</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#powgen">POWGEN</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#june-2025">June-2025</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#powgen">POWGEN</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nomad">NOMAD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">POWGEN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">NOMAD</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hb-2a-powder">HB-2A (POWDER)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hb-2c-wand-2">HB-2C (WAND<span class="math notranslate nohighlight">\(^2\)</span>)</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
