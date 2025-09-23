@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -328,6 +328,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../collections/mts_for_developers.html">MTS Collections for Developers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collections/mobile_apps.html">Mobile Apps for SNS &amp; HFIR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collections/pd_software_tests.html">PD Software Tests</a></li>
+
+
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bib.html">References</a></li>
@@ -546,6 +548,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roadmap</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#archive">Archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aug-2025">Aug-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jun-2025">Jun-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#may-2025">May-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apr-2025">Apr-2025</a></li>
@@ -590,7 +593,13 @@ document.write(`
 <div class="attention admonition">
 <p class="admonition-title">Work in Progress</p>
 <ul>
-<li><p>Powder diffraction data visualization tools and reduction configuration tools development in the ORNL <code class="docutils literal notranslate"><span class="pre">nova</span></code> platform. Here is the production environment, <a class="reference external" href="https://nova.ornl.gov">nova.ornl.gov</a>, and here is the test environment, <a class="reference external" href="https://nova-test.ornl.gov">nova-test.ornl.gov</a>.</p></li>
+<li><p>More PD tools in NOVA, including,</p>
+<ul class="simple">
+<li><p>pystog</p></li>
+<li><p>Auto &amp; Live reduction configuration</p></li>
+<li><p>Experiment information hub</p></li>
+</ul>
+</li>
 <li><p>Texture correction for total scattering.</p>
 <blockquote>
 <div><p>Use spherical harmonics to correct for the texture effect. This involves the correction over both the azimuthal and the polar angle. The polar angle bit is tricky as resolution effect is entangled with the potential texture effect.</p>
@@ -601,14 +610,16 @@ document.write(`
 <div class="tip admonition">
 <p class="admonition-title">New Features &amp; Bug Fixes</p>
 <ul class="simple">
-<li><p>Analysis cluster monitor tool for monitoring the available system resources on available nodes, <a class="reference external" href="https://addie.ornl.gov/analysis_mon">https://addie.ornl.gov/analysis_mon</a>.</p></li>
-<li><p>RMCProfile in GSAS-II. See details <a class="reference external" href="https://github.com/Kvieta1990/Kvieta1990/issues/68">here</a>.</p></li>
-<li><p>Batch data merging tool for post processing the MantidTotalScattering reduction. See the documentation <a class="reference external" href="https://powder.ornl.gov/data_tools/general.html#mts-data">here</a>. For the feature mentioned here, refer to the <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag.</p></li>
+<li><p>In GSAS-II, now once we have a searched k-vector, we can use it to talk to ISODISTORT and construct compatible sub-groups.</p></li>
+<li><p>Powder diffraction data visualization tools and reduction configuration tools development in the ORNL <code class="docutils literal notranslate"><span class="pre">nova</span></code> platform, <a class="reference external" href="https://nova.ornl.gov">nova.ornl.gov</a>.</p></li>
+<li><p>NOMAD data comparison tool <code class="docutils literal notranslate"><span class="pre">nom_cp</span></code>, see <a class="reference external" href="https://powder.ornl.gov/data_tools/nomad.html#nom-cp">here</a>.</p></li>
 </ul>
 </div>
 <div class="admonition-planned-items admonition">
 <p class="admonition-title">Planned Items</p>
 <ul class="simple">
+<li><p>System service for automatic population of sample and characterization information for both NOMAD and POWGEN.</p></li>
+<li><p>Consistent Live &amp; Auto reduction for POWGEN.</p></li>
 <li><p>Add in NESL sample environment support in <code class="docutils literal notranslate"><span class="pre">MTS</span></code>.</p></li>
 <li><p>Fix the Bragg peak shape name output for the RMCProfile implementation in GSAS-II.</p></li>
 <li><p>Configuration of live and auto reduction on NOVA.</p></li>
@@ -675,6 +686,14 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="archive">
 <h1>Archive<a class="headerlink" href="#archive" title="Link to this heading">#</a></h1>
+<section id="aug-2025">
+<h2>Aug-2025<a class="headerlink" href="#aug-2025" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Analysis cluster monitor tool for monitoring the available system resources on available nodes, <a class="reference external" href="https://addie.ornl.gov/analysis_mon">https://addie.ornl.gov/analysis_mon</a>.</p></li>
+<li><p>RMCProfile in GSAS-II. See details <a class="reference external" href="https://github.com/Kvieta1990/Kvieta1990/issues/68">here</a>.</p></li>
+<li><p>Batch data merging tool for post processing the MantidTotalScattering reduction. See the documentation <a class="reference external" href="https://powder.ornl.gov/data_tools/general.html#mts-data">here</a>. For the feature mentioned here, refer to the <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag.</p></li>
+</ul>
+</section>
 <section id="jun-2025">
 <h2>Jun-2025<a class="headerlink" href="#jun-2025" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -911,6 +930,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roadmap</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#archive">Archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aug-2025">Aug-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jun-2025">Jun-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#may-2025">May-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apr-2025">Apr-2025</a></li>

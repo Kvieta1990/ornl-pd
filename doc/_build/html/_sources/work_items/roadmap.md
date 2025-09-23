@@ -14,7 +14,13 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} Work in Progress
 :class: attention
 
-- Powder diffraction data visualization tools and reduction configuration tools development in the ORNL `nova` platform. Here is the production environment, [nova.ornl.gov](https://nova.ornl.gov), and here is the test environment, [nova-test.ornl.gov](https://nova-test.ornl.gov).
+- More PD tools in NOVA, including,
+
+    - pystog
+
+    - Auto & Live reduction configuration
+
+    - Experiment information hub
 
 - Texture correction for total scattering.
 
@@ -24,14 +30,18 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} New Features & Bug Fixes
 :class: tip
 
-- Analysis cluster monitor tool for monitoring the available system resources on available nodes, [https://addie.ornl.gov/analysis_mon](https://addie.ornl.gov/analysis_mon).
+- In GSAS-II, now once we have a searched k-vector, we can use it to talk to ISODISTORT and construct compatible sub-groups.
 
-- RMCProfile in GSAS-II. See details [here](https://github.com/Kvieta1990/Kvieta1990/issues/68).
+- Powder diffraction data visualization tools and reduction configuration tools development in the ORNL `nova` platform, [nova.ornl.gov](https://nova.ornl.gov).
 
-- Batch data merging tool for post processing the MantidTotalScattering reduction. See the documentation [here](https://powder.ornl.gov/data_tools/general.html#mts-data). For the feature mentioned here, refer to the `-g` flag.
+- NOMAD data comparison tool `nom_cp`, see [here](https://powder.ornl.gov/data_tools/nomad.html#nom-cp).
 ``````
 
 ``````{admonition} Planned Items
+
+- System service for automatic population of sample and characterization information for both NOMAD and POWGEN.
+
+- Consistent Live & Auto reduction for POWGEN.
 
 - Add in NESL sample environment support in `MTS`.
 
@@ -109,6 +119,14 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````
 
 # Archive
+
+## Aug-2025
+
+- Analysis cluster monitor tool for monitoring the available system resources on available nodes, [https://addie.ornl.gov/analysis_mon](https://addie.ornl.gov/analysis_mon).
+
+- RMCProfile in GSAS-II. See details [here](https://github.com/Kvieta1990/Kvieta1990/issues/68).
+
+- Batch data merging tool for post processing the MantidTotalScattering reduction. See the documentation [here](https://powder.ornl.gov/data_tools/general.html#mts-data). For the feature mentioned here, refer to the `-g` flag.
 
 ## Jun-2025
 
