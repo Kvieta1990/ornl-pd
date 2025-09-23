@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=44323870" />
@@ -328,6 +328,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../collections/mts_for_developers.html">MTS Collections for Developers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collections/mobile_apps.html">Mobile Apps for SNS &amp; HFIR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collections/pd_software_tests.html">PD Software Tests</a></li>
+
+
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bib.html">References</a></li>
@@ -664,6 +666,39 @@ document.write(`
 <ul id="addie-nom">
 <li><p><a class="reference internal" href="#addie-nom"><span class="std std-ref">addie_nom</span></a></p>
 <p>Run a local version of <code class="docutils literal notranslate"><span class="pre">ADDIE</span></code> for data reduction and post-processing. This local version is using the local conda environment under the name of <a class="reference external" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Dr. Yuanpeng Zhang</a> on Analysis cluster.</p>
+</li>
+</ul>
+<ul id="nom-cp">
+<li><p><a class="reference internal" href="#nom-cp"><span class="std std-ref">nom_cp</span></a></p>
+<blockquote>
+<div><p>The data comparison routine for NOMAD, useful for comparing between two sets of measurements, panel by panel. Here, by ‘panel’, we mean the eight-pack of helium3 tube detectors.</p>
+</div></blockquote>
+<p>The routine takes a single json file as the mandatory input, specifying all the needed input parameters. An example input json file is presented below,</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Data1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Furnace2025A&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;213940&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;VanadiumRod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;213943&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;EmptyContainer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;213942&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;EmptyInstrument&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;213944&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CalibrationFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/SNS/users/y8z/NOM_Shared/autoreduce/calibration/NOMAD_213940_2025-04-22_furnace.h5&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;Data2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Furnace2025B&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Sample&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;223368&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;VanadiumRod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;223370&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;EmptyContainer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;223369&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;EmptyInstrument&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;223372&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;CalibrationFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/SNS/users/y8z/NOM_Shared/autoreduce/calibration/NOMAD_223368_2025-08-27_furnace.h5&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;SampleName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Diamond&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;EightPackIndex&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2-3&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;SaveDirectory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EP_1-37_Furnace_2025A_2025B&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>where the <code class="docutils literal notranslate"><span class="pre">Data1</span></code> and <code class="docutils literal notranslate"><span class="pre">Data2</span></code> blocks specify the two sets of measurements to be compared, including the sample, vanadium rod, empty container and empty instrument runs. The calibration file for each set of measurements should also be provided with the <code class="docutils literal notranslate"><span class="pre">CalibrationFile</span></code> key. The <code class="docutils literal notranslate"><span class="pre">SampleName</span></code> key tells the sample name, <code class="docutils literal notranslate"><span class="pre">EightPackIndex</span></code> tells the program the index of eight-packs to process. Value can be given like <code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">3,</span> <span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">1-10</span></code>, or <code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">3-15</span></code> where the number connected by <code class="docutils literal notranslate"><span class="pre">-</span></code> will be expanded to a continuous range of integers. The <code class="docutils literal notranslate"><span class="pre">SaveDirectory</span></code> specifies the output directory and the path can be relative to where the program is executed. Also, we don’t need to worry about creating the directory ourselves – the program will create this output directory if it is not already there.</p>
+<p>The program will output a single <code class="docutils literal notranslate"><span class="pre">HTML</span></code> file for each eight-pack which contains a series of comparisons, such as that between the raw sample, sample divided by vanadium, etc. The top part of each generated <code class="docutils literal notranslate"><span class="pre">HTML</span></code> file has a navigation with links leading us to the corresponding comparison. The plot included in the resulted <code class="docutils literal notranslate"><span class="pre">HTML</span></code> file is created with <code class="docutils literal notranslate"><span class="pre">plotly</span></code> and is <code class="docutils literal notranslate"><span class="pre">interactive</span></code> (i.e., we can zoom and pan on each plot).</p>
 </li>
 </ul>
 </section>

@@ -142,3 +142,38 @@ NOMAD
 - {ref}`addie_nom<addie_nom>`
 
     Run a local version of `ADDIE` for data reduction and post-processing. This local version is using the local conda environment under the name of [Dr. Yuanpeng Zhang](https://www.ornl.gov/staff-profile/yuanpeng-zhang) on Analysis cluster.
+
+(nom_cp)=
+- {ref}`nom_cp<nom_cp>`
+
+    > The data comparison routine for NOMAD, useful for comparing between two sets of measurements, panel by panel. Here, by 'panel', we mean the eight-pack of helium3 tube detectors.
+
+    The routine takes a single json file as the mandatory input, specifying all the needed input parameters. An example input json file is presented below,
+
+    ```json
+    {
+        "Data1": {
+            "Title": "Furnace2025A",
+            "Sample": "213940",
+            "VanadiumRod": "213943",
+            "EmptyContainer": "213942",
+            "EmptyInstrument": "213944",
+            "CalibrationFile": "/SNS/users/y8z/NOM_Shared/autoreduce/calibration/NOMAD_213940_2025-04-22_furnace.h5"
+        },
+        "Data2": {
+            "Title": "Furnace2025B",
+            "Sample": "223368",
+            "VanadiumRod": "223370",
+            "EmptyContainer": "223369",
+            "EmptyInstrument": "223372",
+            "CalibrationFile": "/SNS/users/y8z/NOM_Shared/autoreduce/calibration/NOMAD_223368_2025-08-27_furnace.h5"
+        },
+        "SampleName": "Diamond",
+        "EightPackIndex": "2-3",
+        "SaveDirectory": "EP_1-37_Furnace_2025A_2025B"
+    }
+    ```
+
+    where the `Data1` and `Data2` blocks specify the two sets of measurements to be compared, including the sample, vanadium rod, empty container and empty instrument runs. The calibration file for each set of measurements should also be provided with the `CalibrationFile` key. The `SampleName` key tells the sample name, `EightPackIndex` tells the program the index of eight-packs to process. Value can be given like `1, 3, 5`, `1-10`, or `1, 3-15` where the number connected by `-` will be expanded to a continuous range of integers. The `SaveDirectory` specifies the output directory and the path can be relative to where the program is executed. Also, we don't need to worry about creating the directory ourselves -- the program will create this output directory if it is not already there.
+
+    The program will output a single `HTML` file for each eight-pack which contains a series of comparisons, such as that between the raw sample, sample divided by vanadium, etc. The top part of each generated `HTML` file has a navigation with links leading us to the corresponding comparison. The plot included in the resulted `HTML` file is created with `plotly` and is `interactive` (i.e., we can zoom and pan on each plot).
