@@ -32,7 +32,9 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 
 - POWGEN autoreduction now will write out the XML configuration file that can be loaded into the POWGEN reduction GUI in Mantid Workbench.
 
-- The autoreduction scripts for NOMAD (`all_nom`) and POWGEN (`all_pg3`) now takes an optional argument to specify the output directory. 
+- The autoreduction scripts for NOMAD (`all_nom`) and POWGEN (`all_pg3`) now takes an optional argument to specify the output directory. Details can be found [here](https://powder.ornl.gov/data_tools/powgen.html#all-pg3) and [here](https://powder.ornl.gov/data_tools/nomad.html#all-nom).
+
+- The POWGEN autoreduction configuration backup files are not all organized into a dedicated subfolder under `<IPTS>/shared/autoreduce/auto_params_backup`, where `<IPTS>` refers to the path to the IPTS, e.g., `/SNS/PG3/IPTS-32378`.
 
 - In GSAS-II, now once we have a searched k-vector, we can use it to talk to ISODISTORT and construct compatible sub-groups.
 
