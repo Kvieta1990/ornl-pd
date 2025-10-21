@@ -120,10 +120,12 @@ NOMAD
     This will run the same autoreduction as on Monitor ([monitor.sns.gov](https://monitor.sns.gov)). It runs locally and multiple run numbers can be processed in a batch manner. The program runs as follows,
 
     ```bash
-    all_nom IPTS RunsToProcess
+    all_nom IPTS RunsToProcess [OutputDirectory]
     ```
 
-    e.g., `all_nom 29792 '193462, 193474-193484'`
+    e.g., `all_nom 29792 '193462, 193474-193484' /path/to/out/dir`
+
+    where `[OutputDirectory]` indicates the path to output directory is `optional`.
 
 (confirm-nom)=
 - {ref}`confirm-nom<confirm-nom>`
