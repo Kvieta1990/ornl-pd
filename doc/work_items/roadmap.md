@@ -30,6 +30,10 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} New Features & Bug Fixes
 :class: tip
 
+- POWGEN autoreduction now will write out the XML configuration file that can be loaded into the POWGEN reduction GUI in Mantid Workbench.
+
+- The autoreduction scripts for NOMAD (`all_nom`) and POWGEN (`all_pg3`) now takes an optional argument to specify the output directory. 
+
 - In GSAS-II, now once we have a searched k-vector, we can use it to talk to ISODISTORT and construct compatible sub-groups.
 
 - Powder diffraction data visualization tools and reduction configuration tools development in the ORNL `nova` platform, [nova.ornl.gov](https://nova.ornl.gov).
