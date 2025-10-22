@@ -610,6 +610,7 @@ document.write(`
 <div class="tip admonition">
 <p class="admonition-title">New Features &amp; Bug Fixes</p>
 <ul class="simple">
+<li><p>POWGEN autoreduction routine now is able to take the container scale factor as an input parameter to deal with some cases where over- or under-subtraction of the container background is happening.</p></li>
 <li><p>POWGEN autoreduction now will write out the XML configuration file that can be loaded into the POWGEN reduction GUI in Mantid Workbench.</p></li>
 <li><p>The autoreduction scripts for NOMAD (<code class="docutils literal notranslate"><span class="pre">all_nom</span></code>) and POWGEN (<code class="docutils literal notranslate"><span class="pre">all_pg3</span></code>) now takes an optional argument to specify the output directory. Details can be found <a class="reference external" href="https://powder.ornl.gov/data_tools/powgen.html#all-pg3">here</a> and <a class="reference external" href="https://powder.ornl.gov/data_tools/nomad.html#all-nom">here</a>.</p></li>
 <li><p>The POWGEN autoreduction configuration backup files are not all organized into a dedicated subfolder under <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;/shared/autoreduce/auto_params_backup</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;</span></code> refers to the path to the IPTS, e.g., <code class="docutils literal notranslate"><span class="pre">/SNS/PG3/IPTS-32378</span></code>.</p></li>
