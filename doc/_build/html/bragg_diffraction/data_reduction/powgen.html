@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=44323870" />
@@ -330,6 +330,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../collections/mts_for_developers.html">MTS Collections for Developers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../collections/mobile_apps.html">Mobile Apps for SNS &amp; HFIR</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../collections/pd_software_tests.html">PD Software Tests</a></li>
+
+
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bib.html">References</a></li>
@@ -634,6 +636,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction">Step-by-step Instruction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-setup">Advanced Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#absorption-correction">Absorption Correction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#absorption-correction-special-geometries">Absorption Correction – Special Geometries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#absorption-correction-account-for-beam-size">Absorption Correction – Account for Beam Size</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-materials">More Materials</a></li>
 </ul>
             </nav>
@@ -650,6 +654,7 @@ document.write(`
 <h1>POWGEN | BL-11A | SNS<a class="headerlink" href="#powgen-bl-11a-sns" title="Link to this heading">#</a></h1>
 <section id="step-by-step-instruction">
 <h2>Step-by-step Instruction<a class="headerlink" href="#step-by-step-instruction" title="Link to this heading">#</a></h2>
+<p>…to be done</p>
 </section>
 <section id="advanced-setup">
 <h2>Advanced Setup<a class="headerlink" href="#advanced-setup" title="Link to this heading">#</a></h2>
@@ -661,6 +666,7 @@ document.write(`
 <h2>Absorption Correction<a class="headerlink" href="#absorption-correction" title="Link to this heading">#</a></h2>
 <p>This section is for setting up the absorption correction, given some basic inputs about the sample under the beam. The required inputs are <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Formula</span></code>, <code class="docutils literal notranslate"><span class="pre">Measured</span> <span class="pre">Mass</span> <span class="pre">Density</span></code>, <code class="docutils literal notranslate"><span class="pre">Container</span> <span class="pre">Type</span></code>, and <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">of</span> <span class="pre">Correction</span></code> for general samples, together with the <code class="docutils literal notranslate"><span class="pre">Vanadium</span> <span class="pre">Rod</span> <span class="pre">Radius</span></code> for vanadium correction. The <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Formula</span></code> input should be following a certain format, typically like this,<code class="docutils literal notranslate"><span class="pre">Yb2-Ti2-O7</span></code>. The <code class="docutils literal notranslate"><span class="pre">Measured</span> <span class="pre">Mass</span> <span class="pre">Density</span></code> refers to literally the measured mass density given in <code class="docutils literal notranslate"><span class="pre">g/cc</span></code>. The <code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">Density</span></code> refers to the theoretical number density of the sample, in the unit of <span class="math notranslate nohighlight">\(Å^{-3}\)</span> – it can be obtained from, e.g., a CIF file for the crystallographic structure of the sample. With both the <code class="docutils literal notranslate"><span class="pre">Measured</span> <span class="pre">Mass</span> <span class="pre">Density</span></code> and <code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">Density</span></code> present, the <code class="docutils literal notranslate"><span class="pre">Packing</span> <span class="pre">Fraction</span></code> will be calculated and the corresponding box will be populated with the calculated value automatically - thus the input box for <code class="docutils literal notranslate"><span class="pre">Packing</span> <span class="pre">Fraction</span></code> is not editable. The <code class="docutils literal notranslate"><span class="pre">Container</span> <span class="pre">Type</span></code> dropdown menu is for specifying the geometry of both the container and the sample, which is needed for the absorption calculation. Instead of manual input for the geometry information (container inner, outer radius, and container height), a dropdown list is provided for all the typically used containers on POWGEN, where general users could select according to which of those containers were being used for their experiments. The <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">of</span> <span class="pre">Correction</span></code> dropdown is a list of alternative methods for the absorption correction. Here, details about those different methods will not be covered, and interested readers could refer to the documentation page located at <a class="reference external" href="https://docs.mantidproject.org/v6.5.0/concepts/AbsorptionAndMultipleScattering.html">https://docs.mantidproject.org/v6.5.0/concepts/AbsorptionAndMultipleScattering.html</a>. The <code class="docutils literal notranslate"><span class="pre">Vanadium</span> <span class="pre">Rod</span> <span class="pre">Radius</span></code> entry is literally for providing the radius of the vanadium rod being used for normalization purpose. The <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Height</span></code> (given in <code class="docutils literal notranslate"><span class="pre">cm</span></code>) entry is optional – if it is not given, the program will try to read the value in from the sample log (embedded in the saved raw data of the measurement in NeXus format).</p>
 <p>Here, it is also worth mentioning the <code class="docutils literal notranslate"><span class="pre">Caching</span> <span class="pre">Options</span></code> in the middle of the GUI interface presented above – it is for caching the absorption calculations. For a specific sample associated with specific geometry and among other configurations (which one would set up following the instruction above), the absorption calculation only needs to be performed once, and any further data reduction associated with the identical setup of the sample should be able to use the already performed absorption calculation. A typical use case is the absorption correction for a series of temperature measurement for the same sample, for which we should not repeat the absorption calculation which is computationally heavy. There are three input boxes for cache directory input. The first entry is for users to save and load their own version of the cache files. The second one should be an IPTS specific directory and it will be only used for loading (i.e., the absorption calculation will not be saved to that directory). Similarly we have the third entry, which should be a central place hosting the common absorption calculations. e.g., for vanadium, and again, this directory will only be used to load existing cache files. So, in practice, if we want to populate the specified second or third directory, we need to first run the normal reduction by specifying a save directory to host the calculated absorption in the first entry. Then, we need to copy the saved absorption cache file to either the second or the third directory. As a general user, one can copy the saved absorption cache file to their IPTS folder (under <code class="docutils literal notranslate"><span class="pre">shared</span></code>) and specify the corresponding directory path as the second entry. As an instrument team member, one should grab the saved absorption cache file (e.g., for vanadium) and put it somewhere under the instrument shared folder so that in the future general users can specify that central path as the third entry.</p>
+<p>The absorption correction through the <code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Setup</span></code> GUI above applies to the situation where the <code class="docutils literal notranslate"><span class="pre">normal</span></code> container types are used for the measurement. By <code class="docutils literal notranslate"><span class="pre">normal</span></code>, we mean the standard vanadium container used on POWGEN with different specification, including <code class="docutils literal notranslate"><span class="pre">QuartzTube03</span></code>, <code class="docutils literal notranslate"><span class="pre">PAC06</span></code>, <code class="docutils literal notranslate"><span class="pre">PAC08</span></code>, <code class="docutils literal notranslate"><span class="pre">PAC10</span></code> and <code class="docutils literal notranslate"><span class="pre">PowderCell</span></code>. The geometry definition for such standard container types can be found <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/instrument/sampleenvironments/SNS/InAir.xml">here</a>. Selection of the container type being used can be made through the GUI presented above.</p>
 <blockquote>
 <div><p>Coder Notes</p>
 </div></blockquote>
@@ -670,6 +676,157 @@ document.write(`
 <li><p>The PR for adding in the <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">Height</span></code> entry in the POWGEN GUI can be found <a class="reference external" href="https://github.com/mantidproject/mantid/pull/33056https://github.com/mantidproject/mantid/pull/33056">here</a> and another relevant PR concerning the sample height implementation is <a class="reference external" href="https://github.com/mantidproject/mantid/pull/31902https://github.com/mantidproject/mantid/pull/31902">here</a>.</p></li>
 </ul>
 </div></blockquote>
+</section>
+<section id="absorption-correction-special-geometries">
+<h2>Absorption Correction – Special Geometries<a class="headerlink" href="#absorption-correction-special-geometries" title="Link to this heading">#</a></h2>
+<p>When the container being used for the holding the sample is not one of those standard ones as defined in the Mantid code base (see the defined containers <a class="reference external" href="https://github.com/mantidproject/mantid/blob/main/instrument/sampleenvironments/SNS/InAir.xml">here</a>), we have to perform the data processing using the scriptable interface of Mantid. Here I am providing a template for such a purpose below, with some notes about the setup.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">sam_geo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;HollowCylinder&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+    <span class="s1">&#39;InnerRadius&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="s1">&#39;OuterRadius&#39;</span><span class="p">:</span> <span class="mf">0.32</span><span class="p">,</span>
+    <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">c_geo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;HollowCylinderHolder&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+    <span class="s1">&#39;InnerRadius&#39;</span><span class="p">:</span> <span class="mf">0.28</span><span class="p">,</span>
+    <span class="s1">&#39;InnerOuterRadius&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="s1">&#39;OuterInnerRadius&#39;</span><span class="p">:</span> <span class="mf">0.32</span><span class="p">,</span>
+    <span class="s1">&#39;OuterRadius&#39;</span><span class="p">:</span> <span class="mf">0.34</span><span class="p">,</span>
+    <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">c_mat</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ChemicalFormula&#39;</span><span class="p">:</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;NumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.072324</span>
+<span class="p">}</span>
+
+<span class="n">SNSPowderReduction</span><span class="p">(</span>
+    <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;/SNS/PG3/IPTS-34523/nexus/PG3_58812.nxs.h5&#39;</span><span class="p">,</span>
+    <span class="n">CalibrationFile</span><span class="o">=</span><span class="s1">&#39;/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_OC_d58772_2025-02-12.h5&#39;</span><span class="p">,</span>
+    <span class="n">CharacterizationRunsFile</span><span class="o">=</span><span class="s1">&#39;/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_char_2025_2-HighRes_OC.txt,/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_char_2025_2_OC_limit.txt&#39;</span><span class="p">,</span>
+    <span class="n">RemovePromptPulseWidth</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">Binning</span><span class="o">=</span><span class="s1">&#39;-0.0008&#39;</span><span class="p">,</span>
+    <span class="n">BackgroundSmoothParams</span><span class="o">=</span><span class="s1">&#39;5, 2&#39;</span><span class="p">,</span>
+    <span class="n">FilterBadPulses</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+    <span class="n">ScaleData</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">TypeOfCorrection</span><span class="o">=</span><span class="s1">&#39;SampleAndContainer&#39;</span><span class="p">,</span>
+    <span class="n">SampleFormula</span><span class="o">=</span><span class="s1">&#39;Ba-Nb-Cr-Ru&#39;</span><span class="p">,</span>
+    <span class="n">MeasuredMassDensity</span><span class="o">=</span><span class="s1">&#39;6.0&#39;</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="n">sam_geo</span><span class="p">,</span>
+    <span class="n">SampleNumberDensity</span><span class="o">=</span><span class="s1">&#39;0.088&#39;</span><span class="p">,</span>
+    <span class="n">ContainerGeometry</span><span class="o">=</span><span class="n">c_geo</span><span class="p">,</span>
+    <span class="n">ContainerMaterial</span><span class="o">=</span><span class="n">c_mat</span><span class="p">,</span>
+    <span class="n">SaveAs</span><span class="o">=</span><span class="s1">&#39;gsas topas and fullprof&#39;</span><span class="p">,</span>
+    <span class="n">OutputDirectory</span><span class="o">=</span><span class="s1">&#39;/path/to/output/directory&#39;</span><span class="p">,</span>
+    <span class="n">CacheDir</span><span class="o">=</span><span class="s1">&#39;/path/to/cache/directory&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Documentation for those parameters for <code class="docutils literal notranslate"><span class="pre">SNSPowderReduction</span></code> can be found <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SNSPowderReduction-v1.html">here</a>. Specifically concerning the geometry definition, one can see that we are basically using the <code class="docutils literal notranslate"><span class="pre">SampleGeometry</span></code>, <code class="docutils literal notranslate"><span class="pre">ContainerGeometry</span></code> and <code class="docutils literal notranslate"><span class="pre">ContainerMaterial</span></code> parameters. The former two defines the geometry for sample and container, respectively while the <code class="docutils literal notranslate"><span class="pre">ContainerMaterial</span></code> parameter defines the container material. For the geometry definition, the bottom-level Mantid algorithm <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html"><code class="docutils literal notranslate"><span class="pre">SetSample</span></code></a> is used and one can refer to the documentation <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html">here</a> for available options. The one I presented above is for defining an annular container that sometimes will be used to, e.g., suppress the sample absorption. The length numbers involved in the geometry definition above are in <code class="docutils literal notranslate"><span class="pre">cm</span></code>. So, the sample defined above is a hollow cylinder with the thickness of <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">mm</span></code>. The container holding the sample is an annular container with the wall thickness of <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">mm</span></code>. The height for both sample and container is <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">cm</span></code>. The <code class="docutils literal notranslate"><span class="pre">Center</span></code> entry for both definition means we want to put the sample and container as such that their geometrical center is located at <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></code>. By default, the orientation for both will be that the vertical axis of the geometry is lying along the <code class="docutils literal notranslate"><span class="pre">y-axis</span></code> – see the illustration for the coordinate system used in Mantid below,</p>
+<img src="../../imgs/Mantid_Gauge_Volume_Dev.png" alt="mantid_coord_system" width="400"/>
+<p>It is also worth mentioning that both the number density for sample (<code class="docutils literal notranslate"><span class="pre">SampleNumberDensity</span></code>) and container (<code class="docutils literal notranslate"><span class="pre">NumberDensity</span></code> in <code class="docutils literal notranslate"><span class="pre">ContainerGeometry</span></code>) refers to the full number density, i.e., assuming a full packing. Specification of the chemical formula can refer to the documentation <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/Materials.html">here</a>.</p>
+</section>
+<section id="absorption-correction-account-for-beam-size">
+<h2>Absorption Correction – Account for Beam Size<a class="headerlink" href="#absorption-correction-account-for-beam-size" title="Link to this heading">#</a></h2>
+<p>Till now, we have been assuming that the beam size is the same as the sample size for the absorption correction purpose, which in practice is quite often not true. The beam size can be accounted for, by defining the so-called <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> in Mantid, which basicaly defines the region of the sample and container that is exposed to the incident beam, i.e., where the single scattering events are supposed to happen. For such a purpose, I am sharing an example below, with some notes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">SNSPowderReduction</span><span class="p">(</span>
+    <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;/SNS/PG3/IPTS-34523/nexus/PG3_58812.nxs.h5&#39;</span><span class="p">,</span>
+    <span class="n">CalibrationFile</span><span class="o">=</span><span class="s1">&#39;/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_OC_d58772_2025-02-12.h5&#39;</span><span class="p">,</span>
+    <span class="n">CharacterizationRunsFile</span><span class="o">=</span><span class="s1">&#39;/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_char_2025_2-HighRes_OC.txt,/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_char_2025_2_OC_limit.txt&#39;</span><span class="p">,</span>
+    <span class="n">RemovePromptPulseWidth</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">Binning</span><span class="o">=</span><span class="s1">&#39;-0.0008&#39;</span><span class="p">,</span>
+    <span class="n">BackgroundSmoothParams</span><span class="o">=</span><span class="s1">&#39;5, 2&#39;</span><span class="p">,</span>
+    <span class="n">FilterBadPulses</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+    <span class="n">ScaleData</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">TypeOfCorrection</span><span class="o">=</span><span class="s1">&#39;SampleAndContainer&#39;</span><span class="p">,</span>
+    <span class="n">SampleFormula</span><span class="o">=</span><span class="s1">&#39;Ba-Nb-Cr-Ru&#39;</span><span class="p">,</span>
+    <span class="n">MeasuredMassDensity</span><span class="o">=</span><span class="s1">&#39;6.0&#39;</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;Radius&#39;</span><span class="p">:</span> <span class="mf">0.295</span>
+    <span class="p">},</span>
+    <span class="n">BeamHeight</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">SampleNumberDensity</span><span class="o">=</span><span class="s1">&#39;0.088&#39;</span><span class="p">,</span>
+    <span class="n">ContainerShape</span><span class="o">=</span><span class="s1">&#39;PAC06&#39;</span><span class="p">,</span>
+    <span class="n">ContainerGaugeVolume</span><span class="o">=</span><span class="s1">&#39;0.295 0.315&#39;</span><span class="p">,</span>
+    <span class="n">SaveAs</span><span class="o">=</span><span class="s1">&#39;gsas topas and fullprof&#39;</span><span class="p">,</span>
+    <span class="n">OutputDirectory</span><span class="o">=</span><span class="s1">&#39;/path/to/output/directory&#39;</span><span class="p">,</span>
+    <span class="n">CacheDir</span><span class="o">=</span><span class="s1">&#39;/path/to/cache/directory&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we are defining the <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> internally in Mantid and the interface to users is <code class="docutils literal notranslate"><span class="pre">BeamHeight</span></code> (in <code class="docutils literal notranslate"><span class="pre">cm</span></code>). In fact, it is the intersection part between the internally defined beam volume and the samplethat gives the <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> – refer to the illustration diagram above. The beam volume geometrical center is assumed to be at the origin. Following the same logic, we can define the <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> for the container as well – the <code class="docutils literal notranslate"><span class="pre">ContainerGaugeVolume</span></code> parameter gives the inner and outer radius of the container. Together with the <code class="docutils literal notranslate"><span class="pre">BeamHeight</span></code> parameter, they will together define the container <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> internally in Mantid.</p>
+<blockquote>
+<div><p>In fact, programmingly the <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> can be figured out automatically using the <a class="reference external" href="https://docs.mantidproject.org/v4.1.0/algorithms/SetBeam-v1.html"><code class="docutils literal notranslate"><span class="pre">SetBeam</span></code></a> algorithm internally in Mantid so that we don’t need to specify either the sample or container <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code>. We also don’t even need to set up the <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> in the Mantid code base explicitly either – <a class="reference external" href="https://docs.mantidproject.org/v4.1.0/algorithms/SetBeam-v1.html"><code class="docutils literal notranslate"><span class="pre">SetBeam</span></code></a> will automatically figure out the intersection region between the beam and sample/container. This is indeed the case for the <code class="docutils literal notranslate"><span class="pre">TypeOfCorrection='FullPaalmanPings'</span></code> type of absorption correction.</p>
+</div></blockquote>
+<p>If we want more flexibility in defining the <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code>, we can refer to the following example,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mantid.simpleapi</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">sam_geo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;HollowCylinder&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+    <span class="s1">&#39;InnerRadius&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="s1">&#39;OuterRadius&#39;</span><span class="p">:</span> <span class="mf">0.32</span><span class="p">,</span>
+    <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">c_geo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="s1">&#39;HollowCylinderHolder&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Height&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+    <span class="s1">&#39;InnerRadius&#39;</span><span class="p">:</span> <span class="mf">0.28</span><span class="p">,</span>
+    <span class="s1">&#39;InnerOuterRadius&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="s1">&#39;OuterInnerRadius&#39;</span><span class="p">:</span> <span class="mf">0.32</span><span class="p">,</span>
+    <span class="s1">&#39;OuterRadius&#39;</span><span class="p">:</span> <span class="mf">0.34</span><span class="p">,</span>
+    <span class="s1">&#39;Center&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">c_mat</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ChemicalFormula&#39;</span><span class="p">:</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;NumberDensity&#39;</span><span class="p">:</span> <span class="mf">0.072324</span>
+<span class="p">}</span>
+
+<span class="n">gauge_vol</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;hollow-cylinder id=&quot;sample_gauge&quot;&gt;</span>
+<span class="s2">    &lt;centre-of-bottom-base r=&quot;1.0&quot; t=&quot;180.0&quot; p=&quot;0.0&quot; /&gt;</span>
+<span class="s2">    &lt;axis x=&quot;0.0&quot; y=&quot;1.0&quot; z=&quot;0.0&quot; /&gt;</span>
+<span class="s2">    &lt;inner-radius val=&quot;0.3&quot; /&gt;</span>
+<span class="s2">    &lt;outer-radius val=&quot;0.32&quot; /&gt;</span>
+<span class="s2">    &lt;height val=&quot;2.0&quot; /&gt;</span>
+<span class="s2">    &lt;/hollow-cylinder&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">SNSPowderReduction</span><span class="p">(</span>
+    <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;/SNS/PG3/IPTS-34523/nexus/PG3_58812.nxs.h5&#39;</span><span class="p">,</span>
+    <span class="n">CalibrationFile</span><span class="o">=</span><span class="s1">&#39;/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_OC_d58772_2025-02-12.h5&#39;</span><span class="p">,</span>
+    <span class="n">CharacterizationRunsFile</span><span class="o">=</span><span class="s1">&#39;/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_char_2025_2-HighRes_OC.txt,/SNS/PG3/shared/CALIBRATION/2025-1_11A_CAL/PG3_char_2025_2_OC_limit.txt&#39;</span><span class="p">,</span>
+    <span class="n">RemovePromptPulseWidth</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">Binning</span><span class="o">=</span><span class="s1">&#39;-0.0008&#39;</span><span class="p">,</span>
+    <span class="n">BackgroundSmoothParams</span><span class="o">=</span><span class="s1">&#39;5, 2&#39;</span><span class="p">,</span>
+    <span class="n">FilterBadPulses</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+    <span class="n">ScaleData</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">TypeOfCorrection</span><span class="o">=</span><span class="s1">&#39;SampleAndContainer&#39;</span><span class="p">,</span>
+    <span class="n">SampleFormula</span><span class="o">=</span><span class="s1">&#39;Ba-Nb-Cr-Ru&#39;</span><span class="p">,</span>
+    <span class="n">MeasuredMassDensity</span><span class="o">=</span><span class="s1">&#39;6.0&#39;</span><span class="p">,</span>
+    <span class="n">SampleGeometry</span><span class="o">=</span><span class="n">sam_geo</span><span class="p">,</span>
+    <span class="n">SampleNumberDensity</span><span class="o">=</span><span class="s1">&#39;0.088&#39;</span><span class="p">,</span>
+    <span class="n">ContainerGeometry</span><span class="o">=</span><span class="n">c_geo</span><span class="p">,</span>
+    <span class="n">ContainerMaterial</span><span class="o">=</span><span class="n">c_mat</span><span class="p">,</span>
+    <span class="n">GaugeVolume</span><span class="o">=</span><span class="n">gauge_vol</span><span class="p">,</span>
+    <span class="n">SaveAs</span><span class="o">=</span><span class="s1">&#39;gsas topas and fullprof&#39;</span><span class="p">,</span>
+    <span class="n">OutputDirectory</span><span class="o">=</span><span class="s1">&#39;/path/to/output/directory&#39;</span><span class="p">,</span>
+    <span class="n">CacheDir</span><span class="o">=</span><span class="s1">&#39;/path/to/cache/directory&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">volume</span></code> is defined explicitly as <code class="docutils literal notranslate"><span class="pre">gauge_vol</span></code> with an XML string. It should be noticed that the length and angle unit for the XML geometry definition is <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">degree</span></code>, respectively. Refer to the link <a class="reference external" href="https://docs.mantidproject.org/nightly/concepts/HowToDefineGeometricShape.html#how-to-define-geometric-shape">here</a> for more information.</p>
 </section>
 <section id="more-materials">
 <h2>More Materials<a class="headerlink" href="#more-materials" title="Link to this heading">#</a></h2>
@@ -743,6 +900,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction">Step-by-step Instruction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-setup">Advanced Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#absorption-correction">Absorption Correction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#absorption-correction-special-geometries">Absorption Correction – Special Geometries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#absorption-correction-account-for-beam-size">Absorption Correction – Account for Beam Size</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-materials">More Materials</a></li>
 </ul>
   </nav></div>
