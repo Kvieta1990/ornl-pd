@@ -656,12 +656,6 @@ Several keys on the top of the list are sensitive information concerning the con
 
     With this flag, one can specify a list of peaks (in `d`-space) for the container in case there are Bragg peaks in the container signal that needs to be stripped off. The list should be given in a string and different peak positions should be separated with `comma`.
 
-- `BkgScale`
-
-    > Optional
-
-    Specify a scale factor to be multiplied onto the container background in case of over or under subtraction of the container signal.
-
 - `ResonanceFilter`
 
     > Optional
