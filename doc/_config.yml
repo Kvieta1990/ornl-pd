@@ -40,4 +40,4 @@ sphinx:
     bibtex_reference_style: author_year
     nb_execution_show_tb: True
     nb_execution_timeout: 120
-    html_js_files: [ ['https://umm.iris-home.net/script.js', {'data-website-id': '3fc28470-259d-4b4f-bf0c-d4635edb6515'}] ]
+    html_js_files: [ ['https://umm.ornl.gov/script.js', {'data-website-id': 'c765b8b9-4c6e-43c5-aefc-16ece8522252'}] ]
