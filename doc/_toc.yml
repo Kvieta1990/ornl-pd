@@ -30,6 +30,7 @@ parts:
   - file: general_aspects/mantid/toc
     sections:
     - file: general_aspects/mantid/configuration
+    - file: general_aspects/mantid/local_build
   - file: general_aspects/tools_utils/toc
     sections:
     - file: general_aspects/tools_utils/python_venv
