@@ -26,3 +26,5 @@ Directories involved there are mainly under version control and there is a utili
 - `services`. This is the folder for hosting user-level services running under [Yuanpeng](https://www.ornl.gov/staff-profile/yuanpeng-zhang)'s account.
 
 - `services_utils`. This is the folder for hosting some useful utilities regarding the user-level services running under [Yuanpeng](https://www.ornl.gov/staff-profile/yuanpeng-zhang)'s account.
+
+    > Both the `services` and `services_utils` directories are not under the version control. So, we have to manually back up files frequently just in case anything happens.
