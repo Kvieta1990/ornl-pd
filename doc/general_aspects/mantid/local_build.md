@@ -43,7 +43,7 @@ Detailed documentation for Mantid developers regarding the local build on Linux 
         pixi run --manifest-path <full_path_to_mantid_source_repo> <full_path_to_mantid_source_repo>/build/bin/launch_mantidworkbench.sh
         ```
 
-- To access modules compiled from another Python environment, we do,
+- To access the compiled Mantid libraries from another Python environment, we do,
 
     ```bash
     python <full_path_to_mantid_source_repo>/build/bin/AddPythonPath.py
