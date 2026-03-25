@@ -14,6 +14,18 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} Work in Progress
 :class: attention
 
+- The powder diffraction AI agent is under active development. Available features are,
+
+    - Agent stays in ORNL slack workspace and SNS or HFIR users can get access to the agent. Get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpeng Zhang</a> if you want to try out.
+
+    - Retrieve ORNL and neutron information -- ORNL and neutron specific web pages are all indexed and the answer will be very specific to the ORNL and neutron scope.
+
+    - NOMAD and POWGEN specific information retrieval.
+
+    - POWGEN auto reduction configuration reader.
+
+    - POWGEN temperature ramping calculator.
+
 - More PD tools in NOVA, including,
 
     - pystog
@@ -30,19 +42,10 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} New Features & Bug Fixes
 :class: tip
 
-- POWGEN autoreduction routine now is able to take the container scale factor as an input parameter to deal with some cases where over- or under-subtraction of the container background is happening.
+- The `pystog_cli` engine for total scattering data processing now supports the uncertainty calculation for pair distribution function (PDF).
 
-- POWGEN autoreduction now will write out the XML configuration file that can be loaded into the POWGEN reduction GUI in Mantid Workbench.
+- The uncertainty calculation for PDF is not supported in the autoreduction pipeline for both NOMAD and POWGEN.
 
-- The autoreduction scripts for NOMAD (`all_nom`) and POWGEN (`all_pg3`) now takes an optional argument to specify the output directory. Details can be found [here](https://powder.ornl.gov/data_tools/powgen.html#all-pg3) and [here](https://powder.ornl.gov/data_tools/nomad.html#all-nom).
-
-- The POWGEN autoreduction configuration backup files are not all organized into a dedicated subfolder under `<IPTS>/shared/autoreduce/auto_params_backup`, where `<IPTS>` refers to the path to the IPTS, e.g., `/SNS/PG3/IPTS-32378`.
-
-- In GSAS-II, now once we have a searched k-vector, we can use it to talk to ISODISTORT and construct compatible sub-groups.
-
-- Powder diffraction data visualization tools and reduction configuration tools development in the ORNL `nova` platform, [nova.ornl.gov](https://nova.ornl.gov).
-
-- NOMAD data comparison tool `nom_cp`, see [here](https://powder.ornl.gov/data_tools/nomad.html#nom-cp).
 ``````
 
 ``````{admonition} Planned Items
@@ -127,6 +130,22 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````
 
 # Archive
+
+## Mar-2026
+
+- POWGEN autoreduction routine now is able to take the container scale factor as an input parameter to deal with some cases where over- or under-subtraction of the container background is happening.
+
+- POWGEN autoreduction now will write out the XML configuration file that can be loaded into the POWGEN reduction GUI in Mantid Workbench.
+
+- The autoreduction scripts for NOMAD (`all_nom`) and POWGEN (`all_pg3`) now takes an optional argument to specify the output directory. Details can be found [here](https://powder.ornl.gov/data_tools/powgen.html#all-pg3) and [here](https://powder.ornl.gov/data_tools/nomad.html#all-nom).
+
+- The POWGEN autoreduction configuration backup files are not all organized into a dedicated subfolder under `<IPTS>/shared/autoreduce/auto_params_backup`, where `<IPTS>` refers to the path to the IPTS, e.g., `/SNS/PG3/IPTS-32378`.
+
+- In GSAS-II, now once we have a searched k-vector, we can use it to talk to ISODISTORT and construct compatible sub-groups.
+
+- Powder diffraction data visualization tools and reduction configuration tools development in the ORNL `nova` platform, [nova.ornl.gov](https://nova.ornl.gov).
+
+- NOMAD data comparison tool `nom_cp`, see [here](https://powder.ornl.gov/data_tools/nomad.html#nom-cp).
 
 ## Aug-2025
 
