@@ -195,7 +195,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../general_aspects/nsources.html">Neutron Sources</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../general_aspects/calibration/toc.html">Calibration of Instruments</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../general_aspects/calibration/pd_calib_principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general_aspects/calibration/pd_calib_principles.html">Principles &amp; Practices for Powder Diffraction Calibration</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../general_aspects/calibration/SNAP_calibration.html">SNAP | BL-3 | SNS</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../general_aspects/calibration/snap/coreConcepts.html">Core Concepts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../general_aspects/calibration/snap/binning.html">A note on data binning…</a></li>
@@ -220,6 +220,7 @@
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../general_aspects/mantid/toc.html">Mantid</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../general_aspects/mantid/configuration.html">Mantid Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general_aspects/mantid/local_build.html">Build Mantid Locally</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../general_aspects/tools_utils/toc.html">Tools and Utilities</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -330,6 +331,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../collections/pd_software_tests.html">PD Software Tests</a></li>
 
 
+<li class="toctree-l2"><a class="reference internal" href="../collections/pd_software_maintenance.html">PD Software Maintenance</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bib.html">References</a></li>
@@ -548,6 +550,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roadmap</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#archive">Archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mar-2026">Mar-2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aug-2025">Aug-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jun-2025">Jun-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#may-2025">May-2025</a></li>
@@ -593,6 +596,15 @@ document.write(`
 <div class="attention admonition">
 <p class="admonition-title">Work in Progress</p>
 <ul>
+<li><p>The powder diffraction AI agent is under active development. Available features are,</p>
+<ul class="simple">
+<li><p>Agent stays in ORNL slack workspace and SNS or HFIR users can get access to the agent. Get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpeng Zhang</a> if you want to try out.</p></li>
+<li><p>Retrieve ORNL and neutron information – ORNL and neutron specific web pages are all indexed and the answer will be very specific to the ORNL and neutron scope.</p></li>
+<li><p>NOMAD and POWGEN specific information retrieval.</p></li>
+<li><p>POWGEN auto reduction configuration reader.</p></li>
+<li><p>POWGEN temperature ramping calculator.</p></li>
+</ul>
+</li>
 <li><p>More PD tools in NOVA, including,</p>
 <ul class="simple">
 <li><p>pystog</p></li>
@@ -610,13 +622,8 @@ document.write(`
 <div class="tip admonition">
 <p class="admonition-title">New Features &amp; Bug Fixes</p>
 <ul class="simple">
-<li><p>POWGEN autoreduction routine now is able to take the container scale factor as an input parameter to deal with some cases where over- or under-subtraction of the container background is happening.</p></li>
-<li><p>POWGEN autoreduction now will write out the XML configuration file that can be loaded into the POWGEN reduction GUI in Mantid Workbench.</p></li>
-<li><p>The autoreduction scripts for NOMAD (<code class="docutils literal notranslate"><span class="pre">all_nom</span></code>) and POWGEN (<code class="docutils literal notranslate"><span class="pre">all_pg3</span></code>) now takes an optional argument to specify the output directory. Details can be found <a class="reference external" href="https://powder.ornl.gov/data_tools/powgen.html#all-pg3">here</a> and <a class="reference external" href="https://powder.ornl.gov/data_tools/nomad.html#all-nom">here</a>.</p></li>
-<li><p>The POWGEN autoreduction configuration backup files are not all organized into a dedicated subfolder under <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;/shared/autoreduce/auto_params_backup</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;</span></code> refers to the path to the IPTS, e.g., <code class="docutils literal notranslate"><span class="pre">/SNS/PG3/IPTS-32378</span></code>.</p></li>
-<li><p>In GSAS-II, now once we have a searched k-vector, we can use it to talk to ISODISTORT and construct compatible sub-groups.</p></li>
-<li><p>Powder diffraction data visualization tools and reduction configuration tools development in the ORNL <code class="docutils literal notranslate"><span class="pre">nova</span></code> platform, <a class="reference external" href="https://nova.ornl.gov">nova.ornl.gov</a>.</p></li>
-<li><p>NOMAD data comparison tool <code class="docutils literal notranslate"><span class="pre">nom_cp</span></code>, see <a class="reference external" href="https://powder.ornl.gov/data_tools/nomad.html#nom-cp">here</a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">pystog_cli</span></code> engine for total scattering data processing now supports the uncertainty calculation for pair distribution function (PDF).</p></li>
+<li><p>The uncertainty calculation for PDF is not supported in the autoreduction pipeline for both NOMAD and POWGEN.</p></li>
 </ul>
 </div>
 <div class="admonition-planned-items admonition">
@@ -690,6 +697,18 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="archive">
 <h1>Archive<a class="headerlink" href="#archive" title="Link to this heading">#</a></h1>
+<section id="mar-2026">
+<h2>Mar-2026<a class="headerlink" href="#mar-2026" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>POWGEN autoreduction routine now is able to take the container scale factor as an input parameter to deal with some cases where over- or under-subtraction of the container background is happening.</p></li>
+<li><p>POWGEN autoreduction now will write out the XML configuration file that can be loaded into the POWGEN reduction GUI in Mantid Workbench.</p></li>
+<li><p>The autoreduction scripts for NOMAD (<code class="docutils literal notranslate"><span class="pre">all_nom</span></code>) and POWGEN (<code class="docutils literal notranslate"><span class="pre">all_pg3</span></code>) now takes an optional argument to specify the output directory. Details can be found <a class="reference external" href="https://powder.ornl.gov/data_tools/powgen.html#all-pg3">here</a> and <a class="reference external" href="https://powder.ornl.gov/data_tools/nomad.html#all-nom">here</a>.</p></li>
+<li><p>The POWGEN autoreduction configuration backup files are not all organized into a dedicated subfolder under <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;/shared/autoreduce/auto_params_backup</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;IPTS&gt;</span></code> refers to the path to the IPTS, e.g., <code class="docutils literal notranslate"><span class="pre">/SNS/PG3/IPTS-32378</span></code>.</p></li>
+<li><p>In GSAS-II, now once we have a searched k-vector, we can use it to talk to ISODISTORT and construct compatible sub-groups.</p></li>
+<li><p>Powder diffraction data visualization tools and reduction configuration tools development in the ORNL <code class="docutils literal notranslate"><span class="pre">nova</span></code> platform, <a class="reference external" href="https://nova.ornl.gov">nova.ornl.gov</a>.</p></li>
+<li><p>NOMAD data comparison tool <code class="docutils literal notranslate"><span class="pre">nom_cp</span></code>, see <a class="reference external" href="https://powder.ornl.gov/data_tools/nomad.html#nom-cp">here</a>.</p></li>
+</ul>
+</section>
 <section id="aug-2025">
 <h2>Aug-2025<a class="headerlink" href="#aug-2025" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -934,6 +953,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Roadmap</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#archive">Archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mar-2026">Mar-2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aug-2025">Aug-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jun-2025">Jun-2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#may-2025">May-2025</a></li>
