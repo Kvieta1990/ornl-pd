@@ -6,7 +6,7 @@ email: zhangy3@ornl.gov
 logo: ornl_logo.png
 
 html:
-  announcement: "<span class='blink'>&#x1F4E2;</span> IUCr2026 Calgary: <a href='https://event.fourwaves.com/iucr-2026/registration' target='_blank' style='color: #0077cc; font-weight: bold; text-decoration: underline;'>&#x1F449; Early bird registration</a> ends March 31! Join the congress and <a href='https://event.fourwaves.com/iucr-2026/pages/81fae94d-59c9-4baf-a41a-ffdf9041b88b' target='_blank' style='color: #0077cc; font-weight: bold; text-decoration: underline;'>&#x1F449; specialized scattering workshops (Magnetic PDF, Magnetic RMC, Diffuse Scattering, XAS)</a>."
+  announcement: "<span class='blink'>&#x1F4E2;</span> IUCr2026 Calgary: <a href='https://event.fourwaves.com/iucr-2026/registration' target='_blank' style='color: #ffd700; font-weight: bold; text-decoration: underline;'>&#x1F449; Early bird registration</a> ends March 31! Join the congress and <a href='https://event.fourwaves.com/iucr-2026/pages/81fae94d-59c9-4baf-a41a-ffdf9041b88b' target='_blank' style='color: #ffd700; font-weight: bold; text-decoration: underline;'>&#x1F449; specialized scattering workshops (Magnetic PDF, Magnetic RMC, Diffuse Scattering, XAS)</a>."
   favicon: imgs/powder_fav.png
   home_page_in_navbar: false
   use_edit_page_button: true
