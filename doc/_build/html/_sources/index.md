@@ -1,6 +1,10 @@
 Powder Diffraction at ORNL
 ===
 
+> Subscribe to the mailing list for the web-based powder diffraction services hosted at ORNL [here](https://elist.ornl.gov/mailman/listinfo/powdercloud-ornl).
+
+> Subscribe to the RMCProfile mailing list [here](https://elist.ornl.gov/mailman/listinfo/rmcprofile).
+
 > Check out announcements for our software and services at <a href="https://iris2020.net/updates" target="_blank">iris2020.net/updates</a>.
 
 > Check out our software features release timeline at <a href="https://powder.ornl.gov/updates" target="_blank">powder.ornl.gov/updates</a> or <a href="https://powder-updates.com" target="_blank">powder-updates.com</a>.
