@@ -6,7 +6,7 @@ email: zhangy3@ornl.gov
 logo: ornl_logo.png
 
 html:
-  announcement: "<span class='blink'>&#x1F4E2;</span> Server will be down for maintenance from 15:00 EDT 05-15-2026 to 18:00 EDT 05-17-2026. <span class='blink'>&#x1F4E2;</span>"
+  announcement: "<span class='blink'>&#x1F4E2;</span> Server will be down for maintenance from 15:00 EDT 05-14-2026 to 18:00 EDT 05-17-2026. <span class='blink'>&#x1F4E2;</span>"
   favicon: imgs/powder_fav.png
   home_page_in_navbar: false
   use_edit_page_button: true
