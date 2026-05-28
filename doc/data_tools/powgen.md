@@ -80,7 +80,7 @@ POWGEN
 (all_pg3)=
 - {ref}`all_pg3<all_pg3>`
 
-    > The script here is running the reduction script located at `/SNS/PG3/shared/autoreduce/reduce_PG3_man.py`.
+    > The script here is running the reduction script located at `/SNS/PG3/shared/autoreduce/reduce_PG3.py`.
 
     This will run the same autoreduction as on Monitor ([monitor.sns.gov](https://monitor.sns.gov)). It runs locally and multiple run numbers can be processed in a batch manner. The program runs as follows,
 
@@ -91,6 +91,8 @@ POWGEN
     e.g., `all_pg3 29792 '193462, 193474-193484' /path/to/out/dir`
 
     where `[OutputDirectory]` indicates the path to output directory is `optional`.
+
+    When running the command with the `-c` flag like this `all_pg3 -c 38451`, it will check whether all data involved in the specified IPTS are properly reduced.
 
 - `confirm-powgen`
 
