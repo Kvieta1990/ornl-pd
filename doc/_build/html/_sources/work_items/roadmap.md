@@ -14,6 +14,14 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````{admonition} Work in Progress
 :class: attention
 
+- IRREP support for the magnetic structure refinement in GSAS-II, working together with Brian Toby, Joe Paddison, Danielle Yahne and Stuart Calder on the implementation.
+
+- Accurate temperature ramping calculation tool for POWGEN, [https://addie.ornl.gov/pg3_temp_ramp](https://addie.ornl.gov/pg3_temp_ramp)
+
+- Table scan generation tool for POWGEN, [https://addie.ornl.gov/table_scan](https://addie.ornl.gov/table_scan)
+
+    > We are working on more sample environments implementation and more functionalities. See [here](https://github.com/users/Kvieta1990/projects/6/views/1?pane=issue&itemId=188097321&issue=Kvieta1990%7CKvieta1990%7C83) for more information.
+
 - The powder diffraction AI agent is under active development. Available features are,
 
     - Agent stays in ORNL slack workspace and SNS or HFIR users can get access to the agent. Get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpeng Zhang</a> if you want to try out.
@@ -28,10 +36,6 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 
 - More PD tools in NOVA, including,
 
-    - pystog
-
-    - Auto & Live reduction configuration
-
     - Experiment information hub
 
 - Texture correction for total scattering.
@@ -44,7 +48,7 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 
 - The `pystog_cli` engine for total scattering data processing now supports the uncertainty calculation for pair distribution function (PDF).
 
-- The uncertainty calculation for PDF is not supported in the autoreduction pipeline for both NOMAD and POWGEN.
+- The uncertainty calculation for PDF is now supported in the autoreduction pipeline for both NOMAD and POWGEN.
 
 ``````
 
@@ -130,6 +134,12 @@ To make contribution, get in touch with <a href="mailto:zhangy3@ornl.gov">Yuanpe
 ``````
 
 # Archive
+
+## Apr-2026
+
+- Sample and characterization runs information auto-populated into a dedicated database for more robust and smoother auto reduction.
+
+- Routinely used powder diffraction tools are now available in NOVA powder toolkits, [https://ndip.ornl.gov/nova/powder-diffraction](https://ndip.ornl.gov/nova/powder-diffraction).
 
 ## Mar-2026
 
