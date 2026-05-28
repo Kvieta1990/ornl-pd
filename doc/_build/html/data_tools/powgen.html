@@ -621,7 +621,7 @@ document.write(`
 <ul id="all-pg3">
 <li><p><a class="reference internal" href="#all-pg3"><span class="std std-ref">all_pg3</span></a></p>
 <blockquote>
-<div><p>The script here is running the reduction script located at <code class="docutils literal notranslate"><span class="pre">/SNS/PG3/shared/autoreduce/reduce_PG3_man.py</span></code>.</p>
+<div><p>The script here is running the reduction script located at <code class="docutils literal notranslate"><span class="pre">/SNS/PG3/shared/autoreduce/reduce_PG3.py</span></code>.</p>
 </div></blockquote>
 <p>This will run the same autoreduction as on Monitor (<a class="reference external" href="https://monitor.sns.gov">monitor.sns.gov</a>). It runs locally and multiple run numbers can be processed in a batch manner. The program runs as follows,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>all_pg3<span class="w"> </span>IPTS<span class="w"> </span>RunsToProcess<span class="w"> </span><span class="o">[</span>OutputDirectory<span class="o">]</span>
@@ -629,6 +629,7 @@ document.write(`
 </div>
 <p>e.g., <code class="docutils literal notranslate"><span class="pre">all_pg3</span> <span class="pre">29792</span> <span class="pre">'193462,</span> <span class="pre">193474-193484'</span> <span class="pre">/path/to/out/dir</span></code></p>
 <p>where <code class="docutils literal notranslate"><span class="pre">[OutputDirectory]</span></code> indicates the path to output directory is <code class="docutils literal notranslate"><span class="pre">optional</span></code>.</p>
+<p>When running the command with the <code class="docutils literal notranslate"><span class="pre">-c</span></code> flag like this <code class="docutils literal notranslate"><span class="pre">all_pg3</span> <span class="pre">-c</span> <span class="pre">38451</span></code>, it will check whether all data involved in the specified IPTS are properly reduced.</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">confirm-powgen</span></code></p>
 <p>Routine for confirming the data availability for POWGEN experiments. It can run with either of the ways below,</p>
