@@ -464,6 +464,32 @@ This refers to the `Normalization` key which takes care of the normalization mea
 
     When the `AutoRed` flag is `false` (the default value), the data would be reduced to multiple groups (which are usually called `banks`). Rietveld program could then take the multiple-banks data and refine the model against multiple banks of data simultaneously. To obtain PDF, one needs a routine to merge the data from multiple banks into a single pattern. This will be covered in the `Output and Post-Processing` section.
 
+- `StripVanPeaksParams`
+
+    > Optional
+
+    > Form: A dict
+
+    This parameter concerns about stripping out the vanadium peaks and the follow-up smoothing. Usually the default parameters would work so we don't need to worry about putting in this keyword. In case needed, we can refer to the Mantid documentation for the [`StripVanadiumPeaks`](https://docs.mantidproject.org/nightly/algorithms/StripVanadiumPeaks-v2.html) and [`FFTSmooth`](https://docs.mantidproject.org/nightly/algorithms/FFTSmooth-v2.html) algorithms for available options as listed below,
+
+    - `StripVanadiumPeaks`
+
+        - FWHM, default `7`
+
+        - Tolerance, default `4`
+
+        - BackgroundType, default `Quadratic`
+
+        - HighBackground, default `True`
+
+        - PeakPositionTolerance, default `0.01`
+
+    - `FFTSmooth`
+
+        - FFTSmoothFilter, default `Butterworth`
+
+        - FFTSmoothParams, default `20,2` (the default value here is diffrent from that given in the Mantid documentation page)
+
 ## Output and Post-Processing
 
 Inside the specified output directory, there will be several sub-directories to be created by MTS to host the output files, as listed below,
