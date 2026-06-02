@@ -1065,6 +1065,32 @@ document.write(`
 <p>Flag for specifying whether the reduction is for autoreduction purpose. Once the flag is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the autoreduction mode will be activated and the data processing and output will group all detectors together. The benefit of such a manner of detectors grouping is obvious – a single pattern of the reduced total scattering data could be obtained and we could then perform the Fourier transform automatically to obtain the pair distribution function (PDF). The downside is that patterns for detectors with different scattering angle and thus different resolution would be merged together to yield a peak shape that could be a bit complicated to interpret. Regarding this, the Rietveld program often has complicated peak profile function that could potentially describe the peak shape well enough. Concerning the impact upon the PDF data, as long as we are not fitting the data up to that high <span class="math notranslate nohighlight">\(r\)</span> (e.g., well above 30 angstrom), the <code class="docutils literal notranslate"><span class="pre">Qdamp</span></code> and <code class="docutils literal notranslate"><span class="pre">Qbroad</span></code> parameters based on the Gaussian assumption of the peak shape would still work safely.</p>
 <p>When the <code class="docutils literal notranslate"><span class="pre">AutoRed</span></code> flag is <code class="docutils literal notranslate"><span class="pre">false</span></code> (the default value), the data would be reduced to multiple groups (which are usually called <code class="docutils literal notranslate"><span class="pre">banks</span></code>). Rietveld program could then take the multiple-banks data and refine the model against multiple banks of data simultaneously. To obtain PDF, one needs a routine to merge the data from multiple banks into a single pattern. This will be covered in the <code class="docutils literal notranslate"><span class="pre">Output</span> <span class="pre">and</span> <span class="pre">Post-Processing</span></code> section.</p>
 </li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StripVanPeaksParams</span></code></p>
+<blockquote>
+<div><p>Optional</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A dict</p>
+</div></blockquote>
+<p>This parameter concerns about stripping out the vanadium peaks and the follow-up smoothing. Usually the default parameters would work so we don’t need to worry about putting in this keyword. In case needed, we can refer to the Mantid documentation for the <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/StripVanadiumPeaks-v2.html"><code class="docutils literal notranslate"><span class="pre">StripVanadiumPeaks</span></code></a> and <a class="reference external" href="https://docs.mantidproject.org/nightly/algorithms/FFTSmooth-v2.html"><code class="docutils literal notranslate"><span class="pre">FFTSmooth</span></code></a> algorithms for available options as listed below,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">StripVanadiumPeaks</span></code></p>
+<ul>
+<li><p>FWHM, default <code class="docutils literal notranslate"><span class="pre">7</span></code></p></li>
+<li><p>Tolerance, default <code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+<li><p>BackgroundType, default <code class="docutils literal notranslate"><span class="pre">Quadratic</span></code></p></li>
+<li><p>HighBackground, default <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p>PeakPositionTolerance, default <code class="docutils literal notranslate"><span class="pre">0.01</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FFTSmooth</span></code></p>
+<ul>
+<li><p>FFTSmoothFilter, default <code class="docutils literal notranslate"><span class="pre">Butterworth</span></code></p></li>
+<li><p>FFTSmoothParams, default <code class="docutils literal notranslate"><span class="pre">20,2</span></code> (the default value here is diffrent from that given in the Mantid documentation page)</p></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="output-and-post-processing">
