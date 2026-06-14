@@ -771,6 +771,7 @@ document.write(`
 <span class="w">    </span><span class="nt">&quot;RBin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;RMinScaling&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.1</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;RMaxScaling&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ExtraScaleFactor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;RCutoff&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.64</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;QChunks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">31.4</span><span class="p">,</span><span class="w"> </span><span class="mf">18.37</span><span class="p">,</span><span class="w"> </span><span class="mf">10.5</span><span class="p">,</span><span class="w"> </span><span class="mf">6.9</span><span class="p">],</span>
 <span class="w">    </span><span class="nt">&quot;RChunks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">2.58</span><span class="p">,</span><span class="w"> </span><span class="mf">6.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w"> </span><span class="mf">314.0</span><span class="p">],</span>
@@ -893,6 +894,14 @@ document.write(`
 <div><p>Form: A float</p>
 </div></blockquote>
 <p>The lower boundary in the low-r region of the real space data for the data scaling. See the notes for <code class="docutils literal notranslate"><span class="pre">RMinScaling</span></code> presented above.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ExtraScaleFactor</span></code></p>
+<blockquote>
+<div><p>Optional. If specified, the program will multiple the given scale factor value onto the scale factor calculated from the low-r range specified above.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Form: A float</p>
+</div></blockquote>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">RCutoff</span></code></p>
 <blockquote>

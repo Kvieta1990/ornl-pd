@@ -243,6 +243,7 @@ General Tools
         "RBin": 0.01,
         "RMinScaling": 1.1,
         "RMaxScaling": 1.5,
+        "ExtraScaleFactor": 1.0,
         "RCutoff": 1.64,
         "QChunks": [31.4, 18.37, 10.5, 6.9],
         "RChunks": [2.58, 6.0, 50.0, 314.0],
@@ -354,6 +355,12 @@ General Tools
         > Form: A float
 
         The lower boundary in the low-r region of the real space data for the data scaling. See the notes for `RMinScaling` presented above.
+
+    - `ExtraScaleFactor`
+
+        > Optional. If specified, the program will multiple the given scale factor value onto the scale factor calculated from the low-r range specified above.
+
+        > Form: A float
 
     - `RCutoff`
 
